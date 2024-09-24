@@ -333,6 +333,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Belt
       objectReference: {fileID: 0}
+    - target: {fileID: 5371141971851382852, guid: 4484b4956230fc74ba39f75ccca73ab4, type: 3}
+      propertyPath: item
+      value: 
+      objectReference: {fileID: 2140448955}
     - target: {fileID: 6620913757994266837, guid: 4484b4956230fc74ba39f75ccca73ab4, type: 3}
       propertyPath: item
       value: 
@@ -972,6 +976,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Belt
       objectReference: {fileID: 0}
+    - target: {fileID: 1680072543003512185, guid: 4484b4956230fc74ba39f75ccca73ab4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1249,6 +1257,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Belt
       objectReference: {fileID: 0}
+    - target: {fileID: 5371141971851382852, guid: 4484b4956230fc74ba39f75ccca73ab4, type: 3}
+      propertyPath: item
+      value: 
+      objectReference: {fileID: 337049968}
     - target: {fileID: 6620913757994266837, guid: 4484b4956230fc74ba39f75ccca73ab4, type: 3}
       propertyPath: item
       value: 
@@ -1319,6 +1331,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Belt
       objectReference: {fileID: 0}
+    - target: {fileID: 5371141971851382852, guid: 4484b4956230fc74ba39f75ccca73ab4, type: 3}
+      propertyPath: item
+      value: 
+      objectReference: {fileID: 1049139093}
     - target: {fileID: 6620913757994266837, guid: 4484b4956230fc74ba39f75ccca73ab4, type: 3}
       propertyPath: item
       value: 

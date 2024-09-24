@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BuildingOutput : MonoBehaviour
 {
+    private static int buildingOutputID = 0;
+
     private Item item;
     private Item outgoingItem;
     private Vector3 itemPosition;
@@ -16,6 +18,8 @@ public class BuildingOutput : MonoBehaviour
 
     private void Awake() {
         itemPosition = transform.position;
+        buildingOutputID++;
+        gameObject.name = "BuildingOutput" + buildingOutputID;
     }
 
     private void OnEnable() {
@@ -26,12 +30,11 @@ public class BuildingOutput : MonoBehaviour
     }
 
     private void Update() {
-        if (nextBuildingInput == null || !nextBuildingInput.gameObject.activeSelf) nextBuildingInput = GetnextBuildingInput();   
+        if (nextBuildingInput == null || !nextBuildingInput.transform.parent.gameObject.activeSelf) nextBuildingInput = GetNextBuildingInput();
 
-        if (!isMovingItem && item != null && nextBuildingInput != null && nextBuildingInput.IsOccupied() == false)
+        if (!isMovingItem && item != null && nextBuildingInput != null && nextBuildingInput.IsOccupied() == false && !nextBuildingInput.IsOutputFull())
         {
             StartCoroutine(MoveItem());
-            //Debug.Log("Moving item of belt output (" + item.name + ") to next building input");
         }
     }
 
@@ -44,9 +47,8 @@ public class BuildingOutput : MonoBehaviour
         isMovingItem = true;
 
         Vector3 targetPosition = nextBuildingInput.GetItemPosition(movingItem.GetItemHeightOffset());
-        Debug.Log("Target position for item (" + movingItem.name + "): " + targetPosition);
 
-        while (movingItem.transform.position != targetPosition && nextBuildingInput != null)
+        while (movingItem != null && movingItem.transform.position != targetPosition && nextBuildingInput != null)
         {
             movingItem.transform.position = Vector3.MoveTowards(movingItem.transform.position, targetPosition, BuildingManager.Instance.beltSpeed * Time.deltaTime);
 
@@ -55,16 +57,18 @@ public class BuildingOutput : MonoBehaviour
 
         if (nextBuildingInput != null) {
             nextBuildingInput.SetItem(movingItem);
-        } else {
-            Destroy(movingItem.gameObject);
+            nextBuildingInput.SetIncomingItem(null);
         }
         outgoingItem = null;
         isMovingItem = false;
     }
 
-    private BuildingInput GetnextBuildingInput()
+    private BuildingInput GetNextBuildingInput()
     {
-        return BuildingManager.Instance.GetNextBuildingInput(position, direction);
+        BuildingInput nextBuildingInput = BuildingManager.Instance.GetNextBuildingInput(position, direction);
+        if (nextBuildingInput != null) Debug.Log("Next building input found at " + nextBuildingInput.GetPosition());
+
+        return nextBuildingInput;
     }
 
     public Item GetItem() {

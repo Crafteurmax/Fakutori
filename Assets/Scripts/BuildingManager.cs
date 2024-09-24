@@ -19,7 +19,8 @@ public class BuildingManager : MonoBehaviour
     public BuildingInput GetNextBuildingInput(Vector3Int position, Vector3Int direction) {
         Vector3Int nextPosition = position + direction;
         if (buildingInputs.ContainsKey(nextPosition)) {
-            return buildingInputs[nextPosition];
+            //Debug.Log("Next building input found at " + nextPosition);
+            return buildingInputs[nextPosition].gameObject.activeSelf ? buildingInputs[nextPosition] : null;
         }
         return null;
     }
@@ -35,6 +36,7 @@ public class BuildingManager : MonoBehaviour
     public void RemoveBuildingInput(Vector3Int position) {
         if (buildingInputs.ContainsKey(position)) {
             buildingInputs.Remove(position);
+            Debug.Log("Removed building input at " + position);
         }
     }
 }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BuildingInput : MonoBehaviour
 {
+    private static int buildingInputID = 0;
+
     [SerializeField] private Item item;
     private Item incomingItem;
     private Vector3 itemPosition;
@@ -11,8 +13,12 @@ public class BuildingInput : MonoBehaviour
     private Vector3Int position;
     private Vector3Int direction;
 
+    private bool isOutputFull;
+
     private void Awake() {
         itemPosition = transform.position;
+        buildingInputID++;
+        gameObject.name = "BuildingInput" + buildingInputID;
     }
 
     private void OnEnable() {
@@ -60,5 +66,13 @@ public class BuildingInput : MonoBehaviour
 
     public Vector3 GetItemPosition(float yOffset) {
         return itemPosition + new Vector3(0, yOffset, 0);
+    }
+
+    public bool IsOutputFull() {
+        return isOutputFull;
+    }
+
+    public void SetOutputFull(bool outputFull) {
+        isOutputFull = outputFull;
     }
 }
