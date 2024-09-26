@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class Kanjificator : Factory
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private Item kanjiPrefab;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void Awake() {
+        producedItemPrefabs.Add(kanjiPrefab);
     }
 }

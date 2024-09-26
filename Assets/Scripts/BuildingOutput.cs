@@ -32,7 +32,7 @@ public class BuildingOutput : MonoBehaviour
     private void Update() {
         if (nextBuildingInput == null || !nextBuildingInput.transform.parent.gameObject.activeSelf) nextBuildingInput = GetNextBuildingInput();
 
-        if (!isMovingItem && item != null && nextBuildingInput != null && nextBuildingInput.IsOccupied() == false && !nextBuildingInput.IsOutputFull())
+        if (!isMovingItem && item != null && nextBuildingInput != null && nextBuildingInput.IsOccupied() == false && nextBuildingInput.GetIncomingItem() == null && !nextBuildingInput.IsOutputFull())
         {
             StartCoroutine(MoveItem());
         }

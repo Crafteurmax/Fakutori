@@ -23,18 +23,23 @@ public class Belt : Building
 
     public override void OnDisable() {
         base.OnDisable();
+        Release();
+    }
 
-        if (beltInput.GetItem() != null) Destroy(beltInput.GetItem().gameObject);
+    protected override void Release() {
+        if (beltInput.GetItem() != null) ItemFactory.Instance.Release(beltInput.GetItem());
         beltInput.SetItem(null);
-        if (beltInput.GetIncomingItem() != null) Destroy(beltInput.GetIncomingItem().gameObject);
+        if (beltInput.GetIncomingItem() != null) ItemFactory.Instance.Release(beltInput.GetIncomingItem());
         beltInput.SetIncomingItem(null);
-        if (beltOutput.GetItem() != null) Destroy(beltOutput.GetItem().gameObject);
+        if (beltOutput.GetItem() != null) ItemFactory.Instance.Release(beltOutput.GetItem());
         beltOutput.SetItem(null);
-        if (beltOutput.GetOutgoingItem() != null) Destroy(beltOutput.GetOutgoingItem().gameObject);
+        if (beltOutput.GetOutgoingItem() != null) ItemFactory.Instance.Release(beltOutput.GetOutgoingItem());
         beltOutput.SetOutgoingItem(null);
 
         beltInput.SetOutputFull(false);
         BuildingManager.Instance.RemoveBuildingInput(beltInput.GetPosition());
+        
+        base.Release();
     }
 
     private void Update() {
