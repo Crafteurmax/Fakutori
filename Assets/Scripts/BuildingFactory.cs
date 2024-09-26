@@ -31,6 +31,7 @@ public class BuildingFactory : MonoBehaviour
         }
 
         if (building != null) {
+            building.gameObject.SetActive(true);
             return building;
         }
         return InstantiateBuilding(buildingType);
@@ -40,7 +41,7 @@ public class BuildingFactory : MonoBehaviour
         Building building = null;
 
         if (buildingPrefabDict.ContainsKey(buildingType)) {
-            building = Instantiate(buildingPrefabDict[buildingType]);
+            building = Instantiate(buildingPrefabDict[buildingType], transform);
             building.SetBuildingType(buildingType);
         } else {
             Debug.LogError("Building type not found: " + buildingType);

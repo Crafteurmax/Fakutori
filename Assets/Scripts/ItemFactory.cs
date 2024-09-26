@@ -20,13 +20,17 @@ public class ItemFactory : MonoBehaviour
 
         itemPool.TryPop(out item);
 
-        if (item != null) return item;
+        if (item != null) {
+            item.gameObject.SetActive(true);
+            item.SetCharacters("");
+            return item;
+        }
 
         return InstantiateItem();
     }
 
     private Item InstantiateItem() {
-        Item item = Instantiate(itemPrefab);
+        Item item = Instantiate(itemPrefab, transform);
         return item;
     }
 

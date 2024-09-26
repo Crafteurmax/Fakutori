@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Kanjificator : Factory
 {
-    [SerializeField] private Item kanjiPrefab;
+    [SerializeField] private string kanjiCharacter;
 
     private void Awake() {
-        producedItemPrefabs.Add(kanjiPrefab);
+        kanjiCharacter = "漢";
+        producedItemCharcters.Add(kanjiCharacter);
     }
 }

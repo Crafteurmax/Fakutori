@@ -7,6 +7,7 @@ public class Building : MonoBehaviour
     public enum BuildingType {
         Belt,
         Kanjificator,
+        Extractor
     }
 
     private BuildingType buildingType;

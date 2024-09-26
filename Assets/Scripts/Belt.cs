@@ -18,6 +18,8 @@ public class Belt : Building
     }
 
     public override void OnEnable() {
+        BuildingManager.Instance.AddBuildingInput(beltInput.GetPosition(), beltInput);
+
         base.OnEnable();
     }
 
@@ -27,16 +29,15 @@ public class Belt : Building
     }
 
     protected override void Release() {
-        if (beltInput.GetItem() != null) ItemFactory.Instance.Release(beltInput.GetItem());
-        beltInput.SetItem(null);
-        if (beltInput.GetIncomingItem() != null) ItemFactory.Instance.Release(beltInput.GetIncomingItem());
-        beltInput.SetIncomingItem(null);
-        if (beltOutput.GetItem() != null) ItemFactory.Instance.Release(beltOutput.GetItem());
-        beltOutput.SetItem(null);
-        if (beltOutput.GetOutgoingItem() != null) ItemFactory.Instance.Release(beltOutput.GetOutgoingItem());
-        beltOutput.SetOutgoingItem(null);
+        beltInput.ClearItem();
+        beltInput.ClearIncomingItem();
+
+        beltOutput.ClearItem();
+        beltOutput.ClearOutgoingItem();
 
         beltInput.SetOutputFull(false);
+        beltOutput.SetIsMovingItem(false);
+  
         BuildingManager.Instance.RemoveBuildingInput(beltInput.GetPosition());
         
         base.Release();
@@ -44,7 +45,7 @@ public class Belt : Building
 
     private void Update() {
         beltInput.SetOutputFull(beltOutput.IsOccupied());
-        if (beltInput.IsOccupied() && !beltOutput.IsOccupied() && !beltOutput.isMovingItem) {
+        if (beltInput.IsOccupied() && !beltOutput.IsOccupied() && !beltOutput.IsMovingItem()) {
             beltOutput.SetItem(beltInput.GetItem());
             beltInput.SetOutputFull(true);
             beltInput.SetItem(null);

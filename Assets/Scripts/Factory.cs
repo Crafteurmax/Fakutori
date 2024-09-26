@@ -10,7 +10,7 @@ public class Factory : Building
     [SerializeField] protected List<BuildingInput> inputs = new List<BuildingInput>();
     [SerializeField] protected List<BuildingOutput> outputs = new List<BuildingOutput>();
 
-    [SerializeField] protected List<Item> producedItemPrefabs = new List<Item>();
+    [SerializeField] protected List<string> producedItemCharcters = new List<string>();
 
     public enum BuildingState {
         IDLE,
@@ -24,7 +24,8 @@ public class Factory : Building
         base.OnEnable();
         
         foreach (var input in inputs) {
-            input.SetIncomingItem(null);
+            input.Initialize();
+            BuildingManager.Instance.AddBuildingInput(input.GetPosition(), input);
         }
     }
 
@@ -32,23 +33,29 @@ public class Factory : Building
         base.OnDisable();
 
         foreach (var input in inputs) {
-            Item incomingItem = input.GetIncomingItem();
-            if (incomingItem != null) {
-                BuildingManager.Instance.RemoveBuildingInput(input.GetPosition());
-                ItemFactory.Instance.Release(incomingItem);
-            }
+            BuildingManager.Instance.RemoveBuildingInput(input.GetPosition());
         }
-        foreach (var output in outputs) {
-            Item outgoingItem = output.GetOutgoingItem();
-            if (outgoingItem != null) {
-                ItemFactory.Instance.Release(outgoingItem);
-            }
-        }
+        ClearInputs();
+        ClearOutputs();
     }
     
     void Update()
     {
         if (state == BuildingState.IDLE) CheckInputsAndOutputs();
+    }
+
+    private void ClearInputs() {
+        foreach (var input in inputs) {
+            input.ClearItem();
+            input.ClearIncomingItem();
+        }
+    }
+
+    private void ClearOutputs() {
+        foreach (var output in outputs) {
+            output.ClearItem();
+            output.ClearOutgoingItem();
+        }
     }
 
     private void CheckInputsAndOutputs() {
@@ -89,16 +96,19 @@ public class Factory : Building
         yield return new WaitForSeconds(productionTime / productionSpeed);
 
         for (int i = 0; i < outputs.Count; i++) {
-            Item producedItem = producedItemPrefabs[i];
-            Item spawnedItem = SpawnItem(producedItem, outputs[i].transform.position);
+            Item spawnedItem = SpawnItem(outputs[i].transform.position);
+            spawnedItem.SetCharacters(producedItemCharcters[i]);
             spawnedItem.transform.Translate(Vector3.up * spawnedItem.GetItemHeightOffset());
+            spawnedItem.transform.Find("Model").GetComponent<MeshRenderer>().material.color = Color.black;
             outputs[i].SetItem(spawnedItem);
         }
 
         state = BuildingState.IDLE;
     }
 
-    private Item SpawnItem(Item spawnedItem, Vector3 spawnPosition) {
-        return Instantiate(spawnedItem, spawnPosition, Quaternion.identity);
+    private Item SpawnItem(Vector3 spawnPosition) {
+        Item spawnedItem = ItemFactory.Instance.GetItem();
+        spawnedItem.transform.position = spawnPosition;
+        return spawnedItem;
     }
 }

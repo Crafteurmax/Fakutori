@@ -11,7 +11,7 @@ public class BuildingOutput : MonoBehaviour
     private Vector3 itemPosition;
 
     private BuildingInput nextBuildingInput;
-    public bool isMovingItem;
+    private bool isMovingItem;
 
     private Vector3Int position;
     private Vector3Int direction;
@@ -66,7 +66,6 @@ public class BuildingOutput : MonoBehaviour
     private BuildingInput GetNextBuildingInput()
     {
         BuildingInput nextBuildingInput = BuildingManager.Instance.GetNextBuildingInput(position, direction);
-        if (nextBuildingInput != null) Debug.Log("Next building input found at " + nextBuildingInput.GetPosition());
 
         return nextBuildingInput;
     }
@@ -74,23 +73,33 @@ public class BuildingOutput : MonoBehaviour
     public Item GetItem() {
         return item;
     }
-
     public void SetItem(Item newItem) {
         item = newItem;
     }
-
+    public void ClearItem() {
+        if (item != null) {
+            ItemFactory.Instance.Release(item);
+            item = null;
+        }
+    }
+    
     public Item GetOutgoingItem() {
         return outgoingItem;
     }
-
     public void SetOutgoingItem(Item newOutgoingItem) {
         outgoingItem = newOutgoingItem;
+    }
+    public void ClearOutgoingItem() {
+        if (outgoingItem != null) {
+            ItemFactory.Instance.Release(outgoingItem);
+            nextBuildingInput.SetIncomingItem(null);
+            outgoingItem = null;
+        }
     }
 
     public Vector3Int GetPosition() {
         return position;
     }
-
     public void SetPosition(Vector3Int newPosition) {
         position = newPosition;
     }
@@ -98,12 +107,23 @@ public class BuildingOutput : MonoBehaviour
     public Vector3Int GetDirection() {
         return direction;
     }
-
     public void SetDirection(Vector3Int newDirection) {
         direction = newDirection;
     }
 
+
+    public bool IsMovingItem() {
+        return isMovingItem;
+    }
+    public void SetIsMovingItem(bool moving) {
+        isMovingItem = moving;
+    }
+    
     public bool IsOccupied() {
         return item != null;
+    }
+
+    public Vector3 GetItemPosition(float yOffset) {
+        return itemPosition + new Vector3(0, yOffset, 0);
     }
 }
