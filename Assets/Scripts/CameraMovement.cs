@@ -63,11 +63,16 @@ public class CameraMovement : MonoBehaviour
 
     public void RotateMode(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Started) isInRotateMode = true;
+        if (context.phase == InputActionPhase.Started)
+        {
+            isInRotateMode = true;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
         if (context.phase == InputActionPhase.Canceled)
         {
             isInRotateMode = false;
             rotation = Vector2.zero;
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 }
