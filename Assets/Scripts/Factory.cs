@@ -46,15 +46,12 @@ public class Factory : Building
 
     private void ClearInputs() {
         foreach (var input in inputs) {
-            input.ClearItem();
-            input.ClearIncomingItem();
+            input.Reset();
         }
     }
-
     private void ClearOutputs() {
         foreach (var output in outputs) {
-            output.ClearItem();
-            output.ClearOutgoingItem();
+            output.Reset();
         }
     }
 
@@ -82,13 +79,9 @@ public class Factory : Building
     }
 
     private void ClearInput(BuildingInput input) {
-        Item inputItem = input.GetItem();
+        ItemFactory.Instance.Release(input.GetItem());
         input.SetItem(null);
-        ItemFactory.Instance.Release(inputItem);
     }
-
-    // TODO
-    // Faire avancer l'output vers le prochain building
 
     private IEnumerator ProduceItem() {
         state = BuildingState.RUNNING;
@@ -99,7 +92,7 @@ public class Factory : Building
             Item spawnedItem = SpawnItem(outputs[i].transform.position);
             spawnedItem.SetCharacters(producedItemCharcters[i]);
             spawnedItem.transform.Translate(Vector3.up * spawnedItem.GetItemHeightOffset());
-            spawnedItem.transform.Find("Model").GetComponent<MeshRenderer>().material.color = Color.black;
+            spawnedItem.transform.Find("Model").GetComponent<MeshRenderer>().material.color = i % 2 == 0 ? Color.green : Color.black;
             outputs[i].SetItem(spawnedItem);
         }
 

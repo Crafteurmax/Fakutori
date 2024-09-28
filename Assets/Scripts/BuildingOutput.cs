@@ -29,6 +29,12 @@ public class BuildingOutput : MonoBehaviour
         isMovingItem = false;
     }
 
+    public void Reset() {
+        ClearItem();
+        ClearOutgoingItem();
+        SetIsMovingItem(false);
+    }
+
     private void Update() {
         if (nextBuildingInput == null || !nextBuildingInput.transform.parent.gameObject.activeSelf) nextBuildingInput = GetNextBuildingInput();
 

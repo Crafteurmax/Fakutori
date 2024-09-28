@@ -29,14 +29,8 @@ public class Belt : Building
     }
 
     protected override void Release() {
-        beltInput.ClearItem();
-        beltInput.ClearIncomingItem();
-
-        beltOutput.ClearItem();
-        beltOutput.ClearOutgoingItem();
-
-        beltInput.SetOutputFull(false);
-        beltOutput.SetIsMovingItem(false);
+        beltInput.Reset();
+        beltOutput.Reset();
   
         BuildingManager.Instance.RemoveBuildingInput(beltInput.GetPosition());
         

@@ -29,6 +29,11 @@ public class BuildingInput : MonoBehaviour
         position = BuildingManager.Instance.buildingTilemap.WorldToCell(transform.position);
         direction = new Vector3Int((int)transform.forward.x, (int)transform.forward.z, 0);
     }
+    public void Reset() {
+        ClearItem();
+        ClearIncomingItem();
+        SetOutputFull(false);
+    }
 
     public Item GetItem() {
         return item;

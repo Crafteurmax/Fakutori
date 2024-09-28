@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Kanjificator : Factory
@@ -9,5 +10,6 @@ public class Kanjificator : Factory
     private void Awake() {
         kanjiCharacter = "漢";
         producedItemCharcters.Add(kanjiCharacter);
+        producedItemCharcters.Add(kanjiCharacter + kanjiCharacter);
     }
 }
