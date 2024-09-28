@@ -14,6 +14,7 @@ public class BuildingInput : MonoBehaviour
     private Vector3Int direction;
 
     private bool isOutputFull;
+    private bool isBeltInput;
 
     private void Awake() {
         itemPosition = transform.position;
@@ -88,5 +89,12 @@ public class BuildingInput : MonoBehaviour
     }
     public void SetOutputFull(bool outputFull) {
         isOutputFull = outputFull;
+    }
+
+    public bool IsBeltInput() {
+        return isBeltInput;
+    }
+    public void SetIsBeltInput(bool beltInput) {
+        isBeltInput = beltInput;
     }
 }

@@ -16,7 +16,6 @@ public class Splitter : Building
     private InputState rightInputState = InputState.RightOutput;
 
     private bool takeFromLeft;
-    private float movingTime;
 
     [SerializeField] private BuildingOutput leftOutput;
     private bool isSendingToLeft;
@@ -24,7 +23,7 @@ public class Splitter : Building
     private bool isSendingToRight;
 
     private void Awake() {
-        movingTime = Vector3.Distance(leftOutput.transform.position, leftInput.transform.position) / BuildingManager.Instance.beltSpeed;
+        
     }
 
     public override void OnEnable() {
@@ -40,6 +39,9 @@ public class Splitter : Building
         rightInput.Reset();
         leftOutput.Reset();
         rightOutput.Reset();
+
+        leftInputState = InputState.LeftOutput;
+        rightInputState = InputState.RightOutput;
 
         base.OnDisable();
     }
@@ -66,7 +68,6 @@ public class Splitter : Building
             }
         }
     }
-
     private void MoveLeftItem() {
         if (!leftOutput.IsOccupied() && rightOutput.IsOccupied()) {
             if (isSendingToLeft) return;
@@ -125,6 +126,8 @@ public class Splitter : Building
         Vector3 initialPosition = movingItem.transform.position;
         Vector3 targetPosition = output.GetItemPosition(movingItem.GetItemHeightOffset());
 
+        float movingTime = Vector3.Distance(leftOutput.transform.position, leftInput.transform.position) / BuildingManager.Instance.beltSpeed;
+
         float t = 0;
 
         while (t < movingTime && movingItem != null && movingItem.gameObject.activeSelf) {
@@ -141,12 +144,6 @@ public class Splitter : Building
         } else {
             isSendingToRight = false;
         }
-
-        // while (movingItem != null && movingItem.gameObject.activeSelf && movingItem.transform.position != targetPosition) {
-        //     movingItem.transform.position = Vector3.MoveTowards(movingItem.transform.position, targetPosition, BuildingManager.Instance.beltSpeed * Time.deltaTime);
-
-        //     yield return null;
-        // }
 
         output.SetItem(movingItem);
     }

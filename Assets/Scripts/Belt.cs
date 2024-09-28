@@ -13,6 +13,8 @@ public class Belt : Building
         beltInput = GetComponentInChildren<BuildingInput>();
         beltOutput = GetComponentInChildren<BuildingOutput>();
 
+        beltInput.SetIsBeltInput(true);
+
         beltID++;
         gameObject.name = "Belt" + beltID;
     }
