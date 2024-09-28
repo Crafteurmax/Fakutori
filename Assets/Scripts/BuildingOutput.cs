@@ -4,18 +4,22 @@ using UnityEngine;
 
 public class BuildingOutput : MonoBehaviour
 {
+    private static int buildingOutputID = 0;
+
     private Item item;
     private Item outgoingItem;
     private Vector3 itemPosition;
 
     private BuildingInput nextBuildingInput;
-    public bool isMovingItem;
+    private bool isMovingItem;
 
     private Vector3Int position;
     private Vector3Int direction;
 
     private void Awake() {
         itemPosition = transform.position;
+        buildingOutputID++;
+        gameObject.name = "BuildingOutput" + buildingOutputID;
     }
 
     private void OnEnable() {
@@ -26,12 +30,11 @@ public class BuildingOutput : MonoBehaviour
     }
 
     private void Update() {
-        if (nextBuildingInput == null || !nextBuildingInput.gameObject.activeSelf) nextBuildingInput = GetnextBuildingInput();   
+        if (nextBuildingInput == null || !nextBuildingInput.transform.parent.gameObject.activeSelf) nextBuildingInput = GetNextBuildingInput();
 
-        if (!isMovingItem && item != null && nextBuildingInput != null && nextBuildingInput.IsOccupied() == false)
+        if (!isMovingItem && item != null && nextBuildingInput != null && nextBuildingInput.IsOccupied() == false && nextBuildingInput.GetIncomingItem() == null && !nextBuildingInput.IsOutputFull())
         {
             StartCoroutine(MoveItem());
-            //Debug.Log("Moving item of belt output (" + item.name + ") to next building input");
         }
     }
 
@@ -44,9 +47,9 @@ public class BuildingOutput : MonoBehaviour
         isMovingItem = true;
 
         Vector3 targetPosition = nextBuildingInput.GetItemPosition(movingItem.GetItemHeightOffset());
-        // Debug.Log("Target position for item (" + movingItem.name + "): " + targetPosition);
+        Debug.Log("Target position for item (" + movingItem.name + "): " + targetPosition);
 
-        while (movingItem.transform.position != targetPosition && nextBuildingInput != null)
+        while (movingItem != null && movingItem.transform.position != targetPosition && nextBuildingInput != null)
         {
             movingItem.transform.position = Vector3.MoveTowards(movingItem.transform.position, targetPosition, BuildingManager.Instance.beltSpeed * Time.deltaTime);
 
@@ -55,38 +58,49 @@ public class BuildingOutput : MonoBehaviour
 
         if (nextBuildingInput != null) {
             nextBuildingInput.SetItem(movingItem);
-        } else {
-            Destroy(movingItem.gameObject);
+            nextBuildingInput.SetIncomingItem(null);
         }
         outgoingItem = null;
         isMovingItem = false;
     }
 
-    private BuildingInput GetnextBuildingInput()
+    private BuildingInput GetNextBuildingInput()
     {
-        return BuildingManager.Instance.GetNextBuildingInput(position, direction);
+        BuildingInput nextBuildingInput = BuildingManager.Instance.GetNextBuildingInput(position, direction);
+
+        return nextBuildingInput;
     }
 
     public Item GetItem() {
         return item;
     }
-
     public void SetItem(Item newItem) {
         item = newItem;
     }
-
+    public void ClearItem() {
+        if (item != null) {
+            ItemFactory.Instance.Release(item);
+            item = null;
+        }
+    }
+    
     public Item GetOutgoingItem() {
         return outgoingItem;
     }
-
     public void SetOutgoingItem(Item newOutgoingItem) {
         outgoingItem = newOutgoingItem;
+    }
+    public void ClearOutgoingItem() {
+        if (outgoingItem != null) {
+            ItemFactory.Instance.Release(outgoingItem);
+            nextBuildingInput.SetIncomingItem(null);
+            outgoingItem = null;
+        }
     }
 
     public Vector3Int GetPosition() {
         return position;
     }
-
     public void SetPosition(Vector3Int newPosition) {
         position = newPosition;
     }
@@ -94,12 +108,23 @@ public class BuildingOutput : MonoBehaviour
     public Vector3Int GetDirection() {
         return direction;
     }
-
     public void SetDirection(Vector3Int newDirection) {
         direction = newDirection;
     }
 
+
+    public bool IsMovingItem() {
+        return isMovingItem;
+    }
+    public void SetIsMovingItem(bool moving) {
+        isMovingItem = moving;
+    }
+    
     public bool IsOccupied() {
         return item != null;
+    }
+
+    public Vector3 GetItemPosition(float yOffset) {
+        return itemPosition + new Vector3(0, yOffset, 0);
     }
 }

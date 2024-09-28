@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class Kanjificator : Factory
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private string kanjiCharacter;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void Awake() {
+        kanjiCharacter = "漢";
+        producedItemCharcters.Add(kanjiCharacter);
     }
 }
