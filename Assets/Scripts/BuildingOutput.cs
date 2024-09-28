@@ -44,7 +44,7 @@ public class BuildingOutput : MonoBehaviour
         isMovingItem = true;
 
         Vector3 targetPosition = nextBuildingInput.GetItemPosition(movingItem.GetItemHeightOffset());
-        Debug.Log("Target position for item (" + movingItem.name + "): " + targetPosition);
+        // Debug.Log("Target position for item (" + movingItem.name + "): " + targetPosition);
 
         while (movingItem.transform.position != targetPosition && nextBuildingInput != null)
         {
