@@ -5,6 +5,7 @@ using UnityEngine;
 public class Building : MonoBehaviour
 {
     public enum BuildingType {
+        None,
         Belt,
         Kanjificator,
         Extractor

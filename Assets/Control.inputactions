@@ -132,6 +132,54 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "UI",
+            "id": "e76b9bdd-3bfc-4075-a6aa-8ffa1f2f24d4",
+            "actions": [
+                {
+                    "name": "Return",
+                    "type": "Button",
+                    "id": "eea273a3-a38a-48de-8a08-52686b9e9d97",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SetSelectedBuildingToNone",
+                    "type": "Button",
+                    "id": "b6647559-44aa-4501-927e-97a80cdd6f47",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "ee9b585a-148b-490b-b39c-3e09c2f4c08e",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Return",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7ac7eb7f-980f-4933-a8f5-5f83e2e2d3d0",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SetSelectedBuildingToNone",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
