@@ -21,8 +21,6 @@ public class Library : MonoBehaviour
             AddKanjiToHiraganaToKanjiDictionary(rawDataArray[i+1], rawDataArray[i]);
             AddHiraganaToKanjiToHiraganaDictionary(rawDataArray[i], rawDataArray[i + 1]);
         }
-        Debug.Log(GetKanjiFromKana("こう")[0]);
-        Debug.Log(GetKanaFromKanji("好")[0]);
 
     }
 
