@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEditor;
 using UnityEngine;
 
@@ -10,6 +12,10 @@ public class WorldBuilder : MonoBehaviour
 {
     [SerializeField] private Tilemap map;
     [SerializeField] private bool isProcedural;
+
+    private int chunkSize = 64;
+    private int nbChunkX = 6;
+    private int nbChunkY = 6;
 
     [SerializeField] private int seed;
     [SerializeField, Range(0f, 1f)] private float offset;
@@ -34,9 +40,10 @@ public class WorldBuilder : MonoBehaviour
     {
         GenerateTileList();
 
-        if (isProcedural) GenerateProceduralWorld();
-        else GeneratePrebaWorld("test");
+        if (isProcedural) StartCoroutine( GenerateProceduralWorld());
+        else StartCoroutine( GeneratePrebaWorld("test"));
     }
+
 
     private void GenerateTileList()
     {
@@ -103,18 +110,29 @@ public class WorldBuilder : MonoBehaviour
         tiles[9][4].gameObject = wo;
     }
 
-    private void GenerateProceduralWorld()
+    private IEnumerator GenerateProceduralWorld()
     {
         FastNoiseLite ConsonneNoise = GenerateConsonneRepartition();
         FastNoiseLite SpotNoise = GenerateSpotRepartition();
 
-        for (int x = 0; x < 400; x++)
+
+        for (int xChunk = -(nbChunkX/2); xChunk < nbChunkX/2; xChunk++)
         {
-            for (int y = 0; y < 400; y++)
+            for (int yChunk = -(nbChunkY/2); yChunk < nbChunkY/2; yChunk++)
             {
-                for (int vowel = 0; vowel < 5; vowel++)
-                    if ((SpotNoise.GetNoise(x + vowel * 100, y + vowel * 100) + 1) / 2 < 1 - offset)
-                        map.SetTile(new Vector3Int(x, y), ChoseTile(vowel, (ConsonneNoise.GetNoise(x, y) + 1) / 2));
+                for (int x = xChunk * chunkSize; x < (xChunk + 1) * chunkSize; x++)
+                {
+                    for (int y = yChunk * chunkSize; y < (yChunk + 1) * chunkSize; y++)
+                    {
+                        Vector3Int pos = new Vector3Int(x, y);
+                        float noiseValue = (ConsonneNoise.GetNoise(x, y) + 1) / 2;
+                        for (int vowel = 0; vowel < 5; vowel++)
+                            if ((SpotNoise.GetNoise(x + vowel * 100, y + vowel * 100) + 1) / 2 < 1 - offset)
+                                map.SetTile(pos, ChoseTile(vowel, noiseValue));
+                    }
+                }
+                yield return null;
+
             }
         }
     }
@@ -168,7 +186,7 @@ public class WorldBuilder : MonoBehaviour
         return noise;
     }
 
-    private void GeneratePrebaWorld(string worldPath)
+    private IEnumerator GeneratePrebaWorld(string worldPath)
     {
         string rawData = System.IO.File.ReadAllText(levelsPrefabFolder + worldPath + ".csv");
         string[] rawDataArray = rawData.Split(new string[] { ",", "\n" }, System.StringSplitOptions.RemoveEmptyEntries);
@@ -182,6 +200,9 @@ public class WorldBuilder : MonoBehaviour
             int ConsonnelId = int.Parse(rawDataArray[i + 2]);
             int vowelId = int.Parse(rawDataArray[i + 3]);
             map.SetTile(pos, tiles[ConsonnelId][vowelId]);
+            yield return null;
         }
     }
+
+
 }
