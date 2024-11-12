@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 
 public class Exchangificator : Factory
 {
-    private HiraganaTable hiraganaTable = new HiraganaTable();
+    private SymbolTable symbolTable = new SymbolTable();
 
     public override IEnumerator ProduceItem()
     {
@@ -26,11 +26,11 @@ public class Exchangificator : Factory
 
         Item spawnedItemLeft = SpawnItem(postLeftoutput.transform.position);
         spawnedItemLeft.transform.Translate(Vector3.up * spawnedItemLeft.GetItemHeightOffset());
-        spawnedItemLeft.AddCharacter(rightCharacters);
+        spawnedItemLeft.AddCharacter(leftCharacters);
 
         Item spawnedItemRight = SpawnItem(postRightoutput.transform.position);
         spawnedItemRight.transform.Translate(Vector3.up * spawnedItemRight.GetItemHeightOffset());
-        spawnedItemRight.AddCharacter(leftCharacters);
+        spawnedItemRight.AddCharacter(rightCharacters);
 
         postLeftoutput.SetItem(spawnedItemLeft);
         postRightoutput.SetItem(spawnedItemRight);
@@ -41,12 +41,12 @@ public class Exchangificator : Factory
     bool SwitchSymbolVowel(ref Item.Symbol leftCharacters, ref Item.Symbol rightCharacters)
     {
         int consonantIndexLeft, consonantIndexRight, vowelIndexLeft, vowelIndexRight;
-        hiraganaTable.GetSymbolPosition(leftCharacters.character, out consonantIndexLeft, out vowelIndexLeft);
-        hiraganaTable.GetSymbolPosition(rightCharacters.character, out consonantIndexRight, out vowelIndexRight);
+        symbolTable.GetSymbolPosition(leftCharacters, out consonantIndexLeft, out vowelIndexLeft);
+        symbolTable.GetSymbolPosition(rightCharacters, out consonantIndexRight, out vowelIndexRight);
 
-        leftCharacters.character = hiraganaTable.GetSymbol(consonantIndexLeft, vowelIndexRight);
-        rightCharacters.character = hiraganaTable.GetSymbol(consonantIndexRight, vowelIndexLeft);
+        leftCharacters.character = symbolTable.GetSymbol(consonantIndexLeft, vowelIndexRight, leftCharacters.type);
+        rightCharacters.character = symbolTable.GetSymbol(consonantIndexRight, vowelIndexLeft, rightCharacters.type);
 
-        return true; //#TODO_N deal with failure if incompatible (te -> wa for instance) + add coresponding if
+        return true;
     }
 }
