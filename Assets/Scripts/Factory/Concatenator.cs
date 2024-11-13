@@ -7,24 +7,33 @@ public class Concatenator : Factory
     public override IEnumerator ProduceItem()
     {
         state = BuildingState.RUNNING;
-        
+
         Item leftItem = inputs[0].GetItem();
         Item rightItem = inputs[1].GetItem();
 
-        List<Item.Symbol> leftCharacters = leftItem.GetSymbols();
-        List<Item.Symbol> rightCharacters = rightItem.GetSymbols();
+        List<string> cachedInput = new List<string>();
+        List<Item.Symbol> characters;
+        cachedInput.Add(leftItem.ToString());
+        cachedInput.Add(rightItem.ToString());
+        
+        if(!TryGetOutputsInCache(cachedInput, out characters))
+        {
+            // we merge both inputs together
+            List<Item.Symbol> leftCharacters = leftItem.GetSymbols();
+            List<Item.Symbol> rightCharacters = rightItem.GetSymbols();
 
-        List<Item.Symbol> characters = new List<Item.Symbol>();
+            foreach (var symbol in leftCharacters)
+            {
+                characters.Add(symbol);
+            }
+            foreach (var symbol in rightCharacters)
+            {
+                characters.Add(symbol);
+            }
 
-        foreach (var symbol in leftCharacters) {
-            characters.Add(symbol);
+            // we add result to the cache to not do it again
+            AddToCache(cachedInput, characters);
         }
-        foreach (var symbol in rightCharacters) {
-            characters.Add(symbol);
-        }
-
-
-        // ça marche pas car les items droite de gauche sont reconditionées dans le itempool quand
 
         yield return new WaitForSeconds(productionTime / productionSpeed);
 
@@ -33,7 +42,8 @@ public class Concatenator : Factory
         Item spawnedItem = SpawnItem(output.transform.position);
         spawnedItem.transform.Translate(Vector3.up * spawnedItem.GetItemHeightOffset());
 
-        foreach (var symbol in characters) {
+        foreach (var symbol in characters)
+        {
             spawnedItem.AddCharacter(symbol);
         }
 
