@@ -18,9 +18,7 @@ public class ItemFactory : MonoBehaviour
     public Item GetItem() {
         Item item;
 
-        itemPool.TryPop(out item);
-
-        if (item != null) {
+        if (itemPool.TryPop(out item)) {
             item.gameObject.SetActive(true);
             return item;
         }

@@ -93,4 +93,23 @@ public class Item : MonoBehaviour
         this.symbols = symbols;
         UpdateSymbols();
     }
+
+    public bool Equals(Item other) 
+    {  
+        return other.characters == characters;
+        /*
+        if(other.symbols.Count != symbols.Count) return false;
+        for (int i = 0; i < symbols.Count; i++)
+        {
+            if (symbols[i].character != other.symbols[i].character) return false;
+            if (symbols[i].type != other.symbols[i].type) return false;
+        }
+        return true;
+        */
+    }
+
+    public override string ToString()
+    {
+        return characters;
+    }
 }
