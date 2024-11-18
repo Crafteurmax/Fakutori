@@ -7,29 +7,20 @@ using UnityEngine.InputSystem;
 
 public class PanelManger : MonoBehaviour
 {
-    [Header("Panels")]
-    [SerializeField] private GameObject mainPanel;
-    [SerializeField] private GameObject niponPanel;
-    [SerializeField] private GameObject dictionnaryPanel;
-    [SerializeField] private GameObject optionsPanel;
+    [SerializeField] private GameObject startPanel;
+    [SerializeField] private GameObject returnPanel;
 
-    private readonly List<GameObject> panels = new();
+    [Header("Panels")]
+    [SerializeField] private List<GameObject> panels = new();
+
     private readonly Stack<GameObject> currentPanels = new();
-    private SelectionUI selectionUI;
 
     private void Start()
     {
-        selectionUI = GetComponent<SelectionUI>();
-
-        panels.Add(mainPanel);
-        panels.Add(niponPanel);
-        panels.Add(dictionnaryPanel);
-        panels.Add(optionsPanel);
-
-        TogglePanel(mainPanel);
+        TogglePanel(startPanel);
     }
 
-    private void TogglePanel(GameObject panelToToggle)
+    public void TogglePanel(GameObject panelToToggle)
     {
         currentPanels.Push(panelToToggle);
 
@@ -55,31 +46,14 @@ public class PanelManger : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Started)
         {
-            if (currentPanels.Count == 1 && selectionUI.GetCurrentBuildingType() == Building.BuildingType.None)
-            {
-                TogglePanel(optionsPanel);
-            }
-            else
+            if (currentPanels.Count > 1)
             {
                 ReturnToPreviousPanel();
             }
+            else
+            {
+                TogglePanel(returnPanel);
+            }
         }
     }
-
-    #region Panel Functions
-    public void ToggleNiponPanel()
-    {
-        TogglePanel(niponPanel);
-    }
-
-    public void ToggleDictionnaryPanel()
-    {
-        TogglePanel(dictionnaryPanel);
-    }
-
-    public void ToggleOptionPanel()
-    {
-        TogglePanel(optionsPanel);
-    }
-    #endregion Panel Functions
 }
