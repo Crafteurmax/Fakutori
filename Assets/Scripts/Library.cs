@@ -7,9 +7,9 @@ public class Library : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    private string kanjiSaveFolder = Application.dataPath + "/RawData/vocab.csv";
-    private Dictionary<string, List<string>> hiraganaToKanjiDictionary = new Dictionary<string, List<string>>();
-    private Dictionary<string, List<string>> KanjiToHiraganaDictionary = new Dictionary<string, List<string>>();
+    static private string kanjiSaveFolder = Application.dataPath + "/RawData/vocab.csv";
+    static private Dictionary<string, List<string>> hiraganaToKanjiDictionary = new Dictionary<string, List<string>>();
+    static private Dictionary<string, List<string>> KanjiToHiraganaDictionary = new Dictionary<string, List<string>>();
 
     void Start()
     {
@@ -24,15 +24,20 @@ public class Library : MonoBehaviour
 
     }
 
-
-    public List<string> GetKanjiFromKana(string kana)
+    static public List<string> GetKanjiFromKana(string kana)
     {
         List<string> retour = new List<string>();
         if (hiraganaToKanjiDictionary.TryGetValue(kana,out retour)) return retour;
         return null;
     }
 
-    private void AddKanjiToHiraganaToKanjiDictionary(string kana, string kanji)
+    static public bool TryGetKanjiFromKana(string kana, out List<string> kanji)
+    {
+        kanji = GetKanjiFromKana(kana);
+        return kanji != null;
+    }
+
+    static private void AddKanjiToHiraganaToKanjiDictionary(string kana, string kanji)
     {
         if (hiraganaToKanjiDictionary.ContainsKey(kana)) hiraganaToKanjiDictionary[kana].Add(kanji);
         else
@@ -43,14 +48,20 @@ public class Library : MonoBehaviour
         }
     }
 
-    public List<string> GetKanaFromKanji(string kanji)
+    static public List<string> GetKanaFromKanji(string kanji)
     {
         List<string> retour = new List<string>();
         if (KanjiToHiraganaDictionary.TryGetValue(kanji, out retour)) return retour;
         return null;
     }
 
-    private void AddHiraganaToKanjiToHiraganaDictionary(string kanji, string kana)
+    static public bool TryGetKanaFromKanji(string kanji, out List<string> kana)
+    {
+        kana = GetKanaFromKanji(kanji);
+        return kana != null;
+    }
+
+    static private void AddHiraganaToKanjiToHiraganaDictionary(string kanji, string kana)
     {
         if (KanjiToHiraganaDictionary.ContainsKey(kanji)) KanjiToHiraganaDictionary[kanji].Add(kana);
         else
