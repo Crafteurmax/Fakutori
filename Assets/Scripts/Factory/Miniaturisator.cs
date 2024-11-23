@@ -26,7 +26,6 @@ public class Miniaturisator : Factory
 
             temp.type = item.type;
             temp.character = (char)(item.character - 0x01);
-            Debug.Log(temp.character);
             characters.Add(temp);
         }
 

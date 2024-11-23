@@ -10,7 +10,10 @@ using UnityEngine.Tilemaps;
 
 public class WorldBuilder : MonoBehaviour
 {
-    [SerializeField] private Tilemap map;
+    public static WorldBuilder Instance { get; private set; }
+    public bool isTheWorldComplete;
+
+    public Tilemap map;
     [SerializeField] private bool isProcedural;
 
     private int chunkSize = 64;
@@ -35,13 +38,16 @@ public class WorldBuilder : MonoBehaviour
 
     private List<List<Tile>> tiles = new List<List<Tile>>();
 
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         GenerateTileList();
-
-        if (isProcedural) StartCoroutine( GenerateProceduralWorld());
-        else StartCoroutine( GeneratePrebaWorld("test"));
+        StartCoroutine(GenerateWorld());  
     }
 
 
@@ -195,7 +201,6 @@ public class WorldBuilder : MonoBehaviour
 
         for(int i = 4; i < rawDataArray.Length; i += 4)
         {
-            Debug.Log(rawDataArray[i] + "," + rawDataArray[i+1]);
             Vector3Int pos = new Vector3Int(int.Parse(rawDataArray[i]) - offsetToCenter, int.Parse(rawDataArray[i+1])-offsetToCenter);
             int ConsonnelId = int.Parse(rawDataArray[i + 2]);
             int vowelId = int.Parse(rawDataArray[i + 3]);
@@ -204,5 +209,14 @@ public class WorldBuilder : MonoBehaviour
         }
     }
 
+    private IEnumerator GenerateWorld()
+    {
+        isTheWorldComplete = false;
+        Time.timeScale = 0f;
+        if (isProcedural) yield return StartCoroutine(GenerateProceduralWorld());
+        else yield return StartCoroutine(GeneratePrebaWorld("test"));
+        Time.timeScale = 1f;
+        isTheWorldComplete = true;
+    }
 
 }

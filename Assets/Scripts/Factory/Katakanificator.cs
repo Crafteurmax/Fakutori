@@ -22,7 +22,6 @@ public class Katakanificator : Factory
 
             temp.type = Item.SymbolType.Katakana;
             temp.character = (char)(item.character + 0x60);
-            Debug.Log(temp.character);
             characters.Add(temp);
         }
 

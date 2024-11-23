@@ -8,8 +8,8 @@ public class Concatenator : Factory
     {
         state = BuildingState.RUNNING;
 
-        Item leftItem = inputs[0].GetItem();
-        Item rightItem = inputs[1].GetItem();
+        Item leftItem = inputs[1].GetItem();
+        Item rightItem = inputs[0].GetItem();
 
         List<string> cachedInput = new List<string>();
         List<Item.Symbol> characters;
