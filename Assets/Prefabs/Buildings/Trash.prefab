@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 7178163644483852488}
   - component: {fileID: 374077464771893925}
   - component: {fileID: 7677133453303377586}
-  m_Layer: 0
+  - component: {fileID: 1403069324484900028}
+  m_Layer: 6
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,6 +85,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1403069324484900028
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657719512862671338}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3092182505835218826
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,7 +117,7 @@ GameObject:
   - component: {fileID: 7464361360783437655}
   - component: {fileID: 9166904021929540312}
   - component: {fileID: 8005586217501531100}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +199,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6530926452201749413}
   - component: {fileID: 6928064022994871888}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Trash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,7 +246,7 @@ GameObject:
   m_Component:
   - component: {fileID: 222207850656883995}
   - component: {fileID: 2293602095261875674}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Input
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9131721418228266806}
   - component: {fileID: 3293169197116963200}
   - component: {fileID: 9141221261431347044}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 530114298642537255}
   - component: {fileID: 867490192352666352}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tunnel Output
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,7 +163,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1670235127187965516}
   - component: {fileID: 260807511283936973}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Output
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206,7 +206,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1684140818811882416}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -242,7 +242,7 @@ GameObject:
   - component: {fileID: 4268401152894238686}
   - component: {fileID: 6444833207102140608}
   - component: {fileID: 131491099348297630}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -348,7 +348,7 @@ GameObject:
   - component: {fileID: 7499708816733044081}
   - component: {fileID: 8788470147178441597}
   - component: {fileID: 6009946009379223141}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Arrow1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -453,7 +453,7 @@ GameObject:
   - component: {fileID: 6294154376313846072}
   - component: {fileID: 8895927126854540848}
   - component: {fileID: 5371063619898853495}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Arrow2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -180,6 +180,74 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "BuildingPlacement",
+            "id": "7e28c19e-a0ec-4a69-8354-da3ca298351a",
+            "actions": [
+                {
+                    "name": "Place",
+                    "type": "Button",
+                    "id": "46079d72-700a-4844-b2db-b21a7b0982f8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Rotate",
+                    "type": "Button",
+                    "id": "28e685bc-ec66-415f-a075-f6bb15f2ae93",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Remove",
+                    "type": "Button",
+                    "id": "8180663d-671c-4eba-92dc-940b62fd74b4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "0e34604f-f77d-42ec-b477-520a3869ad6d",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Place",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e8101987-15a7-40c0-827d-953049997c27",
+                    "path": "<Keyboard>/r",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "43eadc03-582b-419c-9865-cec352308686",
+                    "path": "<Keyboard>/x",
+                    "interactions": "Press(pressPoint=1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Remove",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
