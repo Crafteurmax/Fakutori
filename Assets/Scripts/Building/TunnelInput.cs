@@ -41,12 +41,12 @@ public class TunnelInput : Building
         buildingInput.SetOutputFull(intermediateInput.IsOccupied());
         if (!isMovingStart && buildingInput.IsOccupied() && !intermediateInput.IsOccupied() && !isMovingIntermediate) {
             StartCoroutine(MoveItemStart());
-            Debug.Log("MoveItemStart");
+            //Debug.Log("MoveItemStart");
         }
-        Debug.Log("intermediate item : " + intermediateInput.GetItem());
+        //Debug.Log("intermediate item : " + intermediateInput.GetItem());
         if (!isMovingIntermediate && intermediateInput.IsOccupied() && !buildingOutput.IsOccupied() && !buildingOutput.IsMovingItem()) {
             StartCoroutine(MoveItemIntermediate());
-            Debug.Log("MoveItemIntermediate");
+            //Debug.Log("MoveItemIntermediate");
         }
     }
 

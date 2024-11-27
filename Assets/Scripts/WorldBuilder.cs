@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEditor;
 using UnityEngine;
 
@@ -8,8 +10,15 @@ using UnityEngine.Tilemaps;
 
 public class WorldBuilder : MonoBehaviour
 {
-    [SerializeField] private Tilemap map;
+    public static WorldBuilder Instance { get; private set; }
+    public bool isTheWorldComplete;
+
+    public Tilemap map;
     [SerializeField] private bool isProcedural;
+
+    private int chunkSize = 64;
+    private int nbChunkX = 6;
+    private int nbChunkY = 6;
 
     [SerializeField] private int seed;
     [SerializeField, Range(0f, 1f)] private float offset;
@@ -29,14 +38,18 @@ public class WorldBuilder : MonoBehaviour
 
     private List<List<Tile>> tiles = new List<List<Tile>>();
 
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         GenerateTileList();
-
-        if (isProcedural) GenerateProceduralWorld();
-        else GeneratePrebaWorld("test");
+        StartCoroutine(GenerateWorld());  
     }
+
 
     private void GenerateTileList()
     {
@@ -103,18 +116,29 @@ public class WorldBuilder : MonoBehaviour
         tiles[9][4].gameObject = wo;
     }
 
-    private void GenerateProceduralWorld()
+    private IEnumerator GenerateProceduralWorld()
     {
         FastNoiseLite ConsonneNoise = GenerateConsonneRepartition();
         FastNoiseLite SpotNoise = GenerateSpotRepartition();
 
-        for (int x = 0; x < 400; x++)
+
+        for (int xChunk = -(nbChunkX/2); xChunk < nbChunkX/2; xChunk++)
         {
-            for (int y = 0; y < 400; y++)
+            for (int yChunk = -(nbChunkY/2); yChunk < nbChunkY/2; yChunk++)
             {
-                for (int vowel = 0; vowel < 5; vowel++)
-                    if ((SpotNoise.GetNoise(x + vowel * 100, y + vowel * 100) + 1) / 2 < 1 - offset)
-                        map.SetTile(new Vector3Int(x, y), ChoseTile(vowel, (ConsonneNoise.GetNoise(x, y) + 1) / 2));
+                for (int x = xChunk * chunkSize; x < (xChunk + 1) * chunkSize; x++)
+                {
+                    for (int y = yChunk * chunkSize; y < (yChunk + 1) * chunkSize; y++)
+                    {
+                        Vector3Int pos = new Vector3Int(x, y);
+                        float noiseValue = (ConsonneNoise.GetNoise(x, y) + 1) / 2;
+                        for (int vowel = 0; vowel < 5; vowel++)
+                            if ((SpotNoise.GetNoise(x + vowel * 100, y + vowel * 100) + 1) / 2 < 1 - offset)
+                                map.SetTile(pos, ChoseTile(vowel, noiseValue));
+                    }
+                }
+                yield return null;
+
             }
         }
     }
@@ -168,7 +192,7 @@ public class WorldBuilder : MonoBehaviour
         return noise;
     }
 
-    private void GeneratePrebaWorld(string worldPath)
+    private IEnumerator GeneratePrebaWorld(string worldPath)
     {
         string rawData = System.IO.File.ReadAllText(levelsPrefabFolder + worldPath + ".csv");
         string[] rawDataArray = rawData.Split(new string[] { ",", "\n" }, System.StringSplitOptions.RemoveEmptyEntries);
@@ -177,11 +201,22 @@ public class WorldBuilder : MonoBehaviour
 
         for(int i = 4; i < rawDataArray.Length; i += 4)
         {
-            Debug.Log(rawDataArray[i] + "," + rawDataArray[i+1]);
             Vector3Int pos = new Vector3Int(int.Parse(rawDataArray[i]) - offsetToCenter, int.Parse(rawDataArray[i+1])-offsetToCenter);
             int ConsonnelId = int.Parse(rawDataArray[i + 2]);
             int vowelId = int.Parse(rawDataArray[i + 3]);
             map.SetTile(pos, tiles[ConsonnelId][vowelId]);
+            yield return null;
         }
     }
+
+    private IEnumerator GenerateWorld()
+    {
+        isTheWorldComplete = false;
+        Time.timeScale = 0f;
+        if (isProcedural) yield return StartCoroutine(GenerateProceduralWorld());
+        else yield return StartCoroutine(GeneratePrebaWorld("map_test"));
+        Time.timeScale = 1f;
+        isTheWorldComplete = true;
+    }
+
 }
