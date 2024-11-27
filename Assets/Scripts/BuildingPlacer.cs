@@ -122,10 +122,9 @@ public class BuildingPlacer : MonoBehaviour
             Debug.Log("Building removed");
             BuildingManager.Instance.buildingTilemap.SetTile(tilePosition, null);
 
-            tilePosition.z = tilePosition.y;
-            tilePosition.y = 0;
+            Vector3 removePosition = new Vector3(tilePosition.x + 0.5f, 0f, tilePosition.y + 0.5f);
 
-            Collider[] buildingToRemove = Physics.OverlapSphere(tilePosition, 0.2f, buildingMask);
+            Collider[] buildingToRemove = Physics.OverlapSphere(removePosition, 0.2f, buildingMask);
 
             if (buildingToRemove.Length > 0)
             {
