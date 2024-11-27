@@ -86,9 +86,8 @@ public class BuildingPlacer : MonoBehaviour
             lastPosition = hit.point;
         }
 
-        Vector3 indicatorPosition = BuildingManager.Instance.buildingTilemap.WorldToCell(lastPosition);
-        indicatorPosition.z = indicatorPosition.y;
-        indicatorPosition.y = 0;
+        Vector3 currentPos = BuildingManager.Instance.buildingTilemap.WorldToCell(lastPosition);
+        Vector3 indicatorPosition = new Vector3(currentPos.x + 0.5f, 0f, currentPos.y + 0.5f);
         tileIndicator.transform.position = indicatorPosition;
     }
 
@@ -109,9 +108,8 @@ public class BuildingPlacer : MonoBehaviour
         if (buildingType != Building.BuildingType.None && !BuildingManager.Instance.buildingTilemap.HasTile(tilePosition))
         {
             BuildingManager.Instance.buildingTilemap.SetTile(tilePosition, occupiedTile);
-            tilePosition.z = tilePosition.y;
-            tilePosition.y = 0;
-            Instantiate(buildings[(int)buildingType], tilePosition, tileIndicator.transform.rotation);
+            Vector3 buildingPosition = new Vector3(tilePosition.x + 0.5f, 0f, tilePosition.y + 0.5f);
+            Instantiate(buildings[(int)buildingType], buildingPosition, tileIndicator.transform.rotation, buildingsMap.transform);
         }
     }
 
