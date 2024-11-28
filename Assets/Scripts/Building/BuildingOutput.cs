@@ -132,4 +132,8 @@ public class BuildingOutput : MonoBehaviour
     public Vector3 GetItemPosition(float yOffset) {
         return itemPosition + new Vector3(0, yOffset, 0);
     }
+
+    public Vector3 GetWorldPosition() {
+        return transform.position;
+    }
 }

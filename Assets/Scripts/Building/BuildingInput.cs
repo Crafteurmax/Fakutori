@@ -101,4 +101,8 @@ public class BuildingInput : MonoBehaviour
     public void SetIsBeltInput(bool beltInput) {
         isBeltInput = beltInput;
     }
+
+    public Vector3 GetWorldPosition() {
+        return transform.position;
+    }
 }
