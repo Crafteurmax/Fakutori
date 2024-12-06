@@ -7,8 +7,20 @@ public class Building : MonoBehaviour
     public enum BuildingType {
         None,
         Belt,
+        Splitter,
+        Tunnel,
+        Extractor,
+        Trash,
+        Vendor,
+        Concatenator,
+        Exchangificator,
+        Hiraganificator,
         Kanjificator,
-        Extractor
+        Katanificator,
+        Maruificator,
+        Miniaturisator,
+        Tentenificator,
+        Troncator
     }
 
     private BuildingType buildingType;

@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3306401fd43a38241a28282127a23e0e, type: 3}
+  m_Name: BuildingDatabase
+  m_EditorClassIdentifier: 
+  buildingData:
+  - <name>k__BackingField: belt
+    <type>k__BackingField: 1
+    <size>k__BackingField: {x: 1, y: 1}
+    <buildingPrefab>k__BackingField: {fileID: 1680072543003512185, guid: 4484b4956230fc74ba39f75ccca73ab4, type: 3}
+  - <name>k__BackingField: splitter
+    <type>k__BackingField: 0
+    <size>k__BackingField: {x: 1, y: 2}
+    <buildingPrefab>k__BackingField: {fileID: 6411253113673875169, guid: 04f791f1a62494e4eaeabfd8b2b86d64, type: 3}
+  - <name>k__BackingField: tunnel
+    <type>k__BackingField: 0
+    <size>k__BackingField: {x: 1, y: 1}
+    <buildingPrefab>k__BackingField: {fileID: 1680072543003512185, guid: 68bc686ebddaa47408c0d4768221088d, type: 3}
+  - <name>k__BackingField: extractor
+    <type>k__BackingField: 0
+    <size>k__BackingField: {x: 1, y: 1}
+    <buildingPrefab>k__BackingField: {fileID: 6411253113673875169, guid: 664cfd999b7181d4c8bc23231c1ad277, type: 3}
+  - <name>k__BackingField: trash
+    <type>k__BackingField: 0
+    <size>k__BackingField: {x: 1, y: 1}
+    <buildingPrefab>k__BackingField: {fileID: 6411253113673875169, guid: 90e2f5ad47475cd4794ec9db3e67908e, type: 3}
+  - <name>k__BackingField: vendor
+    <type>k__BackingField: 0
+    <size>k__BackingField: {x: 1, y: 1}
+    <buildingPrefab>k__BackingField: {fileID: 6411253113673875169, guid: 4273041ef77658546accf489a8330af5, type: 3}
+  - <name>k__BackingField: concatenator
+    <type>k__BackingField: 0
+    <size>k__BackingField: {x: 1, y: 2}
+    <buildingPrefab>k__BackingField: {fileID: 6411253113673875169, guid: d70298dc8bf164b4b8b4cfe4697c9e99, type: 3}
+  - <name>k__BackingField: exchangificator
+    <type>k__BackingField: 0
+    <size>k__BackingField: {x: 1, y: 2}
+    <buildingPrefab>k__BackingField: {fileID: 6916296175537346028, guid: 1265f358bead5bf458959347afaf601b, type: 3}
+  - <name>k__BackingField: hiraganificator
+    <type>k__BackingField: 0
+    <size>k__BackingField: {x: 1, y: 1}
+    <buildingPrefab>k__BackingField: {fileID: 6411253113673875169, guid: ea184374ff40235459e8160e10c72271, type: 3}
+  - <name>k__BackingField: kanjificator
+    <type>k__BackingField: 0
+    <size>k__BackingField: {x: 1, y: 1}
+    <buildingPrefab>k__BackingField: {fileID: 6411253113673875169, guid: bd736610fa4ac70459335bced241fb96, type: 3}
+  - <name>k__BackingField: katanificator
+    <type>k__BackingField: 0
+    <size>k__BackingField: {x: 1, y: 1}
+    <buildingPrefab>k__BackingField: {fileID: 9046900787091547773, guid: 49a74fec4dbb189429699690e2cf0cca, type: 3}
+  - <name>k__BackingField: maruificator
+    <type>k__BackingField: 0
+    <size>k__BackingField: {x: 1, y: 1}
+    <buildingPrefab>k__BackingField: {fileID: 3410447490409931205, guid: cc0e6037521d6d24d971d32c6cdc0795, type: 3}
+  - <name>k__BackingField: miniaturisator
+    <type>k__BackingField: 0
+    <size>k__BackingField: {x: 1, y: 1}
+    <buildingPrefab>k__BackingField: {fileID: 6411253113673875169, guid: aa80316c7d8dcc04ba8c5e495d854ef0, type: 3}
+  - <name>k__BackingField: tentenificator
+    <type>k__BackingField: 0
+    <size>k__BackingField: {x: 1, y: 1}
+    <buildingPrefab>k__BackingField: {fileID: 9046900787091547773, guid: 06058edd525c94442b03862bf97c3432, type: 3}
+  - <name>k__BackingField: troncator
+    <type>k__BackingField: 0
+    <size>k__BackingField: {x: 1, y: 2}
+    <buildingPrefab>k__BackingField: {fileID: 6916296175537346028, guid: 69c416e15996cb34abc2e23de4562417, type: 3}
