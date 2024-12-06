@@ -7,6 +7,10 @@ public class TunnelInput : Building
     [SerializeField] private BuildingInput buildingInput;
     [SerializeField] private TunnelOutput tunnelOutput;
 
+    /* The intermediate input is located in the middle of the tunnel.
+    * It is needed so that the tunnel acts as a conveyor belt and
+    * items don't clog up before the input.
+    */
     [SerializeField] private BuildingInput intermediateInput;
 
     private BuildingOutput buildingOutput;
@@ -15,9 +19,9 @@ public class TunnelInput : Building
     private bool isMovingStart = false;
     private bool isMovingIntermediate = false;
 
-    private void Awake() {
+    public void Awake() {
         buildingOutput = tunnelOutput.GetBuildingOutput();
-        distance = Vector3.Distance(buildingInput.GetPosition(), buildingOutput.GetPosition());
+        distance = Vector3.Distance(buildingInput.GetWorldPosition(), buildingOutput.GetWorldPosition());
 
         intermediateInput.transform.Translate(Vector3.forward * distance / 2);
         intermediateInput.SetItemPosition(intermediateInput.transform.position);
@@ -41,15 +45,17 @@ public class TunnelInput : Building
         buildingInput.SetOutputFull(intermediateInput.IsOccupied());
         if (!isMovingStart && buildingInput.IsOccupied() && !intermediateInput.IsOccupied() && !isMovingIntermediate) {
             StartCoroutine(MoveItemStart());
-            //Debug.Log("MoveItemStart");
         }
-        //Debug.Log("intermediate item : " + intermediateInput.GetItem());
+
         if (!isMovingIntermediate && intermediateInput.IsOccupied() && !buildingOutput.IsOccupied() && !buildingOutput.IsMovingItem()) {
             StartCoroutine(MoveItemIntermediate());
-            //Debug.Log("MoveItemIntermediate");
         }
     }
 
+    /// <summary>
+    /// Coroutine to start moving the item from the input to the intermediate input.
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator MoveItemStart() {
         buildingInput.SetOutputFull(true);
         Item movingItem = buildingInput.GetItem();        

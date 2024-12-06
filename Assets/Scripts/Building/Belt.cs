@@ -9,6 +9,9 @@ public class Belt : Building
     private BuildingInput beltInput;
     private BuildingOutput beltOutput;
 
+    [Header("Mesh")]
+    [SerializeField] private GameObject beltMesh;
+
     private void Awake() {
         beltInput = GetComponentInChildren<BuildingInput>();
         beltOutput = GetComponentInChildren<BuildingOutput>();
@@ -47,5 +50,11 @@ public class Belt : Building
             beltInput.SetOutputFull(true);
             beltInput.SetItem(null);
         }
+        if (!beltOutput.IsOccupied()) BeltAnimation();
+    }
+
+    private void BeltAnimation() {
+        float offset = BuildingManager.Instance.beltSpeed * 0.5f;
+        beltMesh.GetComponent<Renderer>().material.mainTextureOffset -= new Vector2(0, offset * Time.deltaTime);
     }
 }

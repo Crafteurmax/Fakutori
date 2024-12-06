@@ -7,20 +7,28 @@ using TMPro;
 
 public class Extractor : Building
 {
-    [SerializeField] private List<Item.Symbol> extractedCharacters;
-
-    [SerializeField] private BuildingOutput output;
-
+    [Header("Extractor settings")]
     [SerializeField] private float productionTime = 2.0f;
     [SerializeField] private float productionSpeed = 1.0f;
+    [SerializeField] private List<Item.Symbol> extractedCharacters;
+
+    [Header("References")]
+    [SerializeField] private Animator extractorAnimator;
+
+    private BuildingOutput output;
+    
     private bool isProducing = false;
     private bool isSetup;
 
-    private void Update() {
+    private void Awake() {
+        output = GetComponentInChildren<BuildingOutput>();
+    }
+
+    public void Update() {
         if (isSetup && !isProducing && !output.IsOccupied()) StartCoroutine(ProduceItem());
     }
 
-    public void OnEnable() 
+    public override void OnEnable() 
     {
         base.OnEnable();
         StartCoroutine(SetUpWhenWorldIsFinishBeingBuild());
@@ -28,6 +36,8 @@ public class Extractor : Building
 
     private IEnumerator ProduceItem() {
         isProducing = true;
+        extractorAnimator.SetTrigger("Produce");
+        extractorAnimator.SetFloat("Speed", productionSpeed);
         yield return new WaitForSeconds(productionTime / productionSpeed);
         isProducing = false;
 

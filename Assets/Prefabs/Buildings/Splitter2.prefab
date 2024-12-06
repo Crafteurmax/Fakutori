@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 6530926452201749413}
   - component: {fileID: 2079283901821759385}
   m_Layer: 0
-  m_Name: Splitter
+  m_Name: Splitter2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
