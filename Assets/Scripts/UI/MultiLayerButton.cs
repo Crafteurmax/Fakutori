@@ -67,29 +67,67 @@ public class MultiLayerButton : Button
     #endregion Setters
 
     #region Getter
-    public ButtonLayer GetButtonElement(int i)
+    public ButtonLayer GetButtonLayer(int i)
     {
-        return buttonLayers[i];
+        if (i == 0)
+        {
+            return new() {
+                image = image,
+                sprite = image.sprite,
+                color = image.color,
+                scale = transform.localScale
+            };
+        }
+        return buttonLayers[i - 1];
     }
 
     public Image GetImage(int i)
     {
-        return buttonLayers[i].image;
+        if (i == 0)
+        {
+            return image;
+        }
+        return buttonLayers[i - 1].image;
     }
 
     public Sprite GetSprite(int i)
     {
-        return buttonLayers[i].sprite;
+        if (i == 0)
+        {
+            return image.sprite;
+        }
+        return buttonLayers[i - 1].sprite;
     }
 
     public Color GetColor(int i)
     {
-        return buttonLayers[i].color;
+        if (i == 0)
+        {
+            return image.color;
+        }
+        return buttonLayers[i - 1].color;
     }
 
     public Vector2 GetScale(int i)
     {
-        return buttonLayers[i].scale;
+        if (i == 0)
+        {
+            return transform.localScale;
+        }
+        return buttonLayers[i-1].scale;
+    }
+
+    public List<Image> GetImages()
+    {
+        List<Image> images = new();
+        images.Add(image);
+
+        foreach (ButtonLayer layer in buttonLayers)
+        {
+            images.Add(layer.image);
+        }
+
+        return images;
     }
     #endregion Getter
 
