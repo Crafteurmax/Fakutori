@@ -56,7 +56,7 @@ public class WorldBuilder : MonoBehaviour
         for (int x = 0; x < 10; x++) 
         {
             tiles.Add(new List<Tile>());
-            for(int y = 0; y < 5; y++) tiles[x].Add(new Tile());
+            for(int y = 0; y < 5; y++) tiles[x].Add(ScriptableObject.CreateInstance<Tile>());
         }
 
         tiles[0][0].gameObject = a;
