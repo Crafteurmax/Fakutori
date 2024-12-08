@@ -61,6 +61,7 @@ public class Extractor : Building
         Tile tile = WorldBuilder.Instance.map.GetTile<Tile>(pos);
         if (tile)
         {
+            extractedCharacters.Clear();
             char c = tile.gameObject.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text[0];
             extractedCharacters.Add(new Item.Symbol{character = c, type = Item.SymbolType.Hiragana });
         }

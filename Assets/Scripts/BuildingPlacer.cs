@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
@@ -61,14 +62,8 @@ public class BuildingPlacer : MonoBehaviour
     #region Input handling
     public void OnLeftPress(InputAction.CallbackContext context)
     {
-        if (context.ReadValue<float>() >= 1)
-        {   
-            isLeftPress = true;
-        }
-        else
-        {
-            isLeftPress = false;
-        }
+        isLeftPress = (context.ReadValue<float>() >= 1) && !EventSystem.current.IsPointerOverGameObject();
+
     }
 
     public void OnRemovePress(InputAction.CallbackContext context)
@@ -99,7 +94,7 @@ public class BuildingPlacer : MonoBehaviour
             // Get the correct building from the database
             BuildingData buildingData = buildingDatabaseSO.buildingData[(int)buildingType - 1];
 
-            Tile occupiedTile = new Tile();
+            Tile occupiedTile = ScriptableObject.CreateInstance<Tile>();
             occupiedTile.name = buildingData.name;
 
             // Check the size of the building and update the tilemap accordingly
