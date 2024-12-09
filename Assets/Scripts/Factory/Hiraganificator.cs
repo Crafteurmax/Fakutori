@@ -5,6 +5,11 @@ using System.Text.RegularExpressions;
 
 public class Hiraganificator : Factory
 {
+    public override void OnEnable()
+    {
+        base.OnEnable();
+        SetBuildingType(BuildingType.Hiraganificator);
+    }
 
     public override IEnumerator ProduceItem()
     {

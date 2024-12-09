@@ -5,6 +5,11 @@ using System.Text.RegularExpressions;
 
 public class Katakanificator : Factory
 {
+    public override void OnEnable()
+    {
+        base.OnEnable();
+        SetBuildingType(BuildingType.Katanificator);
+    }
 
     public override IEnumerator ProduceItem()
     {

@@ -5,6 +5,11 @@ using System.Text.RegularExpressions;
 
 public class Miniaturisator : Factory
 {
+    public override void OnEnable()
+    {
+        base.OnEnable();
+        SetBuildingType(BuildingType.Miniaturisator);
+    }
 
     public override IEnumerator ProduceItem()
     {

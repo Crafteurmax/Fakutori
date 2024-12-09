@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Concatenator : Factory
 {
+    public override void OnEnable()
+    {
+        base.OnEnable();
+        SetBuildingType(BuildingType.Concatenator);
+    }
+
     public override IEnumerator ProduceItem()
     {
         state = BuildingState.RUNNING;

@@ -6,6 +6,12 @@ using UnityEngine.Tilemaps;
 
 public class Exchangificator : Factory
 {
+    public override void OnEnable()
+    {
+        base.OnEnable();
+        SetBuildingType(BuildingType.Exchangificator);
+    }
+
     private SymbolTable symbolTable = new SymbolTable();
 
     public override IEnumerator ProduceItem()

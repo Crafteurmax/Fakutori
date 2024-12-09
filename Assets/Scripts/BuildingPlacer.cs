@@ -45,7 +45,6 @@ public class BuildingPlacer : MonoBehaviour
 
     private void EnableRemoval()
     {
-        
         tileIndicator.ShowMouseIndicator();
         tileIndicator.UpdateMouseIndicator();
         enableRemoval = true;
@@ -63,21 +62,16 @@ public class BuildingPlacer : MonoBehaviour
     public void OnLeftPress(InputAction.CallbackContext context)
     {
         isLeftPress = (context.ReadValue<float>() >= 1) && !EventSystem.current.IsPointerOverGameObject();
-
     }
 
     public void OnRemovePress(InputAction.CallbackContext context)
     {
-        if (context.performed && !enableRemoval)
-        {
-            tileIndicator.ChangeIndicatorMaterial();
-            EnableRemoval();
-        }
-        else if (context.performed && enableRemoval)
-        {
-            tileIndicator.ChangeIndicatorMaterial();
-            DisableRemoval();
-        }
+        if(!context.performed) return;
+
+        tileIndicator.ChangeIndicatorMaterial();
+
+        if (!enableRemoval) EnableRemoval();
+        else DisableRemoval();
     }
 
     #endregion
@@ -94,52 +88,30 @@ public class BuildingPlacer : MonoBehaviour
             // Get the correct building from the database
             BuildingData buildingData = buildingDatabaseSO.buildingData[(int)buildingType - 1];
 
-            Tile occupiedTile = ScriptableObject.CreateInstance<Tile>();
+            BuildingTile occupiedTile = ScriptableObject.CreateInstance<BuildingTile>();
             occupiedTile.name = buildingData.name;
 
             // Check the size of the building and update the tilemap accordingly
             // Case for (1, 1) buildings
-            if (buildingData.size == new Vector2Int(1,1))
-            {
-                BuildingManager.Instance.buildingTilemap.SetTile(tilePosition, occupiedTile);
-            }
-
+            if (buildingData.size == new Vector2Int(1,1)) BuildingManager.Instance.buildingTilemap.SetTile(tilePosition, occupiedTile);
             // Cases (1, 2) buildings :
             else if (buildingData.size == new Vector2Int(1, 2))
             {
                 Vector3Int tempPos = tilePosition;
-                Tile occupiedTile2 = new Tile();
+                BuildingTile occupiedTile2 = ScriptableObject.CreateInstance<BuildingTile>();
                 occupiedTile2.name = buildingData.name + " (right)";
                 occupiedTile.name = buildingData.name + " (left)";
 
-                // When indicator faces +z -> (+2, +1) (x, y)
-                if (tileIndicator.transform.rotation.eulerAngles.y == 0)
+                BuildingManager.Instance.buildingTilemap.SetTile(tempPos, occupiedTile);
+                switch (tileIndicator.transform.rotation.eulerAngles.y)
                 {
-                    BuildingManager.Instance.buildingTilemap.SetTile(tempPos, occupiedTile);
-                    tempPos.x += 1;
-                    BuildingManager.Instance.buildingTilemap.SetTile(tempPos, occupiedTile2);
+                    case 0:  tempPos.x += 1; break; // When indicator faces +z -> (+2, +1) (x, y)
+                    case 90: tempPos.y -= 1; break; // When indicator faces +x -> (+1, -2)
+                    case 180:tempPos.x -= 1; break; // When indictor faces -z -> (-2, +1)
+                    case 270:tempPos.y += 1; break; // When indicator faces -x -> (+1, +2)
+
                 }
-                // When indicator faces +x -> (+1, -2)
-                else if (tileIndicator.transform.rotation.eulerAngles.y == 90)
-                {
-                    BuildingManager.Instance.buildingTilemap.SetTile(tempPos, occupiedTile);
-                    tempPos.y -= 1;
-                    BuildingManager.Instance.buildingTilemap.SetTile(tempPos, occupiedTile2);
-                }
-                // When indictor faces -z -> (-2, +1)
-                else if (tileIndicator.transform.rotation.eulerAngles.y == 180)
-                {
-                    BuildingManager.Instance.buildingTilemap.SetTile(tempPos, occupiedTile);
-                    tempPos.x -= 1;
-                    BuildingManager.Instance.buildingTilemap.SetTile(tempPos, occupiedTile2);
-                }
-                // When indicator faces -x -> (+1, +2)
-                else
-                {
-                    BuildingManager.Instance.buildingTilemap.SetTile(tempPos, occupiedTile);
-                    tempPos.y += 1;
-                    BuildingManager.Instance.buildingTilemap.SetTile(tempPos, occupiedTile2);
-                }
+                BuildingManager.Instance.buildingTilemap.SetTile(tempPos, occupiedTile2);
             }
 
             Vector3 buildingPosition = new Vector3(tilePosition.x + 0.5f, 0f, tilePosition.y + 0.5f);
@@ -162,35 +134,22 @@ public class BuildingPlacer : MonoBehaviour
     private bool canBuildingBePlaced(Vector3Int tilePositionToCheck)
     {
         // Case for (1, 1) buildings
-        if (buildingType == Building.BuildingType.None || BuildingManager.Instance.buildingTilemap.HasTile(tilePositionToCheck))
-        {
-            return false;
-        }
+        if (buildingType == Building.BuildingType.None || BuildingManager.Instance.buildingTilemap.HasTile(tilePositionToCheck))  return false;
+
         // Cases for (1, 2) buildings
         else if (oneByTwoBuildings.Contains(buildingType))
         {
             Vector3Int tempPositon = tilePositionToCheck;
 
-            if (tileIndicator.transform.rotation.eulerAngles.y == 0)
+            switch (tileIndicator.transform.rotation.eulerAngles.y)
             {
-                tempPositon.x += 1;
-                return !BuildingManager.Instance.buildingTilemap.HasTile(tempPositon);
+                case 0:  tempPositon.x += 1; break;
+                case 90: tempPositon.y -= 1; break;
+                case 180:tempPositon.x -= 1; break;
+                case 270:tempPositon.y += 1; break;
             }
-            else if (tileIndicator.transform.rotation.eulerAngles.y == 90)
-            {
-                tempPositon.y -= 1;
-                return !BuildingManager.Instance.buildingTilemap.HasTile(tempPositon);
-            }
-            else if (tileIndicator.transform.rotation.eulerAngles.y == 180)
-            {
-                tempPositon.x -= 1;
-                return !BuildingManager.Instance.buildingTilemap.HasTile(tempPositon);
-            }
-            else
-            {
-                tempPositon.y += 1;
-                return !BuildingManager.Instance.buildingTilemap.HasTile(tempPositon);
-            }
+            Debug.Log(tempPositon);
+            return !BuildingManager.Instance.buildingTilemap.HasTile(tempPositon);
         }
         return true;
     }
@@ -228,31 +187,20 @@ public class BuildingPlacer : MonoBehaviour
                     foreach(var building  in buildingToRemove)
                     {
                         Vector3Int tempPos = tilePosition;
+                        int offset = 0;
+                        if (buildingTile.name.Contains("(left)")) offset = 0;
+                        else if (buildingTile.name.Contains("(right)")) offset = 180;
 
-                        if ((building.transform.parent.rotation.eulerAngles.y == 0 && buildingTile.name.Contains("(left)")) || (building.transform.parent.rotation.eulerAngles.y == 180 && buildingTile.name.Contains("(right)")))
+                        BuildingManager.Instance.buildingTilemap.SetTile(tempPos, null);
+
+                        switch ((building.transform.parent.rotation.eulerAngles.y + offset)%360)
                         {
-                            BuildingManager.Instance.buildingTilemap.SetTile(tempPos, null);
-                            tempPos.x += 1;
-                            BuildingManager.Instance.buildingTilemap.SetTile(tempPos, null);
+                            case 0: tempPos.x += 1; break;
+                            case 90: tempPos.y -= 1; break;
+                            case 180: tempPos.x -= 1; break;
+                            case 270: tempPos.y += 1; break;
                         }
-                        else if ((building.transform.parent.rotation.eulerAngles.y == 90 && buildingTile.name.Contains("(left)")) || (building.transform.parent.rotation.eulerAngles.y == 270 && buildingTile.name.Contains("(right)")))
-                        {
-                            BuildingManager.Instance.buildingTilemap.SetTile(tempPos, null);
-                            tempPos.y -= 1;
-                            BuildingManager.Instance.buildingTilemap.SetTile(tempPos, null);
-                        }
-                        else if ((building.transform.parent.rotation.eulerAngles.y == 180 && buildingTile.name.Contains("(left)")) || (building.transform.parent.rotation.eulerAngles.y == 0 && buildingTile.name.Contains("(right)")))
-                        {
-                            BuildingManager.Instance.buildingTilemap.SetTile(tempPos, null);
-                            tempPos.x -= 1;
-                            BuildingManager.Instance.buildingTilemap.SetTile(tempPos, null);
-                        }
-                        else if ((building.transform.parent.rotation.eulerAngles.y == 270 && buildingTile.name.Contains("(left)")) || (building.transform.parent.rotation.eulerAngles.y == 90 && buildingTile.name.Contains("(right)")))
-                        {
-                            BuildingManager.Instance.buildingTilemap.SetTile(tempPos, null);
-                            tempPos.y += 1;
-                            BuildingManager.Instance.buildingTilemap.SetTile(tempPos, null);
-                        }
+                        BuildingManager.Instance.buildingTilemap.SetTile(tempPos, null);
 
                         Destroy(building.transform.parent.gameObject);
                     }
@@ -275,42 +223,6 @@ public class BuildingPlacer : MonoBehaviour
                 }
             }
         }
-
-        //tilePosition = BuildingManager.Instance.buildingTilemap.WorldToCell(tileIndicator.getLastPosition());
-
-        //if (BuildingManager.Instance.buildingTilemap.HasTile(tilePosition))
-        //{
-        //    Debug.Log("Building removed");
-        //    BuildingManager.Instance.buildingTilemap.SetTile(tilePosition, null);
-
-        //    Vector3 removePosition = new Vector3(tilePosition.x + 0.5f, 0f, tilePosition.y + 0.5f);
-
-        //    Collider[] buildingToRemove = Physics.OverlapSphere(removePosition, 0.2f, buildingMask);
-
-        //    if (buildingToRemove.Length > 0)
-        //    {
-        //        foreach (var collider in buildingToRemove)
-        //        { 
-        //            Transform parent = collider.transform.parent;
-        //            Debug.Log("Collier hit position:" + collider.gameObject.transform.position + "\nParent position:" + parent.transform.position);
-        //            Destroy(parent.gameObject);
-        //        }
-        //    }
-        //}
-
-        //RaycastHit hit;
-        //tilePosition = BuildingManager.Instance.buildingTilemap.WorldToCell(tileIndicator.getLastPosition());
-        //Vector3 rayOrigin = tilePosition;
-        //rayOrigin.z +=  rayOrigin.y + 0.5f;
-        //rayOrigin.x += 0.5f;
-        //rayOrigin.y = 2f;
-        //Debug.Log(rayOrigin);
-        //Debug.DrawRay(rayOrigin, Vector3.down * 3, Color.red, 3);
-        //if (Physics.Raycast(tilePosition, Vector3.down, out hit, 3f, buildingMask, QueryTriggerInteraction.Collide)) 
-        //{
-        //    Debug.Log("Hit !");
-        //}
-        //Debug.Log(hit.collider);
     }
 
     #endregion
@@ -318,51 +230,27 @@ public class BuildingPlacer : MonoBehaviour
     private void Update()
     {
         buildingType = selectionUI.GetCurrentBuildingType();
-        if (buildingType != Building.BuildingType.None && !enableRemoval)
+
+        if (buildingType != Building.BuildingType.None)
         {
-            EnablePlacement();
+            if (!enableRemoval) EnablePlacement();
+            else
+            {
+                DisablePlacement();
+                EnableRemoval();
+            }
         }
-        else if (buildingType != Building.BuildingType.None && enableRemoval)
+        else 
         {
-            DisablePlacement();
-            EnableRemoval();
-        }
-        else if (buildingType == Building.BuildingType.None && enableRemoval)
-        {
-            EnableRemoval();
-        }
-        else
-        {
-            DisablePlacement();
-            DisableRemoval();
+            if (enableRemoval) EnableRemoval();
+            else
+            {
+                DisablePlacement();
+                DisableRemoval();
+            }
         }
 
-        if (isLeftPress && enablePlacement)
-        {
-            PlaceBuilding();
-        }
-        else if (isLeftPress && enableRemoval)
-        {
-            RemoveBuilding();
-        }
-
-        //if (buildingType != Building.BuildingType.None || isRemovingBuilding)
-        //{
-        //    tileIndicator.ShowMouseIndicator();
-        //    tileIndicator.MouseIndicator();
-        //}
-        //else
-        //{
-        //    tileIndicator.HideMouseIndicator();
-        //}
-
-        //if (isLeftPress && !isRemovingBuilding)
-        //{
-        //    PlaceBuilding();
-        //}
-        //else if (isLeftPress && isRemovingBuilding)
-        //{
-        //    RemoveBuilding();
-        //}
+        if (isLeftPress && enablePlacement) PlaceBuilding(); 
+        else if (isLeftPress && enableRemoval) RemoveBuilding();
     }
 }

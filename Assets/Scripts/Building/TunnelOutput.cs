@@ -25,11 +25,6 @@ public class TunnelOutput : Building
         SetBuildingType(BuildingType.TunnelOutput);
         Vector3Int inputPosition = BuildingManager.Instance.buildingTilemap.WorldToCell(transform.position);
         LookForOutputToBeLinkedTo();
-        if (tunnelInput)
-        {
-            Debug.Log(gameObject.name + " : Found something !!! " + tunnelInput.gameObject.name + " <3");
-        }
-        else Debug.Log(gameObject.name + " : found nothing :,(");
     }
 
     private void LookForOutputToBeLinkedTo()

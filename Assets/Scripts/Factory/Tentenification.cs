@@ -8,6 +8,12 @@ public class Tentenification : Factory
 {
     private SymbolTable symbolTable = new SymbolTable();
 
+    public override void OnEnable()
+    {
+        base.OnEnable();
+        SetBuildingType(BuildingType.Tentenificator);
+    }
+
     public override IEnumerator ProduceItem()
     {
         state = BuildingState.RUNNING;

@@ -8,6 +8,12 @@ public class Troncator : Factory
 {
     private SymbolTable symbolTable = new SymbolTable();
 
+    public override void OnEnable()
+    {
+        base.OnEnable();
+        SetBuildingType(BuildingType.Troncator);
+    }
+
     public override IEnumerator ProduceItem()
     {
         state = BuildingState.RUNNING;

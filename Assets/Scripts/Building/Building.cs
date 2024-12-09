@@ -42,11 +42,18 @@ public class Building : MonoBehaviour
         this.buildingType = buildingType;
     }
 
+    
     public BuildingType GetBuildingType() {
         return buildingType;
     }
 
     protected virtual void Release() {
         BuildingFactory.Instance.ReleaseBuilding(this);
+    }
+
+    [ContextMenu("PrintBuildingType")]
+    private void DebugPrintBuildingType()
+    {
+        Debug.Log(GetBuildingType());
     }
 }

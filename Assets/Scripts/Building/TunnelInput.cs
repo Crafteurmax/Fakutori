@@ -36,11 +36,6 @@ public class TunnelInput : Building
         SetBuildingType(BuildingType.TunnelInput);
         BuildingManager.Instance.AddBuildingInput(buildingInput.GetPosition(), buildingInput);
         UpdateOutput();
-        if (tunnelOutput)
-        {
-            Debug.Log(gameObject.name + " : Found something !!! " + tunnelOutput.gameObject.name + " <3");
-        }
-        else Debug.Log(gameObject.name + " : found nothing :,(");
     }
 
     public override void OnDisable() {

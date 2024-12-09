@@ -22,6 +22,7 @@ public class Extractor : Building
 
     private void Awake() {
         output = GetComponentInChildren<BuildingOutput>();
+        SetBuildingType(BuildingType.Extractor);
     }
 
     public void Update() {

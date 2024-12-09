@@ -8,6 +8,12 @@ public class Maruification : Factory
 {
     private SymbolTable symbolTable = new SymbolTable();
 
+    public override void OnEnable()
+    {
+        base.OnEnable();
+        SetBuildingType(BuildingType.Maruificator);
+    }
+
     public override IEnumerator ProduceItem()
     {
         state = BuildingState.RUNNING;

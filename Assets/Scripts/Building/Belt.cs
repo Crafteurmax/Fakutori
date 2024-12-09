@@ -13,6 +13,7 @@ public class Belt : Building
     [SerializeField] private GameObject beltMesh;
 
     private void Awake() {
+        SetBuildingType(BuildingType.Belt);
         beltInput = GetComponentInChildren<BuildingInput>();
         beltOutput = GetComponentInChildren<BuildingOutput>();
 

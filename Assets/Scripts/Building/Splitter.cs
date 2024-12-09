@@ -23,10 +23,11 @@ public class Splitter : Building
     private bool isSendingToRight;
 
     private void Awake() {
-        
+        SetBuildingType(BuildingType.Splitter);
     }
 
     public override void OnEnable() {
+        base.OnEnable();
         BuildingManager.Instance.AddBuildingInput(leftInput.GetPosition(), leftInput);
         BuildingManager.Instance.AddBuildingInput(rightInput.GetPosition(), rightInput);
     }
