@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Building : MonoBehaviour
 {
@@ -8,7 +9,8 @@ public class Building : MonoBehaviour
         None,
         Belt,
         Splitter,
-        Tunnel,
+        TunnelInput,
+        TunnelOutput,
         Extractor,
         Trash,
         Vendor,
@@ -25,7 +27,14 @@ public class Building : MonoBehaviour
 
     private BuildingType buildingType;
 
-    public virtual void OnEnable() {}
+    public virtual void OnEnable() 
+    {
+        Vector3Int positionOnTheGrid = BuildingManager.Instance.buildingTilemap.WorldToCell(transform.position);
+        BuildingTile tile = ScriptableObject.CreateInstance<BuildingTile>();
+        tile.building = this;
+
+        BuildingManager.Instance.buildingTilemap.SetTile(positionOnTheGrid, tile);
+    }
 
     public virtual void OnDisable() {}
 

@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Tilemaps;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class TunnelInput : Building
 {
     [SerializeField] private BuildingInput buildingInput;
     [SerializeField] private TunnelOutput tunnelOutput;
+    [SerializeField] private int maxTunnelLength;
 
     /* The intermediate input is located in the middle of the tunnel.
     * It is needed so that the tunnel acts as a conveyor belt and
@@ -20,19 +24,23 @@ public class TunnelInput : Building
     private bool isMovingIntermediate = false;
 
     public void Awake() {
-        buildingOutput = tunnelOutput.GetBuildingOutput();
-        distance = Vector3.Distance(buildingInput.GetWorldPosition(), buildingOutput.GetWorldPosition());
-
         intermediateInput.transform.Translate(Vector3.forward * distance / 2);
         intermediateInput.SetItemPosition(intermediateInput.transform.position);
 
         buildingInput.SetIsBeltInput(true);
     }
 
-    public override void OnEnable() {
-        BuildingManager.Instance.AddBuildingInput(buildingInput.GetPosition(), buildingInput);
-
+    public override void OnEnable()
+    {
         base.OnEnable();
+        SetBuildingType(BuildingType.TunnelInput);
+        BuildingManager.Instance.AddBuildingInput(buildingInput.GetPosition(), buildingInput);
+        UpdateOutput();
+        if (tunnelOutput)
+        {
+            Debug.Log(gameObject.name + " : Found something !!! " + tunnelOutput.gameObject.name + " <3");
+        }
+        else Debug.Log(gameObject.name + " : found nothing :,(");
     }
 
     public override void OnDisable() {
@@ -42,6 +50,7 @@ public class TunnelInput : Building
     }
 
     private void Update() {
+        if(!tunnelOutput) return;
         buildingInput.SetOutputFull(intermediateInput.IsOccupied());
         if (!isMovingStart && buildingInput.IsOccupied() && !intermediateInput.IsOccupied() && !isMovingIntermediate) {
             StartCoroutine(MoveItemStart());
@@ -99,4 +108,69 @@ public class TunnelInput : Building
 
         isMovingIntermediate = false;
     }
+
+    private void LookForOutputToBeLinkedTo()
+    {
+        Vector3Int inputPosition = BuildingManager.Instance.buildingTilemap.WorldToCell(transform.position);
+        // Debug.Log("inputPosition : " + inputPosition);
+        Vector3Int direction = getTunnelDirection();
+        // Debug.Log("direction : " + direction);
+        for (int i = 1; i <= maxTunnelLength; i++)
+        {
+            Vector3Int pos = inputPosition + direction * i;
+            // Debug.Log("looking at : " + pos);
+            BuildingTile tile =  BuildingManager.Instance.buildingTilemap.GetTile<BuildingTile>(pos);
+            if (!tile) continue;
+            BuildingType buildingTypeOfFoundBuilding = tile.building.GetBuildingType();
+            switch (buildingTypeOfFoundBuilding)
+            {
+                case BuildingType.TunnelOutput:
+                    TunnelOutput potentialTunnelOutput = (TunnelOutput) tile.building;
+                    if(direction != potentialTunnelOutput.getTunnelDirection()) continue;
+                    tunnelOutput = potentialTunnelOutput;
+                    if(tunnelOutput.hasALink()) tunnelOutput.unlinkTunnel();
+                    tunnelOutput.SetTunnelInput(this);
+                    return;
+                case BuildingType.TunnelInput:
+                    TunnelInput potentialBlockingTunnelInput = (TunnelInput)tile.building;
+                    if (direction != potentialBlockingTunnelInput.getTunnelDirection()) continue;
+                    tunnelOutput = null;
+                    return;
+            }
+        }
+        tunnelOutput = null;
+    }
+
+    public Vector3Int getTunnelDirection()
+    {
+        if (transform.eulerAngles.y == 180) return new Vector3Int( 0,-1, 0);
+        if (transform.eulerAngles.y == 0  ) return new Vector3Int( 0, 1, 0);
+        if (transform.eulerAngles.y == 270) return new Vector3Int(-1, 0, 0);
+        if (transform.eulerAngles.y == 90 ) return new Vector3Int( 1, 0, 0);
+        return Vector3Int.one;
+    }
+
+    public void UpdateOutput()
+    {
+        LookForOutputToBeLinkedTo();
+
+        if (tunnelOutput != null)
+        {
+            buildingOutput = tunnelOutput.GetBuildingOutput();
+            distance = Vector3.Distance(buildingInput.GetWorldPosition(), buildingOutput.GetWorldPosition());
+        }
+    }
+
+    public void SetTunnelOutput(TunnelOutput _tunnelOutput)
+    {
+        tunnelOutput = _tunnelOutput;
+        if (tunnelOutput == null) return;
+
+        buildingOutput = tunnelOutput.GetBuildingOutput();
+        distance = Vector3.Distance(buildingInput.GetWorldPosition(), buildingOutput.GetWorldPosition());
+    }
+
+    public void unlinkTunnel() { tunnelOutput.SetTunnelInput(null); }
+
+    public bool hasALink() { return tunnelOutput != null; }
 }

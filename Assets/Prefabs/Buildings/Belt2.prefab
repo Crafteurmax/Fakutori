@@ -48,7 +48,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beltMesh: {fileID: 7549394638710259672}
-  beltAnimator: {fileID: 8844068134170406551}
 --- !u!1 &3379480667553870264
 GameObject:
   m_ObjectHideFlags: 0

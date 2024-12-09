@@ -152,6 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingInput: {fileID: 5371141971851382852}
   tunnelOutput: {fileID: 0}
+  maxTunnelLength: 100
   intermediateInput: {fileID: 5745445278813794357}
 --- !u!1 &3790009347360574393
 GameObject:

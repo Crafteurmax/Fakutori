@@ -151,6 +151,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingOutput: {fileID: 260807511283936973}
+  tunnelinput: {fileID: 0}
+  maxTunnelLength: 100
 --- !u!1 &3379480667553870264
 GameObject:
   m_ObjectHideFlags: 0
