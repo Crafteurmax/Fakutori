@@ -12,7 +12,7 @@ public class GoalController : MonoBehaviour
     }
 
     public static GoalController Instance { get; private set; }
-    private string levelsPrefabFolder = Application.dataPath + "/Levels/";
+    private string levelsPrefabFolder = Application.dataPath + "/Resources/Levels/";
     private List<List<goal>> goals = new List<List<goal>>();
 
     struct goal

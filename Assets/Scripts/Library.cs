@@ -7,7 +7,7 @@ public class Library : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    static private string kanjiSaveFolder = Application.dataPath + "/RawData/vocab.csv";
+    static private string kanjiSaveFolder = Application.dataPath + "/Resources/RawData/vocab.csv";
     static private Dictionary<string, List<string>> hiraganaToKanjiDictionary = new Dictionary<string, List<string>>();
     static private Dictionary<string, List<string>> KanjiToHiraganaDictionary = new Dictionary<string, List<string>>();
 

@@ -224,6 +224,7 @@ public class CenteredGridLayout : MonoBehaviour
         nonFullGrid.gameObject.SetActive(nonFullGrid.transform.childCount > 0);
     }
 
+#if UNITY_EDITOR
     // Called if changes in code or editor (not called at runtime)
     private void OnValidate()
     {
@@ -235,4 +236,5 @@ public class CenteredGridLayout : MonoBehaviour
         SetColumnNumber(constraintCount);
         UpdateActive();
     }
+#endif
 }

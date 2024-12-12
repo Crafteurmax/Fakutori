@@ -23,7 +23,6 @@ public class TunnelOutput : Building
     {
         base.OnEnable();
         SetBuildingType(BuildingType.TunnelOutput);
-        Vector3Int inputPosition = BuildingManager.Instance.buildingTilemap.WorldToCell(transform.position);
         LookForOutputToBeLinkedTo();
     }
 
@@ -36,6 +35,7 @@ public class TunnelOutput : Building
         for (int i = 1; i <= maxTunnelLength; i++)
         {
             Vector3Int pos = outputPosition - direction * i;
+            // Debug.Log(gameObject.name + " is looking at : " + pos);
             BuildingTile tile = BuildingManager.Instance.buildingTilemap.GetTile<BuildingTile>(pos);
             if (!tile) continue;
             BuildingType buildingTypeOfFoundBuilding = tile.building.GetBuildingType();

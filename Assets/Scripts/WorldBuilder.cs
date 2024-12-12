@@ -23,7 +23,7 @@ public class WorldBuilder : MonoBehaviour
     [SerializeField] private int seed;
     [SerializeField, Range(0f, 1f)] private float offset;
 
-    private string levelsPrefabFolder = Application.dataPath + "/Levels/";
+    private string levelsPrefabFolder = Application.dataPath + "/Resources/Levels/";
 
     [SerializeField] private GameObject a ,  i,  u,  e,  o;
     [SerializeField] private GameObject ka, ki, ku, ke, ko;

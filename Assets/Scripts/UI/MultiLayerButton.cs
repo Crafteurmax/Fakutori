@@ -167,6 +167,7 @@ public class MultiLayerButton : Button
         }
     }
 
+#if UNITY_EDITOR
     protected override void OnValidate()
     {
         if (Selection.activeGameObject != this.gameObject) { return; }
@@ -180,4 +181,5 @@ public class MultiLayerButton : Button
             buttonLayer.image.transform.localScale = buttonLayer.scale;
         }
     }
+#endif
 }

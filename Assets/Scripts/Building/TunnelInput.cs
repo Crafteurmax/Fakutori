@@ -24,6 +24,7 @@ public class TunnelInput : Building
     private bool isMovingIntermediate = false;
 
     public void Awake() {
+
         intermediateInput.transform.Translate(Vector3.forward * distance / 2);
         intermediateInput.SetItemPosition(intermediateInput.transform.position);
 
@@ -34,6 +35,7 @@ public class TunnelInput : Building
     {
         base.OnEnable();
         SetBuildingType(BuildingType.TunnelInput);
+        buildingInput.Initialize();
         BuildingManager.Instance.AddBuildingInput(buildingInput.GetPosition(), buildingInput);
         UpdateOutput();
     }
@@ -45,7 +47,8 @@ public class TunnelInput : Building
     }
 
     private void Update() {
-        if(!tunnelOutput) return;
+        Debug.Log(buildingInput.gameObject.name + " " + buildingInput.GetPosition());
+        if (!tunnelOutput) return;
         buildingInput.SetOutputFull(intermediateInput.IsOccupied());
         if (!isMovingStart && buildingInput.IsOccupied() && !intermediateInput.IsOccupied() && !isMovingIntermediate) {
             StartCoroutine(MoveItemStart());
@@ -113,7 +116,7 @@ public class TunnelInput : Building
         for (int i = 1; i <= maxTunnelLength; i++)
         {
             Vector3Int pos = inputPosition + direction * i;
-            // Debug.Log("looking at : " + pos);
+            // Debug.Log(gameObject.name + " is looking at : " + pos);
             BuildingTile tile =  BuildingManager.Instance.buildingTilemap.GetTile<BuildingTile>(pos);
             if (!tile) continue;
             BuildingType buildingTypeOfFoundBuilding = tile.building.GetBuildingType();
@@ -163,6 +166,7 @@ public class TunnelInput : Building
 
         buildingOutput = tunnelOutput.GetBuildingOutput();
         distance = Vector3.Distance(buildingInput.GetWorldPosition(), buildingOutput.GetWorldPosition());
+
     }
 
     public void unlinkTunnel() { tunnelOutput.SetTunnelInput(null); }
