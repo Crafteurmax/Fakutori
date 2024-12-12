@@ -323,6 +323,7 @@ MonoBehaviour:
   UIdescription: {fileID: 7087838341618328295}
   UIactualCount: {fileID: 4981130958799738941}
   UIobjective: {fileID: 4567052968732008872}
+  UIseparator: {fileID: 2610625789634299453}
 --- !u!1 &6299442072958770710
 GameObject:
   m_ObjectHideFlags: 0

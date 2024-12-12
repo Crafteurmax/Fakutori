@@ -28,6 +28,8 @@ public class Splitter : Building
 
     public override void OnEnable() {
         base.OnEnable();
+        leftInput.Initialize();
+        rightInput.Initialize();
         BuildingManager.Instance.AddBuildingInput(leftInput.GetPosition(), leftInput);
         BuildingManager.Instance.AddBuildingInput(rightInput.GetPosition(), rightInput);
     }

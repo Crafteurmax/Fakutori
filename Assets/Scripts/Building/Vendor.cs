@@ -7,6 +7,7 @@ public class Vendor : Building
     [SerializeField] BuildingInput vendorInput;
 
     private void Awake() {
+        vendorInput.Initialize();
         BuildingManager.Instance.AddBuildingInput(vendorInput.GetPosition(), vendorInput);
         SetBuildingType(BuildingType.Vendor);
     }

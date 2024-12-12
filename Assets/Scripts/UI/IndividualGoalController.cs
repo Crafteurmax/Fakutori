@@ -9,7 +9,9 @@ public class IndividualGoalController : MonoBehaviour
     [SerializeField] TextMeshProUGUI UIactualCount;
     private int count;
     [SerializeField] TextMeshProUGUI UIobjective;
+    [SerializeField] TextMeshProUGUI UIseparator;
     private int objective;
+    private bool isCompleted;
 
     public void Setup(string description, int _objective)
     {
@@ -28,6 +30,20 @@ public class IndividualGoalController : MonoBehaviour
 
     public bool IsGoalComplete()
     {
-        return count >= objective;
+        if (isCompleted) return true;
+        if(count >= objective)
+        {
+            ChangeTexteColor(Color.green);
+            isCompleted = true;
+        }
+        return isCompleted;
+    }
+
+    private void ChangeTexteColor(Color texteColor)
+    {
+        UIdescription.color = texteColor;
+        UIactualCount.color = texteColor;
+        UIobjective.color = texteColor;
+        UIseparator.color = texteColor;
     }
 }

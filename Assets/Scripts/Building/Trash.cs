@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Trash : Building
@@ -7,6 +8,7 @@ public class Trash : Building
     [SerializeField] BuildingInput trashInput;
 
     private void Awake() {
+        trashInput.Initialize();
         BuildingManager.Instance.AddBuildingInput(trashInput.GetPosition(), trashInput);
         SetBuildingType(BuildingType.Trash);
     }

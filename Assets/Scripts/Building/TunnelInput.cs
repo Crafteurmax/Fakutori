@@ -47,7 +47,6 @@ public class TunnelInput : Building
     }
 
     private void Update() {
-        Debug.Log(buildingInput.gameObject.name + " " + buildingInput.GetPosition());
         if (!tunnelOutput) return;
         buildingInput.SetOutputFull(intermediateInput.IsOccupied());
         if (!isMovingStart && buildingInput.IsOccupied() && !intermediateInput.IsOccupied() && !isMovingIntermediate) {
