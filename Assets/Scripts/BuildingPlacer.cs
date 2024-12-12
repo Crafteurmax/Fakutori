@@ -148,7 +148,7 @@ public class BuildingPlacer : MonoBehaviour
                 case 180:tempPositon.x -= 1; break;
                 case 270:tempPositon.y += 1; break;
             }
-            Debug.Log(tempPositon);
+            // Debug.Log(tempPositon);
             return !BuildingManager.Instance.buildingTilemap.HasTile(tempPositon);
         }
         return true;
@@ -170,59 +170,60 @@ public class BuildingPlacer : MonoBehaviour
     {
         tilePosition = BuildingManager.Instance.buildingTilemap.WorldToCell(tileIndicator.getLastPosition());
         TileBase buildingTile = BuildingManager.Instance.buildingTilemap.GetTile(tilePosition);
-        if (buildingTile != null)
+
+        if (buildingTile == null) return;
+        
+        // Case (1, 2) buildings
+        if (oneByTwoBuildingsName.Contains(buildingTile.name))
         {
-            // Case (1, 2) buildings
-            if (oneByTwoBuildingsName.Contains(buildingTile.name))
+            Debug.Log("1x2 building to remove");
+            // We have to check the orientation to know which tile to delete from the tile map
+
+            // We first get the actual building gameObject
+            Vector3 removePosition = new Vector3(tilePosition.x + 0.5f, 0f, tilePosition.y + 0.5f);
+            Collider[] buildingToRemove = Physics.OverlapSphere(removePosition, 0.2f, buildingMask);
+
+            if (buildingToRemove.Length > 0)
             {
-                Debug.Log("1x2 building to remove");
-                // We have to check the orientation to know which tile to delete from the tile map
-
-                // We first get the actual building gameObject
-                Vector3 removePosition = new Vector3(tilePosition.x + 0.5f, 0f, tilePosition.y + 0.5f);
-                Collider[] buildingToRemove = Physics.OverlapSphere(removePosition, 0.2f, buildingMask);
-
-                if (buildingToRemove.Length > 0)
+                foreach(var building  in buildingToRemove)
                 {
-                    foreach(var building  in buildingToRemove)
+                    Vector3Int tempPos = tilePosition;
+                    int offset = 0;
+                    if (buildingTile.name.Contains("(left)")) offset = 0;
+                    else if (buildingTile.name.Contains("(right)")) offset = 180;
+
+                    BuildingManager.Instance.buildingTilemap.SetTile(tempPos, null);
+
+                    switch ((building.transform.parent.rotation.eulerAngles.y + offset)%360)
                     {
-                        Vector3Int tempPos = tilePosition;
-                        int offset = 0;
-                        if (buildingTile.name.Contains("(left)")) offset = 0;
-                        else if (buildingTile.name.Contains("(right)")) offset = 180;
-
-                        BuildingManager.Instance.buildingTilemap.SetTile(tempPos, null);
-
-                        switch ((building.transform.parent.rotation.eulerAngles.y + offset)%360)
-                        {
-                            case 0: tempPos.x += 1; break;
-                            case 90: tempPos.y -= 1; break;
-                            case 180: tempPos.x -= 1; break;
-                            case 270: tempPos.y += 1; break;
-                        }
-                        BuildingManager.Instance.buildingTilemap.SetTile(tempPos, null);
-
-                        Destroy(building.transform.parent.gameObject);
+                        case 0: tempPos.x += 1; break;
+                        case 90: tempPos.y -= 1; break;
+                        case 180: tempPos.x -= 1; break;
+                        case 270: tempPos.y += 1; break;
                     }
+                    BuildingManager.Instance.buildingTilemap.SetTile(tempPos, null);
+
+                    Destroy(building.transform.parent.gameObject);
                 }
-
             }
-            else
-            {
-                Debug.Log("1x1 building to remove");
-                BuildingManager.Instance.buildingTilemap.SetTile(tilePosition, null);
-                Vector3 removePosition = new Vector3(tilePosition.x + 0.5f, 0f, tilePosition.y + 0.5f);
-                Collider[] buildingToRemove = Physics.OverlapSphere(removePosition, 0.2f, buildingMask);
 
-                if (buildingToRemove.Length > 0) 
-                { 
-                    foreach(var building in buildingToRemove)
-                    {
-                        Destroy(building.transform.parent.gameObject);
-                    }
+        }
+        else
+        {
+            Debug.Log("1x1 building to remove");
+            BuildingManager.Instance.buildingTilemap.SetTile(tilePosition, null);
+            Vector3 removePosition = new Vector3(tilePosition.x + 0.5f, 0f, tilePosition.y + 0.5f);
+            Collider[] buildingToRemove = Physics.OverlapSphere(removePosition, 0.2f, buildingMask);
+
+            if (buildingToRemove.Length > 0) 
+            { 
+                foreach(var building in buildingToRemove)
+                {
+                    Destroy(building.transform.parent.gameObject);
                 }
             }
         }
+        
     }
 
     #endregion
