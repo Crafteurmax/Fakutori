@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class Filler : Building
 {
-
+    private void Awake()
+    {
+        SetBuildingType(BuildingType.Filler);
+    }
 }

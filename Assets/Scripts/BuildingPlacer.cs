@@ -22,8 +22,6 @@ public class BuildingPlacer : MonoBehaviour
     [SerializeField] private BuildingDatabaseSO buildingDatabaseSO;
 
     [SerializeField] private GameObject fillerPrefab;
-
-    private Vector3Int tilePosition;
     
     // Logic to know in which state we are
     private bool enablePlacement = false;
@@ -82,7 +80,7 @@ public class BuildingPlacer : MonoBehaviour
     private void PlaceBuilding()
     {
         // Get the tile position of the building to place
-        tilePosition = BuildingManager.Instance.buildingTilemap.WorldToCell(tileIndicator.getLastPosition());
+        Vector3Int tilePosition = BuildingManager.Instance.buildingTilemap.WorldToCell(tileIndicator.getLastPosition());
 
         // Check if there is not already a building at the place we are trying to put the new building
         if (canBuildingBePlaced(tilePosition))
@@ -105,8 +103,6 @@ public class BuildingPlacer : MonoBehaviour
             {
                 Vector3Int tempPos = tilePosition;
                 BuildingTile occupiedTile2 = ScriptableObject.CreateInstance<BuildingTile>();
-                occupiedTile2.name = buildingData.name + " (right)";
-                occupiedTile.name = buildingData.name + " (left)";
 
                 BuildingManager.Instance.buildingTilemap.SetTile(tempPos, occupiedTile);
                 switch (tileIndicator.transform.rotation.eulerAngles.y)
@@ -115,10 +111,10 @@ public class BuildingPlacer : MonoBehaviour
                     case 90: tempPos.y -= 1; break; // When indicator faces +x -> (+1, -2)
                     case 180:tempPos.x -= 1; break; // When indictor faces -z -> (-2, +1)
                     case 270:tempPos.y += 1; break; // When indicator faces -x -> (+1, +2)
-
                 }
 
-                GameObject filler = Instantiate(fillerPrefab, tempPos, tileIndicator.transform.rotation, buildingsMap.transform);
+                Vector3 fillerPosition = new Vector3(tempPos.x + 0.5f, 0f, tempPos.y + 0.5f);
+                GameObject filler = Instantiate(fillerPrefab, fillerPosition, tileIndicator.transform.rotation, buildingsMap.transform);
                 occupiedTile2.building = filler.GetComponent<Building>();
 
                 occupiedTile2.building.pair = occupiedTile.building;
@@ -159,7 +155,10 @@ public class BuildingPlacer : MonoBehaviour
                 case 180:tempPositon.x -= 1; break;
                 case 270:tempPositon.y += 1; break;
             }
-            // Debug.Log(tempPositon);
+
+            BuildingTile tile = BuildingManager.Instance.buildingTilemap.GetTile<BuildingTile>(tempPositon);
+            if(tile) Debug.Log(tempPositon + " " + tile.building);
+         
             return !BuildingManager.Instance.buildingTilemap.HasTile(tempPositon);
         }
         return true;
@@ -175,12 +174,12 @@ public class BuildingPlacer : MonoBehaviour
 
     private void RemoveBuilding()
     {
-        tilePosition = BuildingManager.Instance.buildingTilemap.WorldToCell(tileIndicator.getLastPosition());
+        Vector3Int tilePosition = BuildingManager.Instance.buildingTilemap.WorldToCell(tileIndicator.getLastPosition());
         BuildingTile buildingTile = BuildingManager.Instance.buildingTilemap.GetTile<BuildingTile>(tilePosition);
 
         if (buildingTile == null) return;
 
-        if (buildingTile.building.pair != null) 
+        if (buildingTile.building.pair != null)
         {
             Vector3Int fillerPosition = BuildingManager.Instance.buildingTilemap.WorldToCell(buildingTile.building.pair.transform.position);
             BuildingTile buildingTile2 = BuildingManager.Instance.buildingTilemap.GetTile<BuildingTile>(fillerPosition);
@@ -191,7 +190,6 @@ public class BuildingPlacer : MonoBehaviour
 
         BuildingManager.Instance.buildingTilemap.SetTile(tilePosition, null);
         Destroy(buildingTile.building.gameObject);
-        
     }
 
     #endregion

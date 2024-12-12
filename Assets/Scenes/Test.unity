@@ -584,6 +584,10 @@ PrefabInstance:
       propertyPath: buildingsMap
       value: 
       objectReference: {fileID: 1134220057}
+    - target: {fileID: 6653698252379050511, guid: b7dc402c67c7c2646aaeaa9fe2fa423c, type: 3}
+      propertyPath: fillerPrefab
+      value: 
+      objectReference: {fileID: 6411253113673875169, guid: 162c8a0030997424d9c8e5d2f6dfb0d5, type: 3}
     - target: {fileID: 7206618391818014460, guid: b7dc402c67c7c2646aaeaa9fe2fa423c, type: 3}
       propertyPath: myCamera
       value: 
