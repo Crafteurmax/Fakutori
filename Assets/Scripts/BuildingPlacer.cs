@@ -21,6 +21,8 @@ public class BuildingPlacer : MonoBehaviour
     [SerializeField] private Building.BuildingType buildingType = Building.BuildingType.None;
     [SerializeField] private BuildingDatabaseSO buildingDatabaseSO;
 
+    [SerializeField] private GameObject fillerPrefab;
+
     private Vector3Int tilePosition;
     
     // Logic to know in which state we are
@@ -89,7 +91,11 @@ public class BuildingPlacer : MonoBehaviour
             BuildingData buildingData = buildingDatabaseSO.buildingData[(int)buildingType - 1];
 
             BuildingTile occupiedTile = ScriptableObject.CreateInstance<BuildingTile>();
-            occupiedTile.name = buildingData.name;
+
+            Vector3 buildingPosition = new Vector3(tilePosition.x + 0.5f, 0f, tilePosition.y + 0.5f);
+            GameObject go = Instantiate(buildingData.buildingPrefab, buildingPosition, tileIndicator.transform.rotation, buildingsMap.transform);
+
+            occupiedTile.building = go.GetComponent<Building>();
 
             // Check the size of the building and update the tilemap accordingly
             // Case for (1, 1) buildings
@@ -111,11 +117,16 @@ public class BuildingPlacer : MonoBehaviour
                     case 270:tempPos.y += 1; break; // When indicator faces -x -> (+1, +2)
 
                 }
+
+                GameObject filler = Instantiate(fillerPrefab, tempPos, tileIndicator.transform.rotation, buildingsMap.transform);
+                occupiedTile2.building = filler.GetComponent<Building>();
+
+                occupiedTile2.building.pair = occupiedTile.building;
+                occupiedTile.building.pair = occupiedTile2.building;
+
                 BuildingManager.Instance.buildingTilemap.SetTile(tempPos, occupiedTile2);
             }
 
-            Vector3 buildingPosition = new Vector3(tilePosition.x + 0.5f, 0f, tilePosition.y + 0.5f);
-            Instantiate(buildingData.buildingPrefab, buildingPosition, tileIndicator.transform.rotation, buildingsMap.transform);
         }
         else
         {
@@ -154,75 +165,32 @@ public class BuildingPlacer : MonoBehaviour
         return true;
     }
 
-    private static readonly HashSet<string> oneByTwoBuildingsName = new HashSet<string>
+    private static readonly HashSet<Building.BuildingType> oneByTwoBuildingsName = new HashSet<Building.BuildingType>
     {
-        "splitter (left)",
-        "concatenator (left)",
-        "exchangificator (left)",
-        "troncator (left)",
-        "splitter (right)",
-        "concatenator (right)",
-        "exchangificator (right)",
-        "troncator (right)"
+        Building.BuildingType.Splitter,
+        Building.BuildingType.Concatenator,
+        Building.BuildingType.Exchangificator,
+        Building.BuildingType.Troncator,
     };
 
     private void RemoveBuilding()
     {
         tilePosition = BuildingManager.Instance.buildingTilemap.WorldToCell(tileIndicator.getLastPosition());
-        TileBase buildingTile = BuildingManager.Instance.buildingTilemap.GetTile(tilePosition);
+        BuildingTile buildingTile = BuildingManager.Instance.buildingTilemap.GetTile<BuildingTile>(tilePosition);
 
         if (buildingTile == null) return;
-        
-        // Case (1, 2) buildings
-        if (oneByTwoBuildingsName.Contains(buildingTile.name))
+
+        if (buildingTile.building.pair != null) 
         {
-            Debug.Log("1x2 building to remove");
-            // We have to check the orientation to know which tile to delete from the tile map
+            Vector3Int fillerPosition = BuildingManager.Instance.buildingTilemap.WorldToCell(buildingTile.building.pair.transform.position);
+            BuildingTile buildingTile2 = BuildingManager.Instance.buildingTilemap.GetTile<BuildingTile>(fillerPosition);
 
-            // We first get the actual building gameObject
-            Vector3 removePosition = new Vector3(tilePosition.x + 0.5f, 0f, tilePosition.y + 0.5f);
-            Collider[] buildingToRemove = Physics.OverlapSphere(removePosition, 0.2f, buildingMask);
-
-            if (buildingToRemove.Length > 0)
-            {
-                foreach(var building  in buildingToRemove)
-                {
-                    Vector3Int tempPos = tilePosition;
-                    int offset = 0;
-                    if (buildingTile.name.Contains("(left)")) offset = 0;
-                    else if (buildingTile.name.Contains("(right)")) offset = 180;
-
-                    BuildingManager.Instance.buildingTilemap.SetTile(tempPos, null);
-
-                    switch ((building.transform.parent.rotation.eulerAngles.y + offset)%360)
-                    {
-                        case 0: tempPos.x += 1; break;
-                        case 90: tempPos.y -= 1; break;
-                        case 180: tempPos.x -= 1; break;
-                        case 270: tempPos.y += 1; break;
-                    }
-                    BuildingManager.Instance.buildingTilemap.SetTile(tempPos, null);
-
-                    Destroy(building.transform.parent.gameObject);
-                }
-            }
-
+            BuildingManager.Instance.buildingTilemap.SetTile(fillerPosition, null);
+            Destroy(buildingTile2.building.gameObject);
         }
-        else
-        {
-            Debug.Log("1x1 building to remove");
-            BuildingManager.Instance.buildingTilemap.SetTile(tilePosition, null);
-            Vector3 removePosition = new Vector3(tilePosition.x + 0.5f, 0f, tilePosition.y + 0.5f);
-            Collider[] buildingToRemove = Physics.OverlapSphere(removePosition, 0.2f, buildingMask);
 
-            if (buildingToRemove.Length > 0) 
-            { 
-                foreach(var building in buildingToRemove)
-                {
-                    Destroy(building.transform.parent.gameObject);
-                }
-            }
-        }
+        BuildingManager.Instance.buildingTilemap.SetTile(tilePosition, null);
+        Destroy(buildingTile.building.gameObject);
         
     }
 

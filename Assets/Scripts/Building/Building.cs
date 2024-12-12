@@ -5,6 +5,8 @@ using UnityEngine.Tilemaps;
 
 public class Building : MonoBehaviour
 {
+    public Building pair;
+
     public enum BuildingType {
         None,
         Belt,
@@ -22,7 +24,8 @@ public class Building : MonoBehaviour
         Maruificator,
         Miniaturisator,
         Tentenificator,
-        Troncator
+        Troncator,
+        Filler
     }
 
     private BuildingType buildingType;
