@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 84b178170c9761c48bd2fe5408eb4b42
+guid: 333e3b1301def97409da64777632879b
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Logo.002
-    second: {fileID: 2100000, guid: 6f893235fd4cb064683993151c3d8f97, type: 2}
+    second: {fileID: 2100000, guid: f94fb0fac388f944bab31b83a2abeb96, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -650,6 +650,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6760403337626553488, guid: 65a2217444f97a34ca7b377d62e86380, type: 3}
+      propertyPath: extractorAnimator
+      value: 
+      objectReference: {fileID: 2075126495}
+    - target: {fileID: 6760403337626553488, guid: 65a2217444f97a34ca7b377d62e86380, type: 3}
       propertyPath: extractedCharacters.Array.data[0].character
       value: 12402
       objectReference: {fileID: 0}
@@ -657,7 +661,7 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7852886952003353834, guid: 65a2217444f97a34ca7b377d62e86380, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 7237725247939796213, guid: 65a2217444f97a34ca7b377d62e86380, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 65a2217444f97a34ca7b377d62e86380, type: 3}
@@ -930,7 +934,7 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7852886952003353834, guid: 65a2217444f97a34ca7b377d62e86380, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 7237725247939796213, guid: 65a2217444f97a34ca7b377d62e86380, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 65a2217444f97a34ca7b377d62e86380, type: 3}
@@ -2287,7 +2291,7 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7852886952003353834, guid: 65a2217444f97a34ca7b377d62e86380, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 7237725247939796213, guid: 65a2217444f97a34ca7b377d62e86380, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 65a2217444f97a34ca7b377d62e86380, type: 3}
@@ -3116,6 +3120,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 530114298642537255, guid: 68bc686ebddaa47408c0d4768221088d, type: 3}
   m_PrefabInstance: {fileID: 607360008}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2075126495 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2948243407371785127, guid: 65a2217444f97a34ca7b377d62e86380, type: 3}
+  m_PrefabInstance: {fileID: 324105633}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &2145792752 stripped
 Transform:
