@@ -47,6 +47,7 @@ public class BuildingPlacer : MonoBehaviour
     {
         tileIndicator.ShowMouseIndicator();
         tileIndicator.UpdateMouseIndicator();
+        tileIndicator.RemoveIndicator();
         enableRemoval = true;
     }
 
@@ -68,9 +69,11 @@ public class BuildingPlacer : MonoBehaviour
     {
         if(!context.performed) return;
 
-        tileIndicator.ChangeIndicatorMaterial();
-
-        if (!enableRemoval) EnableRemoval();
+        if (!enableRemoval)
+        {
+            EnableRemoval();
+            tileIndicator.ChangeIndicator(Building.BuildingType.None);
+        } 
         else DisableRemoval();
     }
 
@@ -197,6 +200,7 @@ public class BuildingPlacer : MonoBehaviour
     private void Update()
     {
         buildingType = selectionUI.GetCurrentBuildingType();
+        tileIndicator.ChangeIndicator(buildingType);
 
         if (buildingType != Building.BuildingType.None)
         {

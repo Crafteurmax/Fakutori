@@ -6,10 +6,8 @@ using UnityEngine.InputSystem.Composites;
 
 public class TileIndicator : MonoBehaviour
 {
-    [Header("Materials")]
-    [SerializeField] private MeshRenderer indicatorMeshRenderer;
-    [SerializeField] private Material previewMaterial;
-    [SerializeField] private Material removeMaterial;
+    [SerializeField] private GameObject model;
+    [SerializeField] private List<GameObject> previewModels;
 
     [SerializeField] private LayerMask placementMask;
     [SerializeField] private Camera myCamera;
@@ -51,16 +49,19 @@ public class TileIndicator : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void ChangeIndicatorMaterial()
+    public void ChangeIndicator(Building.BuildingType newIndicatorType)
     {
-        if (indicatorMeshRenderer.material.name.Contains(previewMaterial.name))
+        if (newIndicatorType != Building.BuildingType.None)
         {
-            indicatorMeshRenderer.material = removeMaterial;
+            Destroy(model);
+            model = Instantiate(previewModels[(int)newIndicatorType], this.transform);
         }
-        else
-        {
-            indicatorMeshRenderer.material = previewMaterial;
-        }
+    }
+
+    public void RemoveIndicator()
+    {
+        Destroy(model);
+        model = Instantiate(previewModels[0], this.transform);
     }
 
     #region Getter
