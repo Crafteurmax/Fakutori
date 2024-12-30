@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -28,7 +29,13 @@ public class BuildingPlacer : MonoBehaviour
     private bool enableRemoval = false;
     private bool isLeftPress = false;
 
-    #region Enable / diasble placement
+    //Initialize an instance of History with the building placer
+    private void Start()
+    {
+        History.Instance.Initialize(this);
+    }
+
+    #region Enable / disable placement
     private void EnablePlacement()
     {
         tileIndicator.ShowMouseIndicator();
@@ -77,47 +84,61 @@ public class BuildingPlacer : MonoBehaviour
         else DisableRemoval();
     }
 
+    public void OnUndoPressed(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            History.Instance.Undo();
+        }
+    }
+
+    public void OnRedoPressed(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            History.Instance.Redo();
+        }
+    }
+
     #endregion
 
     #region Building placement / removal
-    private void PlaceBuilding()
+
+    public bool PlaceBuildingAtPosition(Building.BuildingType aBuildingType, Vector3Int aTilePosition, Quaternion aBuildingRotation)
     {
-        // Get the tile position of the building to place
-        Vector3Int tilePosition = BuildingManager.Instance.buildingTilemap.WorldToCell(tileIndicator.getLastPosition());
-
+        // Get the correct building from the database
+        BuildingData buildingData = buildingDatabaseSO.buildingData[(int)aBuildingType - 1];
+        
         // Check if there is not already a building at the place we are trying to put the new building
-        if (canBuildingBePlaced(tilePosition))
+        if (canBuildingBePlaced(aTilePosition, aBuildingType, aBuildingRotation))
         {
-            // Get the correct building from the database
-            BuildingData buildingData = buildingDatabaseSO.buildingData[(int)buildingType - 1];
-
             BuildingTile occupiedTile = ScriptableObject.CreateInstance<BuildingTile>();
 
-            Vector3 buildingPosition = new Vector3(tilePosition.x + 0.5f, 0f, tilePosition.y + 0.5f);
-            GameObject go = Instantiate(buildingData.buildingPrefab, buildingPosition, tileIndicator.transform.rotation, buildingsMap.transform);
-
+            Vector3 buildingPosition = new Vector3(aTilePosition.x + 0.5f, 0f, aTilePosition.y + 0.5f);
+            GameObject go = Instantiate(buildingData.buildingPrefab, buildingPosition, aBuildingRotation, buildingsMap.transform);
             occupiedTile.building = go.GetComponent<Building>();
 
             // Check the size of the building and update the tilemap accordingly
             // Case for (1, 1) buildings
-            if (buildingData.size == new Vector2Int(1,1)) BuildingManager.Instance.buildingTilemap.SetTile(tilePosition, occupiedTile);
+            if (buildingData.size == new Vector2Int(1, 1)) 
+                BuildingManager.Instance.buildingTilemap.SetTile(aTilePosition, occupiedTile);
             // Cases (1, 2) buildings :
             else if (buildingData.size == new Vector2Int(1, 2))
             {
-                Vector3Int tempPos = tilePosition;
+                Vector3Int tempPos = aTilePosition;
                 BuildingTile occupiedTile2 = ScriptableObject.CreateInstance<BuildingTile>();
 
                 BuildingManager.Instance.buildingTilemap.SetTile(tempPos, occupiedTile);
-                switch (tileIndicator.transform.rotation.eulerAngles.y)
+                switch (aBuildingRotation.eulerAngles.y)
                 {
-                    case 0:  tempPos.x += 1; break; // When indicator faces +z -> (+2, +1) (x, y)
+                    case 0: tempPos.x += 1; break; // When indicator faces +z -> (+2, +1) (x, y)
                     case 90: tempPos.y -= 1; break; // When indicator faces +x -> (+1, -2)
-                    case 180:tempPos.x -= 1; break; // When indictor faces -z -> (-2, +1)
-                    case 270:tempPos.y += 1; break; // When indicator faces -x -> (+1, +2)
+                    case 180: tempPos.x -= 1; break; // When indictor faces -z -> (-2, +1)
+                    case 270: tempPos.y += 1; break; // When indicator faces -x -> (+1, +2)
                 }
 
                 Vector3 fillerPosition = new Vector3(tempPos.x + 0.5f, 0f, tempPos.y + 0.5f);
-                GameObject filler = Instantiate(fillerPrefab, fillerPosition, tileIndicator.transform.rotation, buildingsMap.transform);
+                GameObject filler = Instantiate(fillerPrefab, fillerPosition, aBuildingRotation, buildingsMap.transform);
                 occupiedTile2.building = filler.GetComponent<Building>();
 
                 occupiedTile2.building.pair = occupiedTile.building;
@@ -126,10 +147,12 @@ public class BuildingPlacer : MonoBehaviour
                 BuildingManager.Instance.buildingTilemap.SetTile(tempPos, occupiedTile2);
             }
 
+            return true;
         }
         else
         {
-            Debug.Log("Buildding can't be placed here");
+            UnityEngine.Debug.Log("Buildding can't be placed here");
+            return false;
         }
     }
 
@@ -141,17 +164,17 @@ public class BuildingPlacer : MonoBehaviour
         Building.BuildingType.Troncator
     };
 
-    private bool canBuildingBePlaced(Vector3Int tilePositionToCheck)
+    private bool canBuildingBePlaced(Vector3Int tilePositionToCheck, Building.BuildingType aBuildingType, Quaternion aBuildingRotation)
     {
         // Case for (1, 1) buildings
-        if (buildingType == Building.BuildingType.None || BuildingManager.Instance.buildingTilemap.HasTile(tilePositionToCheck))  return false;
+        if (aBuildingType == Building.BuildingType.None || BuildingManager.Instance.buildingTilemap.HasTile(tilePositionToCheck)) return false;
 
         // Cases for (1, 2) buildings
-        else if (oneByTwoBuildings.Contains(buildingType))
+        else if (oneByTwoBuildings.Contains(aBuildingType))
         {
             Vector3Int tempPositon = tilePositionToCheck;
 
-            switch (tileIndicator.transform.rotation.eulerAngles.y)
+            switch (aBuildingRotation.eulerAngles.y)
             {
                 case 0:  tempPositon.x += 1; break;
                 case 90: tempPositon.y -= 1; break;
@@ -160,7 +183,7 @@ public class BuildingPlacer : MonoBehaviour
             }
 
             BuildingTile tile = BuildingManager.Instance.buildingTilemap.GetTile<BuildingTile>(tempPositon);
-            if(tile) Debug.Log(tempPositon + " " + tile.building);
+            if(tile) UnityEngine.Debug.Log(tempPositon + " " + tile.building);
          
             return !BuildingManager.Instance.buildingTilemap.HasTile(tempPositon);
         }
@@ -175,10 +198,9 @@ public class BuildingPlacer : MonoBehaviour
         Building.BuildingType.Troncator,
     };
 
-    private void RemoveBuilding()
+    public void RemoveBuildingAtPosition(Vector3Int aTilePosition)
     {
-        Vector3Int tilePosition = BuildingManager.Instance.buildingTilemap.WorldToCell(tileIndicator.getLastPosition());
-        BuildingTile buildingTile = BuildingManager.Instance.buildingTilemap.GetTile<BuildingTile>(tilePosition);
+        BuildingTile buildingTile = BuildingManager.Instance.buildingTilemap.GetTile<BuildingTile>(aTilePosition);
 
         if (buildingTile == null) return;
 
@@ -191,10 +213,23 @@ public class BuildingPlacer : MonoBehaviour
             Destroy(buildingTile2.building.gameObject);
         }
 
-        BuildingManager.Instance.buildingTilemap.SetTile(tilePosition, null);
+        BuildingManager.Instance.buildingTilemap.SetTile(aTilePosition, null);
         Destroy(buildingTile.building.gameObject);
     }
 
+    #endregion
+
+    #region Undo/Redo
+
+    public void Undo()
+    {
+        History.Instance.Undo();
+    }
+
+    public void Redo()
+    {
+        History.Instance.Redo();
+    }
     #endregion
 
     private void Update()
@@ -221,7 +256,23 @@ public class BuildingPlacer : MonoBehaviour
             }
         }
 
-        if (isLeftPress && enablePlacement) PlaceBuilding(); 
-        else if (isLeftPress && enableRemoval) RemoveBuilding();
+        if (isLeftPress && enablePlacement)
+        {
+            Vector3Int tilePosition = BuildingManager.Instance.buildingTilemap.WorldToCell(tileIndicator.getLastPosition());
+            if (PlaceBuildingAtPosition(buildingType, tilePosition, tileIndicator.transform.rotation))
+                History.Instance.AddToHistory(buildingType, tilePosition, tileIndicator.transform.rotation, true);
+        }
+        else if (isLeftPress && enableRemoval)
+        {
+            Vector3Int tilePosition = BuildingManager.Instance.buildingTilemap.WorldToCell(tileIndicator.getLastPosition());
+            BuildingTile buildingTile = BuildingManager.Instance.buildingTilemap.GetTile<BuildingTile>(tilePosition);
+            if (buildingTile != null)
+            {
+                Building.BuildingType removedBuildingType = buildingTile.building.GetBuildingType();
+                Quaternion removedBuildingRotation = buildingTile.building.transform.rotation;
+                RemoveBuildingAtPosition(tilePosition);
+                History.Instance.AddToHistory(removedBuildingType, tilePosition, removedBuildingRotation, false);
+            }
+        }
     }
 }

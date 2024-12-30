@@ -45,9 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e41b37e716ef1e43911e7b04953c755, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  indicatorMeshRenderer: {fileID: 8123637969180683404}
-  previewMaterial: {fileID: 2100000, guid: b6dab1b9c1b256c4fbf9159495caec9a, type: 2}
-  removeMaterial: {fileID: 2100000, guid: e03d16f56f3e6ef4ab661da2ab8b554b, type: 2}
+  model: {fileID: 0}
+  previewModels: []
   placementMask:
     serializedVersion: 2
     m_Bits: 1
@@ -381,6 +380,7 @@ MonoBehaviour:
   selectionUI: {fileID: 0}
   buildingType: 0
   buildingDatabaseSO: {fileID: 11400000, guid: c125d4b82b096e74bbeb9bbfa7c9d2c0, type: 2}
+  fillerPrefab: {fileID: 0}
 --- !u!114 &1449685690540883078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -478,6 +478,38 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 28e685bc-ec66-415f-a075-f6bb15f2ae93
     m_ActionName: BuildingPlacement/Rotate[/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6653698252379050511}
+        m_TargetAssemblyTypeName: BuildingPlacer, Assembly-CSharp
+        m_MethodName: OnUndoPressed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 540e982c-beec-4ef2-a75f-bd3026c45f97
+    m_ActionName: BuildingPlacement/Undo[/Keyboard/ctrl,/Keyboard/w]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6653698252379050511}
+        m_TargetAssemblyTypeName: BuildingPlacer, Assembly-CSharp
+        m_MethodName: OnRedoPressed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c64c1902-da3f-458d-beb2-bb72eb7c6b02
+    m_ActionName: BuildingPlacement/Redo[/Keyboard/ctrl,/Keyboard/y]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: BuildingPlacement
