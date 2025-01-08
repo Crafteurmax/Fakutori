@@ -1,0 +1,118 @@
+:: StoryTitle
+Fakutori
+
+
+:: StoryData
+{
+  "ifid": "E93F4FCE-9070-425A-A44F-8FFF1A4A4C98",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
+  "start": "Intro_0",
+  "tag-colors": {
+    "N1P0N": "orange"
+  },
+  "zoom": 1
+}
+
+
+:: Belt_1 [N1P0N] {"position":"500,1375","size":"100,100"}
+TO DO
+
+[[Explanation_4]] 
+
+
+:: Concatenator_1 [N1P0N] {"position":"625,1375","size":"100,100"}
+TO DO
+
+[[Explanation_4]] 
+
+
+:: Explanation_1 [N1P0N] {"position":"625,875","size":"100,100"}
+Your job is simple, just do what I say !! ＼(｀0´)／
+
+[[Explanation_2]]
+
+
+:: Explanation_2 [N1P0N] {"position":"625,1000","size":"100,100"}
+On the ground you can see ''Hiraganas'', you can create a piece of paper with this hiragana writen on it by placing an ''Extractor'' just above it.
+
+[[Explanation_3]] 
+
+
+:: Explanation_3 [N1P0N] {"position":"625,1125","size":"100,100"}
+Your goal is to colect those kanas to produce more complexe words or sentences, preferebly in an efficient way, by creating assembly lines using a variaty of machines.
+
+[[Explanation_4]] 
+
+
+:: Explanation_4 [N1P0N] {"position":"625,1250","size":"100,100"}
+Do you need informations about those machines ?
+
+[[the extractor->Extractor_1]]
+[[the belt->Belt_1]]
+[[the concatenator->Concatenator_1]]
+[[the hiraganificator->Hiraganificator_1]]
+[[the vending machine->Vendor_1]]
+[[no thanks->Explanation_5]] 
+
+
+:: Explanation_5 [N1P0N] {"position":"1000,1250","size":"100,100"}
+Do you want me to repet this explaination ?
+
+[[yes->Explanation_1]] 
+[[no->Intro_5]] 
+
+
+:: Extractor_1 [N1P0N] {"position":"375,1375","size":"100,100"}
+TO DO
+
+[[Explanation_4]] 
+
+
+:: Hiraganificator_1 [N1P0N] {"position":"750,1375","size":"100,100"}
+TO DO
+
+[[Explanation_4]] 
+
+
+:: Intro_0 [N1P0N] {"position":"625,250","size":"100,100"}
+Ho, hello there! I didn't see you come in, you must be the new intern, nice to meet you. ʕ•̀ω•́ʔ✧
+
+[[Intro_1]]
+
+
+:: Intro_1 [N1P0N] {"position":"625,375","size":"100,100"}
+You seem to be a bit lost, I'm the 1.0 version of your private Neural Perfect Network, every employe has one, think of it as cool little assistants.  ╲(｡◕‿◕｡)╱
+
+[[Intro_2]]
+
+
+:: Intro_2 [N1P0N] {"position":"625,500","size":"100,100"}
+But this name is a bit too long...  ƪ(‾￣o￣”)ʃ
+NPN 1.0 is boring...╰(⇀‸↼)╯
+
+[[Intro_3]]
+
+
+:: Intro_3 [N1P0N] {"position":"625,625","size":"100,100"}
+OK, I KNOW !! You can call me ''N1P0N''. ヽ(^◇^*)/
+
+[[Intro_4]]
+
+
+:: Intro_4 [N1P0N] {"position":"625,750","size":"100,100"}
+First of all, since you're new, do you want an explanation of what your job is ?
+
+[[yes->Explanation_1]]
+[[no->Intro_5]]
+
+
+:: Intro_5 [N1P0N] {"position":"1150,1250","size":"100,100"}
+Ok so let's get to work !!! Let's keep it simple for your first day...
+Try to make the kanji 日, that can be writen ”ひ”
+
+
+:: Vendor_1 [N1P0N] {"position":"875,1375","size":"100,100"}
+TO DO
+
+[[Explanation_4]] 

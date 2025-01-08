@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.crafteurmax.knitting": {
+      "version": "https://github.com/Crafteurmax/Knitting.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "d8e023421fc1cf62e4c8835d412ac910e1f4a2bf"
+    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,

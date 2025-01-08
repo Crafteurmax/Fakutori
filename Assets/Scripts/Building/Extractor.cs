@@ -66,6 +66,7 @@ public class Extractor : Building
             char c = tile.gameObject.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text[0];
             extractedCharacters.Add(new Item.Symbol{character = c, type = Item.SymbolType.Hiragana });
         }
+
         isSetup = true;
     }
 }

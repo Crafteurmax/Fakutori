@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4f18fa913a3a3049b5671b5d59aa8cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pair: {fileID: 0}
   productionTime: 4
   productionSpeed: 1
   extractedCharacters:
