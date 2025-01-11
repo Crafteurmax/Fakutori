@@ -29,7 +29,7 @@ public class GoalController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ReadGoalsFile("gls_test");
+        ReadGoalsFile(LevelData.goalFileName);
         loadNextGoalsSet();
 
         /*AddGoals(new goal { description = "水曜日", count = 20 });
