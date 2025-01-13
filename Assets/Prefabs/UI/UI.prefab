@@ -2793,6 +2793,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7598127725348531886, guid: e8e325aac91795141b366a46949ccaa7, type: 3}
+      propertyPath: m_TagString
+      value: noEscape
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
