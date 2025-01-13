@@ -220,6 +220,7 @@ MonoBehaviour:
   outputs:
   - {fileID: 5480893286733772440}
   producedItemCharacters: []
+  outputSelection: {fileID: 0}
 --- !u!1 &7391132438156406360
 GameObject:
   m_ObjectHideFlags: 0

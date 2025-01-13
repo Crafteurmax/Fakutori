@@ -2,15 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Text.RegularExpressions;
+using UnityEngine.EventSystems;
+using JetBrains.Annotations;
 
 public class Kanjificator : Factory
 {
     [SerializeField] protected List<Item.Symbol> producedItemCharacters = new List<Item.Symbol>();
+    [SerializeField] private KanjificatorOutputSelection outputSelection;
+    private string stringOutput = string.Empty;
 
     public override void OnEnable()
     {
         base.OnEnable();
         SetBuildingType(BuildingType.Kanjificator);
+    }
+    private void Start()
+    {
+        outputSelection = FindAnyObjectByType<KanjificatorOutputSelection>();
     }
 
     public override IEnumerator ProduceItem()
@@ -24,11 +32,38 @@ public class Kanjificator : Factory
 
         if (!TryGetOutputsInCache(cachedInput, out characters))
         {
-            List<string> kanjiOuput;
-            if(Library.TryGetKanjiFromKana(inputedItem.ToString(), out kanjiOuput))
+            List<string> kanjiOuput = new List<string>();
+            if (Library.TryGetKanjiFromKana(inputedItem.ToString(), out kanjiOuput))
             {
                 // pour l'instant on prend que le premier mot que l'on trouve a voir si l'on a besoin d'autre chose plus tard
-                foreach(char c in kanjiOuput[0])
+                if (kanjiOuput.Count > 1)
+                {
+                    //Debug.Log("Number of choices: " + kanjiOuput.Count);
+                    //for (int i = 0; i < kanjiOuput.Count; i++) { 
+                    //    Debug.Log(kanjiOuput[i].ToString());
+                    //}
+
+                    Debug.Log(kanjiOuput.Count);
+                    outputSelection.SetButtons(kanjiOuput.Count);
+                    List<string> choices = new List<string>();
+                    for (int i = 0; i < kanjiOuput.Count; i++)
+                    {
+                        choices.Add(kanjiOuput[i]);
+                    }
+                    outputSelection.SetButtonsName(choices);
+                    outputSelection.SetRequestor(this);
+                    outputSelection.TogglePanel(true);
+
+                    while (stringOutput == string.Empty) yield return null;
+                    Debug.Log(stringOutput);
+                }
+                else if (kanjiOuput.Count == 1)
+                {
+                    //Debug.Log("Single kanji output: " + kanjiOuput[0].ToString());
+                    stringOutput = kanjiOuput[0];
+                }
+
+                foreach (char c in stringOutput)
                 {
                     Item.Symbol symbole = new Item.Symbol();
                     symbole.character = c;
@@ -65,5 +100,12 @@ public class Kanjificator : Factory
         output.SetItem(spawnedItem);
 
         state = BuildingState.IDLE;
+    }
+
+    public void ReceiveChoice(string message)
+    {
+        Debug.Log("Selected kanji is: " + message);
+        outputSelection.TogglePanel(false);
+        stringOutput = message;
     }
 }
