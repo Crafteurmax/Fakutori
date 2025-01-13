@@ -104,7 +104,6 @@ public class Kanjificator : Factory
 
     public void ReceiveChoice(string message)
     {
-        Debug.Log("Selected kanji is: " + message);
         outputSelection.TogglePanel(false);
         stringOutput = message;
     }

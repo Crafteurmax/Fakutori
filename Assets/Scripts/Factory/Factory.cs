@@ -145,4 +145,9 @@ public class Factory : Building
         queue.Enqueue(inputs);
         cache.Add(inputs, outputs);
     }
+
+    public Dictionary<List<string>, List<Item.Symbol>> GetFactoryCache()
+    {
+        return cache;
+    }
 }
