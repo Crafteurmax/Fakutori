@@ -19,6 +19,11 @@ public class DialogueManager : MonoBehaviour
 
     StoryNode currentNode;
 
+    [SerializeField] PanelManger panelManger;
+
+    [SerializeField] Image actualFace;
+    [SerializeField] List<Sprite> faces;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,11 +33,14 @@ public class DialogueManager : MonoBehaviour
     public void NextAction(InputAction.CallbackContext context)
     {
         if (context.phase != InputActionPhase.Canceled) return;
-        if (currentNode.GetNextNodes().Count == 1)
+
+        List<NextNode> nextNodes = currentNode.GetNextNodes();
+        if (nextNodes.Count == 1)
         {
             story.NextNode();
             SetUpNode();
         }
+        else if(nextNodes.Count == 0) panelManger.ReturnToPreviousPanel();
     }
 
     public void NextChoice(int id)
@@ -45,6 +53,19 @@ public class DialogueManager : MonoBehaviour
     {
         currentNode = story.GetCurrentNode();
         text.text = currentNode.getText();
+        Sprite sprite = currentNode.GetSprite();
+        setFace();
+
+        if (sprite != null)
+        {
+            Debug.Log("inside");
+            image.enabled = true;
+            image.sprite = sprite;
+        }
+        else image.enabled = false;
+
+        pnjName.text = ChoosePNJName();
+
         List<NextNode> nextNodes = currentNode.GetNextNodes();
         if (nextNodes.Count > 1)
         {
@@ -57,5 +78,29 @@ public class DialogueManager : MonoBehaviour
             }
         }
         else choicesBox.SetActive(false);
+    }
+
+    private string ChoosePNJName()
+    {
+        if (currentNode.HasTag("N1P0N")) return "N1P0N";
+        else return "UNKNOWN";
+    }
+
+    private void setFace()
+    {
+        if (currentNode.HasTag("UwU")) actualFace.sprite = faces[0];
+        else if (currentNode.HasTag("OnO")) actualFace.sprite = faces[1];
+        else if (currentNode.HasTag(">-<")) actualFace.sprite = faces[2];
+        else if (currentNode.HasTag("=w=")) actualFace.sprite = faces[3];
+        else if (currentNode.HasTag("T_T")) actualFace.sprite = faces[4];
+        else if (currentNode.HasTag(":3")) actualFace.sprite = faces[5];
+        else if (currentNode.HasTag("<3")) actualFace.sprite = faces[6];
+        else if (currentNode.HasTag("x)")) actualFace.sprite = faces[7];
+        else if (currentNode.HasTag("\\\\o/")) actualFace.sprite = faces[8];
+        else if (currentNode.HasTag("$_$")) actualFace.sprite = faces[9];
+        else if (currentNode.HasTag("O.O")) actualFace.sprite = faces[10];
+        else if (currentNode.HasTag("X_X")) actualFace.sprite = faces[11];
+        else if (currentNode.HasTag("OwO")) actualFace.sprite = faces[12];
+        else actualFace.sprite = faces[0];
     }
 }
