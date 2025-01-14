@@ -447,6 +447,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: faces_13
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 0
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e31a7cda2f1027d448179b0d28f289cf
+      internalID: 879385538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -463,6 +484,7 @@ TextureImporter:
       faces_10: 548433741
       faces_11: -871381432
       faces_12: -1854224167
+      faces_13: 879385538
       faces_2: 544457399
       faces_3: -526915741
       faces_4: -1846244034

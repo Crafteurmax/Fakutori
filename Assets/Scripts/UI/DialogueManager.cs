@@ -114,6 +114,7 @@ public class DialogueManager : MonoBehaviour
         else if (currentNode.HasTag("O.O")) actualFace.sprite = faces[10];
         else if (currentNode.HasTag("X_X")) actualFace.sprite = faces[11];
         else if (currentNode.HasTag("OwO")) actualFace.sprite = faces[12];
+        else if (currentNode.HasTag("?_?")) actualFace.sprite = faces[13];
         else actualFace.sprite = faces[0];
     }
 }
