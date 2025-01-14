@@ -151,7 +151,7 @@ public class BuildingPlacer : MonoBehaviour
         }
         else
         {
-            UnityEngine.Debug.Log("Buildding can't be placed here");
+            UnityEngine.Debug.Log("Buildding of type " + aBuildingType + " can't be placed here");
             return false;
         }
     }

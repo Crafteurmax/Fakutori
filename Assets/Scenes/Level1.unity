@@ -596,6 +596,10 @@ PrefabInstance:
       propertyPath: buildingsMap
       value: 
       objectReference: {fileID: 1613494856}
+    - target: {fileID: 6653698252379050511, guid: b7dc402c67c7c2646aaeaa9fe2fa423c, type: 3}
+      propertyPath: fillerPrefab
+      value: 
+      objectReference: {fileID: 6411253113673875169, guid: 162c8a0030997424d9c8e5d2f6dfb0d5, type: 3}
     - target: {fileID: 7206618391818014460, guid: b7dc402c67c7c2646aaeaa9fe2fa423c, type: 3}
       propertyPath: model
       value: 
@@ -866,7 +870,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1371026279}
         m_TargetAssemblyTypeName: WorldSaver, Assembly-CSharp
-        m_MethodName: GetAllMachinesData
+        m_MethodName: WriteAllMachineData
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -882,6 +886,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 3a6e0b09-3440-4def-b264-73d30396dd68
     m_ActionName: Dialogue/next[/Mouse/leftButton,/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1371026279}
+        m_TargetAssemblyTypeName: WorldSaver, Assembly-CSharp
+        m_MethodName: BuildWorldFromData
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 2b282e5e-0df7-4463-a48e-efbe6dae47b7
+    m_ActionName: BuildingPlacement/Load[/Keyboard/l]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: BuildingPlacement
@@ -900,6 +920,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingsMap: {fileID: 1613494856}
+  buildingPlacer: {fileID: 2049794365}
 --- !u!1001 &1373893559
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1130,6 +1151,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 41178807}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2049794365 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6653698252379050511, guid: b7dc402c67c7c2646aaeaa9fe2fa423c, type: 3}
+  m_PrefabInstance: {fileID: 1092591643}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ab48a84e8b9d1043a5dc45a26edf95b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &738371183355360485 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 738371182141782685, guid: 5f79286f055fcae409c05452c259a560, type: 3}

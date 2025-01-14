@@ -72,7 +72,7 @@ public class KanjificatorOutputSelection : MonoBehaviour
 
     public void SendSelectedOutput(int index)
     {
-        Debug.Log("Button clicked " +  index);
+        //Debug.Log("Button clicked " +  index);
         requestor.ReceiveChoice(choiceButtonList[index].GetComponentInChildren<TMP_Text>().text);
     }
 }

@@ -133,7 +133,7 @@ public class Factory : Building
         return false;
     }
 
-    protected void AddToCache(List<string> inputs, List<Item.Symbol> outputs) 
+    public void AddToCache(List<string> inputs, List<Item.Symbol> outputs) 
     { 
         // pas besoin d'ajouter l'item si il est deja dans le cache
         if (IsItemsInCache(inputs)) return;

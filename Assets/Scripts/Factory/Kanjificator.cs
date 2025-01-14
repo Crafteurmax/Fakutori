@@ -43,6 +43,8 @@ public class Kanjificator : Factory
                     //    Debug.Log(kanjiOuput[i].ToString());
                     //}
 
+                    stringOutput = string.Empty;
+
                     Debug.Log(kanjiOuput.Count);
                     outputSelection.SetButtons(kanjiOuput.Count);
                     List<string> choices = new List<string>();
@@ -72,6 +74,18 @@ public class Kanjificator : Factory
                     characters.Add(symbole);
                 }
 
+                string debugMessage = "Key :";
+                for (int i = 0; i < cachedInput.Count; i++)
+                {
+                    debugMessage += " " + cachedInput[i].ToString();
+                }
+                debugMessage += " Values:";
+                for (int i = 0; i < characters.Count; i++)
+                {
+                    debugMessage += " " + characters[i].character.ToString();
+                    debugMessage += " " + characters[i].type.ToString();
+                }
+                Debug.Log(debugMessage);
                 AddToCache(cachedInput, characters);
             }
             else
