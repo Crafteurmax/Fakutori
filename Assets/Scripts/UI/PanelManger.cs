@@ -9,6 +9,7 @@ public class PanelManger : MonoBehaviour
 {
     [SerializeField] private GameObject startPanel;
     [SerializeField] private GameObject returnPanel;
+    [SerializeField] private GameObject DialoguePanel;
 
     [Header("Panels")]
     [SerializeField] private List<GameObject> panels = new();
@@ -20,6 +21,7 @@ public class PanelManger : MonoBehaviour
     private void Start()
     {
         TogglePanel(startPanel);
+        if(DialoguePanel != null) TogglePanel(DialoguePanel);
     }
 
     public void TogglePanel(GameObject panelToToggle)

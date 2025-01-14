@@ -24,9 +24,22 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] Image actualFace;
     [SerializeField] List<Sprite> faces;
 
+    private bool isFirstTime = true;
+
     // Start is called before the first frame update
     void Start()
     {
+        SetUpNode();
+    }
+
+    public void OnEnable()
+    {
+        if (isFirstTime)
+        {
+            isFirstTime = false;
+            return; 
+        }
+        story.SetNextNode(story.GetVariable("redo"));
         SetUpNode();
     }
 
