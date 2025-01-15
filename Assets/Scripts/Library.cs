@@ -13,6 +13,8 @@ public class Library : MonoBehaviour
 
     void Start()
     {
+        hiraganaToKanjiDictionary.Clear();
+        KanjiToHiraganaDictionary.Clear();
         string rawData = System.IO.File.ReadAllText(kanjiSaveFolder);
         string[] rawDataArray = rawData.Split(new string[] { ",", "\n" }, System.StringSplitOptions.None);
 
@@ -27,7 +29,7 @@ public class Library : MonoBehaviour
     static public List<string> GetKanjiFromKana(string kana)
     {
         List<string> retour = new List<string>();
-        if (hiraganaToKanjiDictionary.TryGetValue(kana,out retour)) return retour;
+        if (hiraganaToKanjiDictionary.TryGetValue(kana, out retour)) return retour;
         return null;
     }
 

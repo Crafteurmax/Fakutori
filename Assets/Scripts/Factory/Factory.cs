@@ -133,7 +133,7 @@ public class Factory : Building
         return false;
     }
 
-    protected void AddToCache(List<string> inputs, List<Item.Symbol> outputs) 
+    public void AddToCache(List<string> inputs, List<Item.Symbol> outputs) 
     { 
         // pas besoin d'ajouter l'item si il est deja dans le cache
         if (IsItemsInCache(inputs)) return;
@@ -144,5 +144,10 @@ public class Factory : Building
         // Update du cache et de la l'historique
         queue.Enqueue(inputs);
         cache.Add(inputs, outputs);
+    }
+
+    public Dictionary<List<string>, List<Item.Symbol>> GetFactoryCache()
+    {
+        return cache;
     }
 }
