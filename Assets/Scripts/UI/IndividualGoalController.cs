@@ -13,9 +13,9 @@ public class IndividualGoalController : MonoBehaviour
     private int objective;
     private bool isCompleted;
 
-    public void Setup(string description, int _objective, bool isStop)
+    public void Setup(string display, string description, int _objective, bool isStop)
     {
-        UIdescription.text = description;
+        UIdescription.text = display;
         count = 0;
         UIactualCount.text = count.ToString();
         objective = _objective;
