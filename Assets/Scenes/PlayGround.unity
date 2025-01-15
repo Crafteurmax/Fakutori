@@ -1183,6 +1183,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8741035873094949734, guid: 5f79286f055fcae409c05452c259a560, type: 3}
+      propertyPath: faces.Array.size
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 8741035873094949734, guid: 5f79286f055fcae409c05452c259a560, type: 3}
+      propertyPath: faces.Array.data[13]
+      value: 
+      objectReference: {fileID: 879385538, guid: eb94beb7d50b55c4795eb6fe608df0a9, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

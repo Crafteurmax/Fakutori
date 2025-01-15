@@ -17,6 +17,7 @@ public class GoalController : MonoBehaviour
 
     struct goal
     {
+        public string display;
         public string description;
         public int count;
         public bool isStop;
@@ -38,9 +39,6 @@ public class GoalController : MonoBehaviour
         else
             ReadGoalsFile("gls_test");
         loadNextGoalsSet();
-
-        /*AddGoals(new goal { description = "水曜日", count = 20 });
-        IncreaseScore("水曜日");*/
     }
 
     // Update is called once per frame
@@ -59,7 +57,7 @@ public class GoalController : MonoBehaviour
     {
         GameObject go = Instantiate(prefab, transform);
         IndividualGoalController igc = go.GetComponent<IndividualGoalController>();
-        igc.Setup(goal.description,goal.count,goal.isStop);
+        igc.Setup(goal.display,goal.description,goal.count,goal.isStop);
         displayedGoals.Add(goal.description,igc);
     }
 
@@ -70,15 +68,16 @@ public class GoalController : MonoBehaviour
         string[] rawDataArray = rawData.Split(new string[] { ",", "\n" }, System.StringSplitOptions.RemoveEmptyEntries);
 
         goals.Add(new List<goal>());
-        for (int i = 2; i < rawDataArray.Length; i += 2)
+        for (int i = 3; i < rawDataArray.Length; i += 3)
         {
             if (rawDataArray[i] == "STOP")
             {
-                if (i +  1 < rawDataArray.Length) goals[goals.Count - 1].Add(new goal { description = rawDataArray[i + 1], count = -1, isStop = true });
+                if (i +  1 < rawDataArray.Length) goals[goals.Count - 1].Add(new goal { description = rawDataArray[i + 1], isStop = true });
                 goals.Add(new List<goal>());
                 continue;
             }
-            goals[goals.Count-1].Add(new goal { description=rawDataArray[i], count = int.Parse(rawDataArray[i+1]) });
+            Debug.Log("display = " + rawDataArray[i] + ", description =" + rawDataArray[i + 1] + ", count = int.Parse(" + rawDataArray[i + 2] + ")");
+            goals[goals.Count-1].Add(new goal { display = rawDataArray[i], description =rawDataArray[i+1], count = int.Parse(rawDataArray[i+2]) });
             
         }
     }
