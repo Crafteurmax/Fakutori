@@ -250,7 +250,12 @@ public class WorldSaver : MonoBehaviour
         Debug.Log("Reading buildings data from json");
 
         List<BuildingDataHolder> buildings = new List<BuildingDataHolder>();
-            
+        
+        if (!File.Exists(saveFilePath))
+        {
+            return null;
+        }
+
         using(StreamReader reader = new StreamReader(saveFilePath))
         {
             string line = string.Empty;
@@ -347,6 +352,12 @@ public class WorldSaver : MonoBehaviour
         {
             List<BuildingDataHolder> buildings = ReadAllMachineData();
 
+            if (buildings == null)
+            {
+                Debug.Log("No save file to load");
+                return;
+            }
+
             for (int i = 0; i < buildings.Count; i++)
             {
                 //Debug.Log("x: " + buildings[i].x + " y: " + buildings[i].y);
@@ -361,6 +372,11 @@ public class WorldSaver : MonoBehaviour
                     // Add the cache back from the holder to the actual factory
 
                     var res = ExtractCacheFromHolder(buildings[i]);
+
+                    if (res.Count == 1 && res[0].Item1 == null && res[0].Item2 == null)
+                    {
+                        continue;
+                    }
 
                     for (int j = 0; j < res.Count; j++)
                     {
@@ -399,8 +415,15 @@ public class WorldSaver : MonoBehaviour
         string[] charaSplit = chara.Split(",");
         string[] typeSplit = type.Split(",");
 
+        if (charaSplit[0] == string.Empty)
+        {
+            Debug.Log("Empty cache");
+            return (null, null);
+        }
+
         for (int i = 0; i < charaSplit.Length; i++)
         {
+            Debug.Log(charaSplit[i]);
             Item.Symbol sym = new Item.Symbol();
             sym.character = charaSplit[i].ToCharArray()[0];
 
