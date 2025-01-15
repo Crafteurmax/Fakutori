@@ -10,15 +10,14 @@ public class TileIndicator : MonoBehaviour
     [SerializeField] private List<GameObject> previewModels;
 
     [SerializeField] private LayerMask placementMask;
-    [SerializeField] private Camera myCamera;
 
     private Vector3 lastPosition;
 
     public void UpdateMouseIndicator()
     {
         Vector3 mousPosition = Input.mousePosition;
-        mousPosition.z = myCamera.nearClipPlane;
-        Ray ray = myCamera.ScreenPointToRay(mousPosition);
+        mousPosition.z = Camera.main.nearClipPlane;
+        Ray ray = Camera.main.ScreenPointToRay(mousPosition);
 
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 1000, placementMask))

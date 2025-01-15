@@ -24,6 +24,6 @@ public class LevelButton : MonoBehaviour
         LevelData.levelName = levelName;
         LevelData.goalFileName = levelName + "_goal";
 
-        SceneManager.LoadScene(levelName);
+        SceneManager.LoadScene("PlayGround");
     }
 }

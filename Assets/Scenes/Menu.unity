@@ -340,6 +340,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!224 &606569831 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 301606750497414964, guid: b0443b97bcca2a34eab53581cebd5db9, type: 3}
+  m_PrefabInstance: {fileID: 2097859182}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &613173358
 GameObject:
   m_ObjectHideFlags: 0
@@ -772,6 +777,7 @@ RectTransform:
   m_Children:
   - {fileID: 724995471}
   - {fileID: 1270639134}
+  - {fileID: 606569831}
   m_Father: {fileID: 528125639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1302,6 +1308,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPanel: {fileID: 1693537893}
   returnPanel: {fileID: 1019121979}
+  DialoguePanel: {fileID: 0}
   panels:
   - {fileID: 1693537893}
   - {fileID: 792123862}
@@ -1397,6 +1404,30 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: b6647559-44aa-4501-927e-97a80cdd6f47
     m_ActionName: UI/SetSelectedBuildingToNone[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 46079d72-700a-4844-b2db-b21a7b0982f8
+    m_ActionName: BuildingPlacement/Place[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 28e685bc-ec66-415f-a075-f6bb15f2ae93
+    m_ActionName: BuildingPlacement/Rotate[/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8180663d-671c-4eba-92dc-940b62fd74b4
+    m_ActionName: BuildingPlacement/Remove[/Keyboard/x]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 540e982c-beec-4ef2-a75f-bd3026c45f97
+    m_ActionName: BuildingPlacement/Undo[/Keyboard/ctrl,/Keyboard/w]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c64c1902-da3f-458d-beb2-bb72eb7c6b02
+    m_ActionName: BuildingPlacement/Redo[/Keyboard/ctrl,/Keyboard/y]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3a6e0b09-3440-4def-b264-73d30396dd68
+    m_ActionName: Dialogue/next[/Mouse/leftButton,/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: UI
@@ -2018,6 +2049,107 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2034134862}
   m_CullTransparentMesh: 1
+--- !u!1001 &2097859182
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 792123863}
+    m_Modifications:
+    - target: {fileID: 301606750497414964, guid: b0443b97bcca2a34eab53581cebd5db9, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 301606750497414964, guid: b0443b97bcca2a34eab53581cebd5db9, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 301606750497414964, guid: b0443b97bcca2a34eab53581cebd5db9, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 301606750497414964, guid: b0443b97bcca2a34eab53581cebd5db9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 301606750497414964, guid: b0443b97bcca2a34eab53581cebd5db9, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 301606750497414964, guid: b0443b97bcca2a34eab53581cebd5db9, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 301606750497414964, guid: b0443b97bcca2a34eab53581cebd5db9, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 160
+      objectReference: {fileID: 0}
+    - target: {fileID: 301606750497414964, guid: b0443b97bcca2a34eab53581cebd5db9, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 301606750497414964, guid: b0443b97bcca2a34eab53581cebd5db9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 301606750497414964, guid: b0443b97bcca2a34eab53581cebd5db9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 301606750497414964, guid: b0443b97bcca2a34eab53581cebd5db9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 301606750497414964, guid: b0443b97bcca2a34eab53581cebd5db9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 301606750497414964, guid: b0443b97bcca2a34eab53581cebd5db9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 301606750497414964, guid: b0443b97bcca2a34eab53581cebd5db9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 301606750497414964, guid: b0443b97bcca2a34eab53581cebd5db9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 301606750497414964, guid: b0443b97bcca2a34eab53581cebd5db9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 301606750497414964, guid: b0443b97bcca2a34eab53581cebd5db9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -204
+      objectReference: {fileID: 0}
+    - target: {fileID: 301606750497414964, guid: b0443b97bcca2a34eab53581cebd5db9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 301606750497414964, guid: b0443b97bcca2a34eab53581cebd5db9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 301606750497414964, guid: b0443b97bcca2a34eab53581cebd5db9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3539623287437159146, guid: b0443b97bcca2a34eab53581cebd5db9, type: 3}
+      propertyPath: m_Name
+      value: LevelButton (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7807169788806084459, guid: b0443b97bcca2a34eab53581cebd5db9, type: 3}
+      propertyPath: levelName
+      value: Level2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b0443b97bcca2a34eab53581cebd5db9, type: 3}
 --- !u!1001 &4521200594297621174
 PrefabInstance:
   m_ObjectHideFlags: 0

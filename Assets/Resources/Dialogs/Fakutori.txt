@@ -9,110 +9,381 @@ Fakutori
   "format-version": "3.3.9",
   "start": "Intro_0",
   "tag-colors": {
-    "N1P0N": "orange"
+    "N1P0N": "orange",
+    "UwU": "yellow",
+    ">-<": "yellow",
+    "=w=": "yellow",
+    "T_T": "yellow",
+    ":3": "yellow",
+    "<3": "yellow",
+    "x)": "yellow",
+    "\\o/": "yellow",
+    "$_$": "yellow",
+    "O.O": "yellow",
+    "X_X": "yellow",
+    "OwO": "yellow",
+    "OnO": "yellow",
+    "?_?": "yellow"
   },
-  "zoom": 1
+  "zoom": 0.6
 }
 
 
-:: Belt_1 [N1P0N] {"position":"500,1375","size":"100,100"}
+:: 9865649+26 holder [UwU OnO >-< =w= T_T :3 <3 x) \\o/ $_$ O.O X_X OwO ?_?] {"position":"600,0","size":"100,100"}
+
+
+
+:: Belt_1 [N1P0N] {"position":"475,1550","size":"100,100"}
 TO DO
 
 [[Explanation_4]] 
 
 
-:: Concatenator_1 [N1P0N] {"position":"625,1375","size":"100,100"}
+:: Concatenator_1 [N1P0N] {"position":"600,1550","size":"100,100"}
 TO DO
 
 [[Explanation_4]] 
 
 
-:: Explanation_1 [N1P0N] {"position":"625,875","size":"100,100"}
-Your job is simple, just do what I say !! ＼(｀0´)／
+:: Explanation_1 [N1P0N OnO] {"position":"600,950","size":"100,100"}
+Your job is simple, just do what I say !! \(`0´)/
 
 [[Explanation_2]]
 
 
-:: Explanation_2 [N1P0N] {"position":"625,1000","size":"100,100"}
+:: Explanation_2 [N1P0N] {"position":"600,1100","size":"100,100"}
 On the ground you can see ''Hiraganas'', you can create a piece of paper with this hiragana writen on it by placing an ''Extractor'' just above it.
 
 [[Explanation_3]] 
 
 
-:: Explanation_3 [N1P0N] {"position":"625,1125","size":"100,100"}
-Your goal is to colect those kanas to produce more complexe words or sentences, preferebly in an efficient way, by creating assembly lines using a variaty of machines.
+:: Explanation_3 [N1P0N] {"position":"600,1250","size":"100,100"}
+Your goal is to collect those kanas to produce more complexe words or sentences, preferebly in an efficient way, by creating assembly lines using a variaty of machines.
 
 [[Explanation_4]] 
 
 
-:: Explanation_4 [N1P0N] {"position":"625,1250","size":"100,100"}
+:: Explanation_4 [N1P0N ?_?] {"position":"600,1400","size":"100,100"}
 Do you need informations about those machines ?
 
 [[the extractor->Extractor_1]]
 [[the belt->Belt_1]]
 [[the concatenator->Concatenator_1]]
-[[the hiraganificator->Hiraganificator_1]]
+[[the kanjificator->Kanjificator_1]]
 [[the vending machine->Vendor_1]]
 [[no thanks->Explanation_5]] 
 
 
-:: Explanation_5 [N1P0N] {"position":"1000,1250","size":"100,100"}
+:: Explanation_5 [N1P0N OwO] {"position":"1000,1400","size":"100,100"}
 Do you want me to repet this explaination ?
 
 [[yes->Explanation_1]] 
 [[no->Intro_5]] 
 
 
-:: Extractor_1 [N1P0N] {"position":"375,1375","size":"100,100"}
+:: Explanation_6 [N1P0N ?_?] {"position":"2000,1550","size":"100,100"}
+Do you need informations about those machines ?
+
+[[the trash can->Trash_1]]
+[[the tunnel->Tunnel_1]]
+[[the spliter->Spliter_1]]
+[[the troncator->Troncator_1]]
+[[no thanks->Week_13]] 
+
+
+:: Extractor_1 [N1P0N] {"position":"350,1550","size":"100,100"}
 TO DO
 
 [[Explanation_4]] 
 
 
-:: Hiraganificator_1 [N1P0N] {"position":"750,1375","size":"100,100"}
-TO DO
-
-[[Explanation_4]] 
-
-
-:: Intro_0 [N1P0N] {"position":"625,250","size":"100,100"}
-Ho, hello there! I didn't see you come in, you must be the new intern, nice to meet you. ʕ•̀ω•́ʔ✧
+:: Intro_0 [N1P0N] {"position":"600,200","size":"100,100"}
+Ho, hello there! I didn't see you come in, you must be the new intern, nice to meet you.
 
 [[Intro_1]]
 
 
-:: Intro_1 [N1P0N] {"position":"625,375","size":"100,100"}
-You seem to be a bit lost, I'm the 1.0 version of your private Neural Perfect Network, every employe has one, think of it as cool little assistants.  ╲(｡◕‿◕｡)╱
+:: Intro_1 [N1P0N :3] {"position":"600,350","size":"100,100"}
+You seem to be a bit lost, I'm the 1.0 version of your private Neural Perfect Network, every employe has one, think of it as cool little assistants.
 
 [[Intro_2]]
 
 
-:: Intro_2 [N1P0N] {"position":"625,500","size":"100,100"}
-But this name is a bit too long...  ƪ(‾￣o￣”)ʃ
-NPN 1.0 is boring...╰(⇀‸↼)╯
+:: Intro_2 [N1P0N >-<] {"position":"600,500","size":"100,100"}
+But this name is a bit too long...
+NPN 1.0 is boring...
 
 [[Intro_3]]
 
 
-:: Intro_3 [N1P0N] {"position":"625,625","size":"100,100"}
-OK, I KNOW !! You can call me ''N1P0N''. ヽ(^◇^*)/
+:: Intro_3 [N1P0N \\o/] {"position":"600,650","size":"100,100"}
+OK, I KNOW !! You can call me ''N1P0N''. ヽ(^O^*)/
 
 [[Intro_4]]
 
 
-:: Intro_4 [N1P0N] {"position":"625,750","size":"100,100"}
+:: Intro_4 [N1P0N ?_?] {"position":"600,800","size":"100,100"}
+(set: $redo to "Intro_4")
 First of all, since you're new, do you want an explanation of what your job is ?
 
 [[yes->Explanation_1]]
 [[no->Intro_5]]
 
 
-:: Intro_5 [N1P0N] {"position":"1150,1250","size":"100,100"}
+:: Intro_5 [N1P0N] {"position":"1200,1400","size":"100,100"}
 Ok so let's get to work !!! Let's keep it simple for your first day...
-Try to make the kanji 日, that can be writen ”ひ”
+Try to make the kanji 日, that can be writen ”ひ” and the kanji 月, that can be writen "つき".
+[[Intro_6]]
 
 
-:: Vendor_1 [N1P0N] {"position":"875,1375","size":"100,100"}
+:: Intro_6 [N1P0N O.O] {"position":"1200,1550","size":"100,100"}
+The first kanji mean sun or day depending on the context and the second one mean moon or month. A new sun every day and a new moon every month, easy to remember right ?
+[[Intro_7]] 
+
+
+:: Intro_7 [N1P0N <3] {"position":"1200,1700","size":"100,100"}
+Good luck with thoose two, if you need any explaination, if you don't remember what you need to do or if you just want to chat with me <3, you can call me by clicking on the button with my face on it, in the top left part of your monitor.
+
+
+:: Jour_1 [N1P0N \\o/] {"position":"1400,200","size":"100,100"}
+Nice Job !!! Keep working like that and you will employe of the month in no time. ヾ(⌐■_■)ノ♪
+[[Jour_2]]
+
+
+:: Jour_10 [N1P0N OwO] {"position":"1600,200","size":"100,100"}
+Very impressive !!! For a first day, you're doing amazing !!!!
+[[Jour_11]] 
+
+
+:: Jour_11 [N1P0N =w=] {"position":"1600,350","size":"100,100"}
+Let's call it a day, you will understand tomorrow why I make you learn thoose six kanji.
+And don't forget !!!
+[[Jour_12]] 
+
+
+:: Jour_12 [N1P0N] {"position":"1600,500","size":"100,100"}
+The kanji for water, 水, that can be written みず.
+[[Jour_13]]
+
+
+:: Jour_13 [N1P0N] {"position":"1600,650","size":"100,100"}
+The kanji for tree or wood, 木, that can be written き.
+[[Jour_14]]
+
+
+:: Jour_14 [N1P0N] {"position":"1600,800","size":"100,100"}
+The kanji for gold, 金, that can be written きん.
+[[Jour_15]] 
+
+
+:: Jour_15 [N1P0N] {"position":"1600,950","size":"100,100"}
+The kanji for soil, 土, that can be written つち.
+[[Jour_16]] 
+
+
+:: Jour_16 [N1P0N] {"position":"1600,1100","size":"100,100"}
+ The kanji for sun or day, 日,  can be writen ”ひ” and the kanji for moon or month, 月, can be writen "つき".
+[[Jour_17]] 
+
+
+:: Jour_17 [N1P0N] {"position":"1600,1250","size":"100,100"}
+If you ever want to check thoose informations, I've added them in your dictionary. You can acces the dictionary by clicking on the button with a book inside it in the top right side of your monitor !!!
+
+
+:: Jour_2 [N1P0N] {"position":"1400,350","size":"100,100"}
+Don't destroy your assembly line I'm sure it could be usefull later. Management ask us to keep them organised and compact, but do as you can for now, Rome didn't built it self in one day, so is our factory.
+
+[[Jour_3]]
+
+
+:: Jour_3 [N1P0N \\o/] {"position":"1400,500","size":"100,100"}
+OK, so let's keep going, the fakutori must grow, isn't it ?
+[[Jour_4]]
+
+
+:: Jour_4 [N1P0N] {"position":"1400,650","size":"100,100"}
+(set: $redo to "Jour_4")
+Try to make those kanji :
+[[Jour_5]] 
+
+
+:: Jour_5 [N1P0N] {"position":"1400,800","size":"100,100"}
+The kanji for water, 水, that can be written みず.
+[[Jour_6]] 
+
+
+:: Jour_6 [N1P0N] {"position":"1400,950","size":"100,100"}
+The kanji for tree or wood, 木, that can be written き.
+[[Jour_7]] 
+
+
+:: Jour_7 [N1P0N] {"position":"1400,1100","size":"100,100"}
+The kanji for gold, 金, that can be written きん.
+[[Jour_8]] 
+
+
+:: Jour_8 [N1P0N] {"position":"1400,1250","size":"100,100"}
+And finaly the kanji for soil, 土, that can be written つち.
+[[Jour_9_1]] 
+
+
+:: Jour_9_1 [N1P0N ?_?] {"position":"1400,1400","size":"100,100"}
+For one of those words you may need to transform a す into a ず, you will need to use the tentenificaton for that, do you want some information about this machine ?
+[[yes->Tentenificator_1]]
+[[no->Jour_9_2]]
+
+
+:: Jour_9_2 [N1P0N >-<] {"position":"1400,1550","size":"100,100"}
+That's a bit more than last time but I'm sure you can do it !!! Don't forget that you can call me at any time. The perk of beeing a robot is that I never sleep !!
+
+
+:: Kanjificator_1 [N1P0N] {"position":"725,1550","size":"100,100"}
 TO DO
 
 [[Explanation_4]] 
+
+
+:: Spliter_1 [N1P0N] {"position":"1800,1700","size":"100,100"}
+TODO
+[[Explanation_6]] 
+
+
+:: Tentenificator_1 [N1P0N] {"position":"1600,1400","size":"100,100"}
+TODO
+[[Jour_9_2]] 
+
+
+:: Trash_1 [N1P0N] {"position":"1925,1700","size":"100,100"}
+TODO
+[[Explanation_6]] 
+
+
+:: Troncator_1 [N1P0N] {"position":"2200,1700","size":"100,100"}
+TODO
+[[Explanation_6]] 
+
+
+:: Tunnel_1 [N1P0N] {"position":"2075,1700","size":"100,100"}
+TODO
+[[Explanation_6]] 
+
+
+:: Vendor_1 [N1P0N] {"position":"850,1550","size":"100,100"}
+TO DO
+
+[[Explanation_4]] 
+
+
+:: Week_1 [N1P0N $_$] {"position":"1800,200","size":"100,100"}
+Welcome back !! Let's get to work !!!
+[[Week_2]]
+
+
+:: Week_10 [N1P0N] {"position":"2000,1100","size":"100,100"}
+Saturnday read どようび and written 土曜日 is Saturn the planet of earth.
+[[Week_11]]
+
+
+:: Week_11 [N1P0N :3] {"position":"2000,1250","size":"100,100"}
+Each time the construction of the word is the same [element] + 曜日. Try to use the assembly lines that you've already built to create those new words.
+[[Week_12]] 
+
+
+:: Week_12 [N1P0N ?_?] {"position":"2000,1400","size":"100,100"}
+Now that you seem at ease with your job, do you want me to explain how the others machines works ?
+[[yes->Explanation_6]] 
+[[no->Week_13]] 
+
+
+:: Week_13 [N1P0N \\o/] {"position":"2200,1400","size":"100,100"}
+Ok so let's get to work !!!!
+
+
+:: Week_14 [N1P0N] {"position":"2200,200","size":"100,100"}
+Nice !!! You did it like a boss !!!!
+[[Week_15]] 
+
+
+:: Week_15 [N1P0N ?_?] {"position":"2200,350","size":"100,100"}
+Know that you've done 火曜日, 水曜日, 木曜日, 金曜日 and 土曜日. Could you guess what the last two are ?
+[[yes->Week_16_1]]
+[[no->Week_16_2]]
+
+
+
+:: Week_16_1 [N1P0N >-<] {"position":"2125,500","size":"100,100"}
+If your response was 月曜日 for Monday and 日曜日 for Sunday then you're right !!!
+[[Week_17]] 
+
+
+:: Week_16_2 [N1P0N ?_?] {"position":"2275,500","size":"100,100"}
+We still miss two days of the week, Monday and Sunday. In english, they could be interpreted as the day of the moon and the day of the sun. And conviniently that's the same in japanese !!!! Could you guess what the last two are now ?
+[[Ho I know now !!->Week_16_1]]
+[[I really don't know :'(->Week_16_3]]
+
+
+:: Week_16_3 [N1P0N :3] {"position":"2275,650","size":"100,100"}
+Monday is the day of the moon, so it's 月曜日. 
+Sunday is the day of the sun, so it's 日曜日. 
+[[Week_17]]
+
+
+:: Week_17 [N1P0N] {"position":"2200,800","size":"100,100"}
+(set: $redo to "Week_17")
+Know try to produce some 月曜日 and some 日曜日.
+[[Week_18]] 
+
+
+:: Week_18 [N1P0N] {"position":"2200,950","size":"100,100"}
+After those two, you will have learned 14 words and 7 Kanjis, not a bad start right ? がんばって !!!
+
+
+:: Week_19 [N1P0N] {"position":"2400,200","size":"100,100"}
+You've done it !!!!!
+[[Week_20]]
+
+
+:: Week_2 [N1P0N :3] {"position":"1800,350","size":"100,100"}
+(set: $redo to "Week_2")
+Yesturday, you learned 6 Kanjis, let's learn one more. The kanji for fire 火, that can be writen ひ. But let's do something something more interisting with this time.
+[[Week_3]]
+
+
+:: Week_20 [N1P0N] {"position":"2400,350","size":"100,100"}
+Let's call it a day, take a break and enjoy the progress that you've made. Like biking, the most difficult part is to start. If you wan't to memorise this vocabulary even faster you can use some flashcard.
+
+
+:: Week_3 [N1P0N] {"position":"1800,500","size":"100,100"}
+Instead of creating it alone let's create the word for "Tuesday" instead. In Japanesse, Tuesday is written 火曜日 and is read かようび.
+
+
+:: Week_4 [N1P0N] {"position":"2000,200","size":"100,100"}
+Perfect !! One done, 6 more to go. But don't be afraid this is going to be easy. Like stealing a loly pop from a 6 years old, but without being mean to any body <3.
+[[Week_5]]
+
+
+:: Week_5 [N1P0N] {"position":"2000,350","size":"100,100"}
+(set: $redo to "Week_5")
+Out of 7, 5 days come from the Chinese astrology. They represent the five chinese elements ( Chinese: 五行 Wu Xing ) Wood, Fire, Earth, Metal and Water.
+[[Week_6]]
+
+
+:: Week_6 [N1P0N] {"position":"2000,500","size":"100,100"}
+So, Tuesday read かようび and written 火曜日 is Mars the planet of fire.
+[[Week_7]] 
+
+
+:: Week_7 [N1P0N] {"position":"2000,650","size":"100,100"}
+Wednesday read すいようび and written 水曜日 is Mercury the planet of water.
+[[Week_8]] 
+
+
+
+:: Week_8 [N1P0N] {"position":"2000,800","size":"100,100"}
+Thursday read もくようび and written 木曜日 is Jupiter the planet of wood.
+[[Week_9]]
+
+
+:: Week_9 [N1P0N] {"position":"2000,950","size":"100,100"}
+Friday read きんようび and written 金曜日 is Venus the planet of metal.
+[[Week_10]]

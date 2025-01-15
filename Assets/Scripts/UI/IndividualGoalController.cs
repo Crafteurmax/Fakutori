@@ -13,13 +13,14 @@ public class IndividualGoalController : MonoBehaviour
     private int objective;
     private bool isCompleted;
 
-    public void Setup(string description, int _objective)
+    public void Setup(string description, int _objective, bool isStop)
     {
         UIdescription.text = description;
         count = 0;
         UIactualCount.text = count.ToString();
         objective = _objective;
         UIobjective.text = objective.ToString();
+        if (isStop) isCompleted = true;
     }
 
     public void Increase()

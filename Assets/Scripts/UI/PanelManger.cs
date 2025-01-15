@@ -9,20 +9,25 @@ public class PanelManger : MonoBehaviour
 {
     [SerializeField] private GameObject startPanel;
     [SerializeField] private GameObject returnPanel;
+    [SerializeField] private GameObject DialoguePanel;
 
     [Header("Panels")]
     [SerializeField] private List<GameObject> panels = new();
 
     private readonly Stack<GameObject> currentPanels = new();
 
+    private bool cantEscape;
+
     private void Start()
     {
         TogglePanel(startPanel);
+        if(DialoguePanel != null) TogglePanel(DialoguePanel);
     }
 
     public void TogglePanel(GameObject panelToToggle)
     {
         currentPanels.Push(panelToToggle);
+        cantEscape = panelToToggle.CompareTag("noEscape");
 
         foreach (GameObject panel in panels)
         {
@@ -35,25 +40,22 @@ public class PanelManger : MonoBehaviour
         if(currentPanels.Count <= 1) { return; }
 
         currentPanels.Pop();
-
-        foreach (GameObject panel in panels)
-        {
-            panel.SetActive(panel == currentPanels.Peek());
-        }
+        TogglePanel(currentPanels.Pop());
     }
 
     public void ReturnToPreviousPanel(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Started)
+        if (context.phase != InputActionPhase.Started) return;
+        if (cantEscape) return;
+
+        if (currentPanels.Count > 1)
         {
-            if (currentPanels.Count > 1)
-            {
-                ReturnToPreviousPanel();
-            }
-            else
-            {
-                TogglePanel(returnPanel);
-            }
+            ReturnToPreviousPanel();
         }
+        else
+        {
+            TogglePanel(returnPanel);
+        }
+        
     }
 }

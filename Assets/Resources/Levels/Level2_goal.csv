@@ -1,0 +1,26 @@
+Description, goals
+日,10
+月,10
+STOP,Jour_1
+水,10
+木,10
+金,10
+土,10
+STOP,Jour_10
+日,5
+月,5
+水,5
+木,5
+金,5
+土,5
+STOP,Week_1
+火曜日,10
+STOP,Week_4
+水曜日,10
+木曜日,10
+金曜日,10
+土曜日,10
+STOP,Week_14
+月曜日,10
+日曜日,10
+STOP,Week_19
