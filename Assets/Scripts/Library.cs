@@ -36,9 +36,7 @@ public class Library : MonoBehaviour
 
     static public List<string> GetKanjiFromKana(string kana)
     {
-        List<string> retour = new List<string>();
-        if (hiraganaToKanjiDictionary.TryGetValue(kana, out retour)) return retour;
-        return null;
+        return hiraganaToKanjiDictionary.TryGetValue(kana, out List<string> retour) ? retour : null;
     }
 
     static public bool TryGetKanjiFromKana(string kana, out List<string> kanji)
