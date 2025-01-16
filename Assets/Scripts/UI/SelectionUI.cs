@@ -94,7 +94,7 @@ public class SelectionUI : MonoBehaviour
             buildingButtons[^1][0].transform.SetParent(categoryLayout.rectTransform);
             buildingButtons[^1][0].onClick.AddListener(delegate { CloseCurrentBuildingCategory(); });
 
-            categoryButtons.Add(new());
+            categoryButtons.Add(null);
         }
         else
         {

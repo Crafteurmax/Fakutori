@@ -1,0 +1,89 @@
+{
+	"panelList":
+	[
+		{
+			"name": "Panel 0", 
+			"description": "First panel", 
+			"levelList": 
+			[
+				{
+					"name": "Level 0.0", 
+					"description" : "This should launch the PlayGround scene", 
+					"map" : "Level1", 
+					"goal" : "Level1_goal", 
+					"dialogue" : "level0_dialogue"
+				},
+				{
+					"name": "Level 0.1", 
+					"description" : "0.1", 
+					"map" : "level0", 
+					"goal" : "level0.1_goal", 
+					"dialogue" : "level0.1_dialogue"
+				},
+				{
+					"name": "Level 0.0", 
+					"description" : "0.0", 
+					"map" : "level0", 
+					"goal" : "level0.0_goal", 
+					"dialogue" : "level0_dialogue"
+				},
+				{
+					"name": "Level 0.0", 
+					"description" : "0.0", 
+					"map" : "level0", 
+					"goal" : "level0.0_goal", 
+					"dialogue" : "level0_dialogue"
+				},
+				{
+					"name": "Level 0.0", 
+					"description" : "0.0", 
+					"map" : "level0", 
+					"goal" : "level0.0_goal", 
+					"dialogue" : "level0_dialogue"
+				},
+				{
+					"name": "Level 0.0", 
+					"description" : "0.0", 
+					"map" : "level0", 
+					"goal" : "level0.0_goal", 
+					"dialogue" : "level0_dialogue"
+				},
+				{
+					"name": "Level 0.0", 
+					"description" : "0.0", 
+					"map" : "level0", 
+					"goal" : "level0.0_goal", 
+					"dialogue" : "level0_dialogue"
+				},
+				{
+					"name": "Level 0.0", 
+					"description" : "0.0", 
+					"map" : "level0", 
+					"goal" : "level0.0_goal", 
+					"dialogue" : "level0_dialogue"
+				}
+			]
+		},
+		{
+			"name": "Panel 1", 
+			"description": "Second panel", 
+			"levelList": 
+			[
+				{
+					"name": "Level 1.0", 
+					"description" : "1.0", 
+					"map" : "level1", 
+					"goal" : "level1.0_goal", 
+					"dialogue" : "level0_dialogue"
+				},
+				{
+					"name": "Level 1.1", 
+					"description" : "1.1", 
+					"map" : "level1", 
+					"goal" : "level1.1_goal", 
+					"dialogue" : "level1.1_dialogue"
+				}
+			]
+		}
+	]
+}
