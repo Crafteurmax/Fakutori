@@ -2,17 +2,21 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.InputSystem.LowLevel;
 
 public class Library : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    static private string kanjiSaveFolder = Application.dataPath + "/Resources/RawData/vocab.csv";
-    static private Dictionary<string, List<string>> hiraganaToKanjiDictionary = new Dictionary<string, List<string>>();
-    static private Dictionary<string, List<string>> KanjiToHiraganaDictionary = new Dictionary<string, List<string>>();
+    static private string kanjiSaveFolder;
+    //static private string kanjiSaveFolder = Application.dataPath + "/Resources/RawData/vocab.csv";
+    static private readonly Dictionary<string, List<string>> hiraganaToKanjiDictionary = new();
+    static private readonly Dictionary<string, List<string>> KanjiToHiraganaDictionary = new();
 
     void Start()
     {
+        InitPath();
+
         string rawData = System.IO.File.ReadAllText(kanjiSaveFolder);
         string[] rawDataArray = rawData.Split(new string[] { ",", "\n" }, System.StringSplitOptions.None);
 
@@ -21,7 +25,11 @@ public class Library : MonoBehaviour
             AddKanjiToHiraganaToKanjiDictionary(rawDataArray[i+1], rawDataArray[i]);    
             AddHiraganaToKanjiToHiraganaDictionary(rawDataArray[i], rawDataArray[i + 1]);
         }
+    }
 
+    static private void InitPath()
+    {
+        kanjiSaveFolder = Path.Combine(Application.dataPath, "Resources", "RawData", "vocab.csv");
     }
 
     static public List<string> GetKanjiFromKana(string kana)
@@ -70,5 +78,10 @@ public class Library : MonoBehaviour
             list.Add(kana);
             KanjiToHiraganaDictionary.Add(kanji, list);
         }
+    }
+
+    static public string GetKanjiSaveFolder()
+    {
+        return kanjiSaveFolder;
     }
 }

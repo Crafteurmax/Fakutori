@@ -15,7 +15,7 @@ public class ButtonLayer
 public class MultiLayerButton : Button
 {
     [Header("Button Layers")]
-    [SerializeField] List<ButtonLayer> buttonLayers;
+    [SerializeField] protected List<ButtonLayer> buttonLayers;
 
     public void AddButtonLayer(ButtonLayer buttonLayer)
     {

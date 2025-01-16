@@ -8,7 +8,9 @@ public class Item : MonoBehaviour
     public enum SymbolType {
         Hiragana,
         Katakana,
-        Kanji
+        Kanji,
+        Romaji,
+        None
     }
 
     [System.Serializable]
@@ -23,12 +25,10 @@ public class Item : MonoBehaviour
     [SerializeField] private TextMeshPro charactersText;
 
     private float heightOffset;
-    private GameObject model;
 
     private void Awake()
     {
-        model = transform.Find("Model").gameObject;
-        heightOffset = 4 * model.transform.localScale.y;
+        heightOffset = 4 * transform.Find("Model").localScale.y;
 
         //symbols.Add(new Symbol { character = 'あ', type = SymbolType.Hiragana });
         //UpdateSymbols();
