@@ -17,14 +17,19 @@ public class GoalController : MonoBehaviour
 
     struct goal
     {
+        public string display;
         public string description;
         public int count;
+        public bool isStop;
     }
 
     [SerializeField] GameObject prefab;
     Dictionary<string, IndividualGoalController> displayedGoals = new Dictionary<string, IndividualGoalController>();
     private int actualDisplayedGoalID = -1;
 
+    [SerializeField] GameObject dialoguePanel;
+    [SerializeField] Story story;
+    [SerializeField] PanelManger panelManger;
 
     // Start is called before the first frame update
     void Start()
@@ -34,9 +39,6 @@ public class GoalController : MonoBehaviour
         else
             ReadGoalsFile("gls_test");
         loadNextGoalsSet();
-
-        /*AddGoals(new goal { description = "水曜日", count = 20 });
-        IncreaseScore("水曜日");*/
     }
 
     // Update is called once per frame
@@ -51,28 +53,31 @@ public class GoalController : MonoBehaviour
         if (IsAllDisplayedGoalsAreCompleted()) loadNextGoalsSet();
     }
 
-    private void AddGoals(goal goal)
+    private void AddGoal(goal goal)
     {
         GameObject go = Instantiate(prefab, transform);
         IndividualGoalController igc = go.GetComponent<IndividualGoalController>();
-        igc.Setup(goal.description,goal.count);
+        igc.Setup(goal.display,goal.description,goal.count,goal.isStop);
         displayedGoals.Add(goal.description,igc);
     }
 
     private void ReadGoalsFile(string path)
     {
         string rawData = System.IO.File.ReadAllText(levelsPrefabFolder + path + ".csv");
+        rawData = rawData.Replace("\r", "");
         string[] rawDataArray = rawData.Split(new string[] { ",", "\n" }, System.StringSplitOptions.RemoveEmptyEntries);
 
         goals.Add(new List<goal>());
-        for (int i = 2; i < rawDataArray.Length; i += 2)
+        for (int i = 3; i < rawDataArray.Length; i += 3)
         {
             if (rawDataArray[i] == "STOP")
             {
+                if (i +  1 < rawDataArray.Length) goals[goals.Count - 1].Add(new goal { description = rawDataArray[i + 1], isStop = true });
                 goals.Add(new List<goal>());
                 continue;
             }
-            goals[goals.Count-1].Add(new goal { description=rawDataArray[i], count = int.Parse(rawDataArray[i+1]) });
+            Debug.Log("display = " + rawDataArray[i] + ", description =" + rawDataArray[i + 1] + ", count = int.Parse(" + rawDataArray[i + 2] + ")");
+            goals[goals.Count-1].Add(new goal { display = rawDataArray[i], description =rawDataArray[i+1], count = int.Parse(rawDataArray[i+2]) });
             
         }
     }
@@ -88,10 +93,25 @@ public class GoalController : MonoBehaviour
 
     private void loadNextGoalsSet()
     {
+        if(actualDisplayedGoalID != -1)
+        {
+            goal stopGoal = goals[actualDisplayedGoalID][goals[actualDisplayedGoalID].Count - 1];
+            if (stopGoal.isStop && stopGoal.description != "STOP")
+            {
+                story.SetVariable("redo", stopGoal.description);
+                panelManger.TogglePanel(dialoguePanel);
+            }
+        }
         actualDisplayedGoalID++;
         foreach (var goals in displayedGoals) Destroy(goals.Value.gameObject);
         displayedGoals.Clear();
-        if (actualDisplayedGoalID < goals.Count) foreach (goal goals in goals[actualDisplayedGoalID]) AddGoals(goals);
+        if (actualDisplayedGoalID < goals.Count)
+        {
+            foreach (goal goal in goals[actualDisplayedGoalID])
+            {
+                if(!goal.isStop) AddGoal(goal);
+            }
+        }
 
     }
 }

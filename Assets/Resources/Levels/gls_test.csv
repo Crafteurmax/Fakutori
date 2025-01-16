@@ -1,6 +1,6 @@
-Description, goals
-火山,10
-STOP,
-火,10
-山,10
-STOP,
+Display,Description, goals
+Volcan,火山,1
+STOP,Jour_1,STOP
+火,火,10
+山,山,10
+STOP,STOP,STOP,

@@ -3,13 +3,18 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LevelButton : MonoBehaviour
 {
-    [SerializeField] private string levelName;
     [SerializeField] private TMP_Text buttonText;
+    private string levelName;
+    private string levelDescription;
+    private string levelGoal;
+    private string levelMap;
+    private string levelDialogue;
 
 
     private void Start()
@@ -17,13 +22,57 @@ public class LevelButton : MonoBehaviour
         buttonText.text = levelName;
     }
 
-    public void OnClick()
+    #region Setter / Getter
+
+    public void SetName(string name)
     {
-        Debug.Log("Button " + levelName + "clicked");
-
-        LevelData.levelName = levelName;
-        LevelData.goalFileName = levelName + "_goal";
-
-        SceneManager.LoadScene(levelName);
+        levelName = name;
     }
+
+    public string GetName()
+    {
+        return levelName;
+    }
+
+    public void SetDescription(string description)
+    {
+        levelDescription = description;
+    }
+
+    public string GetLevelDescription()
+    {
+        return levelDescription;
+    }
+
+    public void SetGoal(string goal)
+    {
+        levelGoal = goal;
+    }
+
+    public string GetGoal()
+    {
+        return levelGoal;
+    }
+
+    public void SetMap(string map)
+    {
+        levelMap = map;
+    }
+
+    public string GetMap()
+    {
+        return levelMap;
+    }
+
+    public void SetDialogue(string dialogue)
+    {
+        levelDialogue = dialogue;
+    }
+
+    public string GetDialogue()
+    {
+        return levelDialogue;
+    }
+
+    #endregion
 }
