@@ -34,7 +34,8 @@ public class SelectionUI : MonoBehaviour
     [SerializeField] private Building.BuildingType currentBuildingType = Building.BuildingType.None;
 
     [Header("Building Selection")]
-    [SerializeField] private MultiLayerButton buttonPrefab;
+    [SerializeField] private MultiLayerButton buildingButtonPrefab;
+    [SerializeField] private MultiLayerButton categoryButtonPrefab;
     [SerializeField] private ButtonLayout categoryLayout;
     [SerializeField] private ButtonLayout buttonLayout;
     [SerializeField] private List<BuildingCategory> buildingCategories = new();
@@ -114,7 +115,7 @@ public class SelectionUI : MonoBehaviour
 
     private void CreateCategoryButton(BuildingCategory buildingCategory, int index)
     {
-        MultiLayerButton categoryButton = GameObject.Instantiate(buttonPrefab);
+        MultiLayerButton categoryButton = GameObject.Instantiate(categoryButtonPrefab);
         categoryButtons.Add(categoryButton);
         categoryButton.transform.SetParent(categoryLayout.rectTransform);
 
@@ -125,7 +126,7 @@ public class SelectionUI : MonoBehaviour
 
     private void CreateBuildingButton(BuildingButton buildingButton, int categoryIndex)
     {
-        MultiLayerButton button = GameObject.Instantiate(buttonPrefab);
+        MultiLayerButton button = GameObject.Instantiate(buildingButtonPrefab);
         buildingButtons[categoryIndex].Add(button);
 
         button.SetIconSprite(buildingButton.sprite);

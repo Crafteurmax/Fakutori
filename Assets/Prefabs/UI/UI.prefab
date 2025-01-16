@@ -115,7 +115,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBuildingType: 0
-  buttonPrefab: {fileID: 3123658344248235655, guid: ff541b036aa985646ad80c126934ae4d, type: 3}
+  buildingButtonPrefab: {fileID: 3123658344248235655, guid: ff541b036aa985646ad80c126934ae4d, type: 3}
+  categoryButtonPrefab: {fileID: 1849322344368571820, guid: af46cf25a22f25b4cb3dca674d7c336a, type: 3}
   categoryLayout:
     layout: {fileID: 3207197556310599519}
     rectTransform: {fileID: 2549002027087114111}
@@ -133,7 +134,7 @@ MonoBehaviour:
     buttons:
     - buildingType: 5
       sprite: {fileID: -526266283, guid: d91572322bb824b48a343990a5a628c6, type: 3}
-  - sprite: {fileID: -1270354558, guid: 4a2913d969f653b4eb8272cdc02b3a39, type: 3}
+  - sprite: {fileID: -1707021085, guid: d91572322bb824b48a343990a5a628c6, type: 3}
     buttons:
     - buildingType: 1
       sprite: {fileID: 705251340, guid: d91572322bb824b48a343990a5a628c6, type: 3}
@@ -151,7 +152,7 @@ MonoBehaviour:
     buttons:
     - buildingType: 7
       sprite: {fileID: -1122714341, guid: d91572322bb824b48a343990a5a628c6, type: 3}
-  - sprite: {fileID: 1954805839, guid: 4a2913d969f653b4eb8272cdc02b3a39, type: 3}
+  - sprite: {fileID: -1491012273, guid: d91572322bb824b48a343990a5a628c6, type: 3}
     buttons:
     - buildingType: 8
       sprite: {fileID: -630644238, guid: d91572322bb824b48a343990a5a628c6, type: 3}
@@ -159,7 +160,7 @@ MonoBehaviour:
       sprite: {fileID: -1128170811, guid: d91572322bb824b48a343990a5a628c6, type: 3}
     - buildingType: 9
       sprite: {fileID: 1549620356, guid: d91572322bb824b48a343990a5a628c6, type: 3}
-  - sprite: {fileID: -1692104413, guid: 4a2913d969f653b4eb8272cdc02b3a39, type: 3}
+  - sprite: {fileID: -1064655642, guid: d91572322bb824b48a343990a5a628c6, type: 3}
     buttons:
     - buildingType: 11
       sprite: {fileID: -702328657, guid: d91572322bb824b48a343990a5a628c6, type: 3}
@@ -167,7 +168,7 @@ MonoBehaviour:
       sprite: {fileID: -640319054, guid: d91572322bb824b48a343990a5a628c6, type: 3}
     - buildingType: 12
       sprite: {fileID: 407527617, guid: d91572322bb824b48a343990a5a628c6, type: 3}
-  - sprite: {fileID: 1147873947, guid: 4a2913d969f653b4eb8272cdc02b3a39, type: 3}
+  - sprite: {fileID: 1180392779, guid: d91572322bb824b48a343990a5a628c6, type: 3}
     buttons:
     - buildingType: 13
       sprite: {fileID: 160977245, guid: d91572322bb824b48a343990a5a628c6, type: 3}
