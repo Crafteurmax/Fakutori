@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using TMPro;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -64,9 +65,20 @@ public class LevelSelection : MonoBehaviour
     private void Start()
     {
         panelList = ReadLevelsData();
-        ToggleLeftButton(false);
-        ToggleRightButton(true);
-        TogglePlayButton(false);
+
+        if (panelList.Count == 1)
+        {
+            ToggleLeftButton(false);
+            ToggleRightButton(false);
+            TogglePlayButton(false);
+        }
+        else
+        {
+            ToggleLeftButton(false);
+            ToggleRightButton(true);
+            TogglePlayButton(false);
+        }
+        
     }
 
     private void OnEnable()
@@ -120,11 +132,12 @@ public class LevelSelection : MonoBehaviour
         }
         levelButtonLayout.SetSpacing(spacing);
         levelButtonLayout.AddItems(toggleButtonList);
+
     }
 
-    public void GoToNextPanel()
+    public void SwitchPanel(int nextPanel)
     {
-        selectedPanel += 1;
+        selectedPanel += nextPanel;
 
         if (selectedPanel > 0)
         {
@@ -137,15 +150,6 @@ public class LevelSelection : MonoBehaviour
             selectedPanel = maxPanelNumber - 1;
         }
 
-        TogglePlayButton(false);
-        ClearLevelDescription();
-        LoadSelectedPanel();
-    }
-
-    public void GoToPreviousPanel()
-    {
-        selectedPanel -= 1;
-       
         if (selectedPanel < maxPanelNumber - 1)
         {
             ToggleRightButton(true);
@@ -184,12 +188,12 @@ public class LevelSelection : MonoBehaviour
         levelDescription.text = string.Empty;
     }
 
-    public void ToggleLeftButton(bool toggle)
+    private void ToggleLeftButton(bool toggle)
     {
         leftButton.interactable = toggle;
     }
 
-    public void ToggleRightButton(bool toggle)
+    private void ToggleRightButton(bool toggle)
     {
         rightButton.interactable = toggle;
     }

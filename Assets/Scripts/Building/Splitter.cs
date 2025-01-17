@@ -15,6 +15,10 @@ public class Splitter : Building
     [SerializeField] private BuildingInput rightInput;
     private InputState rightInputState = InputState.RightOutput;
 
+    [Header("Mesh")]
+    [SerializeField] private GameObject beltMeshLeft;
+    [SerializeField] private GameObject beltMeshRight;
+
     private bool takeFromLeft;
 
     [SerializeField] private BuildingOutput leftOutput;
@@ -54,6 +58,12 @@ public class Splitter : Building
     }
 
     private void HandleMoveItems() {
+        if (!(leftInput.IsOccupied() && leftOutput.IsOccupied())) {
+            LeftBeltAnimation();
+        }
+        if (!(rightInput.IsOccupied() && rightOutput.IsOccupied())) {
+            RightBeltAnimation();
+        }
         if (leftOutput.IsOccupied() && rightOutput.IsOccupied()) {
             return;
         }
@@ -149,5 +159,15 @@ public class Splitter : Building
         }
 
         output.SetItem(movingItem);
+    }
+
+    private void RightBeltAnimation() {
+        float offset = BuildingManager.Instance.beltSpeed * 0.5f;
+        beltMeshRight.GetComponent<Renderer>().material.mainTextureOffset -= new Vector2(0, offset * Time.deltaTime);
+    }
+
+    private void LeftBeltAnimation() {
+        float offset = BuildingManager.Instance.beltSpeed * 0.5f;
+        beltMeshLeft.GetComponent<Renderer>().material.mainTextureOffset -= new Vector2(0, offset * Time.deltaTime);
     }
 }
