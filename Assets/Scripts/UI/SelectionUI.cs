@@ -30,7 +30,6 @@ public class ButtonLayout
     public Vector2 padding;
 }
 
-
 public class SelectionUI : MonoBehaviour
 {
     [SerializeField] private Building.BuildingType currentBuildingType = Building.BuildingType.None;
@@ -42,22 +41,11 @@ public class SelectionUI : MonoBehaviour
     [SerializeField] private ButtonLayout categoryLayout;
     [SerializeField] private ButtonLayout buttonLayout;
     [SerializeField] private List<BuildingCategory> buildingCategories = new();
-    [SerializeField] private Color selectedColor;
-    [SerializeField] private float colorMultiplier;
 
     private readonly List<List<SelectableButton>> buildingButtons = new();
     private readonly List<SelectableButton> categoryButtons = new();
     private Vector2Int currentBuilding = new Vector2Int(-1, -1);
     private int currentCategory = -1;
-
-    [Header("Description")]
-    [SerializeField] private Image desciptionImage;
-
-    [Header("Controls")]
-    [SerializeField] private Image controlsImage;
-
-    [Header("Objectifs")]
-    [SerializeField] private Image objectifsImage;
 
     public UnityEvent NewCurrentBuildingType { get; } = new();
 
@@ -196,7 +184,7 @@ public class SelectionUI : MonoBehaviour
             return;
         }
 
-        if (currentBuilding.x > 0)
+        if (currentBuilding.x >= 0)
         {
             buildingButtons[currentBuilding.x][currentBuilding.y].SelectButton(false);
         }
@@ -211,7 +199,7 @@ public class SelectionUI : MonoBehaviour
 
     private void SetCurrentBuildingTypeToNone()
     {
-        if (currentBuilding.x > 0)
+        if (currentBuilding.x >= 0)
         {
             buildingButtons[currentBuilding.x][currentBuilding.y].SelectButton(false);
         }
