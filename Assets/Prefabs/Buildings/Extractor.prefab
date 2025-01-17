@@ -49,9 +49,7 @@ MonoBehaviour:
   pair: {fileID: 0}
   productionTime: 4
   productionSpeed: 1
-  extractedCharacters:
-  - character: 12354
-    type: 0
+  extractedCharacters: []
   extractorAnimator: {fileID: 7797604336329524552}
 --- !u!1 &8856753161186107138
 GameObject:
