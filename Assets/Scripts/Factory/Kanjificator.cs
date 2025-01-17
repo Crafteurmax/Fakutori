@@ -97,6 +97,7 @@ public class Kanjificator : Factory
 
         yield return new WaitForSeconds(productionTime / productionSpeed);
 
+        ClearInputs();
 
         BuildingOutput output = outputs[0];
 
