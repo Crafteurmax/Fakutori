@@ -19,6 +19,7 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float rotationSpeed;
     [SerializeField] private float scrollSpeed;
+    [SerializeField] private float minSpeedFactor;
     [SerializeField] private float distanceToCenter;
     [SerializeField] private float distanceMaxToCenter;
 
@@ -33,8 +34,8 @@ public class CameraMovement : MonoBehaviour
     void Update()
     {
         //adjust camera move and scroll speed to current zoom (more zoomed, slowered speed)
-        float adjustedSpeed = speed * (distanceToCenter / distanceMaxToCenter);
-        float adjustedScrollSpeed = scrollSpeed * (distanceToCenter / distanceMaxToCenter);
+        float adjustedSpeed = Mathf.Lerp(speed * minSpeedFactor, speed, distanceToCenter / distanceMaxToCenter);
+        float adjustedScrollSpeed = Mathf.Lerp(scrollSpeed * minSpeedFactor, scrollSpeed, distanceToCenter / distanceMaxToCenter);
 
         // adjust the center point rotation and rotation according to input movement
         center.Translate(new Vector3(movement.x,0, movement.y)* adjustedSpeed * Time.deltaTime);
@@ -51,13 +52,16 @@ public class CameraMovement : MonoBehaviour
 
         // set the position of the camera
         cameraTransform.localPosition = new Vector3(0, distanceToCenter*Mathf.Sin(angleHeight) , -distanceToCenter * Mathf.Cos(angleHeight));
-
     }
 
     public void Move(InputAction.CallbackContext context)
     {
         // move event Handler
-        movement = context.ReadValue<Vector2>();
+        //disabled when ctrl is pressed to avoid ctrl-z overlap
+        if (!Keyboard.current.ctrlKey.isPressed)
+        {
+            movement = context.ReadValue<Vector2>();
+        }
     }
 
     public void Rotatae(InputAction.CallbackContext context)
