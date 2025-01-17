@@ -204,6 +204,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Disable Remove",
+                    "type": "Button",
+                    "id": "6ed9f1ed-058a-490f-8726-a16eafa43e6f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Remove",
                     "type": "Button",
                     "id": "8180663d-671c-4eba-92dc-940b62fd74b4",
@@ -368,6 +377,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Load",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "43f8cfa3-6eb6-4cde-a47a-fd6119c5800d",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Disable Remove",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
