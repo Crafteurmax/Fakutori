@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
@@ -34,6 +36,7 @@ public class SelectionUI : MonoBehaviour
 {
     [SerializeField] private Building.BuildingType currentBuildingType = Building.BuildingType.None;
     [SerializeField] private GameObject selectionPanel;
+    [SerializeField] private BuildingPlacer buildingPlacer;
 
     [Header("Building Selection")]
     [SerializeField] private SelectableButton buildingButtonPrefab;
@@ -84,6 +87,7 @@ public class SelectionUI : MonoBehaviour
         {
             CreateBuildingButton(buildingCategory.buttons[0], buildingButtons.Count - 1, 0);
             buildingButtons[^1][0].transform.SetParent(categoryLayout.rectTransform);
+            buildingButtons[^1][0].transform.localScale = Vector3.one;
             buildingButtons[^1][0].onClick.AddListener(delegate { CloseCurrentBuildingCategory(); });
 
             categoryButtons.Add(null);
@@ -98,6 +102,7 @@ public class SelectionUI : MonoBehaviour
             foreach (SelectableButton button in buildingButtons[^1])
             {
                 button.transform.SetParent(buttonLayout.rectTransform);
+                button.transform.localScale = Vector3.one;
                 button.gameObject.SetActive(false);
             }
 
@@ -110,6 +115,7 @@ public class SelectionUI : MonoBehaviour
         SelectableButton categoryButton = GameObject.Instantiate(categoryButtonPrefab);
         categoryButtons.Add(categoryButton);
         categoryButton.transform.SetParent(categoryLayout.rectTransform);
+        categoryButton.transform.localScale = Vector3.one;
 
         categoryButton.SetIconSprite(buildingCategory.sprite);
 
@@ -211,11 +217,18 @@ public class SelectionUI : MonoBehaviour
 
     public void SetCurrentBuildingTypeToNone(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Started)
+        if (context.phase == InputActionPhase.Started && !buildingPlacer.IsRemovalEnabled())
         {
-            SetCurrentBuildingTypeToNone();
-            CloseCurrentBuildingCategory();
+            StartCoroutine(SetCurrentBuildingTypeToNoneDelayed());
         }
+    }
+
+    public IEnumerator SetCurrentBuildingTypeToNoneDelayed()
+    {
+        yield return new WaitForNextFrameUnit();
+
+        SetCurrentBuildingTypeToNone();
+        CloseCurrentBuildingCategory();
     }
 
     public Building.BuildingType GetCurrentBuildingType() { return currentBuildingType; }
