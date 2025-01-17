@@ -397,7 +397,7 @@ MonoBehaviour:
   selectionUI: {fileID: 0}
   buildingType: 0
   buildingDatabaseSO: {fileID: 11400000, guid: c125d4b82b096e74bbeb9bbfa7c9d2c0, type: 2}
-  fillerPrefab: {fileID: 0}
+  fillerPrefab: {fileID: 6411253113673875169, guid: 162c8a0030997424d9c8e5d2f6dfb0d5, type: 3}
 --- !u!114 &1449685690540883078
 MonoBehaviour:
   m_ObjectHideFlags: 0
