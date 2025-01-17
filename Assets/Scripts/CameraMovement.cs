@@ -32,8 +32,12 @@ public class CameraMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //adjust camera move and scroll speed to current zoom (more zoomed, slowered speed)
+        float adjustedSpeed = speed * (distanceToCenter / distanceMaxToCenter);
+        float adjustedScrollSpeed = scrollSpeed * (distanceToCenter / distanceMaxToCenter);
+
         // adjust the center point rotation and rotation according to input movement
-        center.Translate(new Vector3(movement.x,0, movement.y)*speed*Time.deltaTime);
+        center.Translate(new Vector3(movement.x,0, movement.y)* adjustedSpeed * Time.deltaTime);
         center.Rotate(new Vector3(0,rotation.x * rotationSpeed * Time.deltaTime * 5.7f,0),Space.World);
 
         // adjust the angle between the ground and the camera, clamp it on one quarter of a circle
@@ -42,7 +46,7 @@ public class CameraMovement : MonoBehaviour
         cameraTransform.LookAt(center);
 
         // set the zoom
-        distanceToCenter += scroll * scrollSpeed * Time.deltaTime;
+        distanceToCenter += scroll * adjustedScrollSpeed * Time.deltaTime;
         distanceToCenter = Mathf.Clamp(distanceToCenter, 1, distanceMaxToCenter);
 
         // set the position of the camera

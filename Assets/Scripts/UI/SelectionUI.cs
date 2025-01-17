@@ -1,8 +1,10 @@
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using static Building;
 
 [System.Serializable]
 public class BuildingCategory
@@ -32,18 +34,20 @@ public class ButtonLayout
 public class SelectionUI : MonoBehaviour
 {
     [SerializeField] private Building.BuildingType currentBuildingType = Building.BuildingType.None;
+    [SerializeField] private GameObject selectionPanel;
 
     [Header("Building Selection")]
-    [SerializeField] private MultiLayerButton buildingButtonPrefab;
-    [SerializeField] private MultiLayerButton categoryButtonPrefab;
+    [SerializeField] private SelectableButton buildingButtonPrefab;
+    [SerializeField] private SelectableButton categoryButtonPrefab;
     [SerializeField] private ButtonLayout categoryLayout;
     [SerializeField] private ButtonLayout buttonLayout;
     [SerializeField] private List<BuildingCategory> buildingCategories = new();
     [SerializeField] private Color selectedColor;
     [SerializeField] private float colorMultiplier;
 
-    private readonly List<List<MultiLayerButton>> buildingButtons = new();
-    private readonly List<MultiLayerButton> categoryButtons = new();
+    private readonly List<List<SelectableButton>> buildingButtons = new();
+    private readonly List<SelectableButton> categoryButtons = new();
+    private Vector2Int currentBuilding = new Vector2Int(-1, -1);
     private int currentCategory = -1;
 
     [Header("Description")]
@@ -90,7 +94,7 @@ public class SelectionUI : MonoBehaviour
         buildingButtons.Add(new());
         if (buildingCategory.buttons.Count == 1)
         {
-            CreateBuildingButton(buildingCategory.buttons[0], buildingButtons.Count - 1);
+            CreateBuildingButton(buildingCategory.buttons[0], buildingButtons.Count - 1, 0);
             buildingButtons[^1][0].transform.SetParent(categoryLayout.rectTransform);
             buildingButtons[^1][0].onClick.AddListener(delegate { CloseCurrentBuildingCategory(); });
 
@@ -98,12 +102,12 @@ public class SelectionUI : MonoBehaviour
         }
         else
         {
-            foreach (BuildingButton buildingButton in buildingCategory.buttons)
+            for (int i = 0; i < buildingCategory.buttons.Count; i++)
             {
-                CreateBuildingButton(buildingButton, buildingButtons.Count - 1);
+                CreateBuildingButton(buildingCategory.buttons[i], buildingButtons.Count - 1, i);
             }
 
-            foreach (MultiLayerButton button in buildingButtons[^1])
+            foreach (SelectableButton button in buildingButtons[^1])
             {
                 button.transform.SetParent(buttonLayout.rectTransform);
                 button.gameObject.SetActive(false);
@@ -115,7 +119,7 @@ public class SelectionUI : MonoBehaviour
 
     private void CreateCategoryButton(BuildingCategory buildingCategory, int index)
     {
-        MultiLayerButton categoryButton = GameObject.Instantiate(categoryButtonPrefab);
+        SelectableButton categoryButton = GameObject.Instantiate(categoryButtonPrefab);
         categoryButtons.Add(categoryButton);
         categoryButton.transform.SetParent(categoryLayout.rectTransform);
 
@@ -124,46 +128,39 @@ public class SelectionUI : MonoBehaviour
         categoryButton.onClick.AddListener(delegate { OpenBuildingCategory(index - 1); });
     }
 
-    private void CreateBuildingButton(BuildingButton buildingButton, int categoryIndex)
+    private void CreateBuildingButton(BuildingButton buildingButton, int categoryIndex, int buildingIndex)
     {
-        MultiLayerButton button = GameObject.Instantiate(buildingButtonPrefab);
+        SelectableButton button = GameObject.Instantiate(buildingButtonPrefab);
         buildingButtons[categoryIndex].Add(button);
 
         button.SetIconSprite(buildingButton.sprite);
 
-        button.onClick.AddListener(delegate { SetCurrentBuildingType(buildingButton.buildingType); });
+        button.onClick.AddListener(delegate { SetCurrentBuildingType(buildingButton.buildingType, new Vector2Int(categoryIndex, buildingIndex)); });
     }
 
     private void OpenBuildingCategory(int categoryIndex)
     {
-        if (currentCategory == categoryIndex)
+        if (categoryIndex == currentCategory)
         {
             CloseCurrentBuildingCategory();
-            SetCurrentBuildingType(Building.BuildingType.None);
+            return;
         }
-        else
+
+        CloseCurrentBuildingCategory();
+
+        buttonLayout.layout.gameObject.SetActive(true);
+
+        foreach (SelectableButton button in buildingButtons[categoryIndex])
         {
-            buttonLayout.layout.gameObject.SetActive(true);
-
-            if (currentCategory > 0)
-            {
-                foreach (MultiLayerButton button in buildingButtons[currentCategory])
-                {
-                    button.gameObject.SetActive(false);
-                }
-            }
-
-            foreach (MultiLayerButton button in buildingButtons[categoryIndex])
-            {
-                button.gameObject.SetActive(true);
-            }
-
-            buttonLayout.layout.constraintCount = buildingButtons[categoryIndex].Count;
-            buttonLayout.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, (buttonLayout.cellSize.x + buttonLayout.spacing) * buttonLayout.layout.constraintCount + 2 * buttonLayout.padding.x);
-
-            SelectButton(categoryButtons[categoryIndex]);
-            currentCategory = categoryIndex;
+            button.gameObject.SetActive(true);
         }
+
+        buttonLayout.layout.constraintCount = buildingButtons[categoryIndex].Count;
+        buttonLayout.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, (buttonLayout.cellSize.x + buttonLayout.spacing) * buttonLayout.layout.constraintCount + 2 * buttonLayout.padding.x);
+
+        selectionPanel.tag = "noEscape";
+        categoryButtons[categoryIndex].SelectButton(true);
+        currentCategory = categoryIndex;
     }
 
     private void CloseCurrentBuildingCategory()
@@ -172,57 +169,75 @@ public class SelectionUI : MonoBehaviour
 
         buttonLayout.layout.gameObject.SetActive(false);
 
-        foreach (MultiLayerButton button in buildingButtons[currentCategory])
+        foreach (SelectableButton button in buildingButtons[currentCategory])
         {
             button.gameObject.SetActive(false);
         }
-        DeselectButton(categoryButtons[currentCategory]);
+        categoryButtons[currentCategory].SelectButton(false);
+        
+        if (currentBuilding.x == currentCategory)
+        {
+            SetCurrentBuildingTypeToNone();
+        }
 
+        selectionPanel.tag = "Untagged";
         currentCategory = -1;
     }
     #endregion Building Buttons
 
     #region Current Building Type
-    private void SetCurrentBuildingType(Building.BuildingType buildingType)
+    private void SetCurrentBuildingType(Building.BuildingType buildingType, Vector2Int buildingButtonIndex)
     {
-        if (currentBuildingType != buildingType)
+        Debug.Log(buildingButtonIndex + "; " + currentBuilding);
+
+        if (buildingType == Building.BuildingType.None || buildingButtonIndex == currentBuilding)
         {
-            currentBuildingType = buildingType;
-            NewCurrentBuildingType.Invoke();
+            SetCurrentBuildingTypeToNone();
+            return;
         }
+
+        if (currentBuilding.x > 0)
+        {
+            buildingButtons[currentBuilding.x][currentBuilding.y].SelectButton(false);
+        }
+        buildingButtons[buildingButtonIndex.x][buildingButtonIndex.y].SelectButton(true);
+        currentBuilding = buildingButtonIndex;
+        currentBuildingType = buildingType;
+
+        selectionPanel.tag = "noEscape";
+
+        NewCurrentBuildingType.Invoke();
+    }
+
+    private void SetCurrentBuildingTypeToNone()
+    {
+        if (currentBuilding.x > 0)
+        {
+            buildingButtons[currentBuilding.x][currentBuilding.y].SelectButton(false);
+        }
+
+        selectionPanel.tag = "Untagged";
+        currentBuilding = new(-1, -1);
+        currentBuildingType = Building.BuildingType.None;
     }
 
     public void SetCurrentBuildingTypeToNone(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Started)
         {
-            SetCurrentBuildingType(Building.BuildingType.None);
+            SetCurrentBuildingTypeToNone();
             CloseCurrentBuildingCategory();
         }
     }
 
     public Building.BuildingType GetCurrentBuildingType() { return currentBuildingType; }
-
-    private void SelectButton(MultiLayerButton button)
-    {
-        foreach (Image image in button.GetImages())
-        {
-            image.CrossFadeColor(selectedColor * colorMultiplier, 0f, true, true);
-        }
-    }
-
-    private void DeselectButton(MultiLayerButton button)
-    {
-        foreach (Image image in button.GetImages())
-        {
-            image.CrossFadeColor(Color.white * colorMultiplier, 0f, true, true);
-        }
-    }
     #endregion Current Building Type
 
 #if UNITY_EDITOR
     private void OnValidate()
     {
+        if (Selection.activeGameObject != this.gameObject) { return; }
+
         categoryLayout.layout.constraintCount = buildingCategories.Count;
         categoryLayout.layout.cellSize = categoryLayout.cellSize;
         categoryLayout.layout.spacing = new Vector2(categoryLayout.spacing, 0);

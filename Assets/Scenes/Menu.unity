@@ -823,6 +823,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 490
       objectReference: {fileID: 0}
+    - target: {fileID: 3523542873063327938, guid: bb387c6a069530544912efe915d60463, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4709925917591010425, guid: bb387c6a069530544912efe915d60463, type: 3}
       propertyPath: m_SizeDelta.x
       value: 490
@@ -2650,6 +2654,7 @@ MonoBehaviour:
   levelButtonLayout: {fileID: 320904714}
   levelToggleButtonPrefab: {fileID: 6442832425399352343, guid: 4969a87d59efe3140812762312ee8353, type: 3}
   levelToggleGroup: {fileID: 1012746469}
+  spacing: {x: 30, y: 30}
   levelDescription: {fileID: 1163419232}
   panelName: {fileID: 537317284}
   panelDescription: {fileID: 81531110}

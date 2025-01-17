@@ -8,6 +8,7 @@ public class ToggleButtonGroup : MonoBehaviour
 {
     List<ToggleButton> _toggles = new List<ToggleButton>();
     ToggleButton _currentToggle;
+    ToggleButton _lastToggle = null;
     public UnityEvent NewToggledButton = new UnityEvent();
 
     public void RegisterToggle(ToggleButton toggle)
@@ -28,10 +29,24 @@ public class ToggleButtonGroup : MonoBehaviour
                 }
                 else
                 {
+                    if (_lastToggle == null || _lastToggle.GetInstanceID() != toggle.GetInstanceID())
+                    {
+                        _lastToggle = item;
+                    }
                     _currentToggle = item;
                 }
             }
             NewToggledButton.Invoke();
+        }
+        else
+        {
+            if (_lastToggle.GetInstanceID() == toggle.GetInstanceID())
+            {
+                Debug.Log("Uncheked");
+                _currentToggle = null;
+                _lastToggle = null;
+                NewToggledButton.Invoke();
+            }            
         }
     }
 

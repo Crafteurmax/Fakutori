@@ -8,6 +8,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1112222518860219500, guid: ff541b036aa985646ad80c126934ae4d, type: 3}
+      propertyPath: isSelected
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1112222518860219500, guid: ff541b036aa985646ad80c126934ae4d, type: 3}
+      propertyPath: selectedColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1112222518860219500, guid: ff541b036aa985646ad80c126934ae4d, type: 3}
+      propertyPath: selectedColor.g
+      value: 0.93430567
+      objectReference: {fileID: 0}
+    - target: {fileID: 1112222518860219500, guid: ff541b036aa985646ad80c126934ae4d, type: 3}
+      propertyPath: selectedColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1112222518860219500, guid: ff541b036aa985646ad80c126934ae4d, type: 3}
+      propertyPath: buttonLayers.Array.data[0].color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1112222518860219500, guid: ff541b036aa985646ad80c126934ae4d, type: 3}
+      propertyPath: buttonLayers.Array.data[0].color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1112222518860219500, guid: ff541b036aa985646ad80c126934ae4d, type: 3}
+      propertyPath: buttonLayers.Array.data[0].color.r
+      value: 0.6037736
+      objectReference: {fileID: 0}
     - target: {fileID: 6005370005558533576, guid: ff541b036aa985646ad80c126934ae4d, type: 3}
       propertyPath: m_Name
       value: Categorie Button
@@ -22,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6948576573795580401, guid: ff541b036aa985646ad80c126934ae4d, type: 3}
       propertyPath: m_Color.r
-      value: 0.5698112
+      value: 0.6037736
       objectReference: {fileID: 0}
     - target: {fileID: 7635173863356903429, guid: ff541b036aa985646ad80c126934ae4d, type: 3}
       propertyPath: m_Pivot.x
