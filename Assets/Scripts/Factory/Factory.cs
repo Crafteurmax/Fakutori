@@ -95,6 +95,7 @@ public class Factory : Building
     }
 
     protected void PlayAnimation() {
+        if (animator == null) return;
         animator.SetTrigger("Produce");
         animator.SetFloat("Speed", animationTime * productionSpeed / productionTime);
     }
