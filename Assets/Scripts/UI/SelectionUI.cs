@@ -87,6 +87,7 @@ public class SelectionUI : MonoBehaviour
         {
             CreateBuildingButton(buildingCategory.buttons[0], buildingButtons.Count - 1, 0);
             buildingButtons[^1][0].transform.SetParent(categoryLayout.rectTransform);
+            buildingButtons[^1][0].transform.localScale = Vector3.one;
             buildingButtons[^1][0].onClick.AddListener(delegate { CloseCurrentBuildingCategory(); });
 
             categoryButtons.Add(null);
@@ -101,6 +102,7 @@ public class SelectionUI : MonoBehaviour
             foreach (SelectableButton button in buildingButtons[^1])
             {
                 button.transform.SetParent(buttonLayout.rectTransform);
+                button.transform.localScale = Vector3.one;
                 button.gameObject.SetActive(false);
             }
 
@@ -113,6 +115,7 @@ public class SelectionUI : MonoBehaviour
         SelectableButton categoryButton = GameObject.Instantiate(categoryButtonPrefab);
         categoryButtons.Add(categoryButton);
         categoryButton.transform.SetParent(categoryLayout.rectTransform);
+        categoryButton.transform.localScale = Vector3.one;
 
         categoryButton.SetIconSprite(buildingCategory.sprite);
 
