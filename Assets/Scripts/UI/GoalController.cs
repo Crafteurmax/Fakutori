@@ -35,9 +35,9 @@ public class GoalController : MonoBehaviour
     void Start()
     {
         if (LevelData.goalFileName != null)
-            ReadGoalsFile(LevelData.goalFileName);
+            ReadGoalsFile(LevelData.goalFileName + "_goal");
         else
-            ReadGoalsFile("gls_test");
+            ReadGoalsFile("default_goal");
         loadNextGoalsSet();
     }
 
@@ -76,7 +76,6 @@ public class GoalController : MonoBehaviour
                 goals.Add(new List<goal>());
                 continue;
             }
-            Debug.Log("display = " + rawDataArray[i] + ", description =" + rawDataArray[i + 1] + ", count = int.Parse(" + rawDataArray[i + 2] + ")");
             goals[goals.Count-1].Add(new goal { display = rawDataArray[i], description =rawDataArray[i+1], count = int.Parse(rawDataArray[i+2]) });
             
         }

@@ -216,7 +216,7 @@ public class WorldBuilder : MonoBehaviour
         if (isProcedural) yield return StartCoroutine(GenerateProceduralWorld());
         else if (LevelData.mapName != null) 
             yield return StartCoroutine(GeneratePrebaWorld(LevelData.mapName + "_map"));
-        else yield return StartCoroutine(GeneratePrebaWorld("map_test"));
+        else yield return StartCoroutine(GeneratePrebaWorld("default_map"));
         Time.timeScale = 1f;
         isTheWorldComplete = true;
     }
