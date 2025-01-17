@@ -4,6 +4,8 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using UnityEditor;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -29,6 +31,8 @@ public class DialogueManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (LevelData.dialoguename != null) story.SetNextNode(LevelData.dialoguename);
+        text.text = "it's good";
         SetUpNode();
     }
 
@@ -53,7 +57,11 @@ public class DialogueManager : MonoBehaviour
             story.NextNode();
             SetUpNode();
         }
-        else if(nextNodes.Count == 0) panelManger.ReturnToPreviousPanel();
+        else if (nextNodes.Count == 0)
+        {
+            if (currentNode.HasTag("END")) SceneManager.LoadScene("Menu");
+            panelManger.ReturnToPreviousPanel();
+        }
     }
 
     public void NextChoice(int id)
@@ -65,9 +73,11 @@ public class DialogueManager : MonoBehaviour
     private void SetUpNode()
     {
         currentNode = story.GetCurrentNode();
+        text.text = "getnode";
         text.text = currentNode.getText();
         Sprite sprite = currentNode.GetSprite();
         setFace();
+
 
         if (sprite != null)
         {

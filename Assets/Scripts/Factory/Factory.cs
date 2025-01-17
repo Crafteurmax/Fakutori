@@ -10,6 +10,9 @@ public class Factory : Building
     [SerializeField] protected List<BuildingInput> inputs = new List<BuildingInput>();
     [SerializeField] protected List<BuildingOutput> outputs = new List<BuildingOutput>();
 
+    [SerializeField] private Animator animator;
+    [SerializeField] private float animationTime = 4.0f;
+
     private int cacheSize = 10;
     private Dictionary<List<string>, List<Item.Symbol>> cache = new Dictionary<List<string>, List<Item.Symbol>>();
     private Queue<List<string>> queue = new Queue<List<string>>();
@@ -47,7 +50,7 @@ public class Factory : Building
         if (state == BuildingState.IDLE) CheckInputsAndOutputs();
     }
 
-    private void ClearInputs() {
+    protected void ClearInputs() {
         foreach (var input in inputs) {
             input.Reset();
         }
@@ -75,9 +78,10 @@ public class Factory : Building
         }
         if (inputFull && !outputFull) {
             StartCoroutine(ProduceItem());
-            foreach (var input in inputs) {
-                ClearInput(input);
-            }
+            PlayAnimation();
+            // foreach (var input in inputs) {
+            //     ClearInput(input);
+            // }
         }
     }
 
@@ -88,6 +92,11 @@ public class Factory : Building
 
     public virtual IEnumerator ProduceItem() {
         yield return null;
+    }
+
+    protected void PlayAnimation() {
+        animator.SetTrigger("Produce");
+        animator.SetFloat("Speed", animationTime * productionSpeed / productionTime);
     }
 
     protected Item SpawnItem(Vector3 spawnPosition) {

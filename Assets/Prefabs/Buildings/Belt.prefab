@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1680072543003512185}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.09395683, y: 1.2229153, z: -0.1612457}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05f2844a69b8def4a908099e060dd176, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pair: {fileID: 0}
   beltMesh: {fileID: 7549394638710259672}
-  beltAnimator: {fileID: 8844068134170406551}
 --- !u!1 &3379480667553870264
 GameObject:
   m_ObjectHideFlags: 0
@@ -75,7 +75,7 @@ Transform:
   m_GameObject: {fileID: 3379480667553870264}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.537, z: 0.25}
+  m_LocalPosition: {x: 0, y: 0.534, z: 0.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -164,7 +164,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 462389a4deea1164584b9144ff4ac8bd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.024
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 462389a4deea1164584b9144ff4ac8bd, type: 3}
       propertyPath: m_LocalPosition.z

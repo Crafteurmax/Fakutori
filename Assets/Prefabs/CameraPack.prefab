@@ -141,9 +141,10 @@ MonoBehaviour:
   center: {fileID: 8897950403801545637}
   myCamera: {fileID: 4013723419070503633}
   cameraTransform: {fileID: 8576137378188471703}
-  speed: 10
+  speed: 15
   rotationSpeed: 2
   scrollSpeed: 200
+  minSpeedFactor: 0.1
   distanceToCenter: 100
   distanceMaxToCenter: 15
 --- !u!114 &5103060311750526323

@@ -45,12 +45,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e41b37e716ef1e43911e7b04953c755, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: {fileID: 0}
-  previewModels: []
+  model: {fileID: 1868238946522364269}
+  previewModels:
+  - {fileID: 4731365967230340032, guid: 2be42c9bb3023494e9ee9b28fa1a1a9c, type: 3}
+  - {fileID: 1680072543003512185, guid: 909fa8e79813d624282a3112f4a051d3, type: 3}
+  - {fileID: 6411253113673875169, guid: 903aa0e1145ff2a4ca9955a7aa89f22e, type: 3}
+  - {fileID: 1680072543003512185, guid: 54944a1f90b5aa74caee9c06d3b26957, type: 3}
+  - {fileID: 1680072543003512185, guid: 2d30ebb3f8f51434d8971731de155037, type: 3}
+  - {fileID: 6411253113673875169, guid: ea76295bdcd26ca4fa03021e94708a2a, type: 3}
+  - {fileID: 6411253113673875169, guid: ce26a8827005e0444a919cb694af09ee, type: 3}
+  - {fileID: 6411253113673875169, guid: 3600a363a945de442bac3c85b780a89b, type: 3}
+  - {fileID: 6411253113673875169, guid: 808f24fc946b91e409fbaacf84b89a6b, type: 3}
+  - {fileID: 6916296175537346028, guid: 8a2d06aadd355e84b90764cfe4894b29, type: 3}
+  - {fileID: 6411253113673875169, guid: 6062ff6eb18ab5c4b996162ada8514fd, type: 3}
+  - {fileID: 6411253113673875169, guid: 668d024fa8d84294489575cca4aaa8ad, type: 3}
+  - {fileID: 9046900787091547773, guid: 660489a2c0b5efa47ace24185df7dc12, type: 3}
+  - {fileID: 3410447490409931205, guid: 323a5f0bac5906d45a7c365c32b59af5, type: 3}
+  - {fileID: 6411253113673875169, guid: 17e8709ddef44f342a21f93fc378e536, type: 3}
+  - {fileID: 9046900787091547773, guid: b317d9151bcf79f4ab39ac60f0933fac, type: 3}
+  - {fileID: 6916296175537346028, guid: 6ac1a1df06a6ede41979e1c59baed23c, type: 3}
   placementMask:
     serializedVersion: 2
     m_Bits: 1
-  myCamera: {fileID: 0}
 --- !u!1 &1758198701978518855
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,6 +388,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab48a84e8b9d1043a5dc45a26edf95b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectionPanel: {fileID: 0}
   tileIndicator: {fileID: 7206618391818014460}
   buildingsMap: {fileID: 0}
   buildingMask:
@@ -380,7 +397,7 @@ MonoBehaviour:
   selectionUI: {fileID: 0}
   buildingType: 0
   buildingDatabaseSO: {fileID: 11400000, guid: c125d4b82b096e74bbeb9bbfa7c9d2c0, type: 2}
-  fillerPrefab: {fileID: 0}
+  fillerPrefab: {fileID: 6411253113673875169, guid: 162c8a0030997424d9c8e5d2f6dfb0d5, type: 3}
 --- !u!114 &1449685690540883078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -510,6 +527,34 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: c64c1902-da3f-458d-beb2-bb72eb7c6b02
     m_ActionName: BuildingPlacement/Redo[/Keyboard/ctrl,/Keyboard/y]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1f59c5c0-aeb2-4ebe-ab4a-db74446285d0
+    m_ActionName: BuildingPlacement/Save[/Keyboard/z]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2b282e5e-0df7-4463-a48e-efbe6dae47b7
+    m_ActionName: BuildingPlacement/Load[/Keyboard/l]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3a6e0b09-3440-4def-b264-73d30396dd68
+    m_ActionName: Dialogue/next[/Mouse/leftButton,/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6653698252379050511}
+        m_TargetAssemblyTypeName: BuildingPlacer, Assembly-CSharp
+        m_MethodName: DisableRemoval
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 6ed9f1ed-058a-490f-8726-a16eafa43e6f
+    m_ActionName: BuildingPlacement/Disable Remove[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: BuildingPlacement

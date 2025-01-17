@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PanelManger : MonoBehaviour
 {
@@ -53,5 +54,10 @@ public class PanelManger : MonoBehaviour
         {
             TogglePanel(returnPanel);
         }
+    }
+
+    public static void LoadTitleMenu()
+    {
+        SceneManager.LoadScene("Menu");
     }
 }
