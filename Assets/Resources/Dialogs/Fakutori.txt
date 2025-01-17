@@ -24,13 +24,14 @@ Fakutori
     "OwO": "yellow",
     "OnO": "yellow",
     "?_?": "yellow",
-    "TODO": "red"
+    "TODO": "purple",
+    "END": "red"
   },
   "zoom": 0.6
 }
 
 
-:: 9865649+26 holder [UwU OnO >-< =w= T_T :3 <3 x) \\o/ $_$ O.O X_X OwO ?_? TODO] {"position":"100,100","size":"100,100"}
+:: 9865649+26 holder [UwU OnO >-< =w= T_T :3 <3 x) \\o/ $_$ O.O X_X OwO ?_? TODO END] {"position":"100,100","size":"100,100"}
 
 
 
@@ -213,7 +214,7 @@ The kanji for soil, 土, that can be written つち.
 [[Jour_17]] 
 
 
-:: Jour_17 [N1P0N] {"position":"900,1150","size":"100,100"}
+:: Jour_17 [N1P0N END] {"position":"900,1150","size":"100,100"}
 If you ever want to check thoose informations, I've added them in your dictionary. You can acces the dictionary by clicking on the button with a book inside it in the top right side of your monitor !!!
 
 
@@ -255,7 +256,7 @@ And finaly the kanji for soil, 土, that can be written つち.
 
 
 :: Jour_9_1 [N1P0N ?_?] {"position":"700,1300","size":"100,100"}
-For one of those words you may need to transform a す into a ず, you will need to use the tentenificaton for that, do you want some information about this machine ?
+For one of those words you may need to transform a す into a ず, you will need to use the tentenificator for that, do you want some information about this machine ?
 [[yes->Tentenificator_1]]
 [[no->Jour_9_2]]
 
@@ -335,7 +336,7 @@ This kanji is 人, wich, in our case is read "じん", because it use the ON lec
 [[OtherVocab_19]] 
 
 
-:: OtherVocab_19 [N1P0N] {"position":"2300,1450","size":"100,100"}
+:: OtherVocab_19 [N1P0N END] {"position":"2300,1450","size":"100,100"}
 Try to produce some 人 but using both the ON and KUN reading !!
 
 
@@ -480,7 +481,7 @@ Know try to produce some 月曜日 and some 日曜日.
 [[Week_18]] 
 
 
-:: Week_18 [N1P0N] {"position":"1500,850","size":"100,100"}
+:: Week_18 [N1P0N END] {"position":"1500,850","size":"100,100"}
 After those two, you will have learned 14 words and 7 Kanjis, not a bad start right ? がんばって !!!
 
 
