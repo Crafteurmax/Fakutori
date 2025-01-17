@@ -36,11 +36,13 @@ Fakutori
 
 
 :: Belt_1 [N1P0N] {"position":"50,1450","size":"100,100"}
+(image: "belt")
 If you, want to transport a piece of paper from A to B, then the convoyer belt is your best friend.
 [[Explanation_4]] 
 
 
 :: Concatenator_1 [N1P0N TODO] {"position":"300,1450","size":"100,100"}
+(image: "concatenator")
 The Concatenator will combine two piece of paper into a single one by adding them one after the other.
 [[Explanation_4]] 
 
@@ -56,6 +58,7 @@ Welcome back !!! You still remember what we've done last time right ?
 
 
 :: Echangificator_1 [N1P0N] {"position":"1700,1450","size":"100,100"}
+(image: "echangificator")
 The Echangificator can be used to swap the vowel of two kanas.
 [[Explanation_7]] 
 
@@ -116,11 +119,13 @@ Do you need informations about those machines ?
 
 
 :: Extractor_1 [N1P0N] {"position":"175,1450","size":"100,100"}
+(image: "extractor")
 Place an extractor over a character tile to produce an unlimited amount of this character.
 [[Explanation_4]] 
 
 
 :: Hiraganificaton_1 [N1P0N] {"position":"1825,1450","size":"100,100"}
+(image: "hiraganificator")
 The Hiraganificator will let you transform a group a kanji or katana into their corresponding hiragana.
 [[Explanation_7]] 
 
@@ -266,6 +271,7 @@ That's a bit more than last time but I'm sure you can do it !!! Don't forget tha
 
 
 :: Kanjificator_1 [N1P0N] {"position":"425,1450","size":"100,100"}
+(image: "kanjificator")
 The Kanjificator will find the kanji version of a group of hiragana.
 [[Kanjificator_2]] 
 
@@ -276,11 +282,13 @@ If a group of hiragana can produce more than one Kanji, a pop up will open and a
 
 
 :: Katakanificator_1 [N1P0N] {"position":"1975,1450","size":"100,100"}
+(image: "katakanificator")
 The katakanificator will take a group of kanji or hiragana and transform them into their katana version.
 [[Explanation_7]] 
 
 
 :: Maruificator_1 [N1P0N] {"position":"2100,1450","size":"100,100"}
+(image: "maruificator")
 Sometime, you will find the need to alter a kana to sound different. With the Maruificator will add a maru (literally circle) to the provided kana.
 [[Explanation_7]] 
 
@@ -387,26 +395,31 @@ Ok so let's get to work !!!
 
 
 :: Spliter_1 [N1P0N] {"position":"1100,1450","size":"100,100"}
+(image: "spliter")
 The spliter can be helpful when you need to divide the paper transported by a belt into two different belts.
 [[Explanation_6]] 
 
 
 :: Tentenificator_1 [N1P0N] {"position":"900,1300","size":"100,100"}
+(image: "tentenificator")
 The tentenificator will add a ten-ten to the provided kana. This will change it's pronunciation and will let you create even more words.
 [[Jour_9_2]] 
 
 
 :: Trash_1 [N1P0N] {"position":"1225,1450","size":"100,100"}
+(image: "trash")
 If you ever need to get rid of unwanted paper, just use the trash to dispose of it.
 [[Explanation_6]] 
 
 
 :: Troncator_1 [N1P0N] {"position":"1500,1450","size":"100,100"}
+(image: "troncator")
 When you want to transform a paper into its different characters, the Troncator is you friend. It will take one paper and it will separate the most right character into a standalone paper while also giving you the original paper back, without the removed character.
 [[Explanation_6]] 
 
 
 :: Tunnel_1 [N1P0N] {"position":"1375,1450","size":"100,100"}
+(image: "tunnel")
 In case you want to build a belt under some buildings, the tunnel is what you need. Place a tunnel input on a tile and tunnel output in front of it, no matter what, the paper will be transported from the input to the output.
 [[Tunnel_2]] 
 
@@ -417,6 +430,7 @@ Tunnel can also be used to transport a piece of paper very far away because, no 
 
 
 :: Vendor_1 [N1P0N] {"position":"550,1450","size":"100,100"}
+(image: "vendor")
 When you're happy with the papper that you have and want to complete the objective, give it to the vendor !!! This piece of paper will be sent and reviewed by upper management to complete your quota !!!
 [[Explanation_4]] 
 

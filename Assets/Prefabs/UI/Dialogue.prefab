@@ -255,8 +255,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   twineText: {fileID: 4900000, guid: d54ad5cb2226fd8429e1ae5d929c7b38, type: 3}
   sprites:
-  - title: cat
-    sprite: {fileID: 21300000, guid: 1f6077fa44d78774996b39ce602a3bd7, type: 3}
+  - title: belt
+    sprite: {fileID: 21300000, guid: 5f600cc6505827544be23bd2264108f2, type: 3}
+  - title: concatenator
+    sprite: {fileID: 21300000, guid: 1753d1f2e6a2d3344a5ceb171a58b488, type: 3}
+  - title: echangificator
+    sprite: {fileID: 21300000, guid: aa4dcdbf780bd7343bad34537ab9e984, type: 3}
+  - title: extractor
+    sprite: {fileID: 21300000, guid: 6b522476d55d0b444b8028b4c1a63094, type: 3}
+  - title: hiraganificator
+    sprite: {fileID: 21300000, guid: 35c4994f1fae1fa49a5f8d3e4a3c98b5, type: 3}
+  - title: kanjificator
+    sprite: {fileID: 21300000, guid: e18c5ded0679c9c4991681650e5c8292, type: 3}
+  - title: katakanificator
+    sprite: {fileID: 21300000, guid: 334918453e72dab42968659550b50567, type: 3}
+  - title: maruificator
+    sprite: {fileID: 21300000, guid: 6dbaa1e6b898aad43ae5a8c8de55e657, type: 3}
+  - title: spliter
+    sprite: {fileID: 21300000, guid: 8cddd8f1c9a47c14a81a80ed29b2c85d, type: 3}
+  - title: tentenificator
+    sprite: {fileID: 21300000, guid: 8945f41a6441da24782936ce2369987e, type: 3}
+  - title: trash
+    sprite: {fileID: 21300000, guid: ff1968bfaadd3944abf0fa2b4b6eda3b, type: 3}
+  - title: troncator
+    sprite: {fileID: 21300000, guid: 6bade3174bc603d4e8fa06f7b8fc1a8d, type: 3}
+  - title: tunnel
+    sprite: {fileID: 21300000, guid: 28f82bf2a3781bd44b3323066d0815cf, type: 3}
+  - title: vendor
+    sprite: {fileID: 21300000, guid: d3159d67b5bdae24a9ccd1a6efce2200, type: 3}
 --- !u!1 &3460992954463570672
 GameObject:
   m_ObjectHideFlags: 0
@@ -586,6 +612,7 @@ MonoBehaviour:
   image: {fileID: 8739458034794262758}
   choiceButtonPrefab: {fileID: 8117139095141660818, guid: 949762242bd7b7c489e54d1f5a3bf9c1, type: 3}
   panelManger: {fileID: 0}
+  worldSaver: {fileID: 0}
   actualFace: {fileID: 6927130461247674205}
   faces:
   - {fileID: -1324279432, guid: eb94beb7d50b55c4795eb6fe608df0a9, type: 3}
@@ -687,6 +714,18 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 3a6e0b09-3440-4def-b264-73d30396dd68
     m_ActionName: Dialogue/next[/Mouse/leftButton,/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6ed9f1ed-058a-490f-8726-a16eafa43e6f
+    m_ActionName: BuildingPlacement/Disable Remove[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1f59c5c0-aeb2-4ebe-ab4a-db74446285d0
+    m_ActionName: BuildingPlacement/Save[/Keyboard/z]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2b282e5e-0df7-4463-a48e-efbe6dae47b7
+    m_ActionName: BuildingPlacement/Load[/Keyboard/l]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Dialogue
