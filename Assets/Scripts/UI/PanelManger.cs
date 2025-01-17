@@ -16,8 +16,6 @@ public class PanelManger : MonoBehaviour
 
     private readonly Stack<GameObject> currentPanels = new();
 
-    private bool cantEscape;
-
     private void Start()
     {
         TogglePanel(startPanel);
@@ -27,7 +25,6 @@ public class PanelManger : MonoBehaviour
     public void TogglePanel(GameObject panelToToggle)
     {
         currentPanels.Push(panelToToggle);
-        cantEscape = panelToToggle.CompareTag("noEscape");
 
         foreach (GameObject panel in panels)
         {
@@ -46,7 +43,7 @@ public class PanelManger : MonoBehaviour
     public void ReturnToPreviousPanel(InputAction.CallbackContext context)
     {
         if (context.phase != InputActionPhase.Started) return;
-        if (cantEscape) return;
+        if (currentPanels.Peek().CompareTag("noEscape")) return;
 
         if (currentPanels.Count > 1)
         {
@@ -56,6 +53,5 @@ public class PanelManger : MonoBehaviour
         {
             TogglePanel(returnPanel);
         }
-        
     }
 }

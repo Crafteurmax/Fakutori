@@ -33,6 +33,11 @@ public class SelectableButton : MultiLayerButton
     }
     #endregion Selection
 
+    public void SetSelectedColor(Color color)
+    {
+        selectedColor = color;
+    }
+
     protected override void DoStateTransition(Selectable.SelectionState state, bool instant)
     {
         if (isSelected)
