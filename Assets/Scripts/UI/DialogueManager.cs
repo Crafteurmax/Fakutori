@@ -22,6 +22,7 @@ public class DialogueManager : MonoBehaviour
     StoryNode currentNode;
 
     [SerializeField] PanelManger panelManger;
+    [SerializeField] WorldSaver worldSaver;
 
     [SerializeField] Image actualFace;
     [SerializeField] List<Sprite> faces;
@@ -59,7 +60,11 @@ public class DialogueManager : MonoBehaviour
         }
         else if (nextNodes.Count == 0)
         {
-            if (currentNode.HasTag("END")) SceneManager.LoadScene("Menu");
+            if (currentNode.HasTag("END"))
+            {
+                worldSaver.WriteData();
+                SceneManager.LoadScene("Menu"); 
+            }
             panelManger.ReturnToPreviousPanel();
         }
     }
@@ -73,7 +78,6 @@ public class DialogueManager : MonoBehaviour
     private void SetUpNode()
     {
         currentNode = story.GetCurrentNode();
-        text.text = "getnode";
         text.text = currentNode.getText();
         Sprite sprite = currentNode.GetSprite();
         setFace();

@@ -32,65 +32,67 @@ public class WorldSaver : MonoBehaviour
     #region Read / Write world data
     public void WriteAllMachineData(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed) WriteData();
+    }
+
+    public void WriteData()
+    {
+        json = string.Empty;
+        BuildingDataHolder holder = new BuildingDataHolder();
+
+        foreach (Transform child in buildingsMap.transform)
         {
-            json = string.Empty;
-            BuildingDataHolder holder = new BuildingDataHolder();
 
-            foreach(Transform child in buildingsMap.transform)
+            if (child.GetComponent<Building>().GetBuildingType() == Building.BuildingType.Filler)
             {
+                continue;
+            }
 
-                if (child.GetComponent<Building>().GetBuildingType() == Building.BuildingType.Filler)
+            // Get the new position, type and rotation in the holder
+            holder.x = Convert.ToInt32(child.position.x - 0.5f);
+            holder.y = Convert.ToInt32(child.position.z - 0.5f);
+            holder.type = child.GetComponent<Building>().GetBuildingType();
+            holder.rotation = child.rotation;
+
+            // In case the building we are dealing with is a factory, we get the cache
+            if ((int)holder.type >= 8 && (int)holder.type < 17)
+            {
+                var cache = child.GetComponent<Factory>().GetFactoryCache();
+
+                holder.keys = GetKeyFromCache(cache);
+
+                string[] res = GetSymboleFromCache(cache);
+
+                if (res != null)
                 {
-                    continue;
-                }
-
-                // Get the new position, type and rotation in the holder
-                holder.x = Convert.ToInt32(child.position.x - 0.5f);
-                holder.y = Convert.ToInt32(child.position.z - 0.5f);
-                holder.type = child.GetComponent<Building>().GetBuildingType();
-                holder.rotation = child.rotation;
-
-                // In case the building we are dealing with is a factory, we get the cache
-                if ((int)holder.type >= 8 && (int)holder.type < 17)
-                {
-                    var cache = child.GetComponent<Factory>().GetFactoryCache();
-
-                    holder.keys = GetKeyFromCache(cache);
-
-                    string[] res = GetSymboleFromCache(cache);
-
-                    if (res != null)
-                    {
-                        holder.charValues = res[0];
-                        holder.typeValues = res[1];
-                    }
-                    else
-                    {
-                        holder.charValues = string.Empty;
-                        holder.typeValues = string.Empty;
-                    }
+                    holder.charValues = res[0];
+                    holder.typeValues = res[1];
                 }
                 else
                 {
-                    holder.keys = null;
-                    holder.charValues = null;
-                    holder.typeValues = null;
+                    holder.charValues = string.Empty;
+                    holder.typeValues = string.Empty;
                 }
-                json += JsonUtility.ToJson(holder);
-                json += "\n";
-            }
-
-            if (json.Length > 0)
-            {
-                json = json.Remove(json.Length - 1);
-                Debug.Log("Successfully saved the world!");
-                File.WriteAllText(saveFilePath, json);
             }
             else
             {
-                Debug.Log("Failed to save the world, there is no building to save !");
+                holder.keys = null;
+                holder.charValues = null;
+                holder.typeValues = null;
             }
+            json += JsonUtility.ToJson(holder);
+            json += "\n";
+        }
+
+        if (json.Length > 0)
+        {
+            json = json.Remove(json.Length - 1);
+            Debug.Log("Successfully saved the world!");
+            File.WriteAllText(saveFilePath, json);
+        }
+        else
+        {
+            Debug.Log("Failed to save the world, there is no building to save !");
         }
     }
 
@@ -187,40 +189,42 @@ public class WorldSaver : MonoBehaviour
     #region Rebuild world
     public void BuildWorldFromData(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed) BuildWorld();
+    }
+
+    public void BuildWorld()
+    {
+        List<BuildingDataHolder> buildings = ReadAllMachineData();
+
+        if (buildings == null)
         {
-            List<BuildingDataHolder> buildings = ReadAllMachineData();
+            Debug.Log("No save file to load");
+            return;
+        }
 
-            if (buildings == null)
+        for (int i = 0; i < buildings.Count; i++)
+        {
+            //Debug.Log("x: " + buildings[i].x + " y: " + buildings[i].y);
+            Vector3Int buildingPosition = new Vector3Int(buildings[i].x, buildings[i].y, 0);
+            buildingPlacer.PlaceBuildingAtPosition(buildings[i].type, buildingPosition, buildings[i].rotation);
+
+            if ((int)buildings[i].type >= 8 && (int)buildings[i].type < 17)
             {
-                Debug.Log("No save file to load");
-                return;
-            }
+                BuildingTile buildingTile = BuildingManager.Instance.buildingTilemap.GetTile<BuildingTile>(buildingPosition);
+                Factory factory = buildingTile.building.GetComponent<Factory>();
 
-            for (int i = 0; i < buildings.Count; i++)
-            {
-                //Debug.Log("x: " + buildings[i].x + " y: " + buildings[i].y);
-                Vector3Int buildingPosition = new Vector3Int(buildings[i].x, buildings[i].y, 0);
-                buildingPlacer.PlaceBuildingAtPosition(buildings[i].type, buildingPosition, buildings[i].rotation);
+                // Add the cache back from the holder to the actual factory
 
-                if ((int)buildings[i].type >= 8 && (int)buildings[i].type < 17)
+                var res = ExtractCacheFromHolder(buildings[i]);
+
+                if (res.Count == 1 && res[0].Item1 == null && res[0].Item2 == null)
                 {
-                    BuildingTile buildingTile = BuildingManager.Instance.buildingTilemap.GetTile<BuildingTile>(buildingPosition);
-                    Factory factory = buildingTile.building.GetComponent<Factory>();
+                    continue;
+                }
 
-                    // Add the cache back from the holder to the actual factory
-
-                    var res = ExtractCacheFromHolder(buildings[i]);
-
-                    if (res.Count == 1 && res[0].Item1 == null && res[0].Item2 == null)
-                    {
-                        continue;
-                    }
-
-                    for (int j = 0; j < res.Count; j++)
-                    {
-                        factory.AddToCache(res[j].Item1, res[j].Item2);
-                    }
+                for (int j = 0; j < res.Count; j++)
+                {
+                    factory.AddToCache(res[j].Item1, res[j].Item2);
                 }
             }
         }

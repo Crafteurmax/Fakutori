@@ -92,8 +92,10 @@ public class GoalController : MonoBehaviour
 
     private void loadNextGoalsSet()
     {
+        if(actualDisplayedGoalID >= goals.Count) return;
         if(actualDisplayedGoalID != -1)
         {
+            if(goals[actualDisplayedGoalID].Count == 0) return;
             goal stopGoal = goals[actualDisplayedGoalID][goals[actualDisplayedGoalID].Count - 1];
             if (stopGoal.isStop && stopGoal.description != "STOP")
             {

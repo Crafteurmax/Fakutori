@@ -13,6 +13,8 @@ public class WorldBuilder : MonoBehaviour
     public static WorldBuilder Instance { get; private set; }
     public bool isTheWorldComplete;
 
+    [SerializeField] WorldSaver worldSaver;
+
     public Tilemap map;
     [SerializeField] private bool isProcedural;
 
@@ -201,7 +203,7 @@ public class WorldBuilder : MonoBehaviour
 
         for(int i = 4; i < rawDataArray.Length; i += 4)
         {
-            Vector3Int pos = new Vector3Int(int.Parse(rawDataArray[i]) - offsetToCenter, int.Parse(rawDataArray[i+1])-offsetToCenter);
+            Vector3Int pos = new Vector3Int(-int.Parse(rawDataArray[i]) - offsetToCenter, -int.Parse(rawDataArray[i+1])-offsetToCenter);
             int ConsonnelId = int.Parse(rawDataArray[i + 2]);
             int vowelId = int.Parse(rawDataArray[i + 3]);
             map.SetTile(pos, tiles[ConsonnelId][vowelId]);
@@ -217,6 +219,7 @@ public class WorldBuilder : MonoBehaviour
         else if (LevelData.mapName != null) 
             yield return StartCoroutine(GeneratePrebaWorld(LevelData.mapName + "_map"));
         else yield return StartCoroutine(GeneratePrebaWorld("default_map"));
+        worldSaver.BuildWorld();
         Time.timeScale = 1f;
         isTheWorldComplete = true;
     }

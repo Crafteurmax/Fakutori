@@ -16,6 +16,7 @@ public class PanelManger : MonoBehaviour
     [SerializeField] private List<GameObject> panels = new();
 
     private readonly Stack<GameObject> currentPanels = new();
+    [SerializeField] WorldSaver worldSaver;
 
     private void Start()
     {
@@ -56,8 +57,9 @@ public class PanelManger : MonoBehaviour
         }
     }
 
-    public static void LoadTitleMenu()
+    public void LoadTitleMenu()
     {
+        worldSaver.WriteData();
         SceneManager.LoadScene("Menu");
     }
 }
