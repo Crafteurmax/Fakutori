@@ -10,6 +10,8 @@ using UnityEngine.UI;
 
 public class BuildingPlacer : MonoBehaviour
 {
+    [SerializeField] private GameObject selectionPanel;
+
     [Header("Tile indicator")]
     [SerializeField] private TileIndicator tileIndicator;
 
@@ -55,15 +57,31 @@ public class BuildingPlacer : MonoBehaviour
         tileIndicator.ShowMouseIndicator();
         tileIndicator.UpdateMouseIndicator();
         tileIndicator.RemoveIndicator();
+        if (selectionPanel != null) { selectionPanel.tag = "noEscape"; }
         enableRemoval = true;
     }
 
     private void DisableRemoval()
     {
         tileIndicator.HideMouseIndicator();
+        if (selectionPanel != null) { selectionPanel.tag = "Untagged"; }
         enableRemoval = false;
     }
 
+    public void DisableRemoval(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            StartCoroutine(DisableRemovalDelayed());
+        }
+    }
+
+    public IEnumerator DisableRemovalDelayed()
+    {
+        yield return new WaitForNextFrameUnit();
+
+        DisableRemoval();
+    }
     #endregion
 
     #region Input handling
@@ -231,6 +249,11 @@ public class BuildingPlacer : MonoBehaviour
         History.Instance.Redo();
     }
     #endregion
+
+    public bool IsRemovalEnabled()
+    {
+        return enableRemoval;
+    }
 
     private void Update()
     {

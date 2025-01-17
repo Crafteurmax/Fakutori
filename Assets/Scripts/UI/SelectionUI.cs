@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
@@ -34,6 +36,7 @@ public class SelectionUI : MonoBehaviour
 {
     [SerializeField] private Building.BuildingType currentBuildingType = Building.BuildingType.None;
     [SerializeField] private GameObject selectionPanel;
+    [SerializeField] private BuildingPlacer buildingPlacer;
 
     [Header("Building Selection")]
     [SerializeField] private SelectableButton buildingButtonPrefab;
@@ -211,11 +214,18 @@ public class SelectionUI : MonoBehaviour
 
     public void SetCurrentBuildingTypeToNone(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Started)
+        if (context.phase == InputActionPhase.Started && !buildingPlacer.IsRemovalEnabled())
         {
-            SetCurrentBuildingTypeToNone();
-            CloseCurrentBuildingCategory();
+            StartCoroutine(SetCurrentBuildingTypeToNoneDelayed());
         }
+    }
+
+    public IEnumerator SetCurrentBuildingTypeToNoneDelayed()
+    {
+        yield return new WaitForNextFrameUnit();
+
+        SetCurrentBuildingTypeToNone();
+        CloseCurrentBuildingCategory();
     }
 
     public Building.BuildingType GetCurrentBuildingType() { return currentBuildingType; }

@@ -27,7 +27,7 @@ RectTransform:
   m_GameObject: {fileID: 2856772414846106158}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.9, y: 0.9, z: 0}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2096948006200627427}
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a470f38350df2ea4cb3a2ad1e7d06ddf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4571aefabd90e7444b0a42e8532f2985, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -202,9 +202,9 @@ MonoBehaviour:
     color: {r: 1, g: 1, b: 1, a: 1}
     scale: {x: 0.9, y: 0.9}
   - image: {fileID: 974146679397055971}
-    sprite: {fileID: 21300000, guid: a470f38350df2ea4cb3a2ad1e7d06ddf, type: 3}
+    sprite: {fileID: 21300000, guid: 4571aefabd90e7444b0a42e8532f2985, type: 3}
     color: {r: 1, g: 1, b: 1, a: 1}
-    scale: {x: 0.9, y: 0.9}
+    scale: {x: 0.7, y: 0.7}
 --- !u!1 &6669706915845195933
 GameObject:
   m_ObjectHideFlags: 0
