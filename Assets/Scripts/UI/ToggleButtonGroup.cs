@@ -42,7 +42,7 @@ public class ToggleButtonGroup : MonoBehaviour
         {
             if (_lastToggle.GetInstanceID() == toggle.GetInstanceID())
             {
-                Debug.Log("Uncheked");
+                //Debug.Log("Uncheked");
                 _currentToggle = null;
                 _lastToggle = null;
                 NewToggledButton.Invoke();

@@ -217,6 +217,7 @@ public class LevelSelection : MonoBehaviour
         if (currentToggle == null)
         {
             TogglePlayButton(false);
+            ClearLevelDescription();
             return;
         }
 
