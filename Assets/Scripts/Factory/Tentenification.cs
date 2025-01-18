@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Debug = UnityEngine.Debug;
 
 public class Tentenification : Factory
 {
@@ -19,9 +20,12 @@ public class Tentenification : Factory
         state = BuildingState.RUNNING;
 
         Item item = inputs[0].GetItem();
-        Item.Symbol characters = item.GetSymbols()[0];
-
-        symbolTable.AddTenten(ref characters);
+        Item.Symbol characters = new Item.Symbol();
+        if (item.GetSymbols().Count > 0)
+        {
+            characters = item.GetSymbols()[0];
+            symbolTable.AddTenten(ref characters);
+        }
 
         yield return new WaitForSeconds(productionTime / productionSpeed);
 

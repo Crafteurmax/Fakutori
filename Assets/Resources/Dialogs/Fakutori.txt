@@ -47,13 +47,13 @@ The Concatenator will combine two piece of paper into a single one by adding the
 [[Explanation_4]] 
 
 
-:: Desu_1 [N1P0N] {"position":"2500,100","size":"100,100"}
+:: Desu_1 [N1P0N] {"position":"2700,100","size":"100,100"}
 Welcome back !!! You still remember what we've done last time right ?
 [[yes->Desu_2]]
 [[no->RecalVocab1_1]]
 
 
-:: Desu_2 [N1P0N] {"position":"2500,250","size":"100,100"}
+:: Desu_2 [N1P0N] {"position":"2700,250","size":"100,100"}
 
 
 
@@ -344,13 +344,22 @@ This kanji is 人, wich, in our case is read "じん", because it use the ON lec
 [[OtherVocab_19]] 
 
 
-:: OtherVocab_19 [N1P0N END] {"position":"2300,1450","size":"100,100"}
+:: OtherVocab_19 [N1P0N] {"position":"2300,1450","size":"100,100"}
 Try to produce some 人 but using both the ON and KUN reading !!
 
 
 :: OtherVocab_2 [N1P0N X_X] {"position":"1900,250","size":"100,100"}
 Vocab is great, knowing how to use it is even better. But enough talking about you, let's talk about "me"
 [[OtherVocab_3]] 
+
+
+:: OtherVocab_20 [N1P0N \\o/] {"position":"2500,100","size":"100,100"}
+Nice you did it, and you've learn a lot in way isn't it ?
+[[OtherVocab_21]] 
+
+
+:: OtherVocab_21 [N1P0N =w= END] {"position":"2500,250","size":"100,100"}
+With all of that we are ready to learn some grammar !!! But for now, that's all for today, see you tomorrow !!!
 
 
 :: OtherVocab_3 [N1P0N] {"position":"1900,400","size":"100,100"}
@@ -390,7 +399,7 @@ Ok, I think it's time for you to learn the last few machines that you can use in
 Ok so let's get to work !!!
 
 
-:: RecalVocab1_1 [N1P0N TODO] {"position":"2700,250","size":"100,100"}
+:: RecalVocab1_1 [N1P0N TODO] {"position":"2900,250","size":"100,100"}
 
 
 
@@ -495,7 +504,7 @@ Know try to produce some 月曜日 and some 日曜日.
 [[Week_18]] 
 
 
-:: Week_18 [N1P0N END] {"position":"1500,850","size":"100,100"}
+:: Week_18 [N1P0N] {"position":"1500,850","size":"100,100"}
 After those two, you will have learned 14 words and 7 Kanjis, not a bad start right ? がんばって !!!
 
 
@@ -510,7 +519,7 @@ Yesturday, you learned 6 Kanjis, let's learn one more. The kanji for fire 火, t
 [[Week_3]]
 
 
-:: Week_20 [N1P0N] {"position":"1700,250","size":"100,100"}
+:: Week_20 [N1P0N END] {"position":"1700,250","size":"100,100"}
 Let's call it a day, take a break and enjoy the progress that you've made. Like biking, the most difficult part is to start. If you wan't to memorise this vocabulary even faster you can use some flashcard.
 
 

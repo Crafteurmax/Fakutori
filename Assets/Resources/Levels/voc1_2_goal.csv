@@ -1,9 +1,11 @@
 Display,Description, goals
-日,日,10
-月,月,10
-STOP,Jour_1,STOP
-水,水,10
-木,木,10
-金,金,10
-土,土,10
-STOP,Jour_10,STOP
+火曜日,火曜日,10
+STOP,Week_4,STOP
+水曜日,水曜日,10
+木曜日,木曜日,10
+金曜日,金曜日,10
+土曜日,土曜日,10
+STOP,Week_14,STOP
+月曜日,月曜日,10
+日曜日,日曜日,10
+STOP,Week_19,STOP

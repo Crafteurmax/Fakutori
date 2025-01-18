@@ -228,10 +228,12 @@ public class BuildingPlacer : MonoBehaviour
             BuildingTile buildingTile2 = BuildingManager.Instance.buildingTilemap.GetTile<BuildingTile>(fillerPosition);
 
             BuildingManager.Instance.buildingTilemap.SetTile(fillerPosition, null);
+            BuildingManager.Instance.RemoveBuildingInput(fillerPosition);
             Destroy(buildingTile2.building.gameObject);
         }
 
         BuildingManager.Instance.buildingTilemap.SetTile(aTilePosition, null);
+        BuildingManager.Instance.RemoveBuildingInput(aTilePosition);
         Destroy(buildingTile.building.gameObject);
     }
 
