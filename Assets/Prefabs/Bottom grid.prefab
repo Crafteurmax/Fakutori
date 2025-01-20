@@ -205,7 +205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTheWorldComplete: 0
-  worldSaver: {fileID: 0}
+  worldSaver: {fileID: 5407902412862272450}
   map: {fileID: 4804659185431730291}
   isProcedural: 0
   seed: 0

@@ -1,26 +1,37 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine;
 using TMPro;
+using UnityEditor;
+using UnityEngine;
+using UnityEngine.UI;
 
-public class IndividualGoalController : MonoBehaviour
+public class IndividualGoalController : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
+    private int goalId;
     [SerializeField] TextMeshProUGUI UIdescription;
     [SerializeField] TextMeshProUGUI UIactualCount;
     private int count;
     [SerializeField] TextMeshProUGUI UIobjective;
     [SerializeField] TextMeshProUGUI UIseparator;
+    [SerializeField] public PanelManger panelManager;
+    [SerializeField] public GameObject dictionaryPanel;
     private int objective;
     private bool isCompleted;
+    public Color goalColor;
 
-    public void Setup(string display, string description, int _objective, bool isStop)
+    public void Setup(int id, string display, string description, int _objective, bool isStop)
     {
+        goalId = id;
         UIdescription.text = display;
         count = 0;
         UIactualCount.text = count.ToString();
         objective = _objective;
         UIobjective.text = objective.ToString();
         if (isStop) isCompleted = true;
+        goalColor = Color.white;
     }
 
     public void Increase()
@@ -46,5 +57,22 @@ public class IndividualGoalController : MonoBehaviour
         UIactualCount.color = texteColor;
         UIobjective.color = texteColor;
         UIseparator.color = texteColor;
+        goalColor = texteColor;
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        panelManager.TogglePanel(dictionaryPanel);
+        UIDictionnary.Instance.OpenVocabularyPage(goalId);
+        UIdescription.color = goalColor;
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        UIdescription.color = Color.gray;
+    }
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        UIdescription.color = goalColor;
     }
 }

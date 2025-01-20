@@ -1,9 +1,9 @@
-Display,Description, goals
-日,日,10
-月,月,10
-STOP,Jour_1,STOP
-水,水,10
-木,木,10
-金,金,10
-土,土,10
-STOP,Jour_10,STOP
+Display,Description, goals, id
+日,日,10,20
+月,月,10,12
+STOP,Jour_1,STOP,STOP
+水,水,10,15
+木,木,10,16
+金,金,10,17
+土,土,10,18
+STOP,Jour_10,STOP,STOP
