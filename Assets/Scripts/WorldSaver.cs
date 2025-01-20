@@ -260,13 +260,13 @@ public class WorldSaver : MonoBehaviour
 
         if (charaSplit[0] == string.Empty)
         {
-            Debug.Log("Empty cache");
+            //Debug.Log("Empty cache");
             return (null, null);
         }
 
         for (int i = 0; i < charaSplit.Length; i++)
         {
-            Debug.Log(charaSplit[i]);
+            //Debug.Log(charaSplit[i]);
             Item.Symbol sym = new Item.Symbol();
             sym.character = charaSplit[i].ToCharArray()[0];
 
