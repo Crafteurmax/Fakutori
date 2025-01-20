@@ -27,6 +27,7 @@ public class LevelButton : MonoBehaviour
     public void SetName(string name)
     {
         levelName = name;
+        buttonText.text = levelName;
     }
 
     public string GetName()

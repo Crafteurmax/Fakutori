@@ -27,6 +27,87 @@
 					"dialogue": "OtherVocab_1"
 				}
 			]
+		},
+		{
+			"name": "Vocabulary 1",
+			"description": "Your first step in the Fakutori",
+			"levelList": [
+				{
+					"name": "1.1",
+					"description": "Learn how to say moon, sun, water, fire, metal and soil ",
+					"map": "voc1",
+					"goal": "voc1_1",
+					"dialogue": "Intro_0"
+				},
+				{
+					"name": "1.2",
+					"description": "Learn how every day of the week",
+					"map": "voc1",
+					"goal": "voc1_2",
+					"dialogue": "Week_1"
+				},
+				{
+					"name": "1.3",
+					"description": "Learn how to say \"me\" and \"now\"",
+					"map": "voc1",
+					"goal": "voc1_3",
+					"dialogue": "OtherVocab_1"
+				}
+			]
+		},
+		{
+			"name": "Vocabulary 1",
+			"description": "Your first step in the Fakutori",
+			"levelList": [
+				{
+					"name": "1.1",
+					"description": "Learn how to say moon, sun, water, fire, metal and soil ",
+					"map": "voc1",
+					"goal": "voc1_1",
+					"dialogue": "Intro_0"
+				},
+				{
+					"name": "1.2",
+					"description": "Learn how every day of the week",
+					"map": "voc1",
+					"goal": "voc1_2",
+					"dialogue": "Week_1"
+				},
+				{
+					"name": "1.3",
+					"description": "Learn how to say \"me\" and \"now\"",
+					"map": "voc1",
+					"goal": "voc1_3",
+					"dialogue": "OtherVocab_1"
+				}
+			]
+		},
+		{
+			"name": "Vocabulary 1",
+			"description": "Your first step in the Fakutori",
+			"levelList": [
+				{
+					"name": "1.1",
+					"description": "Learn how to say moon, sun, water, fire, metal and soil ",
+					"map": "voc1",
+					"goal": "voc1_1",
+					"dialogue": "Intro_0"
+				},
+				{
+					"name": "1.2",
+					"description": "Learn how every day of the week",
+					"map": "voc1",
+					"goal": "voc1_2",
+					"dialogue": "Week_1"
+				},
+				{
+					"name": "1.3",
+					"description": "Learn how to say \"me\" and \"now\"",
+					"map": "voc1",
+					"goal": "voc1_3",
+					"dialogue": "OtherVocab_1"
+				}
+			]
 		}
 	]
 }

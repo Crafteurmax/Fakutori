@@ -158,9 +158,6 @@ public class WorldSaver : MonoBehaviour
 
     public List<BuildingDataHolder> ReadAllMachineData()
     {
-        
-        Debug.Log("Reading buildings data from json");
-
         List<BuildingDataHolder> buildings = new List<BuildingDataHolder>();
         
         if (!File.Exists(saveFilePath))

@@ -119,6 +119,8 @@ public class SelectionUI : MonoBehaviour
 
         categoryButton.SetIconSprite(buildingCategory.sprite);
 
+        categoryButton.gameObject.GetComponent<BuildingButtonHover>().SetHoverText(string.Empty);
+
         categoryButton.onClick.AddListener(delegate { OpenBuildingCategory(index - 1); });
     }
 
@@ -128,6 +130,9 @@ public class SelectionUI : MonoBehaviour
         buildingButtons[categoryIndex].Add(button);
 
         button.SetIconSprite(buildingButton.sprite);
+
+        Debug.Log(buildingButton.buildingType.ToString());
+        button.gameObject.GetComponent<BuildingButtonHover>().SetHoverText(buildingButton.buildingType.ToString());
 
         button.onClick.AddListener(delegate { SetCurrentBuildingType(buildingButton.buildingType, new Vector2Int(categoryIndex, buildingIndex)); });
     }
