@@ -37,6 +37,22 @@ public class BuildingPlacer : MonoBehaviour
         History.Instance.Initialize(this);
     }
 
+    private void OnEnable()
+    {
+        selectionUI.NewCurrentBuildingType.AddListener(NewBuildingSelected);
+    }
+
+    private void OnDisable()
+    {
+        selectionUI.NewCurrentBuildingType.RemoveListener(NewBuildingSelected);
+    }
+
+    private void NewBuildingSelected()
+    {
+        buildingType = selectionUI.GetCurrentBuildingType();
+        tileIndicator.ChangeIndicator(buildingType);
+    }
+
     #region Enable / disable placement
     private void EnablePlacement()
     {
@@ -258,8 +274,8 @@ public class BuildingPlacer : MonoBehaviour
 
     private void Update()
     {
-        buildingType = selectionUI.GetCurrentBuildingType();
-        tileIndicator.ChangeIndicator(buildingType);
+        //buildingType = selectionUI.GetCurrentBuildingType();
+        //tileIndicator.ChangeIndicator(buildingType);
 
         if (buildingType != Building.BuildingType.None)
         {
