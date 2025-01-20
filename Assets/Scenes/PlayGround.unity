@@ -773,6 +773,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1392743040 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6481383735220343159, guid: 5f79286f055fcae409c05452c259a560, type: 3}
+  m_PrefabInstance: {fileID: 2008403576}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1613494856
 GameObject:
   m_ObjectHideFlags: 0
@@ -1076,6 +1081,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5574479676910367219, guid: 5f79286f055fcae409c05452c259a560, type: 3}
+      propertyPath: dictionaryPanel
+      value: 
+      objectReference: {fileID: 1392743040}
     - target: {fileID: 5853377442404459444, guid: 5f79286f055fcae409c05452c259a560, type: 3}
       propertyPath: worldSaver
       value: 
