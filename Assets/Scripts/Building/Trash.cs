@@ -20,4 +20,12 @@ public class Trash : Building
             trashInput.SetItem(null);
         }
     }
+
+    public override void Release()
+    {
+        BuildingManager.Instance.RemoveBuildingInput(trashInput.GetPosition());
+
+        trashInput.Reset();
+        base.Release();
+    }
 }

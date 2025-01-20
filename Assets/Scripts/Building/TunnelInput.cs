@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.Video;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class TunnelInput : Building
@@ -41,7 +42,7 @@ public class TunnelInput : Building
     }
 
     public override void OnDisable() {
-        BuildingManager.Instance.RemoveBuildingInput(buildingInput.GetPosition());
+        Release();
 
         base.OnDisable();
     }
@@ -171,4 +172,13 @@ public class TunnelInput : Building
     public void unlinkTunnel() { tunnelOutput.SetTunnelInput(null); }
 
     public bool hasALink() { return tunnelOutput != null; }
+
+    public override void Release()
+    {
+        //BuildingManager.Instance.RemoveBuildingInput(buildingInput.GetPosition());
+        BuildingManager.Instance.RemoveBuildingInput(intermediateInput.GetPosition());
+        //buildingInput.Reset();
+        intermediateInput.Reset();
+        base.Release();
+    }
 }

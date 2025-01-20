@@ -23,4 +23,12 @@ public class Vendor : Building
             vendorInput.SetItem(null);
         }
     }
+
+    public override void Release()
+    {
+        BuildingManager.Instance.RemoveBuildingInput(vendorInput.GetPosition());
+
+        vendorInput.Reset();
+        base.Release();
+    }
 }

@@ -75,4 +75,10 @@ public class TunnelOutput : Building
     public void unlinkTunnel() { tunnelInput.SetTunnelOutput(null); }
 
     public bool hasALink() { return tunnelInput != null; }
+
+    public override void Release()
+    {
+        buildingOutput.Reset();
+        base.Release();
+    }
 }

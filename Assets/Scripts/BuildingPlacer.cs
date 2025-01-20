@@ -225,15 +225,14 @@ public class BuildingPlacer : MonoBehaviour
         if (buildingTile.building.pair != null)
         {
             Vector3Int fillerPosition = BuildingManager.Instance.buildingTilemap.WorldToCell(buildingTile.building.pair.transform.position);
-            BuildingTile buildingTile2 = BuildingManager.Instance.buildingTilemap.GetTile<BuildingTile>(fillerPosition);
-
-            BuildingManager.Instance.buildingTilemap.SetTile(fillerPosition, null);
-            BuildingManager.Instance.RemoveBuildingInput(fillerPosition);
-            Destroy(buildingTile2.building.gameObject);
+            buildingTile.building.pair = null;
+            RemoveBuildingAtPosition(fillerPosition);
         }
 
+        //buildingTile.building;
         BuildingManager.Instance.buildingTilemap.SetTile(aTilePosition, null);
         BuildingManager.Instance.RemoveBuildingInput(aTilePosition);
+        buildingTile.building.Release();
         Destroy(buildingTile.building.gameObject);
     }
 
