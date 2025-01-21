@@ -27,6 +27,9 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] Image actualFace;
     [SerializeField] List<Sprite> faces;
 
+    [SerializeField] GameObject victoryPanel;
+    [SerializeField] Button nextLevelButton;
+
     private bool isFirstTime = true;
 
     // Start is called before the first frame update
@@ -62,8 +65,11 @@ public class DialogueManager : MonoBehaviour
         {
             if (currentNode.HasTag("END"))
             {
+                Debug.Log("End of dialogue");
                 worldSaver.WriteData();
-                SceneManager.LoadScene("Menu"); 
+                panelManger.TogglePanel(victoryPanel);
+                return;
+                //SceneManager.LoadScene("Menu"); 
             }
             panelManger.ReturnToPreviousPanel();
         }
@@ -73,6 +79,25 @@ public class DialogueManager : MonoBehaviour
     {
         story.ChooseNextNode(id);
         SetUpNode();
+    }
+
+    public void NextLevel()
+    {
+        if (LevelData.currentLevelIndex + 1 >= LevelData.currentPanel.levelList.Count)
+        {
+            nextLevelButton.interactable = false;
+        }
+        else
+        {
+            nextLevelButton.interactable = true;
+            LevelData.currentLevelIndex += 1;
+            
+            LevelData.mapName = LevelData.currentPanel.levelList[LevelData.currentLevelIndex].map;
+            LevelData.goalFileName = LevelData.currentPanel.levelList[LevelData.currentLevelIndex].goal;
+            LevelData.dialoguename = LevelData.currentPanel.levelList[LevelData.currentLevelIndex].dialogue;
+
+            SceneManager.LoadScene("PlayGround");
+        }
     }
 
     private void SetUpNode()

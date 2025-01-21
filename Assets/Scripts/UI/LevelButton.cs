@@ -16,6 +16,9 @@ public class LevelButton : MonoBehaviour
     private string levelMap;
     private string levelDialogue;
 
+    private int levelIndex;
+    private Panel panel;
+
 
     private void Start()
     {
@@ -23,6 +26,26 @@ public class LevelButton : MonoBehaviour
     }
 
     #region Setter / Getter
+
+    public void SetPanel(Panel panel)
+    {
+        this.panel = panel;
+    }
+
+    public Panel GetPanel()
+    {
+        return panel;
+    }
+
+    public void SetLevelIndex(int inedx)
+    {
+        levelIndex = inedx;
+    }
+
+    public int GetLevelIndex()
+    {
+        return levelIndex;
+    }
 
     public void SetName(string name)
     {

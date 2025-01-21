@@ -21,7 +21,7 @@ public class LevelPanelController : MonoBehaviour
         for (int i =0; i < buttonList.Count; i++)
         {
             toggleGroup.RegisterToggle(toggleButtonList[i]);
-            buttonList[i].SetActive(false);
+            //buttonList[i].SetActive(false);
         }
     }
 
@@ -35,17 +35,25 @@ public class LevelPanelController : MonoBehaviour
         panelDescription.text = description;
     }
 
-    public void SetButtons(List<Level> levelList)
+    public void SetButtons(Panel panel)
     {
-        for (int i = 0; i < levelList.Count; i++)
+        for (int i = 0; i < panel.levelList.Count; i++)
         {
-            levelButtonList[i].SetName(levelList[i].name);
-            levelButtonList[i].SetDescription(levelList[i].description);
-            levelButtonList[i].SetGoal(levelList[i].goal);
-            levelButtonList[i].SetMap(levelList[i].map);
-            levelButtonList[i].SetDialogue(levelList[i].dialogue);
+            levelButtonList[i].SetName(panel.levelList[i].name);
+            levelButtonList[i].SetDescription(panel.levelList[i].description);
+            levelButtonList[i].SetGoal(panel.levelList[i].goal);
+            levelButtonList[i].SetMap(panel.levelList[i].map);
+            levelButtonList[i].SetDialogue(panel.levelList[i].dialogue);
+
+            levelButtonList[i].SetLevelIndex(i);
+            levelButtonList[i].SetPanel(panel);
 
             buttonList[i].SetActive(true);
+        }
+
+        for (int i = panel.levelList.Count; i <  buttonList.Count; i++)
+        {
+            buttonList[i].SetActive(false);
         }
     }
 }
