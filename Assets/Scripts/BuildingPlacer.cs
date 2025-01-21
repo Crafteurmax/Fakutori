@@ -52,6 +52,7 @@ public class BuildingPlacer : MonoBehaviour
     private void NewBuildingSelected(Building.BuildingType buildingType)
     {
         tileIndicator.ChangeIndicator(buildingType);
+        this.buildingType = buildingType;
 
         if (buildingType != Building.BuildingType.None)
         {

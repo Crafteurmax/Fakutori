@@ -201,6 +201,7 @@ public class SelectionUI : MonoBehaviour
 
         selectionPanel.tag = PanelManger.NoEscape;
 
+        Debug.Log(buildingType);
         NewCurrentBuildingType.Invoke(buildingType);
     }
 
