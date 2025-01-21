@@ -92,7 +92,7 @@ public class LevelSelection : MonoBehaviour
             panelObjectList[i].SetPanelName(panelList[i].name);
             panelObjectList[i].SetPanelDescription(panelList[i].description);
 
-            panelObjectList[i].SetButtons(panelList[i].levelList);
+            panelObjectList[i].SetButtons(panelList[i]);
         }
     }
     #endregion
@@ -138,6 +138,9 @@ public class LevelSelection : MonoBehaviour
         LevelData.mapName = currentLevel.GetMap();
         LevelData.goalFileName = currentLevel.GetGoal();
         LevelData.dialoguename = currentLevel.GetDialogue();
+
+        LevelData.currentPanel = currentLevel.GetPanel();
+        LevelData.currentLevelIndex = currentLevel.GetLevelIndex();
 
         SceneManager.LoadScene("PlayGround");
     }

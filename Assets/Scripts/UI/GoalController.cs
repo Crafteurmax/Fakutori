@@ -36,6 +36,7 @@ public class GoalController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        actualDisplayedGoalID = -1;
         if (LevelData.goalFileName != null)
             ReadGoalsFile(LevelData.goalFileName + "_goal");
         else
@@ -51,7 +52,12 @@ public class GoalController : MonoBehaviour
 
     public void IncreaseScore(string key)
     {
-        if (displayedGoals.ContainsKey(key)) displayedGoals[key].Increase();
+
+        if (displayedGoals.ContainsKey(key))
+        {
+            displayedGoals[key].Increase();
+            //Debug.Log("Key :" + key);
+        }
         if (IsAllDisplayedGoalsAreCompleted()) loadNextGoalsSet();
     }
 
@@ -90,11 +96,13 @@ public class GoalController : MonoBehaviour
         {
             if(!goals.Value.IsGoalComplete()) return false;
         }
+        //Debug.Log("All goal completed");
         return true;
     }
 
     private void loadNextGoalsSet()
     {
+        //Debug.Log("Next goal is loading");
         if(actualDisplayedGoalID >= goals.Count) return;
         if(actualDisplayedGoalID != -1)
         {
@@ -113,7 +121,11 @@ public class GoalController : MonoBehaviour
         {
             foreach (goal goal in goals[actualDisplayedGoalID])
             {
-                if(!goal.isStop) AddGoal(goal);
+                if(!goal.isStop)
+                {
+                    //Debug.Log(goal.display);
+                    AddGoal(goal);
+                }
             }
         }
 
