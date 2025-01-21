@@ -48,8 +48,12 @@ public class BuildingPlacer : MonoBehaviour
     }
     #endregion
 
+<<<<<<< HEAD
     #region Event listner
+    private void NewBuildingSelected()
+=======
     private void NewBuildingSelected(Building.BuildingType buildingType)
+>>>>>>> b0d9568ae4093c6c0debe97952f78079b0d38254
     {
         tileIndicator.ChangeIndicator(buildingType);
 
@@ -71,7 +75,6 @@ public class BuildingPlacer : MonoBehaviour
     private void EnablePlacement()
     {
         tileIndicator.ShowMouseIndicator();
-        tileIndicator.UpdateMouseIndicator();
         enablePlacement = true;
     }
 
@@ -241,6 +244,17 @@ public class BuildingPlacer : MonoBehaviour
         return true;
     }
 
+<<<<<<< HEAD
+=======
+    private static readonly HashSet<Building.BuildingType> oneByTwoBuildingsName = new ()
+    {
+        Building.BuildingType.Splitter,
+        Building.BuildingType.Concatenator,
+        Building.BuildingType.Exchangificator,
+        Building.BuildingType.Troncator,
+    };
+
+>>>>>>> b0d9568ae4093c6c0debe97952f78079b0d38254
     public void RemoveBuildingAtPosition(Vector3Int aTilePosition)
     {
         BuildingTile buildingTile = BuildingManager.Instance.buildingTilemap.GetTile<BuildingTile>(aTilePosition);
@@ -310,6 +324,7 @@ public class BuildingPlacer : MonoBehaviour
             tileIndicator.UpdateMouseIndicator();
         }
 
+        
         if (isLeftPress && enableRemoval)
         {
             Vector3Int tilePosition = BuildingManager.Instance.buildingTilemap.WorldToCell(tileIndicator.getLastPosition());

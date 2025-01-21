@@ -47,10 +47,10 @@ public class SelectionUI : MonoBehaviour
 
     private readonly List<List<SelectableButton>> buildingButtons = new();
     private readonly List<SelectableButton> categoryButtons = new();
-    private Vector2Int currentBuilding = new Vector2Int(-1, -1);
+    private Vector2Int currentBuilding = new(-1, -1);
     private int currentCategory = -1;
 
-    public UnityEvent NewCurrentBuildingType { get; } = new();
+    public UnityEvent<Building.BuildingType> NewCurrentBuildingType { get; } = new();
 
     private void Start()
     {
@@ -159,7 +159,7 @@ public class SelectionUI : MonoBehaviour
             new Vector2(categoryButtons[categoryIndex].transform.position.x, buttonLayout.rectTransform.position.y), 
             Quaternion.identity); 
 
-        selectionPanel.tag = PanelManger.noEscape;
+        selectionPanel.tag = PanelManger.NoEscape;
         categoryButtons[categoryIndex].SelectButton(true);
 
         currentCategory = categoryIndex;
@@ -199,9 +199,9 @@ public class SelectionUI : MonoBehaviour
         currentBuilding = buildingButtonIndex;
         currentBuildingType = buildingType;
 
-        selectionPanel.tag = PanelManger.noEscape;
+        selectionPanel.tag = PanelManger.NoEscape;
 
-        NewCurrentBuildingType.Invoke();
+        NewCurrentBuildingType.Invoke(buildingType);
     }
 
     private void SetCurrentBuildingTypeToNone()
@@ -214,7 +214,7 @@ public class SelectionUI : MonoBehaviour
         selectionPanel.tag = PanelManger.Untagged;
         currentBuilding = new(-1, -1);
         currentBuildingType = Building.BuildingType.None;
-        NewCurrentBuildingType.Invoke();
+        NewCurrentBuildingType.Invoke(Building.BuildingType.None);
     }
 
     public void SetCurrentBuildingTypeToNone(InputAction.CallbackContext context)
