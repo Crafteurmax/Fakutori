@@ -15,7 +15,12 @@ public class VocabularyButtonEditor : SelectableButtonEditor
     SerializedProperty romaji;
     SerializedProperty traduction;
 
+    [Header("Pin")]
+    SerializedProperty pinnedSprite;
+    SerializedProperty notPinnedSprite;
+
     [Header("Intern Objects")]
+    SerializedProperty pinButton;
     SerializedProperty kanjiTextMesh;
     SerializedProperty kanaTextMesh;
     SerializedProperty romajiTextMesh;
@@ -33,6 +38,10 @@ public class VocabularyButtonEditor : SelectableButtonEditor
         romaji = serializedObject.FindProperty("romaji");
         traduction = serializedObject.FindProperty("traduction");
 
+        pinnedSprite = serializedObject.FindProperty("pinnedSprite");
+        notPinnedSprite = serializedObject.FindProperty("notPinnedSprite");
+
+        pinButton = serializedObject.FindProperty("pinButton");
         kanjiTextMesh = serializedObject.FindProperty("kanjiTextMesh");
         kanaTextMesh = serializedObject.FindProperty("kanaTextMesh");
         romajiTextMesh = serializedObject.FindProperty("romajiTextMesh");
@@ -56,6 +65,10 @@ public class VocabularyButtonEditor : SelectableButtonEditor
         EditorGUILayout.PropertyField(romaji);
         EditorGUILayout.PropertyField(traduction);
 
+        EditorGUILayout.PropertyField(pinnedSprite);
+        EditorGUILayout.PropertyField(notPinnedSprite);
+
+        EditorGUILayout.PropertyField(pinButton);
         EditorGUILayout.PropertyField(kanjiTextMesh);
         EditorGUILayout.PropertyField(kanaTextMesh);
         EditorGUILayout.PropertyField(romajiTextMesh);

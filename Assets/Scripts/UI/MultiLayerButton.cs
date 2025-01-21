@@ -25,27 +25,38 @@ public class MultiLayerButton : Button
     #region Setters
     public void SetImage(int i, Image image)
     {
-        buttonLayers[i].image = image;
-        buttonLayers[i].image.sprite = buttonLayers[i].sprite;
-        buttonLayers[i].image.color = buttonLayers[i].color;
-        buttonLayers[i].image.transform.localScale = buttonLayers[i].scale;
+        if (i > 0)
+        {
+            buttonLayers[i - 1].image = image;
+            buttonLayers[i - 1].image.sprite = buttonLayers[i - 1].sprite;
+            buttonLayers[i - 1].image.color = buttonLayers[i - 1].color;
+            buttonLayers[i - 1].image.transform.localScale = buttonLayers[i].scale;
+        }
     }
 
     public void SetSprite(int i, Sprite sprite)
     {
-        buttonLayers[i].sprite = sprite;
-        buttonLayers[i].image.sprite = sprite;
+        if (i == 0)
+        {
+            image.sprite = sprite;
+        }
+        else
+        {
+            buttonLayers[i - 1].sprite = sprite;
+            buttonLayers[i - 1].image.sprite = sprite;
+        }
     }
 
     /// <summary>
-    /// Set the sprite of the icon. The Icon is the last layer in buttonLayers
+    /// Set the texture of the icon. The Icon is the last layer in buttonLayers
     /// </summary>
     /// <param name="sprite"></param>
     public void SetIconSprite(Sprite sprite)
     {
         if (buttonLayers.Count > 0)
         {
-            SetSprite(buttonLayers.Count - 1, sprite);
+            buttonLayers[^1].sprite = sprite;
+            buttonLayers[^1].image.sprite = sprite;
         }
         else
         {
@@ -55,14 +66,28 @@ public class MultiLayerButton : Button
 
     public void SetColor(int i, Color color)
     {
-        buttonLayers[i].color = color;
-        buttonLayers[i].image.color = color;
+        if (i == 0)
+        {
+            image.color = color;
+        }
+        else
+        {
+            buttonLayers[i - 1].color = color;
+            buttonLayers[i - 1].image.color = color;
+        }
     }
 
     public void SetScale(int i, Vector2 scale)
     {
-        buttonLayers[i].scale = scale;
-        buttonLayers[i].image.transform.localScale = scale;
+        if (i == 0)
+        {
+            transform.localScale = scale;
+        }
+        else
+        {
+            buttonLayers[i - 1].scale = scale;
+            buttonLayers[i - 1].image.transform.localScale = scale;
+        }
     }
     #endregion Setters
 
