@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -47,9 +46,8 @@ public class BuildingPlacer : MonoBehaviour
         selectionUI.NewCurrentBuildingType.RemoveListener(NewBuildingSelected);
     }
 
-    private void NewBuildingSelected()
+    private void NewBuildingSelected(Building.BuildingType buildingType)
     {
-        buildingType = selectionUI.GetCurrentBuildingType();
         tileIndicator.ChangeIndicator(buildingType);
     }
 
@@ -73,7 +71,7 @@ public class BuildingPlacer : MonoBehaviour
         tileIndicator.ShowMouseIndicator();
         tileIndicator.UpdateMouseIndicator();
         tileIndicator.RemoveIndicator();
-        if (selectionPanel != null) { selectionPanel.tag = PanelManger.noEscape; }
+        if (selectionPanel != null) { selectionPanel.tag = PanelManger.NoEscape; }
         enableRemoval = true;
     }
 
@@ -144,11 +142,11 @@ public class BuildingPlacer : MonoBehaviour
         BuildingData buildingData = buildingDatabaseSO.buildingData[(int)aBuildingType - 1];
         
         // Check if there is not already a building at the place we are trying to put the new building
-        if (canBuildingBePlaced(aTilePosition, aBuildingType, aBuildingRotation))
+        if (CanBuildingBePlaced(aTilePosition, aBuildingType, aBuildingRotation))
         {
             BuildingTile occupiedTile = ScriptableObject.CreateInstance<BuildingTile>();
 
-            Vector3 buildingPosition = new Vector3(aTilePosition.x + 0.5f, 0f, aTilePosition.y + 0.5f);
+            Vector3 buildingPosition = new(aTilePosition.x + 0.5f, 0f, aTilePosition.y + 0.5f);
             GameObject go = Instantiate(buildingData.buildingPrefab, buildingPosition, aBuildingRotation, buildingsMap.transform);
             occupiedTile.building = go.GetComponent<Building>();
 
@@ -171,7 +169,7 @@ public class BuildingPlacer : MonoBehaviour
                     case 270: tempPos.y += 1; break; // When indicator faces -x -> (+1, +2)
                 }
 
-                Vector3 fillerPosition = new Vector3(tempPos.x + 0.5f, 0f, tempPos.y + 0.5f);
+                Vector3 fillerPosition = new(tempPos.x + 0.5f, 0f, tempPos.y + 0.5f);
                 GameObject filler = Instantiate(fillerPrefab, fillerPosition, aBuildingRotation, buildingsMap.transform);
                 occupiedTile2.building = filler.GetComponent<Building>();
 
@@ -190,7 +188,7 @@ public class BuildingPlacer : MonoBehaviour
         }
     }
 
-    private static readonly HashSet<Building.BuildingType> oneByTwoBuildings = new HashSet<Building.BuildingType>
+    private static readonly HashSet<Building.BuildingType> oneByTwoBuildings = new ()
     {
         Building.BuildingType.Splitter,
         Building.BuildingType.Concatenator,
@@ -198,7 +196,7 @@ public class BuildingPlacer : MonoBehaviour
         Building.BuildingType.Troncator
     };
 
-    private bool canBuildingBePlaced(Vector3Int tilePositionToCheck, Building.BuildingType aBuildingType, Quaternion aBuildingRotation)
+    private bool CanBuildingBePlaced(Vector3Int tilePositionToCheck, Building.BuildingType aBuildingType, Quaternion aBuildingRotation)
     {
         // Case for (1, 1) buildings
         if (aBuildingType == Building.BuildingType.None || BuildingManager.Instance.buildingTilemap.HasTile(tilePositionToCheck)) return false;
@@ -224,7 +222,7 @@ public class BuildingPlacer : MonoBehaviour
         return true;
     }
 
-    private static readonly HashSet<Building.BuildingType> oneByTwoBuildingsName = new HashSet<Building.BuildingType>
+    private static readonly HashSet<Building.BuildingType> oneByTwoBuildingsName = new ()
     {
         Building.BuildingType.Splitter,
         Building.BuildingType.Concatenator,

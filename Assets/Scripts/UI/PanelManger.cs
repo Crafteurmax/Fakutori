@@ -19,7 +19,7 @@ public class PanelManger : MonoBehaviour
     [SerializeField] WorldSaver worldSaver;
 
     public static string Untagged { get; private set; } = "Untagged";
-    public static string noEscape { get; private set; } = "noEscape";
+    public static string NoEscape { get; private set; } = "noEscape";
 
     private void Start()
     {
@@ -48,7 +48,7 @@ public class PanelManger : MonoBehaviour
     public void ReturnToPreviousPanel(InputAction.CallbackContext context)
     {
         if (context.phase != InputActionPhase.Started) return;
-        if (currentPanels.Peek().CompareTag(noEscape)) return;
+        if (currentPanels.Peek().CompareTag(NoEscape)) return;
 
         if (currentPanels.Count > 1)
         {
