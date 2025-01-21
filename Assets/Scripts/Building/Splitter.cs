@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Rendering.CameraUI;
 
 public class Splitter : Building
 {
@@ -39,17 +40,7 @@ public class Splitter : Building
     }
 
     public override void OnDisable() {
-        BuildingManager.Instance.RemoveBuildingInput(leftInput.GetPosition());
-        BuildingManager.Instance.RemoveBuildingInput(rightInput.GetPosition());
-
-        leftInput.Reset();
-        rightInput.Reset();
-        leftOutput.Reset();
-        rightOutput.Reset();
-
-        leftInputState = InputState.LeftOutput;
-        rightInputState = InputState.RightOutput;
-
+        Release();
         base.OnDisable();
     }
 
@@ -169,5 +160,20 @@ public class Splitter : Building
     private void LeftBeltAnimation() {
         float offset = BuildingManager.Instance.beltSpeed * 0.5f;
         beltMeshLeft.GetComponent<Renderer>().material.mainTextureOffset -= new Vector2(0, offset * Time.deltaTime);
+    }
+
+    public override void Release()
+    {
+        BuildingManager.Instance.RemoveBuildingInput(leftInput.GetPosition());
+        BuildingManager.Instance.RemoveBuildingInput(rightInput.GetPosition());
+
+        leftInput.Reset();
+        rightInput.Reset();
+        leftOutput.Reset();
+        rightOutput.Reset();
+
+        leftInputState = InputState.LeftOutput;
+        rightInputState = InputState.RightOutput;
+        base.Release();
     }
 }

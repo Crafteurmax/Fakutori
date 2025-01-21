@@ -69,4 +69,10 @@ public class Extractor : Building
 
         isSetup = true;
     }
+
+    public override void Release()
+    {
+        output.Reset();
+        base.Release();
+    }
 }

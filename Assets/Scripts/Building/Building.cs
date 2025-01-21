@@ -50,7 +50,7 @@ public class Building : MonoBehaviour
         return buildingType;
     }
 
-    protected virtual void Release() {
+    public virtual void Release() {
         BuildingFactory.Instance.ReleaseBuilding(this);
     }
 

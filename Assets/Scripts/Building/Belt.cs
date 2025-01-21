@@ -35,7 +35,7 @@ public class Belt : Building
         Release();
     }
 
-    protected override void Release() {
+    public override void Release() {
         beltInput.Reset();
         beltOutput.Reset();
   
