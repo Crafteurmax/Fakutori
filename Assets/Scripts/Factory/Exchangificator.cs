@@ -27,6 +27,8 @@ public class Exchangificator : Factory
 
         yield return new WaitForSeconds(productionTime / productionSpeed);
 
+        ClearInputs();
+
         BuildingOutput postLeftoutput = outputs[0];
         BuildingOutput postRightoutput = outputs[1];
 
