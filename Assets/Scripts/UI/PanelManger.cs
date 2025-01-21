@@ -18,6 +18,9 @@ public class PanelManger : MonoBehaviour
     private readonly Stack<GameObject> currentPanels = new();
     [SerializeField] WorldSaver worldSaver;
 
+    public static string Untagged { get; private set; } = "Untagged";
+    public static string noEscape { get; private set; } = "noEscape";
+
     private void Start()
     {
         TogglePanel(startPanel);
@@ -45,7 +48,7 @@ public class PanelManger : MonoBehaviour
     public void ReturnToPreviousPanel(InputAction.CallbackContext context)
     {
         if (context.phase != InputActionPhase.Started) return;
-        if (currentPanels.Peek().CompareTag("noEscape")) return;
+        if (currentPanels.Peek().CompareTag(noEscape)) return;
 
         if (currentPanels.Count > 1)
         {

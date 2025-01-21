@@ -73,14 +73,14 @@ public class BuildingPlacer : MonoBehaviour
         tileIndicator.ShowMouseIndicator();
         tileIndicator.UpdateMouseIndicator();
         tileIndicator.RemoveIndicator();
-        if (selectionPanel != null) { selectionPanel.tag = "noEscape"; }
+        if (selectionPanel != null) { selectionPanel.tag = PanelManger.noEscape; }
         enableRemoval = true;
     }
 
     private void DisableRemoval()
     {
         tileIndicator.HideMouseIndicator();
-        if (selectionPanel != null) { selectionPanel.tag = "Untagged"; }
+        if (selectionPanel != null) { selectionPanel.tag = PanelManger.Untagged; }
         enableRemoval = false;
     }
 
@@ -241,15 +241,14 @@ public class BuildingPlacer : MonoBehaviour
         if (buildingTile.building.pair != null)
         {
             Vector3Int fillerPosition = BuildingManager.Instance.buildingTilemap.WorldToCell(buildingTile.building.pair.transform.position);
-            BuildingTile buildingTile2 = BuildingManager.Instance.buildingTilemap.GetTile<BuildingTile>(fillerPosition);
-
-            BuildingManager.Instance.buildingTilemap.SetTile(fillerPosition, null);
-            BuildingManager.Instance.RemoveBuildingInput(fillerPosition);
-            Destroy(buildingTile2.building.gameObject);
+            buildingTile.building.pair = null;
+            RemoveBuildingAtPosition(fillerPosition);
         }
 
+        //buildingTile.building;
         BuildingManager.Instance.buildingTilemap.SetTile(aTilePosition, null);
         BuildingManager.Instance.RemoveBuildingInput(aTilePosition);
+        buildingTile.building.Release();
         Destroy(buildingTile.building.gameObject);
     }
 

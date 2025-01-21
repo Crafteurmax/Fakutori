@@ -50,12 +50,23 @@ public class Factory : Building
         if (state == BuildingState.IDLE) CheckInputsAndOutputs();
     }
 
-    protected void ClearInputs() {
+    public override void Release()
+    {
+        //BuildingManager.Instance.RemoveBuildingInput(leftInput.GetPosition());
+        //BuildingManager.Instance.RemoveBuildingInput(rightInput.GetPosition());
+
+        ClearInputs();
+        ClearOutputs();
+
+        base.Release();
+    }
+
+    public void ClearInputs() {
         foreach (var input in inputs) {
             input.Reset();
         }
     }
-    private void ClearOutputs() {
+    public void ClearOutputs() {
         foreach (var output in outputs) {
             output.Reset();
         }
