@@ -15,7 +15,12 @@ public class VocabularyButton : SelectableButton
     [SerializeField] private string romaji;
     [SerializeField] private string traduction;
 
+    [Header("Pin")]
+    [SerializeField] private Sprite pinnedSprite;
+    [SerializeField] private Sprite notPinnedSprite;
+
     [Header("Intern Objects")]
+    [SerializeField] private MultiLayerButton pinButton;
     [SerializeField] private TextMeshProUGUI kanjiTextMesh;
     [SerializeField] private TextMeshProUGUI kanaTextMesh;
     [SerializeField] private TextMeshProUGUI romajiTextMesh;
@@ -48,8 +53,20 @@ public class VocabularyButton : SelectableButton
     public void TriggerAlternative(bool trigger)
     {
         targetGraphic.color = trigger ? baseColor : alternativeColor;
+        pinButton.SetColor(0, trigger ? baseColor : alternativeColor);
     }
 
+    #region Pin
+    public void Pin(bool pin)
+    {
+        pinButton.SetIconSprite(pin ? pinnedSprite : notPinnedSprite);
+    }
+
+    public Button GetPinButton()
+    {
+        return pinButton;
+    }
+    #endregion Pin
 
 #if UNITY_EDITOR
     protected override void OnValidate()
