@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 public class ToggleButtonGroup : MonoBehaviour
 {
-    List<ToggleButton> _toggles = new List<ToggleButton>();
+    [SerializeField] List<ToggleButton> _toggles = new List<ToggleButton>();
     ToggleButton _currentToggle;
     ToggleButton _lastToggle = null;
     public UnityEvent NewToggledButton = new UnityEvent();
@@ -42,7 +42,7 @@ public class ToggleButtonGroup : MonoBehaviour
         {
             if (_lastToggle.GetInstanceID() == toggle.GetInstanceID())
             {
-                //Debug.Log("Uncheked");
+                Debug.Log("Uncheked");
                 _currentToggle = null;
                 _lastToggle = null;
                 NewToggledButton.Invoke();

@@ -141,7 +141,7 @@ public class UIDictionnary : MonoBehaviour
 
     static private string vocabImagesFolder;
     static private string usedVocabImagesFolder;
-
+    public static UIDictionnary Instance { get; private set; }
     [SerializeField] private TMP_InputField searchField;
 
     [Header("Vocabulary")]
@@ -182,6 +182,7 @@ public class UIDictionnary : MonoBehaviour
     void Start()
     {
         InitPath();
+        Instance = this;
 
         InitializeVocabulary();
 
@@ -306,7 +307,7 @@ public class UIDictionnary : MonoBehaviour
     #endregion Init
 
     #region Show in dictionnary
-    private void OpenVocabularyPage(int index)
+    public void OpenVocabularyPage(int index)
     {
         if (index == currentVocab) { return; }
 

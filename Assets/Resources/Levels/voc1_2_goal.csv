@@ -1,11 +1,11 @@
-Display,Description, goals
-火曜日,火曜日,10
-STOP,Week_4,STOP
-水曜日,水曜日,10
-木曜日,木曜日,10
-金曜日,金曜日,10
-土曜日,土曜日,10
-STOP,Week_14,STOP
-月曜日,月曜日,10
-日曜日,日曜日,10
-STOP,Week_19,STOP
+Display,Description, goals,id
+火曜日,火曜日,10,266
+STOP,Week_4,STOP,STOP
+水曜日,水曜日,10,267
+木曜日,木曜日,10,268
+金曜日,金曜日,10,269
+土曜日,土曜日,10,270
+STOP,Week_14,STOP,STOP
+月曜日,月曜日,10,265
+日曜日,日曜日,10,271
+STOP,Week_19,STOP,STOP

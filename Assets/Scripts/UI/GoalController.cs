@@ -17,6 +17,7 @@ public class GoalController : MonoBehaviour
 
     struct goal
     {
+        public int id;
         public string display;
         public string description;
         public int count;
@@ -30,6 +31,7 @@ public class GoalController : MonoBehaviour
     [SerializeField] GameObject dialoguePanel;
     [SerializeField] Story story;
     [SerializeField] PanelManger panelManger;
+    [SerializeField] GameObject dictionaryPanel;
 
     // Start is called before the first frame update
     void Start()
@@ -57,7 +59,9 @@ public class GoalController : MonoBehaviour
     {
         GameObject go = Instantiate(prefab, transform);
         IndividualGoalController igc = go.GetComponent<IndividualGoalController>();
-        igc.Setup(goal.display,goal.description,goal.count,goal.isStop);
+        igc.panelManager = panelManger;
+        igc.dictionaryPanel = dictionaryPanel;
+        igc.Setup(goal.id,goal.display,goal.description,goal.count,goal.isStop);
         displayedGoals.Add(goal.description,igc);
     }
 
@@ -66,9 +70,8 @@ public class GoalController : MonoBehaviour
         string rawData = System.IO.File.ReadAllText(levelsPrefabFolder + path + ".csv");
         rawData = rawData.Replace("\r", "");
         string[] rawDataArray = rawData.Split(new string[] { ",", "\n" }, System.StringSplitOptions.RemoveEmptyEntries);
-
         goals.Add(new List<goal>());
-        for (int i = 3; i < rawDataArray.Length; i += 3)
+        for (int i = 4; i < rawDataArray.Length; i += 4)
         {
             if (rawDataArray[i] == "STOP")
             {
@@ -76,7 +79,7 @@ public class GoalController : MonoBehaviour
                 goals.Add(new List<goal>());
                 continue;
             }
-            goals[goals.Count-1].Add(new goal { display = rawDataArray[i], description =rawDataArray[i+1], count = int.Parse(rawDataArray[i+2]) });
+            goals[goals.Count-1].Add(new goal { display = rawDataArray[i], description =rawDataArray[i+1], count = int.Parse(rawDataArray[i+2]), id = int.Parse(rawDataArray[i+3])});
             
         }
     }

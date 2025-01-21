@@ -35,22 +35,16 @@ public class PanelWrapper
 
 public class LevelSelection : MonoBehaviour
 {
-    [SerializeField] private CenteredGridLayout levelButtonLayout;
-    [SerializeField] private GameObject levelToggleButtonPrefab;
     [SerializeField] private ToggleButtonGroup levelToggleGroup;
-    [SerializeField] private Vector2 spacing;
 
     [Header("Level Description")]
     [SerializeField] private TMP_Text levelDescription;
 
-    [Header("Panel Data")]
-    [SerializeField] private TMP_Text panelName;
-    [SerializeField] private TMP_Text panelDescription;
-
     [Header("Navigation Buttons")]
-    [SerializeField] private Button leftButton;
-    [SerializeField] private Button rightButton;
     [SerializeField] private Button playButton;
+
+    [Header("Panels")]
+    [SerializeField] private List<LevelPanelController> panelObjectList;
 
     private int maxPanelNumber = 1;
     private int selectedPanel = 0;
@@ -59,26 +53,12 @@ public class LevelSelection : MonoBehaviour
     private PanelWrapper wrapper = new PanelWrapper();
     private List<Panel> panelList = new List<Panel>();
 
-    private List<ToggleButton > toggleButtonList = new List<ToggleButton>();
-
     #region Start
     private void Start()
     {
         panelList = ReadLevelsData();
-
-        if (panelList.Count == 1)
-        {
-            ToggleLeftButton(false);
-            ToggleRightButton(false);
-            TogglePlayButton(false);
-        }
-        else
-        {
-            ToggleLeftButton(false);
-            ToggleRightButton(true);
-            TogglePlayButton(false);
-        }
-        
+        WriteLevelsData();       
+        TogglePlayButton(false);
     }
 
     private void OnEnable()
@@ -92,6 +72,7 @@ public class LevelSelection : MonoBehaviour
     }
     #endregion
 
+    #region Initialize data
     private List<Panel> ReadLevelsData()
     {
         string json = File.ReadAllText(levelsDataPath);
@@ -104,98 +85,21 @@ public class LevelSelection : MonoBehaviour
         return wrapper.panelList;
     }
 
-    public void LoadSelectedPanel()
+    private void WriteLevelsData()
     {
-        ClearButtonLayout();
-
-        Panel panel = panelList[selectedPanel];
-
-        panelName.text = panel.name;
-        panelDescription.text = panel.description;
-
-        foreach (Level level in panel.levelList)
+        for (int i = 0; i < panelList.Count; i++)
         {
-            GameObject toggleButton = Instantiate(levelToggleButtonPrefab);
-            ToggleButton toggleButtonComponent = toggleButton.GetComponent<ToggleButton>();
+            panelObjectList[i].SetPanelName(panelList[i].name);
+            panelObjectList[i].SetPanelDescription(panelList[i].description);
 
-            toggleButtonComponent._group = levelToggleGroup;
-
-            LevelButton levelButton = toggleButton.GetComponent<LevelButton>();
-
-            levelButton.SetName(level.name);
-            levelButton.SetDescription(level.description);
-            levelButton.SetMap(level.map);
-            levelButton.SetGoal(level.goal);
-            levelButton.SetDialogue(level.dialogue);
-
-            toggleButtonList.Add(toggleButton.GetComponent<ToggleButton>());
+            panelObjectList[i].SetButtons(panelList[i].levelList);
         }
-        levelButtonLayout.SetSpacing(spacing);
-        levelButtonLayout.AddItems(toggleButtonList);
-
     }
-
-    public void SwitchPanel(int nextPanel)
-    {
-        selectedPanel += nextPanel;
-
-        if (selectedPanel > 0)
-        {
-            ToggleLeftButton(true);
-        }
-
-        if (selectedPanel >= maxPanelNumber - 1)
-        {
-            ToggleRightButton(false);
-            selectedPanel = maxPanelNumber - 1;
-        }
-
-        if (selectedPanel < maxPanelNumber - 1)
-        {
-            ToggleRightButton(true);
-        }
-
-        if (selectedPanel <= 0)
-        {
-            ToggleLeftButton(false);
-            selectedPanel = 0;
-        }
-
-        TogglePlayButton(false);
-        ClearLevelDescription();
-        LoadSelectedPanel();
-    }
-
-    private void ClearButtonLayout()
-    {
-        foreach (Transform child in levelButtonLayout.transform)
-        {
-            foreach(Transform child2 in child)
-            {
-                if (child2.name.Contains("Level Toggle"))
-                {
-                    //Destroy(child2.GetComponent<LevelButton>());
-                    Destroy(child2.gameObject);
-                }
-            }
-        }
-        toggleButtonList.Clear();
-        levelToggleGroup.ClearList();
-    }
+    #endregion
 
     private void ClearLevelDescription()
     {
         levelDescription.text = string.Empty;
-    }
-
-    private void ToggleLeftButton(bool toggle)
-    {
-        leftButton.interactable = toggle;
-    }
-
-    private void ToggleRightButton(bool toggle)
-    {
-        rightButton.interactable = toggle;
     }
 
     public void QuitApp()
@@ -212,7 +116,7 @@ public class LevelSelection : MonoBehaviour
     public void OnToggleButtonChange()
     {
         ToggleButton currentToggle = levelToggleGroup.GetCurrentToggledButton();
-        //Debug.Log(currentToggle.name);
+
 
         if (currentToggle == null)
         {
