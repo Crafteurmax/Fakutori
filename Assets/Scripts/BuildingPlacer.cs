@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -31,6 +30,7 @@ public class BuildingPlacer : MonoBehaviour
     private bool enableRemoval = false;
     private bool isLeftPress = false;
 
+    #region Start
     //Initialize an instance of History with the building placer
     private void Start()
     {
@@ -46,18 +46,32 @@ public class BuildingPlacer : MonoBehaviour
     {
         selectionUI.NewCurrentBuildingType.RemoveListener(NewBuildingSelected);
     }
+    #endregion
 
+    #region Event listner
     private void NewBuildingSelected()
     {
         buildingType = selectionUI.GetCurrentBuildingType();
         tileIndicator.ChangeIndicator(buildingType);
+
+        if (buildingType != Building.BuildingType.None)
+        {
+            if (!enablePlacement)
+            {
+                EnablePlacement();
+            }
+        }
+        else
+        {
+            DisablePlacement();
+        }
     }
+    #endregion
 
     #region Enable / disable placement
     private void EnablePlacement()
     {
         tileIndicator.ShowMouseIndicator();
-        tileIndicator.UpdateMouseIndicator();
         enablePlacement = true;
     }
 
@@ -71,7 +85,6 @@ public class BuildingPlacer : MonoBehaviour
     private void EnableRemoval()
     {
         tileIndicator.ShowMouseIndicator();
-        tileIndicator.UpdateMouseIndicator();
         tileIndicator.RemoveIndicator();
         if (selectionPanel != null) { selectionPanel.tag = PanelManger.noEscape; }
         enableRemoval = true;
@@ -80,8 +93,13 @@ public class BuildingPlacer : MonoBehaviour
     private void DisableRemoval()
     {
         tileIndicator.HideMouseIndicator();
-        if (selectionPanel != null) { selectionPanel.tag = PanelManger.Untagged; }
+        if (selectionPanel != null && !enablePlacement) { selectionPanel.tag = PanelManger.Untagged; }
         enableRemoval = false;
+        if (enablePlacement)
+        {
+            tileIndicator.ShowMouseIndicator();
+            tileIndicator.ChangeIndicator(buildingType);
+        }
     }
 
     public void DisableRemoval(InputAction.CallbackContext context)
@@ -185,7 +203,6 @@ public class BuildingPlacer : MonoBehaviour
         }
         else
         {
-            UnityEngine.Debug.Log("Buildding of type " + aBuildingType + " can't be placed here");
             return false;
         }
     }
@@ -223,14 +240,6 @@ public class BuildingPlacer : MonoBehaviour
         }
         return true;
     }
-
-    private static readonly HashSet<Building.BuildingType> oneByTwoBuildingsName = new HashSet<Building.BuildingType>
-    {
-        Building.BuildingType.Splitter,
-        Building.BuildingType.Concatenator,
-        Building.BuildingType.Exchangificator,
-        Building.BuildingType.Troncator,
-    };
 
     public void RemoveBuildingAtPosition(Vector3Int aTilePosition)
     {
@@ -277,32 +286,32 @@ public class BuildingPlacer : MonoBehaviour
         //buildingType = selectionUI.GetCurrentBuildingType();
         //tileIndicator.ChangeIndicator(buildingType);
 
-        if (buildingType != Building.BuildingType.None)
+        //if (buildingType != Building.BuildingType.None)
+        //{
+        //    if (!enableRemoval) EnablePlacement();
+        //    else
+        //    {
+        //        DisablePlacement();
+        //        EnableRemoval();
+        //    }
+        //}
+        //else 
+        //{
+        //    if (enableRemoval) EnableRemoval();
+        //    else
+        //    {
+        //        DisablePlacement();
+        //        DisableRemoval();
+        //    }
+        //}
+
+        if (enableRemoval || enablePlacement)
         {
-            if (!enableRemoval) EnablePlacement();
-            else
-            {
-                DisablePlacement();
-                EnableRemoval();
-            }
-        }
-        else 
-        {
-            if (enableRemoval) EnableRemoval();
-            else
-            {
-                DisablePlacement();
-                DisableRemoval();
-            }
+            tileIndicator.UpdateMouseIndicator();
         }
 
-        if (isLeftPress && enablePlacement)
-        {
-            Vector3Int tilePosition = BuildingManager.Instance.buildingTilemap.WorldToCell(tileIndicator.getLastPosition());
-            if (PlaceBuildingAtPosition(buildingType, tilePosition, tileIndicator.transform.rotation))
-                History.Instance.AddToHistory(buildingType, tilePosition, tileIndicator.transform.rotation, true);
-        }
-        else if (isLeftPress && enableRemoval)
+        
+        if (isLeftPress && enableRemoval)
         {
             Vector3Int tilePosition = BuildingManager.Instance.buildingTilemap.WorldToCell(tileIndicator.getLastPosition());
             BuildingTile buildingTile = BuildingManager.Instance.buildingTilemap.GetTile<BuildingTile>(tilePosition);
@@ -313,6 +322,12 @@ public class BuildingPlacer : MonoBehaviour
                 RemoveBuildingAtPosition(tilePosition);
                 History.Instance.AddToHistory(removedBuildingType, tilePosition, removedBuildingRotation, false);
             }
+        }
+        else if(isLeftPress && enablePlacement)
+        {
+            Vector3Int tilePosition = BuildingManager.Instance.buildingTilemap.WorldToCell(tileIndicator.getLastPosition());
+            if (PlaceBuildingAtPosition(buildingType, tilePosition, tileIndicator.transform.rotation))
+                History.Instance.AddToHistory(buildingType, tilePosition, tileIndicator.transform.rotation, true);
         }
     }
 }

@@ -131,7 +131,7 @@ public class SelectionUI : MonoBehaviour
 
         button.SetIconSprite(buildingButton.sprite);
 
-        Debug.Log(buildingButton.buildingType.ToString());
+        //Debug.Log(buildingButton.buildingType.ToString());
         button.gameObject.GetComponent<BuildingButtonHover>().SetHoverText(buildingButton.buildingType.ToString());
 
         button.onClick.AddListener(delegate { SetCurrentBuildingType(buildingButton.buildingType, new Vector2Int(categoryIndex, buildingIndex)); });

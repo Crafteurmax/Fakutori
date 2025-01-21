@@ -6,8 +6,8 @@ using UnityEngine.InputSystem.Composites;
 
 public class TileIndicator : MonoBehaviour
 {
-    [SerializeField] private GameObject model;
     [SerializeField] private List<GameObject> previewModels;
+    [SerializeField] private GameObject model;
 
     [SerializeField] private LayerMask placementMask;
 
@@ -40,12 +40,12 @@ public class TileIndicator : MonoBehaviour
 
     public void ShowMouseIndicator()
     {
-        gameObject.SetActive(true);
+        model.SetActive(true);
     }
 
     public void HideMouseIndicator()
     {
-        gameObject.SetActive(false);
+        model.SetActive(false);
     }
 
     public void ChangeIndicator(Building.BuildingType newIndicatorType)
@@ -53,14 +53,20 @@ public class TileIndicator : MonoBehaviour
         if (newIndicatorType != Building.BuildingType.None)
         {
             Destroy(model);
-            model = Instantiate(previewModels[(int)newIndicatorType], this.transform);
+            model = Instantiate(previewModels[(int)newIndicatorType], this.transform.position, this.transform.rotation, this.transform.parent);
         }
     }
 
     public void RemoveIndicator()
     {
         Destroy(model);
-        model = Instantiate(previewModels[0], this.transform);
+        model = Instantiate(previewModels[0], this.transform.parent);
+    }
+
+    private void Update()
+    {
+        model.transform.position = this.transform.position;
+        model.transform.rotation = this.transform.rotation;
     }
 
     #region Getter

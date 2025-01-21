@@ -12,6 +12,7 @@ public class KanjificatorOutputSelection : MonoBehaviour
     [SerializeField] private List<Button> choiceButtonList;
     [SerializeField] private int numberOfChoice = 2;
     [SerializeField] private int maxButtonNumber = 5;
+    [SerializeField] private GameObject centerPoint;
 
     private Kanjificator requestor;
 
@@ -68,6 +69,10 @@ public class KanjificatorOutputSelection : MonoBehaviour
     public void TogglePanel(bool enabled)
     {
         kanjiSelectionPanel.SetActive(enabled);
+        if (enabled)
+        {
+            centerPoint.transform.position = requestor.transform.position;
+        }
     }
 
     public void SendSelectedOutput(int index)

@@ -45,7 +45,6 @@ public class Kanjificator : Factory
 
                     stringOutput = string.Empty;
 
-                    Debug.Log(kanjiOuput.Count);
                     outputSelection.SetButtons(kanjiOuput.Count);
                     List<string> choices = new List<string>();
                     for (int i = 0; i < kanjiOuput.Count; i++)
@@ -57,7 +56,6 @@ public class Kanjificator : Factory
                     outputSelection.TogglePanel(true);
 
                     while (stringOutput == string.Empty) yield return null;
-                    Debug.Log(stringOutput);
                 }
                 else if (kanjiOuput.Count == 1)
                 {
@@ -73,19 +71,6 @@ public class Kanjificator : Factory
                     else symbole.type = Item.SymbolType.Kanji;
                     characters.Add(symbole);
                 }
-
-                string debugMessage = "Key :";
-                for (int i = 0; i < cachedInput.Count; i++)
-                {
-                    debugMessage += " " + cachedInput[i].ToString();
-                }
-                debugMessage += " Values:";
-                for (int i = 0; i < characters.Count; i++)
-                {
-                    debugMessage += " " + characters[i].character.ToString();
-                    debugMessage += " " + characters[i].type.ToString();
-                }
-                Debug.Log(debugMessage);
                 AddToCache(cachedInput, characters);
             }
             else
