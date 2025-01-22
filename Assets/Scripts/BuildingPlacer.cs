@@ -1,11 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using UnityEngine.Tilemaps;
-using UnityEngine.UI;
 
 public class BuildingPlacer : MonoBehaviour
 {
@@ -24,11 +23,20 @@ public class BuildingPlacer : MonoBehaviour
     [SerializeField] private BuildingDatabaseSO buildingDatabaseSO;
 
     [SerializeField] private GameObject fillerPrefab;
+
+    [SerializeField] private LayerMask placementMask;
     
     // Logic to know in which state we are
     private bool enablePlacement = false;
     private bool enableRemoval = false;
     private bool isLeftPress = false;
+    private bool multiSelection = false;
+
+    private Vector3Int firstPosition = Vector3Int.zero;
+    private Vector3Int secondPosition = Vector3Int.zero;
+    private Vector3 lastPosition = Vector3Int.zero;
+
+    private List<Tuple<Vector3Int, BuildingTile>> selectedBuildings = new List<Tuple<Vector3Int, BuildingTile>>();
 
     #region Start
     //Initialize an instance of History with the building placer
@@ -125,16 +133,76 @@ public class BuildingPlacer : MonoBehaviour
         isLeftPress = (context.ReadValue<float>() >= 1) && !EventSystem.current.IsPointerOverGameObject();
     }
 
+    public void OnMultiSelection(InputAction.CallbackContext context)
+    {
+        if (!enablePlacement && !enableRemoval)
+        {
+            Vector3 mousPosition = Input.mousePosition;
+            mousPosition.z = Camera.main.nearClipPlane;
+            Ray ray = Camera.main.ScreenPointToRay(mousPosition);
+
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 1000, placementMask))
+            {
+                lastPosition = hit.point;
+            }
+
+            if (context.started)
+            {
+                firstPosition = BuildingManager.Instance.buildingTilemap.WorldToCell(lastPosition);
+                //Debug.Log("First position: " + firstPosition);
+            }
+
+            if (context.canceled)
+            {
+                secondPosition = BuildingManager.Instance.buildingTilemap.WorldToCell(lastPosition);
+                //Debug.Log("Second position: " + secondPosition);
+                GetBuildingInSelection();
+            }
+        }
+    }
+
+    public void MultiDeletPress()
+    {
+        List<History.buildingAction> actionList = new List<History.buildingAction>();
+
+        foreach(var building in selectedBuildings)
+        {
+            RemoveBuildingAtPosition(building.Item1);
+            if ((int)building.Item2.building.GetBuildingType() >= 8 && (int)building.Item2.building.GetBuildingType() < 17)
+            {
+                Dictionary<List<string>, List<Item.Symbol>> cache = building.Item2.building.GetComponent<Factory>().GetFactoryCache();
+                History.buildingAction newAction = new History.buildingAction(building.Item2.building.GetBuildingType(), building.Item1, building.Item2.building.transform.rotation, false, cache);
+                actionList.Add(newAction);
+            }
+            else
+            {
+                History.buildingAction newAction = new History.buildingAction(building.Item2.building.GetBuildingType(), building.Item1, building.Item2.building.transform.rotation, false);
+                actionList.Add(newAction);
+            }
+        }
+        History.Instance.AddListToHistory(actionList);
+        selectedBuildings.Clear();
+        multiSelection = false;
+    }
+
     public void OnRemovePress(InputAction.CallbackContext context)
     {
         if(!context.performed) return;
 
-        if (!enableRemoval)
+        if (!enableRemoval && selectedBuildings.Count == 0)
         {
             EnableRemoval();
             tileIndicator.ChangeIndicator(Building.BuildingType.None);
-        } 
-        else DisableRemoval();
+        }
+        else if (!enableRemoval && selectedBuildings.Count > 0)
+        {
+            MultiDeletPress();
+        }
+        else
+        {
+            DisableRemoval();
+        }
     }
 
     public void OnUndoPressed(InputAction.CallbackContext context)
@@ -152,7 +220,6 @@ public class BuildingPlacer : MonoBehaviour
             History.Instance.Redo();
         }
     }
-
     #endregion
 
     #region Building placement / removal
@@ -277,6 +344,32 @@ public class BuildingPlacer : MonoBehaviour
     }
     #endregion
 
+    public void GetBuildingInSelection()
+    {
+        multiSelection = true;
+
+        if (firstPosition != Vector3Int.zero && secondPosition != Vector3Int.zero)
+        {
+            for (int i = Mathf.Min(firstPosition.x, secondPosition.x); i < Mathf.Max(firstPosition.x, secondPosition.x); i++)
+            {
+                for (int j = Mathf.Min(firstPosition.y, secondPosition.y); j < Mathf.Max(firstPosition.y, secondPosition.y); j++)
+                {
+                    Vector3Int currentCoords = new Vector3Int(i, j, 0);
+                    BuildingTile currentTile = BuildingManager.Instance.buildingTilemap.GetTile<BuildingTile>(currentCoords);
+                    if (currentTile != null)
+                    {
+                        if (currentTile.building.GetBuildingType() != Building.BuildingType.Filler)
+                        {
+                            //Debug.Log("Building: " + currentTile.building.GetType().ToString());
+                            selectedBuildings.Add(Tuple.Create(currentCoords, currentTile));
+                            currentTile.building.GetComponent<Outline>().OutlineColor = Color.red;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     public bool IsRemovalEnabled()
     {
         return enableRemoval;
@@ -319,8 +412,17 @@ public class BuildingPlacer : MonoBehaviour
             {
                 Building.BuildingType removedBuildingType = buildingTile.building.GetBuildingType();
                 Quaternion removedBuildingRotation = buildingTile.building.transform.rotation;
+
+                if ((int)removedBuildingType >= 8 &&  (int)removedBuildingType < 17)
+                {
+                    Dictionary<List<string>, List<Item.Symbol>> cache = buildingTile.building.GetComponent<Factory>().GetFactoryCache();
+                    History.Instance.AddToHistory(removedBuildingType, tilePosition, removedBuildingRotation, false, cache); 
+                }
+                else
+                {
+                    History.Instance.AddToHistory(removedBuildingType, tilePosition, removedBuildingRotation, false);
+                }
                 RemoveBuildingAtPosition(tilePosition);
-                History.Instance.AddToHistory(removedBuildingType, tilePosition, removedBuildingRotation, false);
             }
         }
         else if(isLeftPress && enablePlacement)
