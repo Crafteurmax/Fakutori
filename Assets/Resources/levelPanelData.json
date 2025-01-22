@@ -14,7 +14,7 @@
 				},
 				{
 					"name": "1.2",
-					"description": "Learn how every day of the week",
+					"description": "Learn every day of the week",
 					"map": "voc1",
 					"goal": "voc1_2",
 					"dialogue": "Week_1"
@@ -25,6 +25,20 @@
 					"map": "voc1",
 					"goal": "voc1_3",
 					"dialogue": "OtherVocab_1"
+				},
+				{
+					"name": "1.4",
+					"description": "Learn how to say that something is or isn't something",
+					"map": "voc1",
+					"goal": "voc1_4",
+					"dialogue": "Desu_1"
+				},
+				{
+					"name": "1.5",
+					"description": "Learn how to ask if something is or isn't something",
+					"map": "voc1",
+					"goal": "voc1_5",
+					"dialogue": "Desuka_1"
 				}
 			]
 		}
