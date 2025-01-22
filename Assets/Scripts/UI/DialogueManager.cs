@@ -65,7 +65,7 @@ public class DialogueManager : MonoBehaviour
         {
             if (currentNode.HasTag("END"))
             {
-                Debug.Log("End of dialogue");
+                //Debug.Log("End of dialogue");
                 worldSaver.WriteData();
                 panelManger.TogglePanel(victoryPanel);
                 return;

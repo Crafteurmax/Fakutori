@@ -38,13 +38,13 @@ Fakutori
 :: Belt_1 [N1P0N] {"position":"50,1450","size":"100,100"}
 (image: "belt")
 If you want to transport a piece of paper from A to B, then the convoyer belt is your best friend.
-[[Explanation_4]] 
+[[Explanation_4]]
 
 
 :: Concatenator_1 [N1P0N TODO] {"position":"300,1450","size":"100,100"}
 (image: "concatenator")
 The Concatenator will combine two pieces of paper into a single one by adding them one after the other.
-[[Explanation_4]] 
+[[Explanation_4]]
 
 
 :: Desu_1 [N1P0N] {"position":"2700,100","size":"100,100"}
@@ -53,14 +53,131 @@ Welcome back !!! You still remember what we've done last time right ?
 [[no->RecalVocab1_1]]
 
 
+:: Desu_10 [N1P0N OwO] {"position":"3300,100","size":"100,100"}
+Hon hon hon, alors tu es francais ? Tu aime les baguettes aux fromages  ?
+[[Desu_11]]
+
+
+:: Desu_11 [N1P0N T_T] {"position":"3300,250","size":"100,100"}
+I hope you know how to speak french, if not my joke kinda flop...
+[[Desu_12]]
+
+
+
+:: Desu_12 [N1P0N] {"position":"3300,400","size":"100,100"}
+But it could be usefull to learn how to say that "X is not Y". Thanks for us it's very simple to do so in japanese.
+[[Desu_13]] 
+
+
+:: Desu_13 [N1P0N] {"position":"3300,550","size":"100,100"}
+In order to use the negative form of です, you simply transforme です into ではありません. ONCE AGAIN は is prononce like わ.
+[[Desu_14]]
+
+
+:: Desu_14 [N1P0N] {"position":"3300,700","size":"100,100"}
+If it help you can visualise it as three distinctive part, で, は, and ありません. で and は are once again particules (wich is why は is pronounced わ)
+[[Desu_15]] 
+
+
+:: Desu_15 [N1P0N] {"position":"3300,850","size":"100,100"}
+Try to write "Today is not Monday", "I’m not Chloé" and "I’m not  French".
+
+
+:: Desu_16 [N1P0N] {"position":"3500,100","size":"100,100"}
+Good job !!!! I think we can call it a day.
+[[Desu_17]] 
+
+
+:: Desu_17 [N1P0N] {"position":"3500,250","size":"100,100"}
+You now know how to say that something is or isn't something else. This is very use full in everyday life. If you want to be more concise, you can omit the subject of the senstence BUT it need to be implicite.
+[[Desu_18]] 
+
+
+:: Desu_18 [N1P0N END] {"position":"3500,400","size":"100,100"}
+As an exemple, when I describe myself, I can omit to say "私は". So, instead saying "私はN1P0Nです", I only say "N1P0Nです". But any way, time to say goodbye, see you tomorrow.
+
+
 :: Desu_2 [N1P0N] {"position":"2700,250","size":"100,100"}
+The “desu” form is used for everything and can be translated by “be”. X is Y is translated in XはYです. 
+[[Desu_3]] 
+
+
+
+:: Desu_3 [N1P0N] {"position":"2700,400","size":"100,100"}
+(set: $redo to "Desu_3")
+In this situation ‘は’, is called a particle, it’s here to indicate the grammatical structure of the sentence, the ‘は’ is used to identify the topic of a sentence.
+[[Desu_4]] 
+
+
+:: Desu_4 [N1P0N] {"position":"2700,550","size":"100,100"}
+But be carefull !!!! When は is used as a particule, it's pronnonced like a わ. This tipe of exeptions are common for particules but now is not the time to talk about it.
+[[Desu_5]]
+
+
+:: Desu_5 [N1P0N] {"position":"2700,700","size":"100,100"}
+Try to say "Today is Monday" and "Today is Wednesday".
+
+
+:: Desu_6 [N1P0N] {"position":"3100,100","size":"100,100"}
+Nice work !! When you want to write an non-japanese name, you juste phoneticaly translate to japanese and use katakana to write them. Here you can write Chloé as "クロエ" and Nina as ニナ.
+[[Desu_7]]
+
+
+
+:: Desu_7 [N1P0N] {"position":"3100,250","size":"100,100"}
+Also try to write "I’m French" and "I’m Canadian", like names, most country are phoneticaly translated to japanese and then writen in katakana, as an exemple France is writen フランス and Canada is written カナダ.
+[[Desu_8]] 
+
+
+:: Desu_8 [N1P0N] {"position":"3100,400","size":"100,100"}
+As seen yesterday, you can then add 人 after the country's name to talk about it habitants, like french people are written フランス人.
+[[Desu_9]]
+
+
+:: Desu_9 [N1P0N] {"position":"3100,550","size":"100,100"}
+So, without destroying what you'v already done, try to write "I'm Chloé", "I'm Nina", "I’m French" and "I’m Canadian"
+
+
+:: Desuka_1 [N1P0N] {"position":"3700,100","size":"100,100"}
+Welcome back !!! I hope you didn't forget me .
+[[Desuka_2]]
+
+
+:: Desuka_2 [N1P0N] {"position":"3700,250","size":"100,100"}
+Let's now learn how to ASK if "X is Y" or if "X isn't Y".
+[[Desuka_3]] 
+
+
+:: Desuka_3 [N1P0N] {"position":"3700,400","size":"100,100"}
+This is soooooo easy, you only need one hiragana.
+[[Desuka_4]]
+
+
+:: Desuka_4 [N1P0N] {"position":"3700,550","size":"100,100"}
+Just take your sentence and add か at the end of your sentence. So if you want to ask "is X Y ?", just say "XはYでか" and if you want to say "isn't X Y ?" just say "XはYではありませんか"
+[[Desuka_5]] 
+
+
+:: Desuka_5 [N1P0N] {"position":"3700,700","size":"100,100"}
+So let's make it a reality. Try to write : "Is today Monday ?"
+"isn't Today Monday ?" "Am I not Chloé ?" "Am I Chloé ?" "Am I French ?" and "Am I not French ?"
+
+ 
+
+
+:: Desuka_6 [N1P0N] {"position":"3900,100","size":"100,100"}
+Well done ! You've learn so much this, it's already deen 5 days that you work here. I hope that you can see the progresse that you've got on the way.
+[[Desuka_7]] 
+
+
+:: Desuka_7 [N1P0N END] {"position":"3900,250","size":"100,100"}
 
 
 
 :: Echangificator_1 [N1P0N] {"position":"1700,1450","size":"100,100"}
 (image: "echangificator")
 The Echangificator can be used to swap the vowel of two kanas.
-[[Explanation_7]] 
+[[Explanation_7]]
 
 
 :: Explanation_1 [N1P0N OnO] {"position":"300,850","size":"100,100"}
@@ -72,13 +189,13 @@ Your job is simple, just do what I say !! \(`0´)/
 :: Explanation_2 [N1P0N] {"position":"300,1000","size":"100,100"}
 On the ground you can see ''Hiraganas'', you can create a piece of paper with a hiragana written on it by placing an ''Extractor'' just above it.
 
-[[Explanation_3]] 
+[[Explanation_3]]
 
 
 :: Explanation_3 [N1P0N] {"position":"300,1150","size":"100,100"}
 Your goal is to collect those kanas to produce more complex words or sentences, preferably in an efficient way, by creating assembly lines using a variety of machines.
 
-[[Explanation_4]] 
+[[Explanation_4]]
 
 
 :: Explanation_4 [N1P0N ?_?] {"position":"300,1300","size":"100,100"}
@@ -89,14 +206,14 @@ Do you need some information about those machines ?
 [[the concatenator->Concatenator_1]]
 [[the kanjificator->Kanjificator_1]]
 [[the vending machine->Vendor_1]]
-[[no thanks->Explanation_5]] 
+[[no thanks->Explanation_5]]
 
 
 :: Explanation_5 [N1P0N OwO] {"position":"500,1200","size":"100,100"}
 Do you want me to repeat this explanation ?
 
 [[yes->Explanation_1]] 
-[[no->Intro_5]] 
+[[no->Intro_5]]
 
 
 :: Explanation_6 [N1P0N ?_?] {"position":"1300,1300","size":"100,100"}
@@ -106,7 +223,7 @@ Do you need some information about those machines ?
 [[the tunnel->Tunnel_1]]
 [[the spliter->Spliter_1]]
 [[the troncator->Troncator_1]]
-[[no thanks->Week_13]] 
+[[no thanks->Week_13]]
 
 
 :: Explanation_7 [N1P0N] {"position":"1900,1300","size":"100,100"}
@@ -115,19 +232,19 @@ Do you need information about those machines ?
 [[the hiraganificator->Hiraganificaton_1]]
 [[the Katanificator->Katakanificator_1]]
 [[the maruificator->Maruificator_1]]
-[[no thanks->OtherVocab_8]] 
+[[no thanks->OtherVocab_8]]
 
 
 :: Extractor_1 [N1P0N] {"position":"175,1450","size":"100,100"}
 (image: "extractor")
 Place an extractor over a character tile to produce an unlimited amount of this character.
-[[Explanation_4]] 
+[[Explanation_4]]
 
 
 :: Hiraganificaton_1 [N1P0N] {"position":"1825,1450","size":"100,100"}
 (image: "hiraganificator")
 The Hiraganificator will let you transform a group a kanji or katakana into their corresponding hiragana.
-[[Explanation_7]] 
+[[Explanation_7]]
 
 
 :: Intro_0 {"position":"300,100","size":"100,100"}
@@ -171,7 +288,7 @@ Try to make the kanji 日, that can be written ”ひ”(hi) and the kanji 月, 
 
 :: Intro_6 [N1P0N O.O] {"position":"500,700","size":"100,100"}
 The first kanji, 日, means sun or day depending on the context and the second one, 月, means moon or month. A new sun every day and a new moon every month, easy to remember right ?
-[[Intro_7]] 
+[[Intro_7]]
 
 
 :: Intro_7 [N1P0N <3] {"position":"500,550","size":"100,100"}
@@ -185,13 +302,13 @@ Nice Job !!! Keep working like that and you will be employee of the month in no 
 
 :: Jour_10 [N1P0N OwO] {"position":"900,100","size":"100,100"}
 Very impressive !!! For a first day, you're doing amazing !!!!
-[[Jour_11]] 
+[[Jour_11]]
 
 
 :: Jour_11 [N1P0N =w=] {"position":"900,250","size":"100,100"}
 Let's call it a day, you will understand tomorrow why I made you learn those six kanji.
 And don't forget:
-[[Jour_12]] 
+[[Jour_12]]
 
 
 :: Jour_12 [N1P0N] {"position":"900,400","size":"100,100"}
@@ -206,17 +323,17 @@ The kanji for tree or wood, 木, that can be written き(ki).
 
 :: Jour_14 [N1P0N] {"position":"900,700","size":"100,100"}
 The kanji for gold, 金, that can be written きん(kin).
-[[Jour_15]] 
+[[Jour_15]]
 
 
 :: Jour_15 [N1P0N] {"position":"900,850","size":"100,100"}
 The kanji for soil, 土, that can be written つち(tsuchi).
-[[Jour_16]] 
+[[Jour_16]]
 
 
 :: Jour_16 [N1P0N] {"position":"900,1000","size":"100,100"}
- The kanji for sun or day, 日, can be written ”ひ”(hi) and the kanji for moon or month, 月, can be written "つき"(tsuki).
-[[Jour_17]] 
+The kanji for sun or day, 日, can be written ”ひ”(hi) and the kanji for moon or month, 月, can be written "つき"(tsuki).
+[[Jour_17]]
 
 
 :: Jour_17 [N1P0N END] {"position":"900,1150","size":"100,100"}
@@ -237,27 +354,27 @@ OK, so let's keep going, the fakutori must grow, right ?
 :: Jour_4 [N1P0N] {"position":"700,550","size":"100,100"}
 (set: $redo to "Jour_4")
 Try to make those kanji :
-[[Jour_5]] 
+[[Jour_5]]
 
 
 :: Jour_5 [N1P0N] {"position":"700,700","size":"100,100"}
 The kanji for water, 水, that can be written みず(mizu).
-[[Jour_6]] 
+[[Jour_6]]
 
 
 :: Jour_6 [N1P0N] {"position":"700,850","size":"100,100"}
 The kanji for tree or wood, 木, that can be written き(ki).
-[[Jour_7]] 
+[[Jour_7]]
 
 
 :: Jour_7 [N1P0N] {"position":"700,1000","size":"100,100"}
 The kanji for gold, 金, that can be written きん(kin).
-[[Jour_8]] 
+[[Jour_8]]
 
 
 :: Jour_8 [N1P0N] {"position":"700,1150","size":"100,100"}
 And finally the kanji for soil, 土, that can be written つち(tsuchi).
-[[Jour_9_1]] 
+[[Jour_9_1]]
 
 
 :: Jour_9_1 [N1P0N ?_?] {"position":"700,1300","size":"100,100"}
@@ -273,24 +390,24 @@ That's a bit more than last time but I'm sure you can do it !!! Don't forget tha
 :: Kanjificator_1 [N1P0N] {"position":"425,1450","size":"100,100"}
 (image: "kanjificator")
 The Kanjificator will find the kanji version of a group of hiragana.
-[[Kanjificator_2]] 
+[[Kanjificator_2]]
 
 
 :: Kanjificator_2 [N1P0N] {"position":"425,1600","size":"100,100"}
 If a group of hiragana can produce more than one Kanji, a pop up will open and ask which one you want to create. If you want to reset this selection, just destroy and rebuild the machine.
-[[Explanation_4]] 
+[[Explanation_4]]
 
 
 :: Katakanificator_1 [N1P0N] {"position":"1975,1450","size":"100,100"}
 (image: "katakanificator")
 The katakanificator will take a group of kanji or hiragana and transform them into their katana version.
-[[Explanation_7]] 
+[[Explanation_7]]
 
 
 :: Maruificator_1 [N1P0N] {"position":"2100,1450","size":"100,100"}
 (image: "maruificator")
 Sometime, you will find the need to alter a kana to sound different. The Maruificator will add a maru (literally a circle) to the provided kana.
-[[Explanation_7]] 
+[[Explanation_7]]
 
 
 :: OtherVocab_1 [N1P0N] {"position":"1900,100","size":"100,100"}
@@ -300,48 +417,48 @@ Ok final day of vocabulary, I hope you're not too sad about it.
 
 :: OtherVocab_10 [N1P0N] {"position":"2300,100","size":"100,100"}
 Nice Job, it's like you've always been doing this !!!
-[[OtherVocab_11]] 
+[[OtherVocab_11]]
 
 
 :: OtherVocab_11 [N1P0N] {"position":"2300,250","size":"100,100"}
 Do you remember when I said that there are different ways to read some kanjis ? I think it's time for me to explain you why.
-[[OtherVocab_12]] 
+[[OtherVocab_12]]
 
 
 :: OtherVocab_12 [N1P0N] {"position":"2300,400","size":"100,100"}
 For a long time, Japanese was only an oral language, Kanjis were imported by scholars at the end of the 4th century. Some japanese words already existed before importing this writing system and thus only gained a visual representation. The reading of those already existing words are called "Kun'yomi" (meaning "explanatory reading").
-[[OtherVocab_13]] 
+[[OtherVocab_13]]
 
 
 :: OtherVocab_13 [N1P0N] {"position":"2300,550","size":"100,100"}
 For words that were created after this period, Japanese use a simplified version of the chinese reading to match the way japanese syllabels are pronounced.
-[[OtherVocab_14]] 
+[[OtherVocab_14]]
 
 
 :: OtherVocab_14 [N1P0N] {"position":"2300,700","size":"100,100"}
 Let's take an exemple, 今 has three readings, one KUN reading, "いま", and two ON readings "コン" and "キン". 月 has three readings, one KUN reading, "つき", and two ON readings "ゲツ" and "ガツ". You don't need to memorise them, but sometimes you can find some patterns.
-[[OtherVocab_15]] 
+[[OtherVocab_15]]
 
 
 :: OtherVocab_15 [N1P0N] {"position":"2300,850","size":"100,100"}
 As a general rule of thumb, when a kanji is alone, you will probably use the KUN reading and when you use multiple kanjis for a word you will use the ON reading.
-[[OtherVocab_16]] 
+[[OtherVocab_16]]
 
 
 :: OtherVocab_16 [N1P0N] {"position":"2300,1000","size":"100,100"}
 Now you understand why 今日 is read きょう, probably because the word for "today" already existed before using a writing system. And 今月 is read "こんげつ" is only the ON reading of 今 and 月 !!!
-[[OtherVocab_17]] 
+[[OtherVocab_17]]
 
 
 :: OtherVocab_17 [N1P0N] {"position":"2300,1150","size":"100,100"}
 (set: $redo to "OtherVocab_17")
 But enough talking about etymology !!! Let's learn the last word of the day, you can't translate this one into english but it is a suffix that you add at the end of a country's name to describe the inhabitants of said country.
-[[OtherVocab_18]] 
+[[OtherVocab_18]]
 
 
 :: OtherVocab_18 [N1P0N] {"position":"2300,1300","size":"100,100"}
 This kanji is 人, which, in our case is read "じん"(jin), because we use the ON lecture. If you use this kanji alone, then you will read it using his KUN lecture, "ひと"(hito), which would mean a person, someone or a human.
-[[OtherVocab_19]] 
+[[OtherVocab_19]]
 
 
 :: OtherVocab_19 [N1P0N] {"position":"2300,1450","size":"100,100"}
@@ -350,12 +467,12 @@ Try to produce some 人 but using both the ON and KUN reading !!
 
 :: OtherVocab_2 [N1P0N X_X] {"position":"1900,250","size":"100,100"}
 Vocab is great, knowing how to use it is even better. But enough talking about you, let's talk about "me"
-[[OtherVocab_3]] 
+[[OtherVocab_3]]
 
 
 :: OtherVocab_20 [N1P0N \\o/] {"position":"2500,100","size":"100,100"}
 Nice you did it, and you've learned a lot along the way haven't you ?
-[[OtherVocab_21]] 
+[[OtherVocab_21]]
 
 
 :: OtherVocab_21 [N1P0N =w= END] {"position":"2500,250","size":"100,100"}
@@ -364,7 +481,7 @@ With all of that we are ready to learn some grammar !!! But for now, that's all 
 
 :: OtherVocab_3 [N1P0N] {"position":"1900,400","size":"100,100"}
 They are an infinite amount of way to translate "me" in japanese. It depends on your status, your gender, the relation you have with the personne you're talking to...
-[[OtherVocab_4]] 
+[[OtherVocab_4]]
 
 
 :: OtherVocab_4 [N1P0N] {"position":"1900,550","size":"100,100"}
@@ -375,24 +492,23 @@ But let's keep it simple and learn "わたし" (私 - watashi). It's the default
 
 :: OtherVocab_5 [N1P0N] {"position":"1900,700","size":"100,100"}
 Now is the time for "now", "いま" (今 - ima) represent at the same time the present time or something that will happen very soon. It's also very useful because if you write 今[SOMETHING], it means "this current SOMETHING".
-[[OtherVocab_6]] 
+[[OtherVocab_6]]
 
 
 :: OtherVocab_6 [N1P0N] {"position":"1900,850","size":"100,100"}
 As an exemple, 今日(きょう - kyou) means the current day, today or if you read it in a different way: these days, nowadays. And 今月 (こんげつ - kongetsu) means the current month, this month.
-[[OtherVocab_7]] 
+[[OtherVocab_7]]
 
 
 :: OtherVocab_7 [N1P0N] {"position":"1900,1000","size":"100,100"}
 It's not always the case but understanding the individual kanji that compose a word can be useful to translate it, but be aware that the meaning of a word is deeply connected to the culture of the country !!!
-[[OtherVocab_8]] 
+[[OtherVocab_8]]
 
 
 :: OtherVocab_8 [N1P0N] {"position":"1900,1150","size":"100,100"}
 Ok, I think it's time for you to learn the last few machines that you can use in your fakutori. Do you want me to explain them to you ?
 [[yes->Explanation_7]] 
-[[no->OtherVocab_9]] 
-
+[[no->OtherVocab_9]]
 
 
 :: OtherVocab_9 [N1P0N] {"position":"1700,1150","size":"100,100"}
@@ -400,48 +516,49 @@ Ok so let's get to work !!!
 
 
 :: RecalVocab1_1 [N1P0N TODO] {"position":"2900,250","size":"100,100"}
-
+TODO
+[[Desu_2]] 
 
 
 :: Spliter_1 [N1P0N] {"position":"1100,1450","size":"100,100"}
 (image: "spliter")
 The spliter can be helpful when you need to divide the paper transported by a belt into two different belts.
-[[Explanation_6]] 
+[[Explanation_6]]
 
 
 :: Tentenificator_1 [N1P0N] {"position":"900,1300","size":"100,100"}
 (image: "tentenificator")
 The tentenificator will add a ten-ten to the provided kana. This will change it's pronunciation and will let you create even more words.
-[[Jour_9_2]] 
+[[Jour_9_2]]
 
 
 :: Trash_1 [N1P0N] {"position":"1225,1450","size":"100,100"}
 (image: "trash")
 If you ever need to get rid of unwanted paper, just use the trash to dispose of it.
-[[Explanation_6]] 
+[[Explanation_6]]
 
 
 :: Troncator_1 [N1P0N] {"position":"1500,1450","size":"100,100"}
 (image: "troncator")
 When you want to transform a paper into its different characters, the Troncator is you friend. It will take one paper and separate the most right character into a standalone paper while also giving you the original paper back, without the removed character.
-[[Explanation_6]] 
+[[Explanation_6]]
 
 
 :: Tunnel_1 [N1P0N] {"position":"1375,1450","size":"100,100"}
 (image: "tunnel")
 In case you want to build a belt under some buildings, the tunnel is what you need. Place a tunnel input on a tile and tunnel output in front of it, no matter what, the paper will be transported from the input to the output.
-[[Tunnel_2]] 
+[[Tunnel_2]]
 
 
 :: Tunnel_2 [N1P0N] {"position":"1375,1600","size":"100,100"}
 Tunnel can also be used to transport a piece of paper very far away because, no matter the distance between two tunnels (up to 100 tile), its speed will be the same.
-[[Explanation_6]] 
+[[Explanation_6]]
 
 
 :: Vendor_1 [N1P0N] {"position":"550,1450","size":"100,100"}
 (image: "vendor")
 When you're happy with the paper that you have and want to complete the objective, give it to the vendor !!! This piece of paper will be sent and reviewed by upper management to complete your quota !!!
-[[Explanation_4]] 
+[[Explanation_4]]
 
 
 :: Week_1 [N1P0N $_$] {"position":"1100,100","size":"100,100"}
@@ -456,13 +573,13 @@ Saturday is read どようび (doyoubi) and written 土曜日. It is linked to S
 
 :: Week_11 [N1P0N :3] {"position":"1300,1000","size":"100,100"}
 Each time the construction of the word is the same [element] + 曜日. Try to use the assembly lines that you've already built to create those new words.
-[[Week_12]] 
+[[Week_12]]
 
 
 :: Week_12 [N1P0N ?_?] {"position":"1300,1150","size":"100,100"}
 Now that you seem at ease with your job, do you want me to explain how the other machines work ?
 [[yes->Explanation_6]] 
-[[no->Week_13]] 
+[[no->Week_13]]
 
 
 :: Week_13 [N1P0N \\o/] {"position":"1500,1150","size":"100,100"}
@@ -471,7 +588,7 @@ Ok so let's get to work !!!!
 
 :: Week_14 [N1P0N] {"position":"1500,100","size":"100,100"}
 Nice !!! You did it like a boss !!!!
-[[Week_15]] 
+[[Week_15]]
 
 
 :: Week_15 [N1P0N ?_?] {"position":"1500,250","size":"100,100"}
@@ -480,10 +597,9 @@ Now that you've done 火曜日, 水曜日, 木曜日, 金曜日 and 土曜日. C
 [[no->Week_16_2]]
 
 
-
 :: Week_16_1 [N1P0N >-<] {"position":"1425,400","size":"100,100"}
 If your response was 月曜日 for Monday and 日曜日 for Sunday then you're right !!!
-[[Week_17]] 
+[[Week_17]]
 
 
 :: Week_16_2 [N1P0N ?_?] {"position":"1575,400","size":"100,100"}
@@ -501,7 +617,7 @@ Sunday is the day of the sun, so it's 日曜日.
 :: Week_17 [N1P0N] {"position":"1500,700","size":"100,100"}
 (set: $redo to "Week_17")
 Now try to produce some 月曜日 and 日曜日.
-[[Week_18]] 
+[[Week_18]]
 
 
 :: Week_18 [N1P0N] {"position":"1500,850","size":"100,100"}
@@ -527,6 +643,10 @@ Let's call it a day, take a break and enjoy the progress that you've made. Like 
 Instead of creating it alone let's create the word for "Tuesday" instead. In Japanese, Tuesday is written 火曜日 and is read かようび(kayoubi).
 
 
+:: Week_3_1 [N1P0N] {"position":"1100,850","size":"100,100"}
+Now that you have 火曜日, use the troncator to separate them into 火 and 曜日, those part will be usefull for our next job !!!!
+
+
 :: Week_4 [N1P0N] {"position":"1300,100","size":"100,100"}
 Perfect !! One done, 6 more to go. But don't be afraid this is going to be easy. Like stealing a lollipop from a 6 years old, but without being mean to anybody <3.
 [[Week_5]]
@@ -540,13 +660,12 @@ Out of 7, 5 days come from the Chinese astrology. They represent the five chines
 
 :: Week_6 [N1P0N] {"position":"1300,400","size":"100,100"}
 So, Tuesday is read かようび(kayoubi) and written 火曜日. It is linked to Mars, the planet of fire(火).
-[[Week_7]] 
+[[Week_7]]
 
 
 :: Week_7 [N1P0N] {"position":"1300,550","size":"100,100"}
 Wednesday is read すいようび(suiyoubi) and written 水曜日. It is linked to Mercury, the planet of water(水).
-[[Week_8]] 
-
+[[Week_8]]
 
 
 :: Week_8 [N1P0N] {"position":"1150,650","size":"100,100"}
