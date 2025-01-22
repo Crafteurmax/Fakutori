@@ -10,9 +10,6 @@ public class Factory : Building
     [SerializeField] protected List<BuildingInput> inputs = new List<BuildingInput>();
     [SerializeField] protected List<BuildingOutput> outputs = new List<BuildingOutput>();
 
-    [SerializeField] private Animator animator;
-    [SerializeField] private float animationTime = 4.0f;
-
     private int cacheSize = 10;
     private Dictionary<List<string>, List<Item.Symbol>> cache = new Dictionary<List<string>, List<Item.Symbol>>();
     private Queue<List<string>> queue = new Queue<List<string>>();
