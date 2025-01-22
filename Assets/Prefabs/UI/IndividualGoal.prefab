@@ -369,8 +369,9 @@ MonoBehaviour:
   UIactualCount: {fileID: 4981130958799738941}
   UIobjective: {fileID: 4567052968732008872}
   UIseparator: {fileID: 2610625789634299453}
-  dictionaryPanel: {fileID: 4312369544160292804, guid: f7ae104176cd6d94f8b1c2deb5070170, type: 3}
   panelManager: {fileID: 4061095899683556486, guid: df3424adc4d0b1347832bbb4e97a8890, type: 3}
+  dictionaryPanel: {fileID: 4312369544160292804, guid: f7ae104176cd6d94f8b1c2deb5070170, type: 3}
+  goalColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &6299442072958770710
 GameObject:
   m_ObjectHideFlags: 0
@@ -463,10 +464,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 18
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0

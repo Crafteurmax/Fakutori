@@ -1,0 +1,8 @@
+Display,Description, goals,id
+Is today Monday ?,今日は月曜日でか,10,-1
+isn't Today Monday ?,今日は月曜日ではありませんか,10,-1
+Am I Chloé ?,私はクロエですか,10,-1
+Am I not Chloé ?,私はクロエではありませんか,10,-1
+Am I French ?,私はフランス人ですか,10,-1
+Am I not French ?,私はフランス人ではありませんか,10,-1
+STOP,Desuka_6,STOP, STOP
