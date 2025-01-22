@@ -189,8 +189,8 @@ public class UIDictionnary : MonoBehaviour
 
     void Start()
     {
-        InitPath();
         Instance = this;
+        InitPath();
 
         InitializeVocabulary();
 
@@ -206,6 +206,7 @@ public class UIDictionnary : MonoBehaviour
         }
 
         CreateVocabularyButtons();
+        LayoutRebuilder.ForceRebuildLayoutImmediate(vocabularyLayout);
 
         ResetSearch();
 
