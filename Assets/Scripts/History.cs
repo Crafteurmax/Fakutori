@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class History
@@ -9,13 +10,15 @@ public class History
         public Vector3Int buildingPosition;
         public Quaternion buildingRotation;
         public bool isPlacement;
+        public Dictionary<List<string>, List<Item.Symbol>> machineCache;
 
-        public buildingAction(Building.BuildingType aBuildingType, Vector3Int aPosition, Quaternion aBuildingRotation, bool aBuildingPlacement)
+        public buildingAction(Building.BuildingType aBuildingType, Vector3Int aPosition, Quaternion aBuildingRotation, bool aBuildingPlacement, [Optional] Dictionary<List<string>, List<Item.Symbol>> aMachineCache)
         {
             buildingtype = aBuildingType;
             buildingPosition = aPosition;
             buildingRotation = aBuildingRotation;
             isPlacement = aBuildingPlacement;
+            machineCache = aMachineCache;
         }
     }
 
@@ -84,6 +87,17 @@ public class History
             else
             {
                 buildingPlacer.PlaceBuildingAtPosition(currentAction.buildingtype, currentAction.buildingPosition, currentAction.buildingRotation);
+
+                if ((int)currentAction.buildingtype >= 8 && (int)currentAction.buildingtype < 17)
+                {
+                    BuildingTile buildingTile = BuildingManager.Instance.buildingTilemap.GetTile<BuildingTile>(currentAction.buildingPosition);
+                    Factory factory = buildingTile.building.GetComponent<Factory>();
+
+                    foreach (KeyValuePair<List<string>, List<Item.Symbol>> entry in currentAction.machineCache)
+                    {
+                        factory.AddToCache(entry.Key, entry.Value);
+                    }
+                }
             }
 
             currentAction.isPlacement = !currentAction.isPlacement;
@@ -91,9 +105,9 @@ public class History
         }   
     }
 
-    public void AddToHistory(Building.BuildingType aType, Vector3Int aPosition, Quaternion aBuildingRotation, bool isPlacement)
+    public void AddToHistory(Building.BuildingType aType, Vector3Int aPosition, Quaternion aBuildingRotation, bool isPlacement, [Optional] Dictionary<List<string>, List<Item.Symbol>> aMachineCache)
     {
-        buildingAction action = new buildingAction(aType, aPosition, aBuildingRotation, isPlacement);
+        buildingAction action = new buildingAction(aType, aPosition, aBuildingRotation, isPlacement, aMachineCache);
         List<buildingAction> actionList = new List<buildingAction>();
         actionList.Add(action);
         history.Push(actionList);

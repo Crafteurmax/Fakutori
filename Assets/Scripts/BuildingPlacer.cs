@@ -169,8 +169,17 @@ public class BuildingPlacer : MonoBehaviour
         foreach(var building in selectedBuildings)
         {
             RemoveBuildingAtPosition(building.Item1);
-            History.buildingAction newAction = new History.buildingAction(building.Item2.building.GetBuildingType(), building.Item1, building.Item2.building.transform.rotation, false);
-            actionList.Add(newAction);
+            if ((int)building.Item2.building.GetBuildingType() >= 8 && (int)building.Item2.building.GetBuildingType() < 17)
+            {
+                Dictionary<List<string>, List<Item.Symbol>> cache = building.Item2.building.GetComponent<Factory>().GetFactoryCache();
+                History.buildingAction newAction = new History.buildingAction(building.Item2.building.GetBuildingType(), building.Item1, building.Item2.building.transform.rotation, false, cache);
+                actionList.Add(newAction);
+            }
+            else
+            {
+                History.buildingAction newAction = new History.buildingAction(building.Item2.building.GetBuildingType(), building.Item1, building.Item2.building.transform.rotation, false);
+                actionList.Add(newAction);
+            }
         }
         History.Instance.AddListToHistory(actionList);
         selectedBuildings.Clear();
@@ -403,8 +412,17 @@ public class BuildingPlacer : MonoBehaviour
             {
                 Building.BuildingType removedBuildingType = buildingTile.building.GetBuildingType();
                 Quaternion removedBuildingRotation = buildingTile.building.transform.rotation;
+
+                if ((int)removedBuildingType >= 8 &&  (int)removedBuildingType < 17)
+                {
+                    Dictionary<List<string>, List<Item.Symbol>> cache = buildingTile.building.GetComponent<Factory>().GetFactoryCache();
+                    History.Instance.AddToHistory(removedBuildingType, tilePosition, removedBuildingRotation, false, cache); 
+                }
+                else
+                {
+                    History.Instance.AddToHistory(removedBuildingType, tilePosition, removedBuildingRotation, false);
+                }
                 RemoveBuildingAtPosition(tilePosition);
-                History.Instance.AddToHistory(removedBuildingType, tilePosition, removedBuildingRotation, false);
             }
         }
         else if(isLeftPress && enablePlacement)
