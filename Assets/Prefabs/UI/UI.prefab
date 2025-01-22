@@ -192,6 +192,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 6ed9f1ed-058a-490f-8726-a16eafa43e6f
     m_ActionName: BuildingPlacement/Disable Remove[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 01b66822-8b6a-4735-8ad8-1a03ee78f071
+    m_ActionName: BuildingPlacement/Multi Selection[/Keyboard/ctrl,/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: UI
@@ -311,7 +315,9 @@ MonoBehaviour:
   vocabularyScrollRect: {fileID: 3921750690004688922}
   vocabularyLayout: {fileID: 5222841475752194252}
   pinnedVocabularyLayout: {fileID: 1580338604441551767}
+  pinnedVocabularyLayoutRectTransform: {fileID: 5884827925812269069}
   searchVocabularyLayout: {fileID: 7151993613133505740}
+  searchVocabularyLayoutRectTransform: {fileID: 6375014347531292729}
   vocabularyPanel: {fileID: 8484609896613160464}
   kanjiRepresentations:
   - image: {fileID: 709407196156807709}
@@ -5282,7 +5288,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837741673342303002, guid: f7ae104176cd6d94f8b1c2deb5070170, type: 3}
       propertyPath: m_VerticalFit
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5461562232411964215, guid: f7ae104176cd6d94f8b1c2deb5070170, type: 3}
       propertyPath: m_AnchorMax.y
@@ -5701,6 +5707,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &5884827925812269069 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3711254971236773566, guid: f7ae104176cd6d94f8b1c2deb5070170, type: 3}
+  m_PrefabInstance: {fileID: 7073498507808521907}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &6375014347531292729 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4202567292190568074, guid: f7ae104176cd6d94f8b1c2deb5070170, type: 3}
+  m_PrefabInstance: {fileID: 7073498507808521907}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6481383735220343159 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4312369544160292804, guid: f7ae104176cd6d94f8b1c2deb5070170, type: 3}

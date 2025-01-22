@@ -1,10 +1,12 @@
 using JetBrains.Annotations;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.Searcher;
 using UnityEngine;
@@ -152,6 +154,7 @@ public class UIDictionnary : MonoBehaviour
     [SerializeField] private RectTransform vocabularyLayout;
     [SerializeField] private VerticalLayoutGroup pinnedVocabularyLayout;
     [SerializeField] private VerticalLayoutGroup searchVocabularyLayout;
+    [SerializeField] private RectTransform searchVocabularyLayoutRectTransform;
 
     static private string vocabImagesFolder;
     static private string usedVocabImagesFolder;
@@ -206,19 +209,30 @@ public class UIDictionnary : MonoBehaviour
         }
 
         CreateVocabularyButtons();
-        LayoutRebuilder.ForceRebuildLayoutImmediate(vocabularyLayout);
 
         ResetSearch();
 
         currentVocab = vocabularyButtons.Count - 1;
         EnableVocabularyMode(true);
         OpenVocabularyPage(0);
+
+        StartCoroutine(LayoutRebuildDelayed());
     }
 
     static void InitPath()
     {
         vocabImagesFolder = Path.Combine(Application.dataPath, "Resources", "RawData", "VocabImages");
         usedVocabImagesFolder = Path.Combine(Application.dataPath, "Resources", "RawData", "VocabImages", "Used");
+    }
+
+    private IEnumerator LayoutRebuildDelayed()
+    {
+        while (searchVocabularyLayoutRectTransform.sizeDelta.y <= 0)
+        {
+            yield return null;
+        }
+
+        LayoutRebuilder.ForceRebuildLayoutImmediate(vocabularyLayout);
     }
 
     #region Vocabulary
@@ -304,7 +318,7 @@ public class UIDictionnary : MonoBehaviour
         VocabularyButton button = GameObject.Instantiate<VocabularyButton>(vocabularyButtonPrefab);
         button.transform.SetParent(searchVocabularyLayout.transform);
         button.onClick.AddListener(delegate { OpenVocabularyPage(index); });
-        button.GetPinButton().onClick.AddListener(delegate { PinVocabularyButton(index); });
+        button.GetPinButton().onClick.AddListener(delegate { SwitchPinVocabularyButton(index); });
 
         button.SetKanji(word.kanji);
         button.SetKana(word.kana);
@@ -403,6 +417,28 @@ public class UIDictionnary : MonoBehaviour
     #region Pin
     private void PinVocabularyButton(int index)
     {
+        if (pinnedVocabulary.Contains(index)) { return;  }
+
+        vocabularyButtons[index].Pin(true);
+        vocabularyButtons[index].transform.SetParent(pinnedVocabularyLayout.transform);
+        vocabularyButtons[index].transform.localScale = Vector3.one;
+
+        pinnedVocabulary.Add(index);
+        pinnedVocabulary.Sort();
+        searchedVocabulary.Remove(index);
+
+        foreach (VocabularyButton button in vocabularyButtons)
+        {
+            button.transform.SetAsLastSibling();
+        }
+
+        LayoutRebuilder.ForceRebuildLayoutImmediate(vocabularyLayout);
+
+        UpdateVocabularyColors();
+    }
+
+    private void SwitchPinVocabularyButton(int index)
+    {
         bool pinned = pinnedVocabulary.Contains(index);
 
         vocabularyButtons[index].Pin(!pinned);
@@ -457,26 +493,6 @@ public class UIDictionnary : MonoBehaviour
 
     private void VocabularySearch(string search)
     {
-        /*if (string.IsNullOrEmpty(search))
-        {
-            searchSymbolType = Item.SymbolType.None;
-            ResetSearch();
-        }
-        else if (search[0..^1] != lastSearch)
-        {
-            Debug.Log("Other");
-            searchSymbolType = DetectSymbolType(search);
-
-            if (searchSymbolType == Item.SymbolType.None) { return; }
-
-            ResetSearch();
-
-            searchedVocabulary = vocabulary.Search(searchSymbolType, searchedVocabulary, search); // Update the selection
-        }
-        else
-        {
-            searchedVocabulary = vocabulary.Search(searchSymbolType, searchedVocabulary, search); // Update the selection
-        }*/
         searchedVocabulary = vocabulary.Search(searchSymbolType, searchedVocabulary, search); // Update the selection
 
         ShowVocabularyButtons();
