@@ -205,9 +205,9 @@ public class UIDictionnary : MonoBehaviour
             videoPlayer.loopPointReached += EndReached;
         }
 
-        searchedVocabulary = Enumerable.Range(0, vocabulary.GetWordsCount()).ToList();
-
         CreateVocabularyButtons();
+
+        ResetSearch();
 
         currentVocab = vocabularyButtons.Count - 1;
         EnableVocabularyMode(true);
