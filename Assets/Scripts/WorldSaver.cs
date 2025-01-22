@@ -87,7 +87,7 @@ public class WorldSaver : MonoBehaviour
         if (json.Length > 0)
         {
             json = json.Remove(json.Length - 1);
-            Debug.Log("Successfully saved the world!");
+            //Debug.Log("Successfully saved the world!");
             File.WriteAllText(saveFilePath, json);
         }
         else
