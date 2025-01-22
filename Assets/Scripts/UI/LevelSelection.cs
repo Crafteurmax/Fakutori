@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using TMPro;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -93,6 +92,15 @@ public class LevelSelection : MonoBehaviour
             panelObjectList[i].SetPanelDescription(panelList[i].description);
 
             panelObjectList[i].SetButtons(panelList[i]);
+        }
+
+        if (panelList.Count <= panelObjectList.Count) {
+
+            for (int i = panelList.Count; i < panelObjectList.Count; i++)
+            {
+                Debug.Log("a");
+                panelObjectList[i].gameObject.SetActive(false);
+            }
         }
     }
     #endregion

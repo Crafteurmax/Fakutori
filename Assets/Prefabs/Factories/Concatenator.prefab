@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pair: {fileID: 0}
-  productionTime: 4
+  productionTime: 2
   productionSpeed: 1
   inputs:
   - {fileID: 2529642100511866938}

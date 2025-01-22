@@ -24,6 +24,8 @@ public class Troncator : Factory
 
         yield return new WaitForSeconds(productionTime / productionSpeed);
 
+        ClearInputs();
+
         BuildingOutput postLeftoutput = outputs[1];
         BuildingOutput postRightoutput = outputs[0];
 
