@@ -67,6 +67,8 @@ public class BuildingPlacer : MonoBehaviour
             if (!enablePlacement)
             {
                 EnablePlacement();
+                //Debug.Log("e");
+                //DeselectBuildings();
             }
         }
         else
@@ -125,6 +127,13 @@ public class BuildingPlacer : MonoBehaviour
 
         DisableRemoval();
     }
+
+    public IEnumerator DeselectDelayed()
+    {
+        yield return new WaitForNextFrameUnit();
+
+        DeselectBuildings();
+    }
     #endregion
 
     #region Input handling
@@ -162,30 +171,6 @@ public class BuildingPlacer : MonoBehaviour
         }
     }
 
-    public void MultiDeletPress()
-    {
-        List<History.buildingAction> actionList = new List<History.buildingAction>();
-
-        foreach(var building in selectedBuildings)
-        {
-            RemoveBuildingAtPosition(building.Item1);
-            if ((int)building.Item2.building.GetBuildingType() >= 8 && (int)building.Item2.building.GetBuildingType() < 17)
-            {
-                Dictionary<List<string>, List<Item.Symbol>> cache = building.Item2.building.GetComponent<Factory>().GetFactoryCache();
-                History.buildingAction newAction = new History.buildingAction(building.Item2.building.GetBuildingType(), building.Item1, building.Item2.building.transform.rotation, false, cache);
-                actionList.Add(newAction);
-            }
-            else
-            {
-                History.buildingAction newAction = new History.buildingAction(building.Item2.building.GetBuildingType(), building.Item1, building.Item2.building.transform.rotation, false);
-                actionList.Add(newAction);
-            }
-        }
-        History.Instance.AddListToHistory(actionList);
-        selectedBuildings.Clear();
-        multiSelection = false;
-    }
-
     public void OnRemovePress(InputAction.CallbackContext context)
     {
         if(!context.performed) return;
@@ -197,7 +182,7 @@ public class BuildingPlacer : MonoBehaviour
         }
         else if (!enableRemoval && selectedBuildings.Count > 0)
         {
-            MultiDeletPress();
+            StartCoroutine(DeselectDelayed());
         }
         else
         {
@@ -357,6 +342,7 @@ public class BuildingPlacer : MonoBehaviour
     }
     #endregion
 
+    #region Multiple building selection / removal
     public void GetBuildingInSelection()
     {
         multiSelection = true;
@@ -393,9 +379,34 @@ public class BuildingPlacer : MonoBehaviour
             selectedBuildings[i].Item2.building.GetComponent<Outline>().OutlineColor = color;
         }
         selectedBuildings.Clear();
-        if (selectionPanel != null && !enablePlacement) { selectionPanel.tag = PanelManger.Untagged; }
 
+        if (selectionPanel != null && !enablePlacement) { selectionPanel.tag = PanelManger.Untagged; }
     }
+
+    public void MultiDeletPress()
+    {
+        List<History.buildingAction> actionList = new List<History.buildingAction>();
+
+        foreach (var building in selectedBuildings)
+        {
+            RemoveBuildingAtPosition(building.Item1);
+            if ((int)building.Item2.building.GetBuildingType() >= 8 && (int)building.Item2.building.GetBuildingType() < 17)
+            {
+                Dictionary<List<string>, List<Item.Symbol>> cache = building.Item2.building.GetComponent<Factory>().GetFactoryCache();
+                History.buildingAction newAction = new History.buildingAction(building.Item2.building.GetBuildingType(), building.Item1, building.Item2.building.transform.rotation, false, cache);
+                actionList.Add(newAction);
+            }
+            else
+            {
+                History.buildingAction newAction = new History.buildingAction(building.Item2.building.GetBuildingType(), building.Item1, building.Item2.building.transform.rotation, false);
+                actionList.Add(newAction);
+            }
+        }
+        History.Instance.AddListToHistory(actionList);
+        selectedBuildings.Clear();
+        multiSelection = false;
+    }
+    #endregion
 
     public bool IsRemovalEnabled()
     {
