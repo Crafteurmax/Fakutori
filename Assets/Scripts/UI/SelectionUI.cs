@@ -192,7 +192,7 @@ public class SelectionUI : MonoBehaviour
 
         if (buildingButtonIndex.x != currentCategory)
         {
-            Debug.Log("Close");
+            //Debug.Log("Close");
             CloseCurrentBuildingCategory();
         }
         if (currentBuilding.x >= 0)
