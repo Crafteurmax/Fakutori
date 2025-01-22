@@ -392,7 +392,9 @@ public class BuildingPlacer : MonoBehaviour
         {
             selectedBuildings[i].Item2.building.GetComponent<Outline>().OutlineColor = color;
         }
+        selectedBuildings.Clear();
         if (selectionPanel != null && !enablePlacement) { selectionPanel.tag = PanelManger.Untagged; }
+
     }
 
     public bool IsRemovalEnabled()
