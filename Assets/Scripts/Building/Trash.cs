@@ -6,11 +6,14 @@ public class Trash : Building
 {
     [SerializeField] BuildingInput trashInput;
 
+    [Header("Paper")]
     [SerializeField] private List<GameObject> papers = new List<GameObject>();
     private int displayedPaperIndex = 0;
+    [SerializeField] private GameObject papersParent;
     private GameObject displayedPaper;
     [SerializeField] private GameObject displayedPaperPosition;
 
+    [Header("Animation")]
     [SerializeField] private Animator animator;
 
     private void Awake() {
@@ -26,7 +29,7 @@ public class Trash : Building
             trashInput.SetItem(null);
             displayedPaperIndex = (displayedPaperIndex + 1) % papers.Count;
             Destroy(displayedPaper);
-            displayedPaper = Instantiate(papers[displayedPaperIndex], displayedPaperPosition.transform.position, Quaternion.identity);
+            displayedPaper = Instantiate(papers[displayedPaperIndex], displayedPaperPosition.transform.position, transform.rotation, papersParent.transform);
             if (displayedPaperIndex == 0) {
                 animator.SetTrigger("Produce");
                 Debug.Log("Trash emptied");
