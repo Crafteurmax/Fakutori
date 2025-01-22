@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -5,7 +6,9 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using TMPro;
 using UnityEditor;
+using UnityEditor.Searcher;
 using UnityEngine;
+using UnityEngine.Timeline;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
@@ -64,6 +67,8 @@ public class Vocabulary
 
     public List<int> Search(Item.SymbolType symbolType, List<int> currentSelection, string value)
     {
+        Debug.Log(string.Join(", ", currentSelection));
+
         return symbolType switch
         {
             Item.SymbolType.Hiragana => SearchInList(kanas, kanjis, currentSelection, value),
@@ -95,7 +100,7 @@ public class Vocabulary
         int i = 0;
         while (i < currentSelection.Count)
         {
-            if (firstList[currentSelection[i]].Contains(value) || secondList[currentSelection[i]].Contains(value))
+            if (firstList[currentSelection[i]].ToLower().Contains(value) || secondList[currentSelection[i]].ToLower().Contains(value))
             {
                 result.Add(currentSelection[i]);
             }
@@ -104,14 +109,13 @@ public class Vocabulary
         return result;
     }
 
-
     public static List<int> SearchInList(List<string> firstList, List<List<string>> secondList, List<int> currentSelection, string value)
     {
         List<int> result = new();
         int i = 0;
         while (i < currentSelection.Count)
         {
-            if (firstList[currentSelection[i]].Contains(value) || secondList[currentSelection[i]].Any(s => s.ToLower().Contains(value)))
+            if (firstList[currentSelection[i]].ToLower().Contains(value) || secondList[currentSelection[i]].Any(s => s.ToLower().Contains(value)))
             {
                 result.Add(currentSelection[i]);
             }
@@ -130,27 +134,33 @@ public class KanjiRepresentation
 
 public class UIDictionnary : MonoBehaviour
 {
+    public static UIDictionnary Instance { get; private set; }
+
     /*TODO:
      * - Grammar
      * - Limit the size of image
      */
 
-    static private string vocabImagesFolder;
-    static private string usedVocabImagesFolder;
-    public static UIDictionnary Instance { get; private set; }
     [SerializeField] private TMP_InputField searchField;
 
-    [Header("Vocabulary")]
+    [Header("Vocabulary General")]
+    [SerializeField] private VocabularyButton vocabularyButtonPrefab;
+
+    [Header("Vocabulary Scroll")]
     [SerializeField] private SelectableButton vocabularyCategoryButton;
     [SerializeField] private ScrollRect vocabularyScrollRect;
     [SerializeField] private RectTransform vocabularyLayout;
     [SerializeField] private VerticalLayoutGroup pinnedVocabularyLayout;
-    [SerializeField] private VerticalLayoutGroup notPinnedVocabularyLayout;
-    [SerializeField] private VocabularyButton vocabularyButtonPrefab;
+    [SerializeField] private VerticalLayoutGroup searchVocabularyLayout;
+
+    static private string vocabImagesFolder;
+    static private string usedVocabImagesFolder;
+
+    private readonly Vocabulary vocabulary = new();
     private readonly List<VocabularyButton> vocabularyButtons = new();
     private readonly List<int> pinnedVocabulary = new();
+    private List<int> searchedVocabulary = new();
     private int currentVocab;
-    private readonly Vocabulary vocabulary = new();
 
     [Header("Vocabulary Template")]
     [SerializeField] private GameObject vocabularyPanel;
@@ -174,7 +184,6 @@ public class UIDictionnary : MonoBehaviour
     [SerializeField] private Sprite defaultSprite;
     [SerializeField] private bool sortImages;
 
-    private List<int> currentVocabularySelection;
     private Item.SymbolType searchSymbolType;
     private string lastSearch;
 
@@ -196,7 +205,7 @@ public class UIDictionnary : MonoBehaviour
             videoPlayer.loopPointReached += EndReached;
         }
 
-        currentVocabularySelection = Enumerable.Range(0, vocabulary.GetWordsCount()).ToList();
+        searchedVocabulary = Enumerable.Range(0, vocabulary.GetWordsCount()).ToList();
 
         CreateVocabularyButtons();
 
@@ -292,7 +301,7 @@ public class UIDictionnary : MonoBehaviour
     private void CreateVocabularyButton(int index, Word word)
     {
         VocabularyButton button = GameObject.Instantiate<VocabularyButton>(vocabularyButtonPrefab);
-        button.transform.SetParent(notPinnedVocabularyLayout.transform);
+        button.transform.SetParent(searchVocabularyLayout.transform);
         button.onClick.AddListener(delegate { OpenVocabularyPage(index); });
         button.GetPinButton().onClick.AddListener(delegate { PinVocabularyButton(index); });
 
@@ -390,94 +399,40 @@ public class UIDictionnary : MonoBehaviour
     }
     #endregion Show in dictionnary
 
-    private void VocabularySearch(string search)
-    {
-        search = search.ToLower();
-        
-        if (string.IsNullOrEmpty(search))
-        {
-            currentVocabularySelection = Enumerable.Range(0, vocabulary.GetWordsCount()).ToList();
-        }
-        else if (search[0..^1] != lastSearch)
-        {
-            Debug.Log("Other");
-            searchSymbolType = DetectSymbolType(search);
-
-            if (searchSymbolType == Item.SymbolType.None) { return; }
-
-            currentVocabularySelection = Enumerable.Range(0, vocabulary.GetWordsCount()).ToList();
-
-            currentVocabularySelection = vocabulary.Search(searchSymbolType, currentVocabularySelection, search); // Update the selection
-        }
-        else
-        {
-            if (string.IsNullOrEmpty(lastSearch))
-            {
-                searchSymbolType = DetectSymbolType(search);
-            }
-
-            currentVocabularySelection = vocabulary.Search(searchSymbolType, currentVocabularySelection, search); // Update the selection
-        }
-        lastSearch = search;
-
-        ShowVocabularyButtons();
-    }
-
-    private void ShowVocabularyButtons()
-    {
-        int select = 0;
-        int item = 0;
-        int count = 0;
-        while (select < currentVocabularySelection.Count)
-        {
-            if (!pinnedVocabulary.Contains(currentVocabularySelection[select]))
-            {
-                vocabularyButtons[item].gameObject.SetActive(item == currentVocabularySelection[select]);
-                if (item == currentVocabularySelection[select])
-                {
-                    vocabularyButtons[item].TriggerAlternative(count % 2 != 0);
-                    select++;
-                    count++;
-                }
-
-                item++;
-            }
-            else
-            {
-                select++;
-            }
-        }
-
-        for (int i = item; i < vocabularyButtons.Count; i++)
-        {
-            vocabularyButtons[i].gameObject.SetActive(false);
-        }
-    }
-
+    #region Pin
     private void PinVocabularyButton(int index)
     {
         bool pinned = pinnedVocabulary.Contains(index);
 
         vocabularyButtons[index].Pin(!pinned);
-        vocabularyButtons[index].transform.SetParent(pinned ? notPinnedVocabularyLayout.transform : pinnedVocabularyLayout.transform);
+        vocabularyButtons[index].transform.SetParent(pinned ? searchVocabularyLayout.transform : pinnedVocabularyLayout.transform);
         vocabularyButtons[index].transform.localScale = Vector3.one;
 
         if (pinned)
         {
             pinnedVocabulary.Remove(index);
-            foreach (int selectedButton in currentVocabularySelection)
+            if (string.IsNullOrEmpty(lastSearch) || vocabulary.Search(searchSymbolType, new() { index }, lastSearch).Count > 0)
             {
-                vocabularyButtons[selectedButton].transform.SetAsLastSibling();
+                searchedVocabulary.Add(index);
+                searchedVocabulary.Sort();
+
+                vocabularyButtons[index].gameObject.SetActive(true);
+            }
+            else
+            {
+                vocabularyButtons[index].gameObject.SetActive(false);
             }
         }
         else
         {
             pinnedVocabulary.Add(index);
             pinnedVocabulary.Sort();
-            foreach (int pinnedButton in pinnedVocabulary)
-            {
-                vocabularyButtons[pinnedButton].transform.SetAsLastSibling();
-            }
+            searchedVocabulary.Remove(index);
+        }
+
+        foreach (VocabularyButton button in vocabularyButtons)
+        {
+            button.transform.SetAsLastSibling();
         }
 
         LayoutRebuilder.ForceRebuildLayoutImmediate(vocabularyLayout);
@@ -492,14 +447,64 @@ public class UIDictionnary : MonoBehaviour
             vocabularyButtons[pinnedVocabulary[i]].TriggerAlternative(i % 2 == 0);
         }
 
-        int count = 0;
-        foreach(int selected in currentVocabularySelection)
+        for (int i = 0; i < searchedVocabulary.Count; i++)
         {
-            if (!pinnedVocabulary.Contains(selected))
+            vocabularyButtons[searchedVocabulary[i]].TriggerAlternative(i % 2 == 0);
+        }
+    }
+    #endregion Pin
+
+    private void VocabularySearch(string search)
+    {
+        /*if (string.IsNullOrEmpty(search))
+        {
+            searchSymbolType = Item.SymbolType.None;
+            ResetSearch();
+        }
+        else if (search[0..^1] != lastSearch)
+        {
+            Debug.Log("Other");
+            searchSymbolType = DetectSymbolType(search);
+
+            if (searchSymbolType == Item.SymbolType.None) { return; }
+
+            ResetSearch();
+
+            searchedVocabulary = vocabulary.Search(searchSymbolType, searchedVocabulary, search); // Update the selection
+        }
+        else
+        {
+            searchedVocabulary = vocabulary.Search(searchSymbolType, searchedVocabulary, search); // Update the selection
+        }*/
+        searchedVocabulary = vocabulary.Search(searchSymbolType, searchedVocabulary, search); // Update the selection
+
+        ShowVocabularyButtons();
+    }
+
+    private void ShowVocabularyButtons()
+    {
+        int select = 0;
+        int item = 0;
+        while (select < searchedVocabulary.Count)
+        {
+            vocabularyButtons[item].gameObject.SetActive(item == searchedVocabulary[select]);
+            if (item == searchedVocabulary[select])
             {
-                vocabularyButtons[selected].TriggerAlternative(count % 2 == 0);
-                count++;
+                vocabularyButtons[item].TriggerAlternative(select % 2 != 0);
+                select++;
             }
+
+            item++;
+        }
+
+        for (int i = item; i < vocabularyButtons.Count; i++)
+        {
+            vocabularyButtons[i].gameObject.SetActive(false);
+        }
+
+        foreach (int pinnedButton in pinnedVocabulary)
+        {
+            vocabularyButtons[pinnedButton].gameObject.SetActive(true);
         }
     }
     #endregion Vocabulary
@@ -518,7 +523,31 @@ public class UIDictionnary : MonoBehaviour
 
     public void Search()
     {
-        VocabularySearch(searchField.text);
+        string search = searchField.text.ToLower();
+
+        if (string.IsNullOrEmpty(search))
+        {
+            searchSymbolType = Item.SymbolType.None;
+            ResetSearch();
+
+            ShowVocabularyButtons();
+        }
+        else if (string.IsNullOrEmpty(lastSearch) || search[0..^1] != lastSearch)
+        {
+            searchSymbolType = DetectSymbolType(search);
+
+            if (searchSymbolType == Item.SymbolType.None) { return; }
+
+            ResetSearch();
+
+            VocabularySearch(search);
+        }
+        else
+        {
+            VocabularySearch(search);
+        }
+
+        lastSearch = search;
     }
 
     private static Item.SymbolType DetectSymbolType(string input)
@@ -542,6 +571,15 @@ public class UIDictionnary : MonoBehaviour
         else
         {
             return Item.SymbolType.None;
+        }
+    }
+
+    private void ResetSearch()
+    {
+        searchedVocabulary = Enumerable.Range(0, vocabulary.GetWordsCount()).ToList();
+        foreach (int pinned in pinnedVocabulary)
+        {
+            searchedVocabulary.Remove(pinned);
         }
     }
 }

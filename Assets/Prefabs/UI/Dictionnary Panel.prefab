@@ -2923,7 +2923,7 @@ GameObject:
   - component: {fileID: 3491646704058330183}
   - component: {fileID: 5961303701997593643}
   m_Layer: 5
-  m_Name: Not Pinned Vocabulary Buttons
+  m_Name: Searched Vocabulary Buttons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
