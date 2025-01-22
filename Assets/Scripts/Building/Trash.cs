@@ -1,11 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Trash : Building
 {
     [SerializeField] BuildingInput trashInput;
+
+    [SerializeField] private List<GameObject> papers = new List<GameObject>();
+    private int displayedPaperIndex = 0;
+    private GameObject displayedPaper;
+    [SerializeField] private GameObject displayedPaperPosition;
+
+    [SerializeField] private Animator animator;
 
     private void Awake() {
         trashInput.Initialize();
@@ -18,6 +24,14 @@ public class Trash : Building
         if (item != null) {
             ItemFactory.Instance.Release(item);
             trashInput.SetItem(null);
+            displayedPaperIndex = (displayedPaperIndex + 1) % papers.Count;
+            Destroy(displayedPaper);
+            displayedPaper = Instantiate(papers[displayedPaperIndex], displayedPaperPosition.transform.position, Quaternion.identity);
+            if (displayedPaperIndex == 0) {
+                animator.SetTrigger("Produce");
+                Debug.Log("Trash emptied");
+                // TODO : Play the sound of trash being emptied (like on windows)
+            }
         }
     }
 
