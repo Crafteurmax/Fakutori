@@ -296,6 +296,7 @@ Transform:
   - {fileID: 3178786613897973621}
   - {fileID: 8398969731218009001}
   - {fileID: 981284723566731603}
+  - {fileID: 7494586061193495497}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6928064022994871888
@@ -321,6 +322,7 @@ MonoBehaviour:
   - {fileID: 6454903876938577990, guid: 01c744d4225a3194cae8bd2fa32c32a4, type: 3}
   - {fileID: 126458191936466820, guid: 57384723e34aa214a9e3b24fd3f68b68, type: 3}
   - {fileID: 9025043093068370096, guid: aefc2573bafe6614ba7f3644e31bbf75, type: 3}
+  papersParent: {fileID: 8522878125086744642}
   displayedPaperPosition: {fileID: 6013584008794860686}
   animator: {fileID: 3036801563876373245}
 --- !u!1 &7391132438156406360
@@ -368,6 +370,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 0}
+--- !u!1 &8522878125086744642
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7494586061193495497}
+  m_Layer: 0
+  m_Name: PapierParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7494586061193495497
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8522878125086744642}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6530926452201749413}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &7410018400571892878
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -98,7 +98,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -236,6 +236,50 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: db53b0f5-5a8c-4c15-8092-00e391633895
     m_ActionName: CameraMovement/RotateMode[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: eea273a3-a38a-48de-8a08-52686b9e9d97
+    m_ActionName: UI/Return[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b6647559-44aa-4501-927e-97a80cdd6f47
+    m_ActionName: UI/SetSelectedBuildingToNone[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 46079d72-700a-4844-b2db-b21a7b0982f8
+    m_ActionName: BuildingPlacement/Place[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 28e685bc-ec66-415f-a075-f6bb15f2ae93
+    m_ActionName: BuildingPlacement/Rotate[/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6ed9f1ed-058a-490f-8726-a16eafa43e6f
+    m_ActionName: BuildingPlacement/Disable Remove[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8180663d-671c-4eba-92dc-940b62fd74b4
+    m_ActionName: BuildingPlacement/Remove[/Keyboard/x]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 540e982c-beec-4ef2-a75f-bd3026c45f97
+    m_ActionName: BuildingPlacement/Undo[/Keyboard/ctrl,/Keyboard/w]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c64c1902-da3f-458d-beb2-bb72eb7c6b02
+    m_ActionName: BuildingPlacement/Redo[/Keyboard/ctrl,/Keyboard/y]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1f59c5c0-aeb2-4ebe-ab4a-db74446285d0
+    m_ActionName: BuildingPlacement/Save[/Keyboard/z]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2b282e5e-0df7-4463-a48e-efbe6dae47b7
+    m_ActionName: BuildingPlacement/Load[/Keyboard/l]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3a6e0b09-3440-4def-b264-73d30396dd68
+    m_ActionName: Dialogue/next[/Mouse/leftButton,/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: CameraMovement
