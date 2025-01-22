@@ -224,7 +224,7 @@ public class SelectionUI : MonoBehaviour
 
     public void SetCurrentBuildingTypeToNone(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Started && !buildingPlacer.IsRemovalEnabled())
+        if (context.phase == InputActionPhase.Started && (!buildingPlacer.IsRemovalEnabled()) || buildingPlacer.IsSelectionEmpty())
         {
             StartCoroutine(SetCurrentBuildingTypeToNoneDelayed());
         }

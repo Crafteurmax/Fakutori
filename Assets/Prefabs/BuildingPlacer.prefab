@@ -354,7 +354,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6653698252379050511}
         m_TargetAssemblyTypeName: BuildingPlacer, Assembly-CSharp
-        m_MethodName: DisableRemoval
+        m_MethodName: OnEscapePress
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

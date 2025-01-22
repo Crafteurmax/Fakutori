@@ -220,6 +220,19 @@ public class BuildingPlacer : MonoBehaviour
             History.Instance.Redo();
         }
     }
+
+    public void OnEscapePress(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started && selectedBuildings.Count == 0)
+        {
+            DisableRemoval();
+        }
+
+        if (context.phase == InputActionPhase.Started && selectedBuildings.Count != 0)
+        {
+            DeselectBuildings();
+        }
+    }
     #endregion
 
     #region Building placement / removal
@@ -347,6 +360,7 @@ public class BuildingPlacer : MonoBehaviour
     public void GetBuildingInSelection()
     {
         multiSelection = true;
+        if (selectionPanel != null) { selectionPanel.tag = PanelManger.NoEscape; }
 
         if (firstPosition != Vector3Int.zero && secondPosition != Vector3Int.zero)
         {
@@ -370,9 +384,25 @@ public class BuildingPlacer : MonoBehaviour
         }
     }
 
+    private void DeselectBuildings()
+    {
+        Color color = Color.white;
+        color.a = 0;
+        for (int i = 0; i < selectedBuildings.Count; i++)
+        {
+            selectedBuildings[i].Item2.building.GetComponent<Outline>().OutlineColor = color;
+        }
+        if (selectionPanel != null && !enablePlacement) { selectionPanel.tag = PanelManger.Untagged; }
+    }
+
     public bool IsRemovalEnabled()
     {
         return enableRemoval;
+    }
+
+    public bool IsSelectionEmpty()
+    {
+        return selectedBuildings.Count == 0;
     }
 
     private void Update()
