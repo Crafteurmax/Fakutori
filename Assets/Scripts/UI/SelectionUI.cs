@@ -88,7 +88,7 @@ public class SelectionUI : MonoBehaviour
             CreateBuildingButton(buildingCategory.buttons[0], buildingButtons.Count - 1, 0);
             buildingButtons[^1][0].transform.SetParent(categoryLayout.rectTransform);
             buildingButtons[^1][0].transform.localScale = Vector3.one;
-            buildingButtons[^1][0].onClick.AddListener(delegate { CloseCurrentBuildingCategory(); });
+            //buildingButtons[^1][0].onClick.AddListener(delegate { CloseCurrentBuildingCategory(); });
 
             categoryButtons.Add(null);
         }
@@ -131,7 +131,6 @@ public class SelectionUI : MonoBehaviour
 
         button.SetIconSprite(buildingButton.sprite);
 
-        //Debug.Log(buildingButton.buildingType.ToString());
         button.gameObject.GetComponent<BuildingButtonHover>().SetHoverText(buildingButton.buildingType.ToString());
 
         button.onClick.AddListener(delegate { SetCurrentBuildingType(buildingButton.buildingType, new Vector2Int(categoryIndex, buildingIndex)); });
@@ -191,17 +190,22 @@ public class SelectionUI : MonoBehaviour
             return;
         }
 
+        if (buildingButtonIndex.x != currentCategory)
+        {
+            Debug.Log("Close");
+            CloseCurrentBuildingCategory();
+        }
         if (currentBuilding.x >= 0)
         {
             buildingButtons[currentBuilding.x][currentBuilding.y].SelectButton(false);
         }
+
         buildingButtons[buildingButtonIndex.x][buildingButtonIndex.y].SelectButton(true);
         currentBuilding = buildingButtonIndex;
         currentBuildingType = buildingType;
 
         selectionPanel.tag = PanelManger.NoEscape;
 
-        Debug.Log(buildingType);
         NewCurrentBuildingType.Invoke(buildingType);
     }
 

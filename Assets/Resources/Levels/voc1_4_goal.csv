@@ -1,0 +1,20 @@
+Display,Description, goals,id
+Today is Monday,今日は月曜日です,10,-1
+Today is Wednesday,今日は水曜日です,10,-1
+STOP,Desu_6,STOP,STOP
+I’m Chloé (クロエ),私はクロエです,10,-1
+I’m Nina (ニナ),私はニナです,10,-1
+I’m French (France : フランス),私はフランス人です,10,-1
+I’m Canadian (Canada : カナダ),私はカナダ人です,10,-1
+STOP,Desu_6,STOP,STOP
+Today is not Monday,今日は月曜日ではありません,10,-1
+I’m not Chloé,私はクロエではありません,10,-1
+I’m not French,私はフランス人ではありません,10,-1
+STOP,Desu_6,STOP,STOP
+Is today Monday ?,今日は月曜日でか,10,-1
+isn't Today Monday ?,今日は月曜日ではありませんか,10,-1
+Am I Chloé ?,私はクロエですか,10,-1
+Am I not Chloé ?,私はクロエではありませんか,10,-1
+Am I French ?,私はフランス人ですか,10,-1
+Am I not French ?,私はフランス人ではありませんか,10,-1
+STOP,STOP,STOP, STOP
