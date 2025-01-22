@@ -1,12 +1,9 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using UnityEngine;
 
 public class History
 {
-    struct buildingAction
+    public struct buildingAction
     {
         public Building.BuildingType buildingtype;
         public Vector3Int buildingPosition;
@@ -24,8 +21,8 @@ public class History
 
     public static History Instance { get; private set; }
 
-    private LimitedSizeStack<buildingAction> history = new LimitedSizeStack<buildingAction>(20);
-    private LimitedSizeStack<buildingAction> undone = new LimitedSizeStack<buildingAction>(20);
+    private LimitedSizeStack<List<buildingAction>> history = new LimitedSizeStack<List<buildingAction>>(20);
+    private LimitedSizeStack<List<buildingAction>> undone = new LimitedSizeStack<List<buildingAction>>(20);
 
     private BuildingPlacer buildingPlacer;
 
@@ -50,7 +47,7 @@ public class History
         if (undone.Count() == 0)
             return;
 
-        buildingAction action = undone.Pop();
+        List<buildingAction> action = undone.Pop();
         UndoAction(ref action);
         history.Push(action);
     }
@@ -61,13 +58,13 @@ public class History
         if (history.Count() == 0)
             return;
 
-        buildingAction action = history.Pop();
+        List<buildingAction> action = history.Pop();
         UndoAction(ref action);
         undone.Push(action);
     }
 
     //Undo action: place building if previous action was a remove, remove if it was a placement
-    private void UndoAction(ref buildingAction anAction)
+    private void UndoAction(ref List<buildingAction> anAction)
     {
         if (buildingPlacer == null)
         {
@@ -75,17 +72,36 @@ public class History
             return;
         }
 
-        if (anAction.isPlacement)
-            buildingPlacer.RemoveBuildingAtPosition(anAction.buildingPosition);
-        else
-            buildingPlacer.PlaceBuildingAtPosition(anAction.buildingtype, anAction.buildingPosition, anAction.buildingRotation);
+        for (int i = 0; i < anAction.Count; i++)
+        {
 
-        anAction.isPlacement = !anAction.isPlacement;
+            buildingAction currentAction = anAction[i];
+
+            if (currentAction.isPlacement)
+            {
+                buildingPlacer.RemoveBuildingAtPosition(currentAction.buildingPosition);
+            }
+            else
+            {
+                buildingPlacer.PlaceBuildingAtPosition(currentAction.buildingtype, currentAction.buildingPosition, currentAction.buildingRotation);
+            }
+
+            currentAction.isPlacement = !currentAction.isPlacement;
+            anAction[i] = currentAction;
+        }   
     }
 
     public void AddToHistory(Building.BuildingType aType, Vector3Int aPosition, Quaternion aBuildingRotation, bool isPlacement)
     {
-        history.Push(new buildingAction(aType, aPosition, aBuildingRotation, isPlacement));
+        buildingAction action = new buildingAction(aType, aPosition, aBuildingRotation, isPlacement);
+        List<buildingAction> actionList = new List<buildingAction>();
+        actionList.Add(action);
+        history.Push(actionList);
         undone.Clear();
+    }
+
+    public void AddListToHistory(List<buildingAction> actionList)
+    {
+        history.Push(actionList);
     }
 }

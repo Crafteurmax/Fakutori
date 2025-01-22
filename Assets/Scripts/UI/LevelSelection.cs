@@ -98,7 +98,6 @@ public class LevelSelection : MonoBehaviour
 
             for (int i = panelList.Count; i < panelObjectList.Count; i++)
             {
-                Debug.Log("a");
                 panelObjectList[i].gameObject.SetActive(false);
             }
         }
