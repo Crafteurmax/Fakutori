@@ -22,19 +22,22 @@ public class BuildingPlacer : MonoBehaviour
     [SerializeField] private Building.BuildingType buildingType = Building.BuildingType.None;
     [SerializeField] private BuildingDatabaseSO buildingDatabaseSO;
 
-    [SerializeField] private GameObject fillerPrefab;
+    [Header("Selection plane")]
+    [SerializeField] private GameObject selectionPlane;
 
+    [Header("Other stuff")]
+    [SerializeField] private GameObject fillerPrefab;
     [SerializeField] private LayerMask placementMask;
-    
+
+
     // Logic to know in which state we are
     private bool enablePlacement = false;
     private bool enableRemoval = false;
     private bool isLeftPress = false;
-    private bool multiSelection = false;
+    private bool isMultiSelectionHappening = false;
 
     private Vector3Int firstPosition = Vector3Int.zero;
     private Vector3Int secondPosition = Vector3Int.zero;
-    private Vector3 lastPosition = Vector3Int.zero;
 
     private List<Tuple<Vector3Int, BuildingTile>> selectedBuildings = new List<Tuple<Vector3Int, BuildingTile>>();
 
@@ -64,12 +67,9 @@ public class BuildingPlacer : MonoBehaviour
 
         if (buildingType != Building.BuildingType.None)
         {
-            if (!enablePlacement)
-            {
-                EnablePlacement();
-                //Debug.Log("e");
-                //DeselectBuildings();
-            }
+            EnablePlacement();
+            DeselectBuildings();
+            return;
         }
         else
         {
@@ -82,7 +82,6 @@ public class BuildingPlacer : MonoBehaviour
     private void EnablePlacement()
     {
         tileIndicator.ShowMouseIndicator();
-        tileIndicator.UpdateMouseIndicator();
         enablePlacement = true;
     }
 
@@ -103,6 +102,7 @@ public class BuildingPlacer : MonoBehaviour
 
     private void DisableRemoval()
     {
+        //Debug.Log("Enable placement: " + enablePlacement);
         tileIndicator.HideMouseIndicator();
         if (selectionPanel != null && !enablePlacement) { selectionPanel.tag = PanelManger.Untagged; }
         enableRemoval = false;
@@ -146,6 +146,8 @@ public class BuildingPlacer : MonoBehaviour
     {
         if (!enablePlacement && !enableRemoval)
         {
+            Vector3 lastPosition = Vector3Int.zero;
+
             Vector3 mousPosition = Input.mousePosition;
             mousPosition.z = Camera.main.nearClipPlane;
             Ray ray = Camera.main.ScreenPointToRay(mousPosition);
@@ -159,12 +161,16 @@ public class BuildingPlacer : MonoBehaviour
             if (context.started)
             {
                 firstPosition = BuildingManager.Instance.buildingTilemap.WorldToCell(lastPosition);
+                isMultiSelectionHappening = true;
+                selectionPlane.SetActive(true);
                 //Debug.Log("First position: " + firstPosition);
             }
 
             if (context.canceled)
             {
                 secondPosition = BuildingManager.Instance.buildingTilemap.WorldToCell(lastPosition);
+                isMultiSelectionHappening = false;
+                selectionPlane.SetActive(false);
                 //Debug.Log("Second position: " + secondPosition);
                 GetBuildingInSelection();
             }
@@ -182,9 +188,9 @@ public class BuildingPlacer : MonoBehaviour
         }
         else if (!enableRemoval && selectedBuildings.Count > 0)
         {
-            StartCoroutine(DeselectDelayed());
+            MultiDeletPress();
         }
-        else
+        else if (enableRemoval)
         {
             DisableRemoval();
         }
@@ -208,15 +214,45 @@ public class BuildingPlacer : MonoBehaviour
 
     public void OnEscapePress(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Started && selectedBuildings.Count == 0)
+        if (context.phase == InputActionPhase.Started && selectedBuildings.Count == 0 && enableRemoval)
         {
             DisableRemoval();
         }
 
-        if (context.phase == InputActionPhase.Started && selectedBuildings.Count != 0)
+        else if (context.phase == InputActionPhase.Started && selectedBuildings.Count != 0 && !enableRemoval && !enablePlacement)
         {
-            DeselectBuildings();
+            StartCoroutine(DeselectDelayed());
         }
+    }
+
+    public void OnPipettePress(InputAction.CallbackContext context)
+    {
+        if (enablePlacement && enableRemoval && context.performed)
+        {
+            DisableRemoval();
+            SelectPipetteBuilding();
+            return;
+        }
+
+        if (enableRemoval && context.performed)
+        {
+            DisableRemoval();
+            SelectPipetteBuilding();
+            return;
+        }
+
+        if (enablePlacement && context.performed)
+        {
+            SelectPipetteBuilding();
+            return;
+        }
+
+        if (!enablePlacement && !enableRemoval && context.performed)
+        {
+            SelectPipetteBuilding();
+            return;
+        }
+
     }
     #endregion
 
@@ -345,7 +381,6 @@ public class BuildingPlacer : MonoBehaviour
     #region Multiple building selection / removal
     public void GetBuildingInSelection()
     {
-        multiSelection = true;
         if (selectionPanel != null) { selectionPanel.tag = PanelManger.NoEscape; }
 
         if (firstPosition != Vector3Int.zero && secondPosition != Vector3Int.zero)
@@ -372,11 +407,9 @@ public class BuildingPlacer : MonoBehaviour
 
     private void DeselectBuildings()
     {
-        Color color = Color.white;
-        color.a = 0;
         for (int i = 0; i < selectedBuildings.Count; i++)
         {
-            selectedBuildings[i].Item2.building.GetComponent<Outline>().OutlineColor = color;
+            selectedBuildings[i].Item2.building.GetComponent<Outline>().OutlineColor = Color.clear;
         }
         selectedBuildings.Clear();
 
@@ -404,7 +437,6 @@ public class BuildingPlacer : MonoBehaviour
         }
         History.Instance.AddListToHistory(actionList);
         selectedBuildings.Clear();
-        multiSelection = false;
     }
     #endregion
 
@@ -416,6 +448,39 @@ public class BuildingPlacer : MonoBehaviour
     public bool IsSelectionEmpty()
     {
         return selectedBuildings.Count == 0;
+    }
+
+    private void SelectPipetteBuilding()
+    {
+        Vector3 lastPosition = Vector3Int.zero;
+        Vector3 mousPosition = Input.mousePosition;
+        mousPosition.z = Camera.main.nearClipPlane;
+        Ray ray = Camera.main.ScreenPointToRay(mousPosition);
+
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 1000, placementMask))
+        {
+            lastPosition = hit.point;
+
+            Vector3Int buildingPosition = BuildingManager.Instance.buildingTilemap.WorldToCell(lastPosition);
+            BuildingTile tile = BuildingManager.Instance.buildingTilemap.GetTile<BuildingTile>(buildingPosition);
+
+            if (tile != null)
+            {
+                Building.BuildingType pipetteType = Building.BuildingType.None;
+
+                if (tile.building.GetBuildingType() == Building.BuildingType.Filler)
+                {
+                    pipetteType = tile.building.pair.GetBuildingType();
+                }
+                else
+                {
+                    pipetteType = tile.building.GetBuildingType();
+                }
+
+                selectionUI.SetCurrentBuildingType(pipetteType, new Vector2Int(1, 1));
+            }
+        }
     }
 
     private void Update()
@@ -474,5 +539,61 @@ public class BuildingPlacer : MonoBehaviour
             if (PlaceBuildingAtPosition(buildingType, tilePosition, tileIndicator.transform.rotation))
                 History.Instance.AddToHistory(buildingType, tilePosition, tileIndicator.transform.rotation, true);
         }
+
+        if (isMultiSelectionHappening)
+        {
+            UpdateSelectionPlane();
+        }
+
+
+        //Debug.Log("Current placement state: " + enablePlacement +"\nCurrent removal state: " + enableRemoval + "\nSelection UI tag: " + selectionUI.tag);
+    }
+
+    private void UpdateSelectionPlane()
+    {
+        #region Get current mouse position
+        Vector3Int secondPosition = Vector3Int.zero;
+
+        float planeLength = 0f; //x
+        float planeWidth = 0f; //z
+
+        Vector3 lastPosition = Vector3Int.zero;
+        Vector3 mousPosition = Input.mousePosition;
+        mousPosition.z = Camera.main.nearClipPlane;
+        Ray ray = Camera.main.ScreenPointToRay(mousPosition);
+
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 1000, placementMask))
+        {
+            lastPosition = hit.point;
+
+            secondPosition = BuildingManager.Instance.buildingTilemap.WorldToCell(lastPosition);
+        }
+        #endregion
+
+        planeLength = Mathf.Abs(firstPosition.x - secondPosition.x) + 1;
+        planeWidth = Mathf.Abs(firstPosition.y - secondPosition.y) + 1;
+
+        Debug.Log("L: " + planeLength + " W: " + planeWidth);
+
+        Vector3 centerPoint = Vector3.zero;
+
+        centerPoint.x = (firstPosition.x + secondPosition.x) / 2;
+        centerPoint.z = (firstPosition.y + secondPosition.y) / 2;
+
+        if (planeWidth % 2 == 1)
+        {
+            centerPoint.z += 0.5f;
+        }
+
+        if (planeLength % 2 == 1)
+        {
+            centerPoint.x += 0.5f;
+        }
+
+
+        selectionPlane.transform.localScale = new Vector3(planeLength * 0.1f, 1, planeWidth * 0.1f);
+
+        selectionPlane.transform.position = centerPoint;
     }
 }

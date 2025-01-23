@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2517763498589585307}
   - component: {fileID: 7206618391818014460}
   m_Layer: 0
-  m_Name: TileIndicator
+  m_Name: Tile Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -382,6 +382,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 01b66822-8b6a-4735-8ad8-1a03ee78f071
     m_ActionName: BuildingPlacement/Multi Selection[/Keyboard/ctrl,/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6653698252379050511}
+        m_TargetAssemblyTypeName: BuildingPlacer, Assembly-CSharp
+        m_MethodName: OnPipettePress
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 0616d68c-4f3a-4683-a6f7-e5ba6e9cb050
+    m_ActionName: BuildingPlacement/Pipette[/Keyboard/q]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: BuildingPlacement

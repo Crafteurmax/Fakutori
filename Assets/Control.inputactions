@@ -265,6 +265,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Pipette",
+                    "type": "Button",
+                    "id": "0616d68c-4f3a-4683-a6f7-e5ba6e9cb050",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -432,6 +441,17 @@
                     "action": "Multi Selection",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "58814a0a-1ee7-49a6-a428-00736785bbd3",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pipette",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },

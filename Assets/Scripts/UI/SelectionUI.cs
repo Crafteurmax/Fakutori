@@ -182,7 +182,7 @@ public class SelectionUI : MonoBehaviour
     #endregion Building Buttons
 
     #region Current Building Type
-    private void SetCurrentBuildingType(Building.BuildingType buildingType, Vector2Int buildingButtonIndex)
+    public void SetCurrentBuildingType(Building.BuildingType buildingType, Vector2Int buildingButtonIndex)
     {
         if (buildingType == Building.BuildingType.None || buildingButtonIndex == currentBuilding)
         {
@@ -224,7 +224,7 @@ public class SelectionUI : MonoBehaviour
 
     public void SetCurrentBuildingTypeToNone(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Started && (!buildingPlacer.IsRemovalEnabled()) || buildingPlacer.IsSelectionEmpty())
+        if (context.phase == InputActionPhase.Started && (!buildingPlacer.IsRemovalEnabled() || buildingPlacer.IsSelectionEmpty()))
         {
             StartCoroutine(SetCurrentBuildingTypeToNoneDelayed());
         }
