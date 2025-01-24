@@ -35,7 +35,6 @@ public class ButtonLayout
 public class SelectionUI : MonoBehaviour
 {
     [SerializeField] private Building.BuildingType currentBuildingType = Building.BuildingType.None;
-    [SerializeField] private GameObject selectionPanel;
     [SerializeField] private BuildingPlacer buildingPlacer;
 
     [Header("Building Selection")]
@@ -88,7 +87,6 @@ public class SelectionUI : MonoBehaviour
             CreateBuildingButton(buildingCategory.buttons[0], buildingButtons.Count - 1, 0);
             buildingButtons[^1][0].transform.SetParent(categoryLayout.rectTransform);
             buildingButtons[^1][0].transform.localScale = Vector3.one;
-            //buildingButtons[^1][0].onClick.AddListener(delegate { CloseCurrentBuildingCategory(); });
 
             categoryButtons.Add(null);
         }
@@ -158,7 +156,6 @@ public class SelectionUI : MonoBehaviour
             new Vector2(categoryButtons[categoryIndex].transform.position.x, buttonLayout.rectTransform.position.y), 
             Quaternion.identity); 
 
-        selectionPanel.tag = PanelManger.NoEscape;
         categoryButtons[categoryIndex].SelectButton(true);
 
         currentCategory = categoryIndex;
@@ -176,7 +173,6 @@ public class SelectionUI : MonoBehaviour
         }
         categoryButtons[currentCategory].SelectButton(false);
 
-        selectionPanel.tag = PanelManger.Untagged;
         currentCategory = -1;
     }
     #endregion Building Buttons
@@ -192,7 +188,6 @@ public class SelectionUI : MonoBehaviour
 
         if (buildingButtonIndex.x != currentCategory)
         {
-            //Debug.Log("Close");
             CloseCurrentBuildingCategory();
         }
         if (currentBuilding.x >= 0)
@@ -204,8 +199,6 @@ public class SelectionUI : MonoBehaviour
         currentBuilding = buildingButtonIndex;
         currentBuildingType = buildingType;
 
-        selectionPanel.tag = PanelManger.NoEscape;
-
         NewCurrentBuildingType.Invoke(buildingType);
     }
 
@@ -216,7 +209,6 @@ public class SelectionUI : MonoBehaviour
             buildingButtons[currentBuilding.x][currentBuilding.y].SelectButton(false);
         }
 
-        selectionPanel.tag = PanelManger.Untagged;
         currentBuilding = new(-1, -1);
         currentBuildingType = Building.BuildingType.None;
         NewCurrentBuildingType.Invoke(Building.BuildingType.None);
@@ -226,19 +218,15 @@ public class SelectionUI : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Started && (!buildingPlacer.IsRemovalEnabled() || buildingPlacer.IsSelectionEmpty()))
         {
-            StartCoroutine(SetCurrentBuildingTypeToNoneDelayed());
+            SetCurrentBuildingTypeToNone();
+            CloseCurrentBuildingCategory();
         }
     }
 
-    public IEnumerator SetCurrentBuildingTypeToNoneDelayed()
+    public bool DoActionOnEscape()
     {
-        yield return new WaitForNextFrameUnit();
-
-        SetCurrentBuildingTypeToNone();
-        CloseCurrentBuildingCategory();
+        return currentBuildingType != Building.BuildingType.None;
     }
-
-    public Building.BuildingType GetCurrentBuildingType() { return currentBuildingType; }
     #endregion Current Building Type
 
 #if UNITY_EDITOR

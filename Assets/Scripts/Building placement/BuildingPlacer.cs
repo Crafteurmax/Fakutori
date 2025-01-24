@@ -8,8 +8,6 @@ using UnityEngine.InputSystem;
 
 public class BuildingPlacer : MonoBehaviour
 {
-    [SerializeField] private GameObject selectionPanel;
-
     [Header("Tile indicator")]
     [SerializeField] private TileIndicator tileIndicator;
 
@@ -39,7 +37,7 @@ public class BuildingPlacer : MonoBehaviour
     private Vector3Int firstPosition = Vector3Int.zero;
     private Vector3Int secondPosition = Vector3Int.zero;
 
-    private List<Tuple<Vector3Int, BuildingTile>> selectedBuildings = new List<Tuple<Vector3Int, BuildingTile>>();
+    private readonly List<Tuple<Vector3Int, BuildingTile>> selectedBuildings = new();
 
     #region Start
     //Initialize an instance of History with the building placer
@@ -96,7 +94,6 @@ public class BuildingPlacer : MonoBehaviour
     {
         tileIndicator.ShowMouseIndicator();
         tileIndicator.RemoveIndicator();
-        if (selectionPanel != null) { selectionPanel.tag = PanelManger.NoEscape; }
         enableRemoval = true;
     }
 
@@ -104,35 +101,12 @@ public class BuildingPlacer : MonoBehaviour
     {
         //Debug.Log("Enable placement: " + enablePlacement);
         tileIndicator.HideMouseIndicator();
-        if (selectionPanel != null && !enablePlacement) { selectionPanel.tag = PanelManger.Untagged; }
         enableRemoval = false;
         if (enablePlacement)
         {
             tileIndicator.ShowMouseIndicator();
             tileIndicator.ChangeIndicator(buildingType);
         }
-    }
-
-    public void DisableRemoval(InputAction.CallbackContext context)
-    {
-        if (context.phase == InputActionPhase.Started)
-        {
-            StartCoroutine(DisableRemovalDelayed());
-        }
-    }
-
-    public IEnumerator DisableRemovalDelayed()
-    {
-        yield return new WaitForNextFrameUnit();
-
-        DisableRemoval();
-    }
-
-    public IEnumerator DeselectDelayed()
-    {
-        yield return new WaitForNextFrameUnit();
-
-        DeselectBuildings();
     }
     #endregion
 
@@ -152,8 +126,7 @@ public class BuildingPlacer : MonoBehaviour
             mousPosition.z = Camera.main.nearClipPlane;
             Ray ray = Camera.main.ScreenPointToRay(mousPosition);
 
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 1000, placementMask))
+            if (Physics.Raycast(ray, out RaycastHit hit, 1000, placementMask))
             {
                 lastPosition = hit.point;
             }
@@ -212,16 +185,23 @@ public class BuildingPlacer : MonoBehaviour
         }
     }
 
+
+    public bool DoActionOnEscape()
+    {
+        return enableRemoval;
+    }
+
     public void OnEscapePress(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Started && selectedBuildings.Count == 0 && enableRemoval)
+        if (context.phase != InputActionPhase.Started) { return; }
+
+        if (selectedBuildings.Count == 0)
         {
             DisableRemoval();
         }
-
-        else if (context.phase == InputActionPhase.Started && selectedBuildings.Count != 0 && !enableRemoval && !enablePlacement)
+        else
         {
-            StartCoroutine(DeselectDelayed());
+            DeselectBuildings();
         }
     }
 
@@ -257,7 +237,6 @@ public class BuildingPlacer : MonoBehaviour
     #endregion
 
     #region Building placement / removal
-
     public bool PlaceBuildingAtPosition(Building.BuildingType aBuildingType, Vector3Int aTilePosition, Quaternion aBuildingRotation)
     {
         // Get the correct building from the database
@@ -362,11 +341,9 @@ public class BuildingPlacer : MonoBehaviour
         buildingTile.building.Release();
         Destroy(buildingTile.building.gameObject);
     }
-
     #endregion
 
     #region Undo/Redo
-
     public void Undo()
     {
         History.Instance.Undo();
@@ -381,15 +358,13 @@ public class BuildingPlacer : MonoBehaviour
     #region Multiple building selection / removal
     public void GetBuildingInSelection()
     {
-        if (selectionPanel != null) { selectionPanel.tag = PanelManger.NoEscape; }
-
         if (firstPosition != Vector3Int.zero && secondPosition != Vector3Int.zero)
         {
             for (int i = Mathf.Min(firstPosition.x, secondPosition.x); i < Mathf.Max(firstPosition.x, secondPosition.x); i++)
             {
                 for (int j = Mathf.Min(firstPosition.y, secondPosition.y); j < Mathf.Max(firstPosition.y, secondPosition.y); j++)
                 {
-                    Vector3Int currentCoords = new Vector3Int(i, j, 0);
+                    Vector3Int currentCoords = new(i, j, 0);
                     BuildingTile currentTile = BuildingManager.Instance.buildingTilemap.GetTile<BuildingTile>(currentCoords);
                     if (currentTile != null)
                     {
@@ -412,13 +387,11 @@ public class BuildingPlacer : MonoBehaviour
             selectedBuildings[i].Item2.building.GetComponent<Outline>().OutlineColor = Color.clear;
         }
         selectedBuildings.Clear();
-
-        if (selectionPanel != null && !enablePlacement) { selectionPanel.tag = PanelManger.Untagged; }
     }
 
     public void MultiDeletPress()
     {
-        List<History.buildingAction> actionList = new List<History.buildingAction>();
+        List<History.buildingAction> actionList = new();
 
         foreach (var building in selectedBuildings)
         {
@@ -426,12 +399,12 @@ public class BuildingPlacer : MonoBehaviour
             if ((int)building.Item2.building.GetBuildingType() >= 8 && (int)building.Item2.building.GetBuildingType() < 17)
             {
                 Dictionary<List<string>, List<Item.Symbol>> cache = building.Item2.building.GetComponent<Factory>().GetFactoryCache();
-                History.buildingAction newAction = new History.buildingAction(building.Item2.building.GetBuildingType(), building.Item1, building.Item2.building.transform.rotation, false, cache);
+                History.buildingAction newAction = new(building.Item2.building.GetBuildingType(), building.Item1, building.Item2.building.transform.rotation, false, cache);
                 actionList.Add(newAction);
             }
             else
             {
-                History.buildingAction newAction = new History.buildingAction(building.Item2.building.GetBuildingType(), building.Item1, building.Item2.building.transform.rotation, false);
+                History.buildingAction newAction = new(building.Item2.building.GetBuildingType(), building.Item1, building.Item2.building.transform.rotation, false);
                 actionList.Add(newAction);
             }
         }
@@ -452,15 +425,13 @@ public class BuildingPlacer : MonoBehaviour
 
     private void SelectPipetteBuilding()
     {
-        Vector3 lastPosition = Vector3Int.zero;
         Vector3 mousPosition = Input.mousePosition;
         mousPosition.z = Camera.main.nearClipPlane;
         Ray ray = Camera.main.ScreenPointToRay(mousPosition);
 
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 1000, placementMask))
+        if (Physics.Raycast(ray, out RaycastHit hit, 1000, placementMask))
         {
-            lastPosition = hit.point;
+            Vector3 lastPosition = hit.point;
 
             Vector3Int buildingPosition = BuildingManager.Instance.buildingTilemap.WorldToCell(lastPosition);
             BuildingTile tile = BuildingManager.Instance.buildingTilemap.GetTile<BuildingTile>(buildingPosition);
@@ -554,32 +525,27 @@ public class BuildingPlacer : MonoBehaviour
         #region Get current mouse position
         Vector3Int secondPosition = Vector3Int.zero;
 
-        float planeLength = 0f; //x
-        float planeWidth = 0f; //z
-
-        Vector3 lastPosition = Vector3Int.zero;
         Vector3 mousPosition = Input.mousePosition;
         mousPosition.z = Camera.main.nearClipPlane;
         Ray ray = Camera.main.ScreenPointToRay(mousPosition);
 
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 1000, placementMask))
+        if (Physics.Raycast(ray, out RaycastHit hit, 1000, placementMask))
         {
-            lastPosition = hit.point;
+            Vector3 lastPosition = hit.point;
 
             secondPosition = BuildingManager.Instance.buildingTilemap.WorldToCell(lastPosition);
         }
         #endregion
 
-        planeLength = Mathf.Abs(firstPosition.x - secondPosition.x) + 1;
-        planeWidth = Mathf.Abs(firstPosition.y - secondPosition.y) + 1;
+        float planeLength = Mathf.Abs(firstPosition.x - secondPosition.x) + 1; // x
+        float planeWidth = Mathf.Abs(firstPosition.y - secondPosition.y) + 1; // y
 
         Debug.Log("L: " + planeLength + " W: " + planeWidth);
 
         Vector3 centerPoint = Vector3.zero;
 
-        centerPoint.x = (firstPosition.x + secondPosition.x) / 2;
-        centerPoint.z = (firstPosition.y + secondPosition.y) / 2;
+        centerPoint.x = (float)(firstPosition.x + secondPosition.x) / 2;
+        centerPoint.z = (float)(firstPosition.y + secondPosition.y) / 2;
 
         if (planeWidth % 2 == 1)
         {
