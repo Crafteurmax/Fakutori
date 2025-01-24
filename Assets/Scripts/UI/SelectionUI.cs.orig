@@ -35,7 +35,6 @@ public class ButtonLayout
 public class SelectionUI : MonoBehaviour
 {
     [SerializeField] private Building.BuildingType currentBuildingType = Building.BuildingType.None;
-    [SerializeField] private GameObject selectionPanel;
     [SerializeField] private BuildingPlacer buildingPlacer;
 
     [Header("Building Selection")]
@@ -223,8 +222,13 @@ public class SelectionUI : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Started && (!buildingPlacer.IsRemovalEnabled() || buildingPlacer.IsSelectionEmpty()))
         {
+<<<<<<< HEAD
+            Debug.Log("Set current building type to none");
+            StartCoroutine(SetCurrentBuildingTypeToNoneDelayed());
+=======
             SetCurrentBuildingTypeToNone();
             CloseCurrentBuildingCategory();
+>>>>>>> fa5d5a40be50e353af0c6a4bc5702a9b930cb7ec
         }
     }
 
