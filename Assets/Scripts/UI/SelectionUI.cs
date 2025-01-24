@@ -230,6 +230,7 @@ public class SelectionUI : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Started && (!buildingPlacer.IsRemovalEnabled() || buildingPlacer.IsSelectionEmpty()))
         {
+            Debug.Log("Set current building type to none");
             StartCoroutine(SetCurrentBuildingTypeToNoneDelayed());
         }
     }
