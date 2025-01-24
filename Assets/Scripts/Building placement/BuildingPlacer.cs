@@ -181,7 +181,7 @@ public class BuildingPlacer : MonoBehaviour
     {
         if(!context.performed) return;
 
-        if (!enableRemoval && selectedBuildings.Count == 0)
+        if (!enableRemoval && selectedBuildings.Count == 0 && !selectionPlane.activeSelf)
         {
             EnableRemoval();
             tileIndicator.ChangeIndicator(Building.BuildingType.None);
@@ -216,7 +216,7 @@ public class BuildingPlacer : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Started && selectedBuildings.Count == 0 && enableRemoval)
         {
-            DisableRemoval();
+            StartCoroutine(DisableRemovalDelayed());
         }
 
         else if (context.phase == InputActionPhase.Started && selectedBuildings.Count != 0 && !enableRemoval && !enablePlacement)
@@ -478,10 +478,44 @@ public class BuildingPlacer : MonoBehaviour
                     pipetteType = tile.building.GetBuildingType();
                 }
 
-                selectionUI.SetCurrentBuildingType(pipetteType, new Vector2Int(1, 1));
+                Vector2Int buildingButtonPair = Vector2Int.zero;
+
+                for (int i = 0; i < selectionUI.buildingCategories.Count; i++)
+                {
+                    for (int j = 0; j < selectionUI.buildingCategories[i].buttons.Count; j++)
+                    {
+                        if (selectionUI.buildingCategories[i].buttons[j].buildingType == pipetteType)
+                        {
+                            buildingButtonPair.x = i;
+                            buildingButtonPair.y = j;
+                            break;
+                        }
+                    }
+                }
+
+                selectionUI.SetCurrentBuildingType(pipetteType, buildingButtonPair);
             }
         }
     }
+
+    private static Dictionary<Building.BuildingType, Vector2Int> buildingToButton = new()
+    {
+        {Building.BuildingType.Extractor, new Vector2Int(0, 0)},
+        {Building.BuildingType.Belt, new Vector2Int(1, 0)},
+        {Building.BuildingType.Splitter, new Vector2Int(1, 1)},
+        {Building.BuildingType.TunnelInput, new Vector2Int(1, 2)},
+        {Building.BuildingType.TunnelOutput, new Vector2Int(1, 3)},
+        {Building.BuildingType.Trash, new Vector2Int(2, 0)},
+        {Building.BuildingType.Vendor, new Vector2Int(3, 0)},
+        {Building.BuildingType.Concatenator, new Vector2Int(4, 0)},
+        {Building.BuildingType.Troncator, new Vector2Int(4, 1)},
+        {Building.BuildingType.Exchangificator, new Vector2Int(4, 2)},
+        {Building.BuildingType.Kanjificator, new Vector2Int(5, 0)},
+        {Building.BuildingType.Hiraganificator, new Vector2Int(5, 1)},
+        {Building.BuildingType.Katanificator, new Vector2Int(5, 2)},
+        {Building.BuildingType.Maruificator, new Vector2Int(6, 0)},
+        {Building.BuildingType.Tentenificator, new Vector2Int(6, 1)}
+    };
 
     private void Update()
     {
@@ -574,7 +608,7 @@ public class BuildingPlacer : MonoBehaviour
         planeLength = Mathf.Abs(firstPosition.x - secondPosition.x) + 1;
         planeWidth = Mathf.Abs(firstPosition.y - secondPosition.y) + 1;
 
-        Debug.Log("L: " + planeLength + " W: " + planeWidth);
+        //Debug.Log("L: " + planeLength + " W: " + planeWidth);
 
         Vector3 centerPoint = Vector3.zero;
 

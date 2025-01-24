@@ -43,7 +43,7 @@ public class SelectionUI : MonoBehaviour
     [SerializeField] private SelectableButton categoryButtonPrefab;
     [SerializeField] private ButtonLayout categoryLayout;
     [SerializeField] private ButtonLayout buttonLayout;
-    [SerializeField] private List<BuildingCategory> buildingCategories = new();
+    [SerializeField] public List<BuildingCategory> buildingCategories = new();
 
     private readonly List<List<SelectableButton>> buildingButtons = new();
     private readonly List<SelectableButton> categoryButtons = new();
@@ -200,6 +200,10 @@ public class SelectionUI : MonoBehaviour
             buildingButtons[currentBuilding.x][currentBuilding.y].SelectButton(false);
         }
 
+        if (buildingCategories[buildingButtonIndex.x].buttons.Count != 1)
+        {
+            OpenBuildingCategory(buildingButtonIndex.x); 
+        }
         buildingButtons[buildingButtonIndex.x][buildingButtonIndex.y].SelectButton(true);
         currentBuilding = buildingButtonIndex;
         currentBuildingType = buildingType;
