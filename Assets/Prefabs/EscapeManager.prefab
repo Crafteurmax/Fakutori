@@ -90,6 +90,18 @@ MonoBehaviour:
     m_ActionId: db53b0f5-5a8c-4c15-8092-00e391633895
     m_ActionName: CameraMovement/RotateMode[/Mouse/middleButton]
   - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: eea273a3-a38a-48de-8a08-52686b9e9d97
+    m_ActionName: UI/Return[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 46079d72-700a-4844-b2db-b21a7b0982f8
+    m_ActionName: BuildingPlacement/Place[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 28e685bc-ec66-415f-a075-f6bb15f2ae93
+    m_ActionName: BuildingPlacement/Rotate[/Keyboard/r]
+  - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5749238413201051391}
         m_TargetAssemblyTypeName: EscapeManager, Assembly-CSharp
@@ -103,22 +115,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: eea273a3-a38a-48de-8a08-52686b9e9d97
-    m_ActionName: UI/Return[/Keyboard/escape]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: b6647559-44aa-4501-927e-97a80cdd6f47
-    m_ActionName: UI/SetSelectedBuildingToNone[/Keyboard/escape]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 46079d72-700a-4844-b2db-b21a7b0982f8
-    m_ActionName: BuildingPlacement/Place[/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 28e685bc-ec66-415f-a075-f6bb15f2ae93
-    m_ActionName: BuildingPlacement/Rotate[/Keyboard/r]
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: 6ed9f1ed-058a-490f-8726-a16eafa43e6f
     m_ActionName: BuildingPlacement/Disable Remove[/Keyboard/escape]
   - m_PersistentCalls:
