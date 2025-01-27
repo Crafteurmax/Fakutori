@@ -129,22 +129,6 @@ MonoBehaviour:
     m_ActionId: eea273a3-a38a-48de-8a08-52686b9e9d97
     m_ActionName: UI/Return[/Keyboard/escape]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 738371182141782685}
-        m_TargetAssemblyTypeName: MainUI, Assembly-CSharp
-        m_MethodName: SetCurrentBuildingTypeToNone
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: b6647559-44aa-4501-927e-97a80cdd6f47
-    m_ActionName: UI/SetSelectedBuildingToNone[/Keyboard/escape]
-  - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 46079d72-700a-4844-b2db-b21a7b0982f8
     m_ActionName: BuildingPlacement/Place[/Mouse/leftButton]
@@ -228,6 +212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBuildingType: 0
+  selectionPanel: {fileID: 0}
   buildingPlacer: {fileID: 0}
   buildingButtonPrefab: {fileID: 1112222518860219500, guid: ff541b036aa985646ad80c126934ae4d, type: 3}
   categoryButtonPrefab: {fileID: 4439425625791092551, guid: af46cf25a22f25b4cb3dca674d7c336a, type: 3}
@@ -247,47 +232,47 @@ MonoBehaviour:
   - sprite: {fileID: 0}
     buttons:
     - buildingType: 5
-      sprite: {fileID: -526266283, guid: d91572322bb824b48a343990a5a628c6, type: 3}
+      sprite: {fileID: 1891330275, guid: d91572322bb824b48a343990a5a628c6, type: 3}
   - sprite: {fileID: -1707021085, guid: d91572322bb824b48a343990a5a628c6, type: 3}
     buttons:
     - buildingType: 1
-      sprite: {fileID: 705251340, guid: d91572322bb824b48a343990a5a628c6, type: 3}
+      sprite: {fileID: 224390413, guid: d91572322bb824b48a343990a5a628c6, type: 3}
     - buildingType: 2
-      sprite: {fileID: 252588228, guid: d91572322bb824b48a343990a5a628c6, type: 3}
+      sprite: {fileID: 685884228, guid: d91572322bb824b48a343990a5a628c6, type: 3}
     - buildingType: 3
-      sprite: {fileID: 1736154194, guid: d91572322bb824b48a343990a5a628c6, type: 3}
+      sprite: {fileID: -2005589354, guid: d91572322bb824b48a343990a5a628c6, type: 3}
     - buildingType: 4
       sprite: {fileID: 610740034, guid: d91572322bb824b48a343990a5a628c6, type: 3}
   - sprite: {fileID: 0}
     buttons:
     - buildingType: 6
-      sprite: {fileID: -437096166, guid: d91572322bb824b48a343990a5a628c6, type: 3}
+      sprite: {fileID: 489770841, guid: d91572322bb824b48a343990a5a628c6, type: 3}
   - sprite: {fileID: 0}
     buttons:
     - buildingType: 7
-      sprite: {fileID: -1122714341, guid: d91572322bb824b48a343990a5a628c6, type: 3}
+      sprite: {fileID: 1309349571, guid: d91572322bb824b48a343990a5a628c6, type: 3}
   - sprite: {fileID: -1491012273, guid: d91572322bb824b48a343990a5a628c6, type: 3}
     buttons:
     - buildingType: 8
-      sprite: {fileID: -630644238, guid: d91572322bb824b48a343990a5a628c6, type: 3}
+      sprite: {fileID: -1331223979, guid: d91572322bb824b48a343990a5a628c6, type: 3}
     - buildingType: 16
-      sprite: {fileID: -1128170811, guid: d91572322bb824b48a343990a5a628c6, type: 3}
+      sprite: {fileID: 1717421779, guid: d91572322bb824b48a343990a5a628c6, type: 3}
     - buildingType: 9
-      sprite: {fileID: 1549620356, guid: d91572322bb824b48a343990a5a628c6, type: 3}
+      sprite: {fileID: -1182190450, guid: d91572322bb824b48a343990a5a628c6, type: 3}
   - sprite: {fileID: -1064655642, guid: d91572322bb824b48a343990a5a628c6, type: 3}
     buttons:
     - buildingType: 11
-      sprite: {fileID: -702328657, guid: d91572322bb824b48a343990a5a628c6, type: 3}
+      sprite: {fileID: 891086830, guid: d91572322bb824b48a343990a5a628c6, type: 3}
     - buildingType: 10
-      sprite: {fileID: -640319054, guid: d91572322bb824b48a343990a5a628c6, type: 3}
+      sprite: {fileID: 278183028, guid: d91572322bb824b48a343990a5a628c6, type: 3}
     - buildingType: 12
-      sprite: {fileID: 407527617, guid: d91572322bb824b48a343990a5a628c6, type: 3}
+      sprite: {fileID: -1813378428, guid: d91572322bb824b48a343990a5a628c6, type: 3}
   - sprite: {fileID: 1180392779, guid: d91572322bb824b48a343990a5a628c6, type: 3}
     buttons:
     - buildingType: 13
-      sprite: {fileID: 160977245, guid: d91572322bb824b48a343990a5a628c6, type: 3}
+      sprite: {fileID: 716152018, guid: d91572322bb824b48a343990a5a628c6, type: 3}
     - buildingType: 15
-      sprite: {fileID: 262639887, guid: d91572322bb824b48a343990a5a628c6, type: 3}
+      sprite: {fileID: 1334623745, guid: d91572322bb824b48a343990a5a628c6, type: 3}
 --- !u!114 &3398606048149870175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -644,7 +629,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1455, y: 500}
+  m_SizeDelta: {x: 1145, y: 145}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &8719034175320788293
 CanvasRenderer:
@@ -704,7 +689,7 @@ MonoBehaviour:
   m_ChildAlignment: 4
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 100, y: 100}
+  m_CellSize: {x: 125, y: 125}
   m_Spacing: {x: 10, y: 0}
   m_Constraint: 1
   m_ConstraintCount: 7
@@ -1811,8 +1796,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 120}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 0, y: 145}
+  m_SizeDelta: {x: 320, y: 170}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &1786396571148386303
 CanvasRenderer:
@@ -1872,7 +1857,7 @@ MonoBehaviour:
   m_ChildAlignment: 4
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 75, y: 75}
+  m_CellSize: {x: 150, y: 150}
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 1
   m_ConstraintCount: 2
