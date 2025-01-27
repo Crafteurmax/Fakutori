@@ -187,7 +187,7 @@ public class BuildingPlacer : MonoBehaviour
 
     public bool DoActionOnEscape()
     {
-        return enableRemoval;
+        return enableRemoval || selectedBuildings.Count != 0;
     }
 
     public void OnEscapePress(InputAction.CallbackContext context)
