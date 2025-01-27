@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -72,6 +73,12 @@ public class KanjificatorOutputSelection : MonoBehaviour
         if (enabled)
         {
             centerPoint.transform.position = requestor.transform.position;
+            requestor.GetComponent<Outline>().OutlineColor = Color.red;
+        }
+
+        if (!enabled)
+        {
+            requestor.GetComponent<Outline>().OutlineColor = Color.clear;
         }
     }
 

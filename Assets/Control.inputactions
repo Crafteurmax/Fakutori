@@ -145,15 +145,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "SetSelectedBuildingToNone",
-                    "type": "Button",
-                    "id": "b6647559-44aa-4501-927e-97a80cdd6f47",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -165,17 +156,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Return",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "7ac7eb7f-980f-4933-a8f5-5f83e2e2d3d0",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SetSelectedBuildingToNone",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -198,15 +178,6 @@
                     "name": "Rotate",
                     "type": "Button",
                     "id": "28e685bc-ec66-415f-a075-f6bb15f2ae93",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Disable Remove",
-                    "type": "Button",
-                    "id": "6ed9f1ed-058a-490f-8726-a16eafa43e6f",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -261,6 +232,24 @@
                     "name": "Multi Selection",
                     "type": "Button",
                     "id": "01b66822-8b6a-4735-8ad8-1a03ee78f071",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Pipette",
+                    "type": "Button",
+                    "id": "0616d68c-4f3a-4683-a6f7-e5ba6e9cb050",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Escape",
+                    "type": "Button",
+                    "id": "6ed9f1ed-058a-490f-8726-a16eafa43e6f",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -390,17 +379,6 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "43f8cfa3-6eb6-4cde-a47a-fd6119c5800d",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Disable Remove",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
                     "name": "Ctrl - Left Click",
                     "id": "642b613b-b060-4074-ab73-0a15a0340e4e",
                     "path": "OneModifier",
@@ -432,6 +410,28 @@
                     "action": "Multi Selection",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "58814a0a-1ee7-49a6-a428-00736785bbd3",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pipette",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "43f8cfa3-6eb6-4cde-a47a-fd6119c5800d",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Escape",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },

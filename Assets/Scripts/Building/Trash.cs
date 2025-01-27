@@ -13,9 +13,6 @@ public class Trash : Building
     private GameObject displayedPaper;
     [SerializeField] private GameObject displayedPaperPosition;
 
-    [Header("Animation")]
-    [SerializeField] private Animator animator;
-
     private void Awake() {
         trashInput.Initialize();
         BuildingManager.Instance.AddBuildingInput(trashInput.GetPosition(), trashInput);

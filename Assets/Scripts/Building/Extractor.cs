@@ -12,9 +12,6 @@ public class Extractor : Building
     [SerializeField] private float productionSpeed = 1.0f;
     [SerializeField] private List<Item.Symbol> extractedCharacters;
 
-    [Header("References")]
-    [SerializeField] private Animator extractorAnimator;
-
     private BuildingOutput output;
     
     private bool isProducing = false;
@@ -37,8 +34,8 @@ public class Extractor : Building
 
     private IEnumerator ProduceItem() {
         isProducing = true;
-        extractorAnimator.SetTrigger("Produce");
-        extractorAnimator.SetFloat("Speed", productionSpeed);
+        animator.SetTrigger("Produce");
+        animator.SetFloat("Speed", animationTime * productionSpeed / productionTime);
         yield return new WaitForSeconds(productionTime / productionSpeed);
         isProducing = false;
 

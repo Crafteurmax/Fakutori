@@ -7,6 +7,10 @@ public class Building : MonoBehaviour
 {
     public Building pair;
 
+    [Header("Animation")]
+    [SerializeField] protected Animator animator;
+    [SerializeField] protected float animationTime = 4.0f;
+
     public enum BuildingType {
         None,
         Belt,

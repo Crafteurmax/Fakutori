@@ -92,12 +92,16 @@ public class GoalController : MonoBehaviour
 
     private bool IsAllDisplayedGoalsAreCompleted()
     {
+        bool isOneGoalNotComplete = false;
         foreach (var goals in displayedGoals)
         {
-            if(!goals.Value.IsGoalComplete()) return false;
+            if(!goals.Value.IsGoalComplete())
+            {
+                isOneGoalNotComplete = true;
+            }
         }
         //Debug.Log("All goal completed");
-        return true;
+        return isOneGoalNotComplete ? false : true;
     }
 
     private void loadNextGoalsSet()

@@ -48,10 +48,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pair: {fileID: 0}
+  animator: {fileID: 7797604336329524552}
+  animationTime: 4
   productionTime: 4
   productionSpeed: 1
   extractedCharacters: []
-  extractorAnimator: {fileID: 7797604336329524552}
 --- !u!114 &-8383135992650281839
 MonoBehaviour:
   m_ObjectHideFlags: 0
