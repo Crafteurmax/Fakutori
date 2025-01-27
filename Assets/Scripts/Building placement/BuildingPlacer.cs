@@ -185,10 +185,9 @@ public class BuildingPlacer : MonoBehaviour
         }
     }
 
-
     public bool DoActionOnEscape()
     {
-        return enableRemoval;
+        return enableRemoval || selectedBuildings.Count != 0;
     }
 
     public void OnEscapePress(InputAction.CallbackContext context)
@@ -449,6 +448,11 @@ public class BuildingPlacer : MonoBehaviour
                     pipetteType = tile.building.GetBuildingType();
                 }
 
+                if (pipetteType == buildingType)
+                {
+                    return;
+                }
+
                 Vector2Int buildingButtonPair = Vector2Int.zero;
 
                 for (int i = 0; i < selectionUI.buildingCategories.Count; i++)
@@ -468,25 +472,6 @@ public class BuildingPlacer : MonoBehaviour
             }
         }
     }
-
-    private static Dictionary<Building.BuildingType, Vector2Int> buildingToButton = new()
-    {
-        {Building.BuildingType.Extractor, new Vector2Int(0, 0)},
-        {Building.BuildingType.Belt, new Vector2Int(1, 0)},
-        {Building.BuildingType.Splitter, new Vector2Int(1, 1)},
-        {Building.BuildingType.TunnelInput, new Vector2Int(1, 2)},
-        {Building.BuildingType.TunnelOutput, new Vector2Int(1, 3)},
-        {Building.BuildingType.Trash, new Vector2Int(2, 0)},
-        {Building.BuildingType.Vendor, new Vector2Int(3, 0)},
-        {Building.BuildingType.Concatenator, new Vector2Int(4, 0)},
-        {Building.BuildingType.Troncator, new Vector2Int(4, 1)},
-        {Building.BuildingType.Exchangificator, new Vector2Int(4, 2)},
-        {Building.BuildingType.Kanjificator, new Vector2Int(5, 0)},
-        {Building.BuildingType.Hiraganificator, new Vector2Int(5, 1)},
-        {Building.BuildingType.Katanificator, new Vector2Int(5, 2)},
-        {Building.BuildingType.Maruificator, new Vector2Int(6, 0)},
-        {Building.BuildingType.Tentenificator, new Vector2Int(6, 1)}
-    };
 
     private void Update()
     {
@@ -581,16 +566,8 @@ public class BuildingPlacer : MonoBehaviour
         centerPoint.x = (float)(firstPosition.x + secondPosition.x) / 2;
         centerPoint.z = (float)(firstPosition.y + secondPosition.y) / 2;
 
-        if (planeWidth % 2 == 1)
-        {
-            centerPoint.z += 0.5f;
-        }
-
-        if (planeLength % 2 == 1)
-        {
-            centerPoint.x += 0.5f;
-        }
-
+        centerPoint.x += 0.5f;
+        centerPoint.z += 0.5f;
 
         selectionPlane.transform.localScale = new Vector3(planeLength * 0.1f, 1, planeWidth * 0.1f);
 

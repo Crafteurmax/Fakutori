@@ -16,7 +16,7 @@ public class EscapeManager : MonoBehaviour
         //Debug.Log("Coucou");
         //Debug.Log(panelManager != null);
 
-        if (buildingPlacer != null && (buildingPlacer.DoActionOnEscape() || !buildingPlacer.IsSelectionEmpty()))
+        if (buildingPlacer != null && buildingPlacer.DoActionOnEscape())
         {
             //Debug.Log(1);
             buildingPlacer.OnEscapePress(context);
