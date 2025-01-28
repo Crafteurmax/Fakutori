@@ -65,6 +65,7 @@ I hope you know how to speak french, if not my joke kinda flop...
 
 
 :: Desu_12 [N1P0N] {"position":"3300,400","size":"100,100"}
+(set: $redo to "Desu_12")
 But it could be usefull to learn how to say that "X is not Y". Thanks for us it's very simple to do so in japanese.
 [[Desu_13]] 
 
@@ -97,24 +98,24 @@ You now know how to say that something is or isn't something else. This is very 
 As an exemple, when I describe myself, I can omit to say "私は". So, instead saying "私はN1P0Nです", I only say "N1P0Nです". But any way, time to say goodbye, see you tomorrow.
 
 
-:: Desu_2 [N1P0N] {"position":"2700,250","size":"100,100"}
+:: Desu_2 [N1P0N] {"position":"2500,500","size":"100,100"}
+(set: $redo to "Desu_2")
 The “desu” form is used for everything and can be translated by “be”. X is Y is translated in XはYです. 
 [[Desu_3]] 
 
 
 
-:: Desu_3 [N1P0N] {"position":"2700,400","size":"100,100"}
-(set: $redo to "Desu_3")
+:: Desu_3 [N1P0N] {"position":"2500,650","size":"100,100"}
 In this situation ‘は’, is called a particle, it’s here to indicate the grammatical structure of the sentence, the ‘は’ is used to identify the topic of a sentence.
 [[Desu_4]] 
 
 
-:: Desu_4 [N1P0N] {"position":"2700,550","size":"100,100"}
-But be carefull !!!! When は is used as a particule, it's pronnonced like a わ. This tipe of exeptions are common for particules but now is not the time to talk about it.
+:: Desu_4 [N1P0N] {"position":"2500,800","size":"100,100"}
+But be carefull !!!! When は is used as a particule, it's pronnonced like a わ. This type of exeptions are common for particules but now is not the time to talk about it.
 [[Desu_5]]
 
 
-:: Desu_5 [N1P0N] {"position":"2700,700","size":"100,100"}
+:: Desu_5 [N1P0N] {"position":"2500,950","size":"100,100"}
 Try to say "Today is Monday" and "Today is Wednesday".
 
 
@@ -154,7 +155,8 @@ This is soooooo easy, you only need one hiragana.
 
 
 :: Desuka_4 [N1P0N] {"position":"3700,550","size":"100,100"}
-Just take your sentence and add か at the end of your sentence. So if you want to ask "is X Y ?", just say "XはYでか" and if you want to say "isn't X Y ?" just say "XはYではありませんか"
+(set: $redo to "Desuka_4")
+Just take your sentence and add か at the end of your sentence. So if you want to ask "is X Y ?", just say "XはYですか" and if you want to say "isn't X Y ?" just say "XはYではありませんか"
 [[Desuka_5]] 
 
 
@@ -205,7 +207,7 @@ Do you need some information about those machines ?
 [[the belt->Belt_1]]
 [[the concatenator->Concatenator_1]]
 [[the kanjificator->Kanjificator_1]]
-[[the vending machine->Vendor_1]]
+[[the vendor->Vendor_1]]
 [[no thanks->Explanation_5]]
 
 
@@ -515,9 +517,87 @@ Ok, I think it's time for you to learn the last few machines that you can use in
 Ok so let's get to work !!!
 
 
-:: RecalVocab1_1 [N1P0N TODO] {"position":"2900,250","size":"100,100"}
-TODO
-[[Desu_2]] 
+:: Present_1 [N1P0N] {"position":"4500,100","size":"100,100"}
+Now that you've learn some verbs, let's learn how to conjugate them.
+[[Present_2]]
+
+
+:: Present_2 [N1P0N] {"position":"4500,250","size":"100,100"}
+You already know to use the present in a casual way, juste use the dictionary form, now, if you want to use it in a more polite way you can deo the following :
+[[Present_3]] 
+
+
+:: Present_3 [N1P0N] {"position":"4500,400","size":"100,100"}
+For the godan verb : root + i + masu
+For the ichidan verb : root + masu
+[[Present_4]] 
+
+
+:: Present_4 [N1P0N] {"position":"4500,550","size":"100,100"}
+Now give me, the 4 last verb that I've told you in the polite present form.
+
+
+:: RecalVocab1_1 [N1P0N] {"position":"2800,250","size":"100,100"}
+The kanji for water, 水, is written みず(mizu).
+[[RecalVocab1_2]] 
+
+
+:: RecalVocab1_10 [N1P0N] {"position":"2950,850","size":"100,100"}
+As an exemple, 今日(きょう - kyou) means the current day, today, and 今月 (こんげつ - kongetsu) means the current month, this month.
+[[RecalVocab1_11]] 
+
+
+:: RecalVocab1_11 [N1P0N] {"position":"2800,1000","size":"100,100"}
+The kanji 人, as a suffix for a country is read "じん"(jin), because we use the ON lecture. If you use this kanji alone, then you will read it using his KUN lecture, "ひと"(hito), which would mean a person, someone or a human.
+[[RecalVocab1_12]] 
+
+
+:: RecalVocab1_12 [N1P0N] {"position":"2650,800","size":"100,100"}
+And that's every thing we have seen so far !! Do you want me to repeat  ?
+[[yes->RecalVocab1_1]] 
+[[no->Desu_2]] 
+
+
+:: RecalVocab1_2 [N1P0N] {"position":"2950,250","size":"100,100"}
+The kanji for tree or wood, 木, is written き(ki).
+[[RecalVocab1_3]] 
+
+
+:: RecalVocab1_3 [N1P0N] {"position":"2950,400","size":"100,100"}
+The kanji for gold, 金, is written きん(kin).
+[[RecalVocab1_4]] 
+
+
+:: RecalVocab1_4 [N1P0N] {"position":"2800,400","size":"100,100"}
+The kanji for soil, 土, that can be written つち(tsuchi).
+[[RecalVocab1_5]] 
+
+
+:: RecalVocab1_5 [N1P0N] {"position":"2800,550","size":"100,100"}
+The kanji for sun or day, 日, can be written ”ひ”(hi) and the kanji for moon or month, 月, can be written "つき"(tsuki).
+[[RecalVocab1_6]] 
+
+
+:: RecalVocab1_6 [N1P0N] {"position":"2950,550","size":"100,100"}
+Days of the week are in order 月曜日 (げつようび), 火曜日 (かようび), 水曜日 (すいようび), 木曜日 (もくようび), 金曜日 (きんようび), 土曜日 (どようび) and 日曜日 (にちようび).
+[[RecalVocab1_7]] 
+
+
+
+
+:: RecalVocab1_7 [N1P0N] {"position":"2950,700","size":"100,100"}
+They represent the five chinese elements ( Chinese: 五行 Wu Xing ) Wood, Fire, Earth, Metal and Water. Like in english, Monday and Sunday are recpectively the day of the moon and the day of the sun.
+[[RecalVocab1_8]] 
+
+
+:: RecalVocab1_8 [N1P0N] {"position":"2800,700","size":"100,100"}
+A simple way to say "me" is "わたし" (私 - watashi). It's the default one. Like playing a Human Fighter in DnD, it's not bad, a great first choice, but it doesn't say a lot about you.
+[[RecalVocab1_9]] 
+
+
+:: RecalVocab1_9 [N1P0N] {"position":"2800,850","size":"100,100"}
+Now is the time for "now", "いま" (今 - ima) represent at the same time the present time or something that will happen very soon. It's also very useful because if you write 今[SOMETHING], it means "this current SOMETHING".
+[[RecalVocab1_10]] 
 
 
 :: Spliter_1 [N1P0N] {"position":"1100,1450","size":"100,100"}
@@ -559,6 +639,76 @@ Tunnel can also be used to transport a piece of paper very far away because, no 
 (image: "vendor")
 When you're happy with the paper that you have and want to complete the objective, give it to the vendor !!! This piece of paper will be sent and reviewed by upper management to complete your quota !!!
 [[Explanation_4]]
+
+
+:: VerbeGroup_1 [N1P0N] {"position":"4100,100","size":"100,100"}
+Welcome back, let's start a new week of sentence creation. Hupper management are very happy of what you've done so far, I've never seen anybody get a raise around here but you could be the first !!!!
+[[VerbeGroup_2]]
+
+
+:: VerbeGroup_10 [N1P0N] {"position":"4300,100","size":"100,100"}
+Nice !!!! You've learn your first two Godan verb, you can recognise them because most of them don't end with "iru" or "eru". In order to conjugate it you will need to get there "root" form by removing the final "u".
+[[VerbeGroup_11]] 
+
+
+:: VerbeGroup_11 [N1P0N] {"position":"4300,250","size":"100,100"}
+As an exemple the root form of 行く is "ik_" and 学ぶ is "manab_", you can note that the last sylabel is missing his voyel, it will be replace depending on the conjugaison of the verb. That's why they are called "5 step", they use all of the 5 voyelles.
+[[VerbeGroup_12]] 
+
+
+:: VerbeGroup_12 [N1P0N] {"position":"4300,400","size":"100,100"}
+All of the other verbs that are not a Godan verb will be a Ichidan verb, meaning that if a verb end with "eru" or "iru" it will most certanly be an Ichidan.
+[[VerbeGroup_13]] 
+
+
+:: VerbeGroup_13 [N1P0N] {"position":"4300,550","size":"100,100"}
+Ichidan mean "one step", there root form doesn't loose there final "u", they only use one vowel, "one step". This also mean that the root and dictionary form are he same.
+[[VerbeGroup_14]] 
+
+
+:: VerbeGroup_14 [N1P0N] {"position":"4300,700","size":"100,100"}
+Try to give me 食べる, written たべる (taberu) and 見る, written みる (miru). The first one mean to eat and the second one mean to see.
+
+
+:: VerbeGroup_2 [N1P0N] {"position":"4100,250","size":"100,100"}
+Last time you've learn how to use the verb "be" in japanese, this is not realy a verb in japanese, it follows his own set of rule. Let's learn how to use other verbs !!!
+[[VerbeGroup_3]] 
+
+
+:: VerbeGroup_3 [N1P0N] {"position":"4100,400","size":"100,100"}
+There is basicaly only three things to know about japanese conjugaison.
+[[VerbeGroup_4]] 
+
+
+:: VerbeGroup_4 [N1P0N] {"position":"4100,550","size":"100,100"}
+First, you need to change the way you conjugate the verb depending on the politenesse that you want to convey in your sentence. 
+[[VerbeGroup_5]] 
+
+
+:: VerbeGroup_5 [N1P0N] {"position":"4100,700","size":"100,100"}
+Then you need to know the type of your verb, they are only two type of verb 五段 “Godan” and 一段 “Ichidan”, they literaly mean 1 and 5 steps verbs. More on that later.
+[[VerbeGroup_6]] 
+
+
+:: VerbeGroup_6 [N1P0N] {"position":"4100,850","size":"100,100"}
+Finaly, yo need to know if the verb is positive or negative.
+[[VerbeGroup_7]] 
+
+
+:: VerbeGroup_7 [N1P0N] {"position":"4100,1000","size":"100,100"}
+It can seem like a lot but don't be afraid those notions are very repetitive and share a lot of similaritise.
+[[VerbeGroup_8]] 
+
+
+:: VerbeGroup_8 [N1P0N] {"position":"4100,1150","size":"100,100"}
+(set: $redo to "VerbeGroup_8")
+But let's start it simple with our first two verbs. 行く and 学ぶ.
+[[VerbeGroup_9]] 
+
+
+
+:: VerbeGroup_9 [N1P0N] {"position":"4100,1300","size":"100,100"}
+行く is writen いく and mean to go. 学ぶ is writen まなぶ and mean to study. They are currently writen in there dictionary form (finising with a "u" sound). For simplicity reason, if you want to create a verb using the kanjificator, use the dictionary form of the verb.
 
 
 :: Week_1 [N1P0N $_$] {"position":"1100,100","size":"100,100"}
