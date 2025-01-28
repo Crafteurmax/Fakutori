@@ -41,6 +41,7 @@ public class LevelSelection : MonoBehaviour
 
     [Header("Navigation Buttons")]
     [SerializeField] private Button playButton;
+    [SerializeField] private Button deleteSaveButton;
 
     [Header("Panels")]
     [SerializeField] private List<LevelPanelController> panelObjectList;
@@ -48,6 +49,7 @@ public class LevelSelection : MonoBehaviour
     private int maxPanelNumber = 1;
     private int selectedPanel = 0;
     private string levelsDataPath = Application.dataPath + "/Resources/levelPanelData.json";
+    private string saveFileFolderPath = Application.dataPath + "/Resources/Save/";
 
     private PanelWrapper wrapper = new PanelWrapper();
     private List<Panel> panelList = new List<Panel>();
@@ -56,8 +58,8 @@ public class LevelSelection : MonoBehaviour
     private void Start()
     {
         panelList = ReadLevelsData();
-        WriteLevelsData();       
-        TogglePlayButton(false);
+        WriteLevelsData();
+        TogglePlayDeleteButton(false);
     }
 
     private void OnEnable()
@@ -115,30 +117,31 @@ public class LevelSelection : MonoBehaviour
         Application.Quit();
     }
 
-    private void TogglePlayButton(bool newState)
+    private void TogglePlayDeleteButton(bool newState)
     {
         playButton.interactable = newState;
+        deleteSaveButton.interactable = newState;
     }
 
     public void OnToggleButtonChange()
     {
         ToggleButton currentToggle = levelToggleGroup.GetCurrentToggledButton();
 
-
         if (currentToggle == null)
         {
-            TogglePlayButton(false);
+            TogglePlayDeleteButton(false);
             ClearLevelDescription();
             return;
         }
 
         levelDescription.text = currentToggle.GetComponent<LevelButton>().GetLevelDescription();
-        TogglePlayButton(true);
+        UpdateLevelDataOnToggledButtonChange();
+        TogglePlayDeleteButton(true);
 
         //Debug.Log("Current toggle changed");
     }
 
-    public void LaunchSelectedLevel()
+    private void UpdateLevelDataOnToggledButtonChange()
     {
         LevelButton currentLevel = levelToggleGroup.GetCurrentToggledButton().GetComponent<LevelButton>();
 
@@ -148,7 +151,16 @@ public class LevelSelection : MonoBehaviour
 
         LevelData.currentPanel = currentLevel.GetPanel();
         LevelData.currentLevelIndex = currentLevel.GetLevelIndex();
+    }
 
+    public void DeleteSelectedSave()
+    {
+        string saveFilePath = saveFileFolderPath + LevelData.mapName;
+        File.Delete(saveFilePath);
+    }
+
+    public void LaunchSelectedLevel()
+    {
         SceneManager.LoadScene("PlayGround");
     }
 }

@@ -1,7 +1,4 @@
-using JetBrains.Annotations;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -62,7 +59,7 @@ public class PanelManger : MonoBehaviour
 
     public void LoadTitleMenu()
     {
-        worldSaver.WriteData();
+        worldSaver.WriteData(LevelData.mapName);
         SceneManager.LoadScene("Menu");
     }
 }
