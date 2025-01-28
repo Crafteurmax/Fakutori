@@ -39,7 +39,8 @@ public class BuildingInput : MonoBehaviour
     public Item GetItem() {
         return item;
     }
-    public void SetItem(Item newItem) {
+    public void SetItem(Item newItem)
+    {
         item = newItem;
     }
     public void ClearItem() {
