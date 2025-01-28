@@ -59,6 +59,7 @@ public class IndividualGoalController : MonoBehaviour, IPointerClickHandler, IPo
         if (goalId == -1) return;
         panelManager.TogglePanel(dictionaryPanel);
         UIDictionnary.Instance.OpenVocabularyPage(goalId);
+        UIDictionnary.Instance.GoTo(goalId);
         UIdescription.color = goalColor;
     }
 
