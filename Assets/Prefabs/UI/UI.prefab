@@ -2251,7 +2251,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 5596933979076140418, guid: 097d8e980978bc741958d1bcb40a2f72, type: 3}
   dialoguePanel: {fileID: 835654827210146769}
-  story: {fileID: 0}
+  story: {fileID: 5785544637700478462}
   panelManger: {fileID: 5853377442404459444}
   dictionaryPanel: {fileID: 6481383735220343159}
 --- !u!114 &633888241241961273
@@ -5612,6 +5612,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7598127725348531886, guid: e8e325aac91795141b366a46949ccaa7, type: 3}
   m_PrefabInstance: {fileID: 7127279886904962431}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5785544637700478462 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3648845311420151937, guid: e8e325aac91795141b366a46949ccaa7, type: 3}
+  m_PrefabInstance: {fileID: 7127279886904962431}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d87442d83cede8042a961f5d07835f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &5919588355817515245 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3517229346451031442, guid: e8e325aac91795141b366a46949ccaa7, type: 3}
