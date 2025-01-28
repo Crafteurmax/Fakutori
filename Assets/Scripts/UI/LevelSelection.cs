@@ -45,12 +45,10 @@ public class LevelSelection : MonoBehaviour
     [Header("Panels")]
     [SerializeField] private List<LevelPanelController> panelObjectList;
 
-    private int maxPanelNumber = 1;
-    private int selectedPanel = 0;
-    private string levelsDataPath = Application.dataPath + "/Resources/levelPanelData.json";
+    private readonly string levelsDataPath = Application.dataPath + "/Resources/levelPanelData.json";
 
-    private PanelWrapper wrapper = new PanelWrapper();
-    private List<Panel> panelList = new List<Panel>();
+    //private PanelWrapper wrapper = new PanelWrapper();
+    private List<Panel> panelList = new();
 
     #region Start
     private void Start()
@@ -75,11 +73,9 @@ public class LevelSelection : MonoBehaviour
     private List<Panel> ReadLevelsData()
     {
         string json = File.ReadAllText(levelsDataPath);
-        wrapper = JsonUtility.FromJson<PanelWrapper>(json);
+        PanelWrapper wrapper = JsonUtility.FromJson<PanelWrapper>(json);
 
-        //Debug.Log(wrapper.panelList.Count);
-
-        maxPanelNumber = wrapper.panelList.Count;
+        //Debug.Log(wrapper.panelList.Count)
 
         return wrapper.panelList;
     }
