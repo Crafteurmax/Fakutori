@@ -34,6 +34,8 @@ public class BuildingPlacer : MonoBehaviour
     private bool isLeftPress = false;
     private bool isMultiSelectionHappening = false;
 
+    private bool isLastTogglePlacement = false;
+
     private Vector3Int firstPosition = Vector3Int.zero;
     private Vector3Int secondPosition = Vector3Int.zero;
 
@@ -81,6 +83,7 @@ public class BuildingPlacer : MonoBehaviour
     {
         tileIndicator.ShowMouseIndicator();
         enablePlacement = true;
+        isLastTogglePlacement = true;
     }
 
     private void DisablePlacement()
@@ -88,6 +91,10 @@ public class BuildingPlacer : MonoBehaviour
         buildingType = Building.BuildingType.None;
         tileIndicator.HideMouseIndicator();
         enablePlacement = false;
+        if (enableRemoval)
+        {
+            isLastTogglePlacement = false;
+        }
     }
 
     private void EnableRemoval()
@@ -95,6 +102,7 @@ public class BuildingPlacer : MonoBehaviour
         tileIndicator.ShowMouseIndicator();
         tileIndicator.RemoveIndicator();
         enableRemoval = true;
+        isLastTogglePlacement = false;
     }
 
     private void DisableRemoval()
@@ -106,6 +114,7 @@ public class BuildingPlacer : MonoBehaviour
         {
             tileIndicator.ShowMouseIndicator();
             tileIndicator.ChangeIndicator(buildingType);
+            isLastTogglePlacement = true;
         }
     }
     #endregion
@@ -502,7 +511,7 @@ public class BuildingPlacer : MonoBehaviour
             tileIndicator.UpdateMouseIndicator();
         }
 
-        if (isLeftPress && enableRemoval)
+        if (isLeftPress && enableRemoval && !isLastTogglePlacement)
         {
             Vector3Int tilePosition = BuildingManager.Instance.buildingTilemap.WorldToCell(tileIndicator.getLastPosition());
             BuildingTile buildingTile = BuildingManager.Instance.buildingTilemap.GetTile<BuildingTile>(tilePosition);
@@ -523,7 +532,7 @@ public class BuildingPlacer : MonoBehaviour
                 RemoveBuildingAtPosition(tilePosition);
             }
         }
-        else if(isLeftPress && enablePlacement)
+        else if(isLeftPress && enablePlacement && isLastTogglePlacement)
         {
             Vector3Int tilePosition = BuildingManager.Instance.buildingTilemap.WorldToCell(tileIndicator.getLastPosition());
             if (PlaceBuildingAtPosition(buildingType, tilePosition, tileIndicator.transform.rotation))
