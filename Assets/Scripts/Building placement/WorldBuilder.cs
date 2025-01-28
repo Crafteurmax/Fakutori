@@ -219,7 +219,7 @@ public class WorldBuilder : MonoBehaviour
         else if (LevelData.mapName != null) 
             yield return StartCoroutine(GeneratePrebaWorld(LevelData.mapName + "_map"));
         else yield return StartCoroutine(GeneratePrebaWorld("default_map"));
-        worldSaver.BuildWorld();
+        worldSaver.BuildWorld(LevelData.mapName);
         Time.timeScale = 1f;
         isTheWorldComplete = true;
     }

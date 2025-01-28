@@ -1,11 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEditor;
+using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -66,7 +64,7 @@ public class DialogueManager : MonoBehaviour
             if (currentNode.HasTag("END"))
             {
                 //Debug.Log("End of dialogue");
-                worldSaver.WriteData();
+                worldSaver.WriteData(LevelData.mapName);
                 panelManger.TogglePanel(victoryPanel);
                 return;
                 //SceneManager.LoadScene("Menu"); 
