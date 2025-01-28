@@ -368,9 +368,9 @@ public class BuildingPlacer : MonoBehaviour
     {
         if (firstPosition != Vector3Int.zero && secondPosition != Vector3Int.zero)
         {
-            for (int i = Mathf.Min(firstPosition.x, secondPosition.x); i < Mathf.Max(firstPosition.x, secondPosition.x); i++)
+            for (int i = Mathf.Min(firstPosition.x, secondPosition.x); i <= Mathf.Max(firstPosition.x, secondPosition.x); i++)
             {
-                for (int j = Mathf.Min(firstPosition.y, secondPosition.y); j < Mathf.Max(firstPosition.y, secondPosition.y); j++)
+                for (int j = Mathf.Min(firstPosition.y, secondPosition.y); j <= Mathf.Max(firstPosition.y, secondPosition.y); j++)
                 {
                     Vector3Int currentCoords = new(i, j, 0);
                     BuildingTile currentTile = BuildingManager.Instance.buildingTilemap.GetTile<BuildingTile>(currentCoords);
