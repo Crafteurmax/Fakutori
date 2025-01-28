@@ -312,8 +312,8 @@ MonoBehaviour:
   pinInGameLayout: {fileID: 3669508430156621335}
   vocabularyIndicationPrefab: {fileID: 7607070025208972020, guid: 45c472d9147542147a680cd48db3238b, type: 3}
   grammarCategoryButton: {fileID: 7912552376451272573}
-  grammarScrollRect: {fileID: 0}
-  grammarLayout: {fileID: 0}
+  grammarScrollRect: {fileID: 5879116680972387992}
+  grammarLayout: {fileID: 1549855126113977514}
   grammarButtonPrefab: {fileID: 0}
   grammarPanel: {fileID: 9204187605909441616}
   defaultSprite: {fileID: 21300000, guid: 9b01f8e979ff89141938ac242cfc7086, type: 3}
@@ -4514,7 +4514,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3398606048149870175}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6065538284663911685, guid: f7ae104176cd6d94f8b1c2deb5070170, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7ae104176cd6d94f8b1c2deb5070170, type: 3}
@@ -4538,6 +4539,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1549855126113977514 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8622190332734945817, guid: f7ae104176cd6d94f8b1c2deb5070170, type: 3}
+  m_PrefabInstance: {fileID: 7073498507808521907}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1580338604441551767 stripped
@@ -4646,6 +4658,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5879116680972387992 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3728078971506554923, guid: f7ae104176cd6d94f8b1c2deb5070170, type: 3}
+  m_PrefabInstance: {fileID: 7073498507808521907}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!224 &6375014347531292729 stripped
