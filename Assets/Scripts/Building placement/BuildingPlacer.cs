@@ -69,6 +69,11 @@ public class BuildingPlacer : MonoBehaviour
         {
             EnablePlacement();
             DeselectBuildings();
+
+            if (enableRemoval)
+            {
+                DisableRemoval();
+            }
             return;
         }
         else
@@ -505,6 +510,7 @@ public class BuildingPlacer : MonoBehaviour
         //        DisableRemoval();
         //    }
         //}
+
 
         if (enableRemoval || enablePlacement)
         {
