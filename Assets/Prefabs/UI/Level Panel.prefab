@@ -404,7 +404,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.59119487, g: 0.44060743, b: 0.44060743, a: 1}
+  m_Color: {r: 0.59119487, g: 0.44060743, b: 0.44060743, a: 0.74509805}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -462,6 +462,7 @@ MonoBehaviour:
   - {fileID: 192020774352378189}
   - {fileID: 3643868347487236270}
   - {fileID: 5600970347090274431}
+  toggleGroup: {fileID: 0}
 --- !u!1001 &923562015422335936
 PrefabInstance:
   m_ObjectHideFlags: 0

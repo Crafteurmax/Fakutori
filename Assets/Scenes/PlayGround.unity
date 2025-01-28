@@ -1405,6 +1405,10 @@ PrefabInstance:
       propertyPath: worldSaver
       value: 
       objectReference: {fileID: 1738072332}
+    - target: {fileID: 8741035873094949734, guid: 5f79286f055fcae409c05452c259a560, type: 3}
+      propertyPath: buildingPlacer
+      value: 
+      objectReference: {fileID: 1148246803}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 1833002287481952137, guid: 5f79286f055fcae409c05452c259a560, type: 3}

@@ -28,6 +28,8 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] GameObject victoryPanel;
     [SerializeField] Button nextLevelButton;
 
+    [SerializeField] BuildingPlacer buildingPlacer;
+
     private bool isFirstTime = true;
 
     // Start is called before the first frame update
@@ -45,6 +47,11 @@ public class DialogueManager : MonoBehaviour
             isFirstTime = false;
             return; 
         }
+
+        buildingPlacer.DisablePlacement();
+        buildingPlacer.DisableRemoval();
+        buildingPlacer.DeselectBuildings();
+
         story.SetNextNode(story.GetVariable("redo"));
         SetUpNode();
     }
