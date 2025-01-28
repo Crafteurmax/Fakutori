@@ -1,8 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using UnityEngine;
-
 public class LevelData
 {
     public static string mapName;

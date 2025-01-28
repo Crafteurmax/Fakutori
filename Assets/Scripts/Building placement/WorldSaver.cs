@@ -1,14 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Security.Cryptography;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.TextCore.LowLevel;
 
 [Serializable]
 public class BuildingDataHolder
@@ -26,19 +20,17 @@ public class WorldSaver : MonoBehaviour
 {
     [SerializeField] private GameObject buildingsMap;
     [SerializeField] private BuildingPlacer buildingPlacer;
-    private string saveFilePath = Application.dataPath + "/Resources/Save/save.json";
+    private string saveFileFolderPath = Application.dataPath + "/Resources/Save/";
     private string json = string.Empty;
 
     #region Read / Write world data
-    public void WriteAllMachineData(InputAction.CallbackContext context)
-    {
-        if (context.performed) WriteData();
-    }
 
-    public void WriteData()
+    public void WriteData(string saveFileName)
     {
         json = string.Empty;
         BuildingDataHolder holder = new BuildingDataHolder();
+
+        string saveFilePath = saveFileFolderPath + saveFileName;
 
         foreach (Transform child in buildingsMap.transform)
         {
@@ -90,10 +82,10 @@ public class WorldSaver : MonoBehaviour
             //Debug.Log("Successfully saved the world!");
             File.WriteAllText(saveFilePath, json);
         }
-        else
-        {
-            Debug.Log("Failed to save the world, there is no building to save !");
-        }
+        //else
+        //{
+        //    Debug.Log("Failed to save the world, there is no building to save !");
+        //}
     }
 
     private string GetKeyFromCache(Dictionary<List<string>, List<Item.Symbol>> cache)
@@ -156,10 +148,13 @@ public class WorldSaver : MonoBehaviour
         return res;
     }
 
-    public List<BuildingDataHolder> ReadAllMachineData()
+    public List<BuildingDataHolder> ReadAllMachineData(string saveFileName)
     {
         List<BuildingDataHolder> buildings = new List<BuildingDataHolder>();
-        
+
+        string saveFilePath = saveFileFolderPath + saveFileName;
+
+
         if (!File.Exists(saveFilePath))
         {
             return null;
@@ -184,18 +179,19 @@ public class WorldSaver : MonoBehaviour
     #endregion
 
     #region Rebuild world
-    public void BuildWorldFromData(InputAction.CallbackContext context)
-    {
-        if (context.performed) BuildWorld();
-    }
 
-    public void BuildWorld()
+    public void BuildWorld(string saveFileName)
     {
-        List<BuildingDataHolder> buildings = ReadAllMachineData();
+        List<BuildingDataHolder> buildings = ReadAllMachineData(saveFileName);
+
+        //if (buildings == null)
+        //{
+        //    Debug.Log("No save file to load");
+        //    return;
+        //}
 
         if (buildings == null)
         {
-            Debug.Log("No save file to load");
             return;
         }
 
