@@ -168,6 +168,13 @@ public class UIDictionnary : MonoBehaviour
     [SerializeField] private TextMeshProUGUI examplesTextMesh;
     private int currentVideoPlayer = 0;
 
+    [Header("Vocabulary Pin in game")]
+    [SerializeField] private RectTransform pinInGameRect;
+    [SerializeField] private LayoutGroup pinInGameLayout;
+    [SerializeField] private VocabularyIndication vocabularyIndicationPrefab;
+    [SerializeField] private Dictionary<int, VocabularyIndication> vocabularyIndications = new();
+    private float pinInGameLayoutMaxHeight;
+
     [Header("Grammar")]
     [SerializeField] private SelectableButton grammarCategoryButton;
     [SerializeField] private ScrollRect grammarScrollRect;
@@ -206,6 +213,8 @@ public class UIDictionnary : MonoBehaviour
         CreateVocabularyButtons();
 
         ResetSearch();
+
+        pinInGameLayoutMaxHeight = pinInGameRect.sizeDelta.y;
 
         currentVocab = vocabularyButtons.Count - 1;
         EnableVocabularyMode(true);
@@ -410,28 +419,6 @@ public class UIDictionnary : MonoBehaviour
     #endregion Show in dictionnary
 
     #region Pin
-    private void PinVocabularyButton(int index)
-    {
-        if (pinnedVocabulary.Contains(index)) { return;  }
-
-        vocabularyButtons[index].Pin(true);
-        vocabularyButtons[index].transform.SetParent(pinnedVocabularyLayout.transform);
-        vocabularyButtons[index].transform.localScale = Vector3.one;
-
-        pinnedVocabulary.Add(index);
-        pinnedVocabulary.Sort();
-        searchedVocabulary.Remove(index);
-
-        foreach (VocabularyButton button in vocabularyButtons)
-        {
-            button.transform.SetAsLastSibling();
-        }
-
-        LayoutRebuilder.ForceRebuildLayoutImmediate(vocabularyLayout);
-
-        UpdateVocabularyColors();
-    }
-
     private void SwitchPinVocabularyButton(int index)
     {
         bool pinned = pinnedVocabulary.Contains(index);
@@ -454,12 +441,14 @@ public class UIDictionnary : MonoBehaviour
             {
                 vocabularyButtons[index].gameObject.SetActive(false);
             }
+            DestroyVocabularyIndication(index);
         }
         else
         {
             pinnedVocabulary.Add(index);
             pinnedVocabulary.Sort();
             searchedVocabulary.Remove(index);
+            CreateVocabularyIndication(index);
         }
 
         foreach (VocabularyButton button in vocabularyButtons)
@@ -470,6 +459,32 @@ public class UIDictionnary : MonoBehaviour
         LayoutRebuilder.ForceRebuildLayoutImmediate(vocabularyLayout);
 
         UpdateVocabularyColors();
+    }
+
+    private void CreateVocabularyIndication(int index)
+    {
+        VocabularyIndication vocabularyIndication = GameObject.Instantiate<VocabularyIndication>(vocabularyIndicationPrefab);
+        vocabularyIndication.transform.SetParent(pinInGameLayout.transform);
+
+        vocabularyIndication.SetKana(vocabulary.kanas[index]);
+        vocabularyIndication.SetKanji(vocabulary.kanjis[index]);
+
+        pinInGameRect.SetSizeWithCurrentAnchors(
+            RectTransform.Axis.Vertical,
+            Mathf.Max(pinInGameLayoutMaxHeight, vocabularyIndications.Count * vocabularyIndicationPrefab.GetRectTransform().sizeDelta.y));
+
+        vocabularyIndications.Add(index, vocabularyIndication);
+    }
+
+    private void DestroyVocabularyIndication(int index)
+    {
+        VocabularyIndication vocabularyIndication = vocabularyIndications[index];
+        vocabularyIndications.Remove(index);
+
+        GameObject.Destroy(vocabularyIndication.gameObject);
+        pinInGameRect.SetSizeWithCurrentAnchors(
+            RectTransform.Axis.Vertical,
+            Mathf.Max(pinInGameLayoutMaxHeight, vocabularyIndications.Count * vocabularyIndicationPrefab.GetRectTransform().sizeDelta.y));
     }
 
     private void UpdateVocabularyColors()

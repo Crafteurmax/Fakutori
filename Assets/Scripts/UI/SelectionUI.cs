@@ -43,7 +43,7 @@ public class SelectionUI : MonoBehaviour
     [SerializeField] private SelectableButton categoryButtonPrefab;
     [SerializeField] private ButtonLayout categoryLayout;
     [SerializeField] private ButtonLayout buttonLayout;
-    [SerializeField] public List<BuildingCategory> buildingCategories = new();
+    public List<BuildingCategory> buildingCategories = new();
 
     private readonly List<List<SelectableButton>> buildingButtons = new();
     private readonly List<SelectableButton> categoryButtons = new();

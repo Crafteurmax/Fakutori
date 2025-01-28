@@ -293,7 +293,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5189047933897717052}
-  - component: {fileID: 5939965169523705158}
+  - component: {fileID: 3648845311420151937}
   m_Layer: 0
   m_Name: StoryManager
   m_TagString: Untagged
@@ -316,7 +316,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3517229346451031442}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5939965169523705158
+--- !u!114 &3648845311420151937
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -329,35 +329,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   twineText: {fileID: 4900000, guid: d54ad5cb2226fd8429e1ae5d929c7b38, type: 3}
+  usePath: 1
+  path: Dialogs\Fakutori
   sprites:
   - title: belt
     sprite: {fileID: 21300000, guid: 5f600cc6505827544be23bd2264108f2, type: 3}
-  - title: concatenator
-    sprite: {fileID: 21300000, guid: 1753d1f2e6a2d3344a5ceb171a58b488, type: 3}
-  - title: echangificator
-    sprite: {fileID: 21300000, guid: aa4dcdbf780bd7343bad34537ab9e984, type: 3}
   - title: extractor
     sprite: {fileID: 21300000, guid: 6b522476d55d0b444b8028b4c1a63094, type: 3}
-  - title: hiraganificator
-    sprite: {fileID: 21300000, guid: 35c4994f1fae1fa49a5f8d3e4a3c98b5, type: 3}
+  - title: concatenator
+    sprite: {fileID: 21300000, guid: 1753d1f2e6a2d3344a5ceb171a58b488, type: 3}
   - title: kanjificator
     sprite: {fileID: 21300000, guid: e18c5ded0679c9c4991681650e5c8292, type: 3}
+  - title: vendor
+    sprite: {fileID: 21300000, guid: d3159d67b5bdae24a9ccd1a6efce2200, type: 3}
+  - title: tentenificator
+    sprite: {fileID: 21300000, guid: 8945f41a6441da24782936ce2369987e, type: 3}
+  - title: spliter
+    sprite: {fileID: 21300000, guid: 8cddd8f1c9a47c14a81a80ed29b2c85d, type: 3}
+  - title: trash
+    sprite: {fileID: 21300000, guid: ff1968bfaadd3944abf0fa2b4b6eda3b, type: 3}
+  - title: tunnel
+    sprite: {fileID: 21300000, guid: 28f82bf2a3781bd44b3323066d0815cf, type: 3}
+  - title: troncator
+    sprite: {fileID: 21300000, guid: 6bade3174bc603d4e8fa06f7b8fc1a8d, type: 3}
+  - title: echangificator
+    sprite: {fileID: 21300000, guid: aa4dcdbf780bd7343bad34537ab9e984, type: 3}
+  - title: hiraganificator
+    sprite: {fileID: 21300000, guid: 35c4994f1fae1fa49a5f8d3e4a3c98b5, type: 3}
   - title: katakanificator
     sprite: {fileID: 21300000, guid: 334918453e72dab42968659550b50567, type: 3}
   - title: maruificator
     sprite: {fileID: 21300000, guid: 6dbaa1e6b898aad43ae5a8c8de55e657, type: 3}
-  - title: spliter
-    sprite: {fileID: 21300000, guid: 8cddd8f1c9a47c14a81a80ed29b2c85d, type: 3}
-  - title: tentenificator
-    sprite: {fileID: 21300000, guid: 8945f41a6441da24782936ce2369987e, type: 3}
-  - title: trash
-    sprite: {fileID: 21300000, guid: ff1968bfaadd3944abf0fa2b4b6eda3b, type: 3}
-  - title: troncator
-    sprite: {fileID: 21300000, guid: 6bade3174bc603d4e8fa06f7b8fc1a8d, type: 3}
-  - title: tunnel
-    sprite: {fileID: 21300000, guid: 28f82bf2a3781bd44b3323066d0815cf, type: 3}
-  - title: vendor
-    sprite: {fileID: 21300000, guid: d3159d67b5bdae24a9ccd1a6efce2200, type: 3}
 --- !u!1 &3460992954463570672
 GameObject:
   m_ObjectHideFlags: 0
@@ -679,7 +681,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69852a3b06f23e140ae84bb23f2aa588, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  story: {fileID: 5939965169523705158}
+  story: {fileID: 3648845311420151937}
   text: {fileID: 715686338368576756}
   pnjName: {fileID: 8917662386708965991}
   choicesBox: {fileID: 8427844545306556294}
@@ -752,10 +754,6 @@ MonoBehaviour:
     m_ActionName: UI/Return[/Keyboard/escape]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: b6647559-44aa-4501-927e-97a80cdd6f47
-    m_ActionName: UI/SetSelectedBuildingToNone[/Keyboard/escape]
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: 46079d72-700a-4844-b2db-b21a7b0982f8
     m_ActionName: BuildingPlacement/Place[/Mouse/leftButton]
   - m_PersistentCalls:
@@ -802,6 +800,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 2b282e5e-0df7-4463-a48e-efbe6dae47b7
     m_ActionName: BuildingPlacement/Load[/Keyboard/l]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 01b66822-8b6a-4735-8ad8-1a03ee78f071
+    m_ActionName: BuildingPlacement/Multi Selection[/Keyboard/ctrl,/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0616d68c-4f3a-4683-a6f7-e5ba6e9cb050
+    m_ActionName: BuildingPlacement/Pipette[/Keyboard/q]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Dialogue

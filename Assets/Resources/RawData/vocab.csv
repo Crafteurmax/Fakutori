@@ -35,7 +35,6 @@ Kanji,Reading,Translation
 空,そら,sky
 犬,いぬ,dog
 口,くち,mouth
-校,,school
 山,やま,mountain
 子,こ,child
 糸,いと,thread
@@ -43,16 +42,12 @@ Kanji,Reading,Translation
 耳,みみ,ear
 車,くるま,car
 手,て,hand
-出,,exit
 女,おんな,woman
 女,じょ,woman
 上,うえ,up; above
 森,もり,forest
 人,ひと,person
-人,ひと,person
 人,じん,from the country (sufix)
-正,,correct
-生,,life
 夕,ゆう,evening
 石,いし,stone
 川,かわ,river
@@ -75,17 +70,10 @@ Kanji,Reading,Translation
 目,め,eye
 力,ちから,power
 林,はやし,woods
-学,,learning
-休,,to rest
-見,,see
-入,,enter
-立,,stand up
 青,あお,blue (the color)
 赤,あか,red (the color)
-早,,early
 大,だい,large (prefix)
 白,しろ,white (the color)
-小,,small
 雨天,うてん,rainy weather
 雨水,あまみず,rain water​
 雨上がり,あめあがり,after the rain​
@@ -274,9 +262,8 @@ Kanji,Reading,Translation
 明,めい,brightness
 行,こう,going; travelling; traveling
 食,しょく,food
-好,,like
+好き,すき,like
 今,いま,now
-曜,,
 月曜日,げつようび,Monday
 火曜日,かようび,Tuesday
 水曜日,すいようび,Wednesday
@@ -301,3 +288,19 @@ Kanji,Reading,Translation
 下手,へた,unskillful; poor
 円い,まるい,round; circular
 休む,やすむ,to rest; to have a break; to get time off
+私,わたし,me
+今,いま,now
+今日,きょう,today
+今月,こんげつ,this month
+校,,school
+出,,exit
+正,,correct
+生,,life
+学,,learning
+休,,to rest
+見,,see
+入,,enter
+立,,stand up
+早,,early
+小,,small
+曜,,
