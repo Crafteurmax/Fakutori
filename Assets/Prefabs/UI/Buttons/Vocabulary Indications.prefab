@@ -53,7 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7987421, g: 0.7987421, b: 0.7987421, a: 1}
+  m_Color: {r: 0.7987421, g: 0.7987421, b: 0.7987421, a: 0.2}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -82,8 +82,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 604d8aa612c300e478e17a80cbac3e37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseColor: {r: 0.6981132, g: 0.6981132, b: 0.6981132, a: 0.2}
-  alternativeColor: {r: 0.29559743, g: 0.29559743, b: 0.29559743, a: 0.2}
+  baseColor: {r: 0.8, g: 0.8, b: 0.8, a: 0.2}
+  alternativeColor: {r: 0.6666667, g: 0.6666667, b: 0.6666667, a: 0.2}
   image: {fileID: 617682672541670631}
   kanji: AAAA
   kana: aaaa

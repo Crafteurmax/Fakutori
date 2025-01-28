@@ -46,8 +46,14 @@ public class LevelSelection : MonoBehaviour
     [Header("Panels")]
     [SerializeField] private List<LevelPanelController> panelObjectList;
 
+<<<<<<< HEAD
+    private int maxPanelNumber = 1;
+    private int selectedPanel = 0;
+    private string levelsDataPath = Application.dataPath + "/Resources/levelPanelData.json";
+    private string saveFileFolderPath = Application.dataPath + "/Resources/Save/";
+=======
     private readonly string levelsDataPath = Application.dataPath + "/Resources/levelPanelData.json";
-    private readonly string saveFileFolderPath = Application.dataPath + "/Resources/Save/";
+>>>>>>> 2b7030f0dd96305a8bd25fc13399d300f363e0d9
 
     //private PanelWrapper wrapper = new PanelWrapper();
     private List<Panel> panelList = new();
