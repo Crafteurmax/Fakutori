@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -203,7 +203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.25882354, g: 0.25882354, b: 0.25882354, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -263,15 +263,27 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4143403053470347314}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: PanelManger, Assembly-CSharp
+        m_MethodName: TogglePanel
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   buttonLayers:
   - image: {fileID: 8566295491270696829}
     sprite: {fileID: 21300000, guid: e06b3a9b5289ada4d90af6b3b429d267, type: 3}
-    color: {r: 1, g: 1, b: 1, a: 1}
+    color: {r: 0, g: 0, b: 0, a: 1}
     scale: {x: 0.9, y: 0.9}
   - image: {fileID: 4444164426879584834}
     sprite: {fileID: 21300000, guid: 82c1c48401b4b3a4eb51e762d81cf261, type: 3}
-    color: {r: 0, g: 0, b: 0, a: 1}
+    color: {r: 1, g: 1, b: 1, a: 1}
     scale: {x: 0.8, y: 0.8}
 --- !u!222 &7666044131801687644
 CanvasRenderer:

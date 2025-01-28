@@ -61,10 +61,12 @@ public class BuildingOutput : MonoBehaviour
             yield return null;
         }
 
-        if (nextBuildingInput != null) {
+        if (nextBuildingInput != null)
+        {
             nextBuildingInput.SetItem(movingItem);
             nextBuildingInput.SetIncomingItem(null);
         }
+        else ItemFactory.Instance.Release(movingItem);
         outgoingItem = null;
         isMovingItem = false;
     }
@@ -79,7 +81,8 @@ public class BuildingOutput : MonoBehaviour
     public Item GetItem() {
         return item;
     }
-    public void SetItem(Item newItem) {
+    public void SetItem(Item newItem)
+    {
         item = newItem;
     }
     public void ClearItem() {

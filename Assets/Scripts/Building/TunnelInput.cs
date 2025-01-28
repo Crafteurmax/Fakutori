@@ -12,12 +12,6 @@ public class TunnelInput : Building
     [SerializeField] private TunnelOutput tunnelOutput;
     [SerializeField] private int maxTunnelLength;
 
-    /* The intermediate input is located in the middle of the tunnel.
-    * It is needed so that the tunnel acts as a conveyor belt and
-    * items don't clog up before the input.
-    */
-    [SerializeField] private BuildingInput intermediateInput;
-
     private BuildingOutput buildingOutput;
     private float distance;
 
@@ -25,9 +19,6 @@ public class TunnelInput : Building
     private bool isMovingIntermediate = false;
 
     public void Awake() {
-
-        intermediateInput.transform.Translate(Vector3.forward * distance / 2);
-        intermediateInput.SetItemPosition(intermediateInput.transform.position);
 
         buildingInput.SetIsBeltInput(true);
     }
@@ -49,14 +40,10 @@ public class TunnelInput : Building
 
     private void Update() {
         if (!tunnelOutput) return;
-        buildingInput.SetOutputFull(intermediateInput.IsOccupied());
-        if (!isMovingStart && buildingInput.IsOccupied() && !intermediateInput.IsOccupied() && !isMovingIntermediate) {
+        if (!isMovingStart && buildingInput.IsOccupied() && !buildingOutput.IsOccupied()) {
             StartCoroutine(MoveItemStart());
         }
-
-        if (!isMovingIntermediate && intermediateInput.IsOccupied() && !buildingOutput.IsOccupied() && !buildingOutput.IsMovingItem()) {
-            StartCoroutine(MoveItemIntermediate());
-        }
+        if (!buildingOutput.IsOccupied()) buildingInput.SetOutputFull(false);
     }
 
     /// <summary>
@@ -69,33 +56,11 @@ public class TunnelInput : Building
         buildingInput.SetItem(null);
         isMovingStart = true;
 
-        Vector3 targetPosition = intermediateInput.GetItemPosition(movingItem.GetItemHeightOffset());
-
-        while (movingItem != null && movingItem.transform.position != targetPosition && intermediateInput != null)
-        {
-            movingItem.transform.position = Vector3.MoveTowards(movingItem.transform.position, targetPosition, BuildingManager.Instance.beltSpeed * distance / 2 * Time.deltaTime);
-
-            yield return null;
-        }
-
-        if (intermediateInput != null) {
-            intermediateInput.SetItem(movingItem);
-        }
-
-        isMovingStart = false;
-    }
-
-    private IEnumerator MoveItemIntermediate() {
-        intermediateInput.SetOutputFull(true);
-        Item movingItem = intermediateInput.GetItem();
-        intermediateInput.SetItem(null);
-        isMovingIntermediate = true;
-
         Vector3 targetPosition = buildingOutput.GetItemPosition(movingItem.GetItemHeightOffset());
 
         while (movingItem != null && movingItem.transform.position != targetPosition && buildingOutput != null)
         {
-            movingItem.transform.position = Vector3.MoveTowards(movingItem.transform.position, targetPosition, BuildingManager.Instance.beltSpeed * distance / 2 * Time.deltaTime);
+            movingItem.transform.position = Vector3.MoveTowards(movingItem.transform.position, targetPosition, BuildingManager.Instance.beltSpeed * distance * Time.deltaTime);
 
             yield return null;
         }
@@ -104,7 +69,7 @@ public class TunnelInput : Building
             buildingOutput.SetItem(movingItem);
         }
 
-        isMovingIntermediate = false;
+        isMovingStart = false;
     }
 
     private void LookForOutputToBeLinkedTo()
@@ -175,10 +140,9 @@ public class TunnelInput : Building
 
     public override void Release()
     {
-        //BuildingManager.Instance.RemoveBuildingInput(buildingInput.GetPosition());
-        BuildingManager.Instance.RemoveBuildingInput(intermediateInput.GetPosition());
-        //buildingInput.Reset();
-        intermediateInput.Reset();
+        buildingInput.SetOutputFull(true);
+        buildingInput.Reset();
+        BuildingManager.Instance.RemoveBuildingInput(buildingInput.GetPosition());
         base.Release();
     }
 }

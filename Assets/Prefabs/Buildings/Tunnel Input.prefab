@@ -152,10 +152,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pair: {fileID: 0}
+  animator: {fileID: 0}
+  animationTime: 4
   buildingInput: {fileID: 5371141971851382852}
   tunnelOutput: {fileID: 0}
   maxTunnelLength: 100
-  intermediateInput: {fileID: 5745445278813794357}
 --- !u!114 &4790562199369376820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,7 +233,6 @@ Transform:
   - {fileID: 9179860038737513725}
   - {fileID: 7385436486055153681}
   - {fileID: 2625034648527215095}
-  - {fileID: 2886281773186598178}
   m_Father: {fileID: 530114298642537255}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4930455728526773212
@@ -524,51 +524,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &7747336528625460485
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2886281773186598178}
-  - component: {fileID: 5745445278813794357}
-  m_Layer: 6
-  m_Name: Input Intermediate
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2
-  m_IsActive: 1
---- !u!4 &2886281773186598178
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7747336528625460485}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2611932801342401222}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5745445278813794357
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7747336528625460485}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 587c70ad74fc74a4ebabfd5e85af70df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  item: {fileID: 0}
 --- !u!1 &9129691195735414957
 GameObject:
   m_ObjectHideFlags: 0

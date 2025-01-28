@@ -3580,61 +3580,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 6814171275623720439}
     m_Modifications:
     - target: {fileID: 3123658344248235655, guid: 77ddf7f64b370b344907f8b1c30e0c33, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3123658344248235655, guid: 77ddf7f64b370b344907f8b1c30e0c33, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3123658344248235655, guid: 77ddf7f64b370b344907f8b1c30e0c33, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 5853377442404459444}
     - target: {fileID: 3123658344248235655, guid: 77ddf7f64b370b344907f8b1c30e0c33, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3123658344248235655, guid: 77ddf7f64b370b344907f8b1c30e0c33, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TogglePanel
-      objectReference: {fileID: 0}
-    - target: {fileID: 3123658344248235655, guid: 77ddf7f64b370b344907f8b1c30e0c33, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PanelManger, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 3123658344248235655, guid: 77ddf7f64b370b344907f8b1c30e0c33, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 6379718962936052290}
-    - target: {fileID: 3123658344248235655, guid: 77ddf7f64b370b344907f8b1c30e0c33, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 4143403053470347314, guid: 77ddf7f64b370b344907f8b1c30e0c33, type: 3}
-      propertyPath: m_Color.b
-      value: 0.25882354
-      objectReference: {fileID: 0}
-    - target: {fileID: 4143403053470347314, guid: 77ddf7f64b370b344907f8b1c30e0c33, type: 3}
-      propertyPath: m_Color.g
-      value: 0.25882354
-      objectReference: {fileID: 0}
-    - target: {fileID: 4143403053470347314, guid: 77ddf7f64b370b344907f8b1c30e0c33, type: 3}
-      propertyPath: m_Color.r
-      value: 0.25882354
-      objectReference: {fileID: 0}
-    - target: {fileID: 4444164426879584834, guid: 77ddf7f64b370b344907f8b1c30e0c33, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4444164426879584834, guid: 77ddf7f64b370b344907f8b1c30e0c33, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4444164426879584834, guid: 77ddf7f64b370b344907f8b1c30e0c33, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5803755026125617261, guid: 77ddf7f64b370b344907f8b1c30e0c33, type: 3}
       propertyPath: m_SizeDelta.x
       value: 125
@@ -3727,18 +3679,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8566295491270696829, guid: 77ddf7f64b370b344907f8b1c30e0c33, type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8566295491270696829, guid: 77ddf7f64b370b344907f8b1c30e0c33, type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8566295491270696829, guid: 77ddf7f64b370b344907f8b1c30e0c33, type: 3}
-      propertyPath: m_Color.r
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8647262835137592037, guid: 77ddf7f64b370b344907f8b1c30e0c33, type: 3}
       propertyPath: m_SizeDelta.x
       value: 125
@@ -3766,49 +3706,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 6814171275623720439}
     m_Modifications:
     - target: {fileID: 3123658344248235655, guid: a2207917f0913384dabaf3de81a61e45, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3123658344248235655, guid: a2207917f0913384dabaf3de81a61e45, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3123658344248235655, guid: a2207917f0913384dabaf3de81a61e45, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 5853377442404459444}
     - target: {fileID: 3123658344248235655, guid: a2207917f0913384dabaf3de81a61e45, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3123658344248235655, guid: a2207917f0913384dabaf3de81a61e45, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TogglePanel
-      objectReference: {fileID: 0}
-    - target: {fileID: 3123658344248235655, guid: a2207917f0913384dabaf3de81a61e45, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PanelManger, Assembly-CSharp
-      objectReference: {fileID: 0}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 3398606048149870175}
     - target: {fileID: 3123658344248235655, guid: a2207917f0913384dabaf3de81a61e45, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 6481383735220343159}
-    - target: {fileID: 3123658344248235655, guid: a2207917f0913384dabaf3de81a61e45, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 4143403053470347314, guid: a2207917f0913384dabaf3de81a61e45, type: 3}
-      propertyPath: m_Color.b
-      value: 0.25882354
-      objectReference: {fileID: 0}
-    - target: {fileID: 4143403053470347314, guid: a2207917f0913384dabaf3de81a61e45, type: 3}
-      propertyPath: m_Color.g
-      value: 0.25882354
-      objectReference: {fileID: 0}
-    - target: {fileID: 4143403053470347314, guid: a2207917f0913384dabaf3de81a61e45, type: 3}
-      propertyPath: m_Color.r
-      value: 0.25882354
-      objectReference: {fileID: 0}
     - target: {fileID: 4733994689726151909, guid: a2207917f0913384dabaf3de81a61e45, type: 3}
       propertyPath: m_SizeDelta.x
       value: 125
@@ -3820,18 +3728,6 @@ PrefabInstance:
     - target: {fileID: 6005370005558533576, guid: a2207917f0913384dabaf3de81a61e45, type: 3}
       propertyPath: m_Name
       value: Dictionnary Button
-      objectReference: {fileID: 0}
-    - target: {fileID: 6718076354693200079, guid: a2207917f0913384dabaf3de81a61e45, type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6718076354693200079, guid: a2207917f0913384dabaf3de81a61e45, type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6718076354693200079, guid: a2207917f0913384dabaf3de81a61e45, type: 3}
-      propertyPath: m_Color.r
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7635173863356903429, guid: a2207917f0913384dabaf3de81a61e45, type: 3}
       propertyPath: m_Pivot.x
@@ -3939,58 +3835,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6814171275623720439}
     m_Modifications:
-    - target: {fileID: 1238544017404530941, guid: 0c26845e2a063424daaafdb908b936cf, type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1238544017404530941, guid: 0c26845e2a063424daaafdb908b936cf, type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1238544017404530941, guid: 0c26845e2a063424daaafdb908b936cf, type: 3}
-      propertyPath: m_Color.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3123658344248235655, guid: 0c26845e2a063424daaafdb908b936cf, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3123658344248235655, guid: 0c26845e2a063424daaafdb908b936cf, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3123658344248235655, guid: 0c26845e2a063424daaafdb908b936cf, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 6653698252379050511, guid: b7dc402c67c7c2646aaeaa9fe2fa423c, type: 3}
-    - target: {fileID: 3123658344248235655, guid: 0c26845e2a063424daaafdb908b936cf, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3123658344248235655, guid: 0c26845e2a063424daaafdb908b936cf, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Undo
-      objectReference: {fileID: 0}
-    - target: {fileID: 3123658344248235655, guid: 0c26845e2a063424daaafdb908b936cf, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: BuildingPlacer, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 3123658344248235655, guid: 0c26845e2a063424daaafdb908b936cf, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 4143403053470347314, guid: 0c26845e2a063424daaafdb908b936cf, type: 3}
-      propertyPath: m_Color.b
-      value: 0.25882354
-      objectReference: {fileID: 0}
-    - target: {fileID: 4143403053470347314, guid: 0c26845e2a063424daaafdb908b936cf, type: 3}
-      propertyPath: m_Color.g
-      value: 0.25882354
-      objectReference: {fileID: 0}
-    - target: {fileID: 4143403053470347314, guid: 0c26845e2a063424daaafdb908b936cf, type: 3}
-      propertyPath: m_Color.r
-      value: 0.25882354
-      objectReference: {fileID: 0}
     - target: {fileID: 5658976709188866864, guid: 0c26845e2a063424daaafdb908b936cf, type: 3}
       propertyPath: m_SizeDelta.x
       value: 125
@@ -4002,18 +3846,6 @@ PrefabInstance:
     - target: {fileID: 6005370005558533576, guid: 0c26845e2a063424daaafdb908b936cf, type: 3}
       propertyPath: m_Name
       value: Undo Button
-      objectReference: {fileID: 0}
-    - target: {fileID: 6304093250392115187, guid: 0c26845e2a063424daaafdb908b936cf, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6304093250392115187, guid: 0c26845e2a063424daaafdb908b936cf, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6304093250392115187, guid: 0c26845e2a063424daaafdb908b936cf, type: 3}
-      propertyPath: m_Color.r
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7635173863356903429, guid: 0c26845e2a063424daaafdb908b936cf, type: 3}
       propertyPath: m_Pivot.x
@@ -4969,10 +4801,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6814171275623720439}
     m_Modifications:
-    - target: {fileID: 974146679397055971, guid: d99649562129aa145ac5ad036cb2166d, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -1324279432, guid: eb94beb7d50b55c4795eb6fe608df0a9, type: 3}
     - target: {fileID: 2096948006200627427, guid: d99649562129aa145ac5ad036cb2166d, type: 3}
       propertyPath: m_SizeDelta.x
       value: 125
@@ -4982,37 +4810,13 @@ PrefabInstance:
       value: 125
       objectReference: {fileID: 0}
     - target: {fileID: 3123658344248235655, guid: d99649562129aa145ac5ad036cb2166d, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3123658344248235655, guid: d99649562129aa145ac5ad036cb2166d, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3123658344248235655, guid: d99649562129aa145ac5ad036cb2166d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 5853377442404459444}
     - target: {fileID: 3123658344248235655, guid: d99649562129aa145ac5ad036cb2166d, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3123658344248235655, guid: d99649562129aa145ac5ad036cb2166d, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TogglePanel
-      objectReference: {fileID: 0}
-    - target: {fileID: 3123658344248235655, guid: d99649562129aa145ac5ad036cb2166d, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PanelManger, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 3123658344248235655, guid: d99649562129aa145ac5ad036cb2166d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 835654827210146769}
-    - target: {fileID: 3123658344248235655, guid: d99649562129aa145ac5ad036cb2166d, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 5675841549498992307, guid: d99649562129aa145ac5ad036cb2166d, type: 3}
       propertyPath: m_SizeDelta.x
       value: 125
@@ -5024,18 +4828,6 @@ PrefabInstance:
     - target: {fileID: 6005370005558533576, guid: d99649562129aa145ac5ad036cb2166d, type: 3}
       propertyPath: m_Name
       value: N1P0N Button
-      objectReference: {fileID: 0}
-    - target: {fileID: 7318128703782906194, guid: d99649562129aa145ac5ad036cb2166d, type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7318128703782906194, guid: d99649562129aa145ac5ad036cb2166d, type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7318128703782906194, guid: d99649562129aa145ac5ad036cb2166d, type: 3}
-      propertyPath: m_Color.r
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7635173863356903429, guid: d99649562129aa145ac5ad036cb2166d, type: 3}
       propertyPath: m_Pivot.x
@@ -5405,58 +5197,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6814171275623720439}
     m_Modifications:
-    - target: {fileID: 1238544017404530941, guid: 3765600453a737946b6f802524a59ee4, type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1238544017404530941, guid: 3765600453a737946b6f802524a59ee4, type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1238544017404530941, guid: 3765600453a737946b6f802524a59ee4, type: 3}
-      propertyPath: m_Color.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3123658344248235655, guid: 3765600453a737946b6f802524a59ee4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3123658344248235655, guid: 3765600453a737946b6f802524a59ee4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3123658344248235655, guid: 3765600453a737946b6f802524a59ee4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 6653698252379050511, guid: b7dc402c67c7c2646aaeaa9fe2fa423c, type: 3}
-    - target: {fileID: 3123658344248235655, guid: 3765600453a737946b6f802524a59ee4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3123658344248235655, guid: 3765600453a737946b6f802524a59ee4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Redo
-      objectReference: {fileID: 0}
-    - target: {fileID: 3123658344248235655, guid: 3765600453a737946b6f802524a59ee4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: BuildingPlacer, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 3123658344248235655, guid: 3765600453a737946b6f802524a59ee4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 4143403053470347314, guid: 3765600453a737946b6f802524a59ee4, type: 3}
-      propertyPath: m_Color.b
-      value: 0.25882354
-      objectReference: {fileID: 0}
-    - target: {fileID: 4143403053470347314, guid: 3765600453a737946b6f802524a59ee4, type: 3}
-      propertyPath: m_Color.g
-      value: 0.25882354
-      objectReference: {fileID: 0}
-    - target: {fileID: 4143403053470347314, guid: 3765600453a737946b6f802524a59ee4, type: 3}
-      propertyPath: m_Color.r
-      value: 0.25882354
-      objectReference: {fileID: 0}
     - target: {fileID: 5658976709188866864, guid: 3765600453a737946b6f802524a59ee4, type: 3}
       propertyPath: m_SizeDelta.x
       value: 125
@@ -5468,18 +5208,6 @@ PrefabInstance:
     - target: {fileID: 6005370005558533576, guid: 3765600453a737946b6f802524a59ee4, type: 3}
       propertyPath: m_Name
       value: Redo Button
-      objectReference: {fileID: 0}
-    - target: {fileID: 6304093250392115187, guid: 3765600453a737946b6f802524a59ee4, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6304093250392115187, guid: 3765600453a737946b6f802524a59ee4, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6304093250392115187, guid: 3765600453a737946b6f802524a59ee4, type: 3}
-      propertyPath: m_Color.r
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7635173863356903429, guid: 3765600453a737946b6f802524a59ee4, type: 3}
       propertyPath: m_Pivot.x

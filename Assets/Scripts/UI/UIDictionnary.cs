@@ -185,7 +185,7 @@ public class UIDictionnary : MonoBehaviour
     private readonly List<VocabularyButton> vocabularyButtons = new();
     private readonly List<int> pinnedVocabulary = new();
     private List<int> searchedVocabulary = new();
-    private int currentVocab;
+    private int currentVocab = 0;
 
     [Header("Vocabulary Template")]
     [SerializeField] private GameObject vocabularyPanel;
@@ -245,7 +245,6 @@ public class UIDictionnary : MonoBehaviour
 
         RescaleIndicationRect();
 
-        currentVocab = vocabularyButtons.Count - 1;
         EnableVocabularyMode(true);
 
         StartCoroutine(LayoutRebuildDelayed());
@@ -264,10 +263,10 @@ public class UIDictionnary : MonoBehaviour
             yield return null;
         }
 
-        OpenVocabularyPage(0);
         LayoutRebuilder.ForceRebuildLayoutImmediate(vocabularyLayout);
+        OpenVocabularyPage(Mathf.Max(0, currentVocab));
+        GoTo(Mathf.Max(0, currentVocab));
     }
-
     #region Vocabulary
 
     #region Init
@@ -364,7 +363,7 @@ public class UIDictionnary : MonoBehaviour
     {
         VocabularyButton button = GameObject.Instantiate<VocabularyButton>(vocabularyButtonPrefab);
         button.transform.SetParent(searchVocabularyLayout.transform);
-        button.onClick.AddListener(delegate { OpenVocabularyPage(index); });
+        button.onClick.AddListener(delegate { OpenVocabularyPageWithRestriction(index); });
         button.GetPinButton().onClick.AddListener(delegate { SwitchPinVocabularyButton(index); });
 
         button.SetKanji(word.kanji);
@@ -378,10 +377,26 @@ public class UIDictionnary : MonoBehaviour
     #endregion Init
 
     #region Show in dictionnary
-    public void OpenVocabularyPage(int index)
+    public void OpenVocabularyPageWithRestriction(int index)
     {
         if (index == currentVocab) { return; }
 
+        OpenVocabularyPage(index);
+    }
+
+    public void ReOpenVocabularyPage()
+    {
+        foreach (VideoPlayer videoPlayer in kanjiRepresentations.Select(videoPlayer => videoPlayer.videoPlayer))
+        {
+            videoPlayer.frame = 0;
+            videoPlayer.Pause();
+        }
+        currentVideoPlayer = 0;
+        kanjiRepresentations[0].videoPlayer.Play();
+    }
+
+    public void OpenVocabularyPage(int index)
+    {      
         // Select Button
         vocabularyButtons[currentVocab].SelectButton(false);
         currentVocab = index;
@@ -418,6 +433,11 @@ public class UIDictionnary : MonoBehaviour
         }
 
         kanjiRepresentations[0].videoPlayer.Play();
+    }
+
+    public void GoTo(int index)
+    {
+        vocabularyScrollRect.verticalNormalizedPosition = 1 - (float)index / vocabulary.GetWordsCount();
     }
 
     private Sprite LoadSprite(string filePath)

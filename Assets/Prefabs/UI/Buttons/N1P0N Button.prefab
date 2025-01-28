@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4571aefabd90e7444b0a42e8532f2985, type: 3}
+  m_Sprite: {fileID: -1324279432, guid: eb94beb7d50b55c4795eb6fe608df0a9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -195,14 +195,26 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4143403053470347314}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: PanelManger, Assembly-CSharp
+        m_MethodName: TogglePanel
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   buttonLayers:
   - image: {fileID: 7318128703782906194}
     sprite: {fileID: 21300000, guid: e06b3a9b5289ada4d90af6b3b429d267, type: 3}
-    color: {r: 1, g: 1, b: 1, a: 1}
+    color: {r: 0, g: 0, b: 0, a: 1}
     scale: {x: 0.9, y: 0.9}
   - image: {fileID: 974146679397055971}
-    sprite: {fileID: 21300000, guid: 4571aefabd90e7444b0a42e8532f2985, type: 3}
+    sprite: {fileID: -1324279432, guid: eb94beb7d50b55c4795eb6fe608df0a9, type: 3}
     color: {r: 1, g: 1, b: 1, a: 1}
     scale: {x: 0.7, y: 0.7}
 --- !u!1 &6669706915845195933
@@ -264,7 +276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
