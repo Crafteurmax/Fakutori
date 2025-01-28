@@ -91,7 +91,7 @@ public class BuildingPlacer : MonoBehaviour
         isLastTogglePlacement = true;
     }
 
-    private void DisablePlacement()
+    public void DisablePlacement()
     {
         buildingType = Building.BuildingType.None;
         tileIndicator.HideMouseIndicator();
@@ -110,7 +110,7 @@ public class BuildingPlacer : MonoBehaviour
         isLastTogglePlacement = false;
     }
 
-    private void DisableRemoval()
+    public void DisableRemoval()
     {
         //Debug.Log("Enable placement: " + enablePlacement);
         tileIndicator.HideMouseIndicator();
@@ -393,7 +393,7 @@ public class BuildingPlacer : MonoBehaviour
         }
     }
 
-    private void DeselectBuildings()
+    public void DeselectBuildings()
     {
         for (int i = 0; i < selectedBuildings.Count; i++)
         {
