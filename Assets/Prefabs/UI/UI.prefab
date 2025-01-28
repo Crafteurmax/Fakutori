@@ -5374,10 +5374,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 4593293877504044479}
     m_Modifications:
     - target: {fileID: 1992643390134875673, guid: e8e325aac91795141b366a46949ccaa7, type: 3}
-      propertyPath: story
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1992643390134875673, guid: e8e325aac91795141b366a46949ccaa7, type: 3}
       propertyPath: panelManger
       value: 
       objectReference: {fileID: 5853377442404459444}
