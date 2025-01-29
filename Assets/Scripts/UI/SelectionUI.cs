@@ -196,9 +196,9 @@ public class SelectionUI : MonoBehaviour
             buildingButtons[currentBuilding.x][currentBuilding.y].SelectButton(false);
         }
 
-        if (buildingCategories[buildingButtonIndex.x].buttons.Count != 1)
+        if (buildingCategories[buildingButtonIndex.x].buttons.Count != 1 && buildingButtonIndex.x != currentCategory)
         {
-            OpenBuildingCategory(buildingButtonIndex.x); 
+            OpenBuildingCategory(buildingButtonIndex.x);
         }
         buildingButtons[buildingButtonIndex.x][buildingButtonIndex.y].SelectButton(true);
         currentBuilding = buildingButtonIndex;
