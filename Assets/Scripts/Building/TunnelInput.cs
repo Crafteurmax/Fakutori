@@ -1,16 +1,12 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Tilemaps;
-using UnityEngine.Video;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class TunnelInput : Building
 {
     [SerializeField] private BuildingInput buildingInput;
     [SerializeField] private TunnelOutput tunnelOutput;
     [SerializeField] private int maxTunnelLength;
+    [SerializeField] private GameObject paperPlanePrefab;
 
     private BuildingOutput buildingOutput;
     private float distance;
@@ -55,19 +51,51 @@ public class TunnelInput : Building
         Item movingItem = buildingInput.GetItem();        
         buildingInput.SetItem(null);
         isMovingStart = true;
+        movingItem.SetInvisible(true);
 
+        GameObject paperPlane = Instantiate(paperPlanePrefab, movingItem.transform.position, transform.rotation);
+
+        Vector3 initialPosition = movingItem.transform.position;
         Vector3 targetPosition = buildingOutput.GetItemPosition(movingItem.GetItemHeightOffset());
+
+        float hauteur = distance / 8f;
+
+        Vector3 controlPoint1 = movingItem.transform.position + new Vector3(0f, hauteur, 0f);
+        Vector3 controlPoint2 = targetPosition + new Vector3(0f, hauteur, 0f);
+
+        float t = 0f;
+        Vector3 lastPosition = paperPlane.transform.position;
 
         while (movingItem != null && movingItem.transform.position != targetPosition && buildingOutput != null)
         {
+            t = 1f - Vector3.Distance(movingItem.transform.position, targetPosition) / distance;
+            Debug.Log("t = " + t);
             movingItem.transform.position = Vector3.MoveTowards(movingItem.transform.position, targetPosition, BuildingManager.Instance.beltSpeed * distance * Time.deltaTime);
+            
+            paperPlane.transform.position = Vector3.Lerp(
+                Vector3.Lerp(
+                    Vector3.Lerp(initialPosition, controlPoint1, t),
+                    Vector3.Lerp(controlPoint1, controlPoint2, t), 
+                    t), 
+                Vector3.Lerp(
+                    Vector3.Lerp(controlPoint1, controlPoint2, t), 
+                    Vector3.Lerp(controlPoint2, targetPosition, t), 
+                    t), 
+                t);
 
+            Quaternion rotation = Quaternion.LookRotation(paperPlane.transform.position - lastPosition);
+            paperPlane.transform.rotation = rotation == Quaternion.identity ? paperPlane.transform.rotation : rotation;
+            
+            lastPosition = paperPlane.transform.position;
             yield return null;
         }
 
         if (buildingOutput != null) {
             buildingOutput.SetItem(movingItem);
         }
+
+        movingItem.SetInvisible(false);
+        Destroy(paperPlane);
 
         isMovingStart = false;
     }

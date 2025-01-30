@@ -112,4 +112,10 @@ public class Item : MonoBehaviour
     {
         return characters;
     }
+
+    public void SetInvisible(bool invisible) {
+        transform.Find("Model").GetComponent<MeshRenderer>().enabled = !invisible;
+        transform.Find("Base").GetComponent<MeshRenderer>().enabled = !invisible;
+        charactersText.enabled = !invisible;
+    }
 }

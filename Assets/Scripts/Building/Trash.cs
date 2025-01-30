@@ -17,6 +17,8 @@ public class Trash : Building
         trashInput.Initialize();
         BuildingManager.Instance.AddBuildingInput(trashInput.GetPosition(), trashInput);
         SetBuildingType(BuildingType.Trash);
+
+        GetComponentInChildren<BuildingInput>().SetIsBeltInput(true);
     }
 
     private void Update() {

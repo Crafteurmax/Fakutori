@@ -10,6 +10,8 @@ public class Vendor : Building
         vendorInput.Initialize();
         BuildingManager.Instance.AddBuildingInput(vendorInput.GetPosition(), vendorInput);
         SetBuildingType(BuildingType.Vendor);
+
+        GetComponentInChildren<BuildingInput>().SetIsBeltInput(true);
     }
 
     private void Update() 
