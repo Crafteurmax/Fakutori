@@ -82,9 +82,11 @@ public class TunnelInput : Building
                     Vector3.Lerp(controlPoint2, targetPosition, t), 
                     t), 
                 t);
-            lastPosition = paperPlane.transform.position;
 
-            paperPlane.transform.rotation = Quaternion.LookRotation(paperPlane.transform.position - lastPosition);
+            Quaternion rotation = Quaternion.LookRotation(paperPlane.transform.position - lastPosition);
+            paperPlane.transform.rotation = rotation == Quaternion.identity ? paperPlane.transform.rotation : rotation;
+            
+            lastPosition = paperPlane.transform.position;
             yield return null;
         }
 
