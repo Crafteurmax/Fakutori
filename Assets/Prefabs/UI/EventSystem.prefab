@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 4061095899683556486}
   - component: {fileID: 2524555893711635370}
   - component: {fileID: 5456196016569611155}
-  - component: {fileID: 2007456555276954523}
   m_Layer: 5
   m_Name: EventSystem
   m_TagString: Untagged
@@ -96,11 +95,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPanel: {fileID: 0}
   returnPanel: {fileID: 0}
+  DialoguePanel: {fileID: 0}
   panels:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  worldSaver: {fileID: 0}
 --- !u!114 &2524555893711635370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,7 +115,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBuildingType: 0
-  buttonPrefab: {fileID: 3123658344248235655, guid: ff541b036aa985646ad80c126934ae4d, type: 3}
+  selectionPanel: {fileID: 0}
+  buildingPlacer: {fileID: 0}
+  buildingButtonPrefab: {fileID: 0}
+  categoryButtonPrefab: {fileID: 0}
   categoryLayout:
     layout: {fileID: 0}
     rectTransform: {fileID: 0}
@@ -172,11 +176,6 @@ MonoBehaviour:
       sprite: {fileID: 160977245, guid: d91572322bb824b48a343990a5a628c6, type: 3}
     - buildingType: 15
       sprite: {fileID: 262639887, guid: d91572322bb824b48a343990a5a628c6, type: 3}
-  selectedColor: {r: 0, g: 1, b: 0.8804045, a: 1}
-  colorMultiplier: 1
-  desciptionImage: {fileID: 0}
-  controlsImage: {fileID: 0}
-  objectifsImage: {fileID: 0}
 --- !u!114 &5456196016569611155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,42 +278,3 @@ MonoBehaviour:
   m_DefaultActionMap: UI
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &2007456555276954523
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6007106855227036217}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ffa974d40dd74a48960a948f4b1b8d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  searchField: {fileID: 0}
-  vocabularyCategoryButton: {fileID: 0}
-  vocabularyScrollRect: {fileID: 0}
-  vocabularyLayout: {fileID: 0}
-  vocabularyButtonPrefab: {fileID: 7089848557118333843, guid: b1050f72d96a4534cb7bad8a8e849f2d, type: 3}
-  vocabularyPanel: {fileID: 0}
-  kanjiRepresentations:
-  - image: {fileID: 0}
-    videoPlayer: {fileID: 0}
-  - image: {fileID: 0}
-    videoPlayer: {fileID: 0}
-  - image: {fileID: 0}
-    videoPlayer: {fileID: 0}
-  - image: {fileID: 0}
-    videoPlayer: {fileID: 0}
-  - image: {fileID: 0}
-    videoPlayer: {fileID: 0}
-  readingTextMesh: {fileID: 0}
-  traductionsTextMesh: {fileID: 0}
-  examplesTextMesh: {fileID: 0}
-  grammarCategoryButton: {fileID: 0}
-  grammarScrollRect: {fileID: 0}
-  grammarLayout: {fileID: 0}
-  grammarButtonPrefab: {fileID: 0}
-  grammarPanel: {fileID: 0}
-  defaultSprite: {fileID: 21300000, guid: 9b01f8e979ff89141938ac242cfc7086, type: 3}
-  sortImages: 0

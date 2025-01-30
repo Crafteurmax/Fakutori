@@ -8,15 +8,21 @@ public class VocabularyIndication : MonoBehaviour
     [Header("Color")]
     [SerializeField] private Color baseColor;
     [SerializeField] private Color alternativeColor;
-    [SerializeField] private Image image;
 
     [Header("Vocabulary")]
     [SerializeField] private string kanji;
     [SerializeField] private string kana;
 
-    [Header("Intern Objects")]
-    [SerializeField] private TextMeshProUGUI kanjiTextMesh;
-    [SerializeField] private TextMeshProUGUI kanaTextMesh;
+    private Image image;
+    private TextMeshProUGUI kanjiTextMesh;
+    private TextMeshProUGUI kanaTextMesh;
+
+    public void Awake()
+    {
+        image = GetComponent<Image>();
+        kanjiTextMesh = transform.Find("Kanji").GetComponent<TextMeshProUGUI>();
+        kanaTextMesh = transform.Find("Kana").GetComponent<TextMeshProUGUI>();
+    }
 
     public void SetKanji(string kanji)
     {
@@ -44,6 +50,8 @@ public class VocabularyIndication : MonoBehaviour
     private void OnValidate()
     {
         if (Selection.activeGameObject != this.gameObject) { return; }
+
+        Awake();
 
         SetKanji(kanji);
         SetKana(kana);
