@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using TMPro;
 using UnityEngine;
 
@@ -129,6 +130,31 @@ public class GrammarDictionary : UIDictionary<GrammarButton, GrammarLesson, Gram
         titleTextMesh.text = lesson.Title;
         subTitleTextMesh.text = lesson.Subtitle;
         lessonTextMesh.text = lesson.LessonBody;
-        examplesTextMesh.text = lesson.Examples[0];
+
+        StringBuilder examples = new();
+
+        if (lesson.Examples.Count %2 == 0)
+        {
+            for (int i = 0; i < lesson.Examples.Count; i += 2)
+            {
+                examples.Append("- " + lesson.Examples[i] + "  :  " + lesson.Examples[i + 1] + "\n");
+            }
+        }
+        else
+        {
+            int i = 0;
+            while (i < lesson.Examples.Count - 1)
+            {
+                examples.Append("- " + lesson.Examples[i] + "  :  " + lesson.Examples[i + 1] + "\n");
+                i += 2; 
+            }
+
+            if (!string.IsNullOrEmpty(lesson.Examples[^1]))
+            {
+                examples.Append("- " + lesson.Examples[^1]);
+            }
+        }
+        
+        examplesTextMesh.text = examples.ToString();
     }
 }
