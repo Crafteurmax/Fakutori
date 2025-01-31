@@ -264,7 +264,7 @@ public class VocabularyDictionary : UIDictionary<VocabularyButton, Word , Vocabu
         return new(kanji: rawDataArray[0],
                     kana: rawDataArray[1],
                     romanji: symbolTable.KanaToRomaji(rawDataArray[1]),
-                    traductions: new(rawDataArray[2].Split(separator, System.StringSplitOptions.None)),
+                    traductions: new(rawDataArray[2].Split(separator, System.StringSplitOptions.RemoveEmptyEntries)),
                     examples: new());
     }
 

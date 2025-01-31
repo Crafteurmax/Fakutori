@@ -2,7 +2,17 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.LookDev;
+using UnityEngine.Video;
+
+[System.Serializable]
+public class ColorTag
+{
+    public string tag;
+    public Color color;
+}
 
 public class GrammarLesson : JapaneseLesson
 {
@@ -87,6 +97,9 @@ public class GrammarDictionary : UIDictionary<GrammarButton, GrammarLesson, Gram
     [SerializeField] private TextMeshProUGUI lessonTextMesh;
     [SerializeField] private TextMeshProUGUI examplesTextMesh;
 
+    [Header("Tags")]
+    [SerializeField] private string closeTag = "</>";
+    [SerializeField] private List<ColorTag> colorTags;
 
     override protected void Awake()
     {
@@ -108,10 +121,18 @@ public class GrammarDictionary : UIDictionary<GrammarButton, GrammarLesson, Gram
 
     override protected GrammarLesson CreateData(string[] rawDataArray, char separator)
     {
+        string lesson = rawDataArray[2].Replace(closeTag, "</color>");
+        string examples = rawDataArray[3].Replace(closeTag, "</color>");
+
+        foreach (ColorTag colorTag in colorTags)
+        {
+            lesson = lesson.Replace(colorTag.tag, "<color=#" + colorTag.color.ToHexString() + ">");
+            examples = examples.Replace(colorTag.tag, "<color=#" + colorTag.color.ToHexString() + ">");
+        }
         return new(title: rawDataArray[0],
                     subtitle: rawDataArray[1],
-                    lesson: rawDataArray[2],
-                    examples: new(rawDataArray[3].Split(separator, System.StringSplitOptions.None)));
+                    lesson: lesson,
+                    examples: new(examples.Split(separator, System.StringSplitOptions.RemoveEmptyEntries)));
     }
 
     override protected void InitButton(int index)
@@ -133,27 +154,10 @@ public class GrammarDictionary : UIDictionary<GrammarButton, GrammarLesson, Gram
 
         StringBuilder examples = new();
 
-        if (lesson.Examples.Count %2 == 0)
+        foreach (string example in lesson.Examples)
         {
-            for (int i = 0; i < lesson.Examples.Count; i += 2)
-            {
-                examples.Append("- " + lesson.Examples[i] + "  :  " + lesson.Examples[i + 1] + "\n");
-            }
-        }
-        else
-        {
-            int i = 0;
-            while (i < lesson.Examples.Count - 1)
-            {
-                examples.Append("- " + lesson.Examples[i] + "  :  " + lesson.Examples[i + 1] + "\n");
-                i += 2; 
-            }
-
-            if (!string.IsNullOrEmpty(lesson.Examples[^1]))
-            {
-                examples.Append("- " + lesson.Examples[^1]);
-            }
-        }
+            examples.Append("- " + example + "\n");
+        }   
         
         examplesTextMesh.text = examples.ToString();
     }
