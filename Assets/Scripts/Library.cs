@@ -24,7 +24,7 @@ public class Library : MonoBehaviour
 
         for (int i = 3; i < rawDataArray.Length; i += 3)
         {
-            AddKanjiToHiraganaToKanjiDictionary(rawDataArray[i+1], rawDataArray[i]);    
+            AddKanjiToHiraganaToKanjiDictionary(rawDataArray[i+1], rawDataArray[i]);
             AddHiraganaToKanjiToHiraganaDictionary(rawDataArray[i], rawDataArray[i + 1]);
         }
     }
