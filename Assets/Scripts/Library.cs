@@ -20,7 +20,7 @@ public class Library : MonoBehaviour
         hiraganaToKanjiDictionary.Clear();
         KanjiToHiraganaDictionary.Clear();
         string rawData = System.IO.File.ReadAllText(kanjiSaveFolder);
-        string[] rawDataArray = rawData.Split(new string[] { ",", "\n" }, System.StringSplitOptions.None);
+        string[] rawDataArray = rawData.Split(new string[] { ";", "\n" }, System.StringSplitOptions.None);
 
         for (int i = 3; i < rawDataArray.Length; i += 3)
         {
