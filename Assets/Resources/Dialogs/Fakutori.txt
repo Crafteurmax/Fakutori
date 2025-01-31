@@ -657,7 +657,7 @@ As an exemple the root form of 行く is "ik_" and 学ぶ is "manab_", you can n
 
 
 :: VerbeGroup_12 [N1P0N] {"position":"4300,400","size":"100,100"}
-All of the other verbs that are not a Godan verb will be a Ichidan verb, meaning that if a verb end with "eru" or "iru" it will most certanly be an Ichidan.
+All of the other verbs that are not a Godan verb will be a Ichidan verb, meaning that if a verb end with "eru" or "iru" it will most certainly be an Ichidan.
 [[VerbeGroup_13]] 
 
 
@@ -826,3 +826,7 @@ Thursday is read もくようび(mokuyoubi) and written 木曜日. It is linked 
 :: Week_9 [N1P0N] {"position":"1300,700","size":"100,100"}
 Friday is read きんようび(kinyoubi) and written 金曜日. It is linked to Venus, the planet of metal(金).
 [[Week_10]]
+
+
+:: freeMode [N1P0N] {"position":"100,300","size":"100,100"}
+Welcome to free mode !!!

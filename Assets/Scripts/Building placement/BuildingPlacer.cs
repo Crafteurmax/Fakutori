@@ -220,30 +220,46 @@ public class BuildingPlacer : MonoBehaviour
 
     public void OnPipettePress(InputAction.CallbackContext context)
     {
-        if (enablePlacement && enableRemoval && context.performed)
+        //if (enablePlacement && enableRemoval && context.performed)
+        //{
+        //    DisableRemoval();
+        //    SelectPipetteBuilding();
+        //    return;
+        //}
+
+        //if (enableRemoval && context.performed)
+        //{
+        //    DisableRemoval();
+        //    SelectPipetteBuilding();
+        //    return;
+        //}
+
+        //if (enablePlacement && context.performed)
+        //{
+        //    SelectPipetteBuilding();
+        //    return;
+        //}
+
+        //if (!enablePlacement && !enableRemoval && context.performed)
+        //{
+        //    SelectPipetteBuilding();
+        //    return;
+        //}
+
+        if (context.phase != InputActionPhase.Started)
         {
-            DisableRemoval();
-            SelectPipetteBuilding();
             return;
         }
 
-        if (enableRemoval && context.performed)
+        if (buildingType != Building.BuildingType.None)
         {
-            DisableRemoval();
-            SelectPipetteBuilding();
-            return;
+            selectionUI.SetCurrentBuildingTypeToNone(context);
+            DisablePlacement();
         }
 
-        if (enablePlacement && context.performed)
+        else if (buildingType == Building.BuildingType.None && !enableRemoval)
         {
             SelectPipetteBuilding();
-            return;
-        }
-
-        if (!enablePlacement && !enableRemoval && context.performed)
-        {
-            SelectPipetteBuilding();
-            return;
         }
 
     }

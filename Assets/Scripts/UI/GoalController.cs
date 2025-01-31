@@ -37,11 +37,16 @@ public class GoalController : MonoBehaviour
     void Start()
     {
         actualDisplayedGoalID = -1;
-        if (LevelData.goalFileName != null)
-            ReadGoalsFile(LevelData.goalFileName + "_goal");
+        if (LevelData.isProccedural)
+        {
+            GenerateRandomGoals(3, 10);
+        }
         else
-            ReadGoalsFile("default_goal");
-        loadNextGoalsSet();
+        {
+            if (LevelData.goalFileName != null) ReadGoalsFile(LevelData.goalFileName + "_goal");
+            else ReadGoalsFile("default_goal");
+        }
+        LoadNextGoalsSet();
     }
 
     // Update is called once per frame
@@ -58,7 +63,7 @@ public class GoalController : MonoBehaviour
             displayedGoals[key].Increase();
             //Debug.Log("Key :" + key);
         }
-        if (IsAllDisplayedGoalsAreCompleted()) loadNextGoalsSet();
+        if (IsAllDisplayedGoalsAreCompleted()) LoadNextGoalsSet();
     }
 
     private void AddGoal(goal goal)
@@ -104,7 +109,7 @@ public class GoalController : MonoBehaviour
         return isOneGoalNotComplete ? false : true;
     }
 
-    private void loadNextGoalsSet()
+    private void LoadNextGoalsSet()
     {
         //Debug.Log("Next goal is loading");
         if(actualDisplayedGoalID >= goals.Count) return;
@@ -133,5 +138,30 @@ public class GoalController : MonoBehaviour
             }
         }
 
+    }
+
+    private void GenerateRandomGoals(int numberOfGoals, int numberOfPanel)
+    {
+        for(int i = 0; i < numberOfPanel; i++)
+        {
+            goals.Add(new List<goal>());
+            List<int> ids = GenerateRandomInts(numberOfGoals);
+            for (int j = 0; j < numberOfGoals; j++)
+            {
+                string randomWord = VocabularyDictionary.Instance.lessons.GetLesson(ids[j]).Kanji;
+                goals[goals.Count - 1].Add(new goal { display = randomWord, description = randomWord, count = 10, id = ids[j] });
+            }
+        }
+    }
+
+    private List<int> GenerateRandomInts(int numberOfGoals)
+    {
+        List<int> numbers = new List<int>();
+        while (numbers.Count < numberOfGoals)
+        {
+            int number = Random.Range(0, VocabularyDictionary.Instance.lessons.GetCount());
+            if (!numbers.Contains(number)) numbers.Add(number);
+        }
+        return numbers;
     }
 }
