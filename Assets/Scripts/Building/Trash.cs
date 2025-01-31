@@ -26,12 +26,13 @@ public class Trash : Building
         if (item != null) {
             ItemFactory.Instance.Release(item);
             trashInput.SetItem(null);
+
+            // Papers
             displayedPaperIndex = (displayedPaperIndex + 1) % papers.Count;
             Destroy(displayedPaper);
             displayedPaper = Instantiate(papers[displayedPaperIndex], displayedPaperPosition.transform.position, transform.rotation, papersParent.transform);
             if (displayedPaperIndex == 0) {
                 animator.SetTrigger("Produce");
-                Debug.Log("Trash emptied");
                 // TODO : Play the sound of trash being emptied (like on windows)
             }
         }

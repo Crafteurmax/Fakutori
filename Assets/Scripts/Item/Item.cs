@@ -24,11 +24,15 @@ public class Item : MonoBehaviour
     [SerializeField] private string characters;
     [SerializeField] private TextMeshPro charactersText;
 
+    private Quaternion defaultRotation;
+    private Vector3 defaultScale;
     private float heightOffset;
 
     private void Awake()
     {
         heightOffset = 4 * transform.Find("Model").localScale.y;
+        defaultRotation = transform.rotation;
+        defaultScale = transform.localScale;
 
         //symbols.Add(new Symbol { character = 'あ', type = SymbolType.Hiragana });
         //UpdateSymbols();
@@ -117,5 +121,16 @@ public class Item : MonoBehaviour
         transform.Find("Model").GetComponent<MeshRenderer>().enabled = !invisible;
         transform.Find("Base").GetComponent<MeshRenderer>().enabled = !invisible;
         charactersText.enabled = !invisible;
+    }
+
+    public void ResetRotationAndScale() {
+        transform.rotation = defaultRotation;
+        transform.localScale = defaultScale;
+    }
+
+    public void Reset() {
+        ClearCharacters();
+        SetInvisible(false);
+        ResetRotationAndScale();
     }
 }

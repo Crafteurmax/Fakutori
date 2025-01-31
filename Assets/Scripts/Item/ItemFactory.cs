@@ -32,6 +32,7 @@ public class ItemFactory : MonoBehaviour
     }
 
     public void Release(Item item) {
+        item.Reset();
         item.gameObject.SetActive(false);
         itemPool.Push(item);
     }
