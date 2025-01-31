@@ -59,7 +59,7 @@ public class Kanjificator : Factory
                 }
                 else if (kanjiOuput.Count == 1)
                 {
-                    //Debug.Log("Single kanji output: " + kanjiOuput[0].ToString());
+                    //Debug.Log("Single Kanji output: " + kanjiOuput[0].ToString());
                     stringOutput = kanjiOuput[0];
                 }
 

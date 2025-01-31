@@ -84,11 +84,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseColor: {r: 0.8, g: 0.8, b: 0.8, a: 0.2}
   alternativeColor: {r: 0.6666667, g: 0.6666667, b: 0.6666667, a: 0.2}
-  image: {fileID: 617682672541670631}
   kanji: AAAA
   kana: aaaa
-  kanjiTextMesh: {fileID: 9208013059841087916}
-  kanaTextMesh: {fileID: 3248829054892157265}
 --- !u!222 &2399659872813086478
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -162,7 +159,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: aaaa
+  m_text: aaaaa
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5d9fd4cc1d3d4e64d8f49020f6f51b36, type: 2}
   m_sharedMaterial: {fileID: 21746434789624154, guid: 5d9fd4cc1d3d4e64d8f49020f6f51b36, type: 2}
