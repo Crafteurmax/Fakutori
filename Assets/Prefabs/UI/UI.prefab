@@ -375,13 +375,13 @@ MonoBehaviour:
   closeTag: </>
   colorTags:
   - tag: <#r>
-    color: {r: 1, g: 0, b: 0, a: 1}
+    color: {r: 0.72156864, g: 0.12941177, b: 0.19607843, a: 1}
   - tag: <#b>
-    color: {r: 0, g: 0, b: 1, a: 1}
+    color: {r: 0.16078432, g: 0.4509804, b: 0.69803923, a: 1}
   - tag: <#g>
-    color: {r: 0, g: 1, b: 0, a: 1}
+    color: {r: 0.46666667, g: 0.69803923, b: 0.32941177, a: 1}
   - tag: <#y>
-    color: {r: 1, g: 1, b: 0, a: 1}
+    color: {r: 1, g: 0.8392157, b: 0.3529412, a: 1}
 --- !u!1 &300196944508886897
 GameObject:
   m_ObjectHideFlags: 0
