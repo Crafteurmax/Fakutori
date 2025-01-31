@@ -147,6 +147,8 @@ public class LevelSelection : MonoBehaviour
 
         LevelData.currentPanel = currentLevel.GetPanel();
         LevelData.currentLevelIndex = currentLevel.GetLevelIndex();
+
+        LevelData.isProccedural = false;
     }
 
     public void DeleteSelectedSave()
@@ -158,5 +160,13 @@ public class LevelSelection : MonoBehaviour
     public void LaunchSelectedLevel()
     {
         SceneManager.LoadScene("PlayGround");
+    }
+
+    public void LaunchFreeMode()
+    {
+        LevelData.isProccedural = true;
+        LevelData.dialoguename = "freeMode";
+        LevelData.mapName = "freeMode"; 
+        LaunchSelectedLevel();
     }
 }

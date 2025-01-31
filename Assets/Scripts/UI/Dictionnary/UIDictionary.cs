@@ -63,7 +63,7 @@ public abstract class UIDictionary<LessonButton, Lesson, Lessons> : MonoBehaviou
     where Lesson : JapaneseLesson
     where Lessons : IJapaneseLessons<Lesson>
 {
-    protected Lessons lessons;
+    public Lessons lessons { get; private set; }
     protected UIDictionaryManager manager;
 
     [SerializeField] protected LessonButton lessonButtonPrefab;

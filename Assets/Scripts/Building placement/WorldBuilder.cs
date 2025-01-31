@@ -49,6 +49,7 @@ public class WorldBuilder : MonoBehaviour
     void Start()
     {
         GenerateTileList();
+        isProcedural = LevelData.isProccedural;
         StartCoroutine(GenerateWorld());  
     }
 
