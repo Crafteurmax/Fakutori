@@ -135,7 +135,7 @@ public abstract class UIDictionary<LessonButton, Lesson, Lessons> : MonoBehaviou
     #region Initialization
     private void OpenRessourceFile()
     {
-        string[] rawData = File.ReadAllText(GetResourceFile()).Split("\n", System.StringSplitOptions.None);
+        string[] rawData = File.ReadAllText(GetResourceFile()).Split("\n", System.StringSplitOptions.RemoveEmptyEntries);
 
         for (int i = 1; i < rawData.Length; i++)
         {
