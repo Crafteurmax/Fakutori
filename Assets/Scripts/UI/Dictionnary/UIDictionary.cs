@@ -178,6 +178,7 @@ public abstract class UIDictionary<LessonButton, Lesson, Lessons> : MonoBehaviou
         InitButton(index);
 
         button.transform.SetParent(searchLayoutRectTransform);
+        button.transform.localScale = Vector3.one;
         button.onClick.AddListener(delegate { OpenPageWithRestriction(index); });
         button.GetPinButton().onClick.AddListener(delegate { SwitchPinButton(index); });
         buttons[index].TriggerAlternative(index % 2 != 0);
