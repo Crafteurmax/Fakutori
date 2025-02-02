@@ -66,7 +66,7 @@ public class BuildingOutput : MonoBehaviour
             nextBuildingInput.SetItem(movingItem);
             nextBuildingInput.SetIncomingItem(null);
         }
-        else ItemFactory.Instance.Release(movingItem);
+        //else ItemFactory.Instance.Release(movingItem);
         outgoingItem = null;
         isMovingItem = false;
     }
