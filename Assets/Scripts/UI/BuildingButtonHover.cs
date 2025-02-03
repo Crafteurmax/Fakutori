@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class BuildingButtonHover : MonoBehaviour
 {
-    [SerializeField] private int timeToWait = 2;
+    [SerializeField] private float timeToWait = 0.5f;
     [SerializeField] private TMP_Text hoverText;
     [SerializeField] private Image backgroundImage;
 
@@ -20,6 +20,8 @@ public class BuildingButtonHover : MonoBehaviour
 
     public void SetHoverText(string text)
     {
+        if (text == "TunnelInput") text = "Tunnel Input";
+        if (text == "TunnelOutput") text = "Tunnel Output";
         hoverText.text = text;
     }
 
