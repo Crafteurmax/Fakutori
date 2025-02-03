@@ -50,4 +50,4 @@ Outline Unity Package [Quick Outline](https://assetstore.unity.com/packages/tool
 
 Noise Unity Package [Fast Noise Lite](https://github.com/Auburn/FastNoiseLite)
 
-Twine Parser [Kniting](https://github.com/Crafteurmax/Knitting)
+Twine Parser [Knitting](https://github.com/Crafteurmax/Knitting)
