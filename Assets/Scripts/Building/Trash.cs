@@ -13,6 +13,9 @@ public class Trash : Building
     private GameObject displayedPaper;
     [SerializeField] private GameObject displayedPaperPosition;
 
+    [Header("Sound")]
+    [SerializeField] AudioSource trashSound;
+
     private void Awake() {
         trashInput.Initialize();
         BuildingManager.Instance.AddBuildingInput(trashInput.GetPosition(), trashInput);
@@ -34,6 +37,7 @@ public class Trash : Building
             if (displayedPaperIndex == 0) {
                 animator.SetTrigger("Produce");
                 // TODO : Play the sound of trash being emptied (like on windows)
+                trashSound.Play();
             }
         }
     }

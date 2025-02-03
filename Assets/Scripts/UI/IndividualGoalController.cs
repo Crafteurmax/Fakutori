@@ -40,6 +40,7 @@ public class IndividualGoalController : MonoBehaviour, IPointerClickHandler, IPo
         if(count >= objective)
         {
             ChangeTexteColor(Color.green);
+            AudioManager.instance.PlayEffect("Success");
             isCompleted = true;
         }
         return isCompleted;

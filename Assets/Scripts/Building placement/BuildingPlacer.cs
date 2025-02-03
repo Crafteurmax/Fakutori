@@ -309,6 +309,8 @@ public class BuildingPlacer : MonoBehaviour
                 BuildingManager.Instance.buildingTilemap.SetTile(tempPos, occupiedTile2);
             }
 
+            AudioManager.instance.PlayEffect("BuildingPlacement");
+
             return true;
         }
         else
@@ -369,6 +371,7 @@ public class BuildingPlacer : MonoBehaviour
         BuildingManager.Instance.RemoveBuildingInput(aTilePosition);
         buildingTile.building.Release();
         Destroy(buildingTile.building.gameObject);
+        AudioManager.instance.PlayEffect("BuildingDestruction");
     }
     #endregion
 

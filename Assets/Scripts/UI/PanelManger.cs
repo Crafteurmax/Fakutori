@@ -26,7 +26,15 @@ public class PanelManger : MonoBehaviour
 
     public void TogglePanel(GameObject panelToToggle)
     {
+        if (currentPanels.Count > 0 && currentPanels.Peek().name == "Dictionnary Panel") {
+            AudioManager.instance.PlayEffect("CloseBook");
+        }
+
         currentPanels.Push(panelToToggle);
+
+        if (panelToToggle.name == "Dictionnary Panel") {
+            AudioManager.instance.PlayEffect("OpenBook");
+        }
 
         foreach (GameObject panel in panels)
         {
@@ -38,8 +46,18 @@ public class PanelManger : MonoBehaviour
     {
         if(currentPanels.Count <= 1) { return; }
 
-        currentPanels.Pop();
-        TogglePanel(currentPanels.Pop());
+        
+        GameObject previousPanel = currentPanels.Pop();
+        if (previousPanel.name == "Dictionnary Panel") {
+            AudioManager.instance.PlayEffect("CloseBook");
+        }
+
+        GameObject currentPanel = currentPanels.Pop();
+        if (currentPanel.name == "Dictionnary Panel") {
+            AudioManager.instance.PlayEffect("OpenBook");
+        }
+
+        TogglePanel(currentPanel);
     }
 
     public void ReturnToPreviousPanel(InputAction.CallbackContext context)
