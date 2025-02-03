@@ -1111,6 +1111,24 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1739773086871422120, guid: 5f79286f055fcae409c05452c259a560, type: 3}
+      propertyPath: m_text
+      value: 'How to use :
+
+        - ZQSD to move
+
+        - Mouse wheel click to
+        rotate camera
+
+        - Left click to place machine
+
+        - R to rotate
+
+        -
+        X to toggle delete mode
+
+        - ESC to unselect'
+      objectReference: {fileID: 0}
     - target: {fileID: 1833002287481952137, guid: 5f79286f055fcae409c05452c259a560, type: 3}
       propertyPath: m_IsActive
       value: 1
