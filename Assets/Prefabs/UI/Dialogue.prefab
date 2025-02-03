@@ -602,11 +602,11 @@ GameObject:
   - component: {fileID: 2140168166680401162}
   m_Layer: 5
   m_Name: Dialogue
-  m_TagString: Untagged
+  m_TagString: noEscape
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3517229346451031442
 RectTransform:
   m_ObjectHideFlags: 0
@@ -683,6 +683,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   story: {fileID: 3648845311420151937}
   text: {fileID: 715686338368576756}
+  slowTyper: {fileID: 0}
   pnjName: {fileID: 8917662386708965991}
   choicesBox: {fileID: 8427844545306556294}
   image: {fileID: 8739458034794262758}
@@ -707,6 +708,7 @@ MonoBehaviour:
   - {fileID: 879385538, guid: eb94beb7d50b55c4795eb6fe608df0a9, type: 3}
   victoryPanel: {fileID: 0}
   nextLevelButton: {fileID: 0}
+  buildingPlacer: {fileID: 0}
 --- !u!114 &2140168166680401162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -790,16 +792,16 @@ MonoBehaviour:
     m_ActionName: Dialogue/next[/Mouse/leftButton,/Keyboard/space]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 6ed9f1ed-058a-490f-8726-a16eafa43e6f
-    m_ActionName: BuildingPlacement/Disable Remove[/Keyboard/escape]
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: 1f59c5c0-aeb2-4ebe-ab4a-db74446285d0
     m_ActionName: BuildingPlacement/Save[/Keyboard/z]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 2b282e5e-0df7-4463-a48e-efbe6dae47b7
     m_ActionName: BuildingPlacement/Load[/Keyboard/l]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6ed9f1ed-058a-490f-8726-a16eafa43e6f
+    m_ActionName: BuildingPlacement/Disable Remove[/Keyboard/escape]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 01b66822-8b6a-4735-8ad8-1a03ee78f071
