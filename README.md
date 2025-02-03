@@ -1,10 +1,10 @@
-![Fakutori banner](https://raw.githubusercontent.com/Crafteurmax/Fakutori/refs/heads/main/Banner.png)
-
 # <ins>**FAKUTORI**</ins>
+
+![Fakutori banner](https://raw.githubusercontent.com/Crafteurmax/Fakutori/refs/heads/main/Banner.png)
 
 ### A Japanese Learning Factory Building Game
 
-Welcome to **Fakutori**, a game that will teach you the Japanese language using factory builder mechanics
+Welcome to **Fakutori**, a game that will teach you the Japanese language using factory builder mechanics.
 
 ## Sources
 
