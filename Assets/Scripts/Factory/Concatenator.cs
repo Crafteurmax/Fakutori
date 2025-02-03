@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Concatenator : Factory
 {
+    [SerializeField] private AudioSource anvilSound;
+    [SerializeField] private float audioOffset;
+
     public override void OnEnable()
     {
         base.OnEnable();
@@ -41,6 +44,8 @@ public class Concatenator : Factory
             AddToCache(cachedInput, characters);
         }
 
+        StartCoroutine(AnvilSound());
+
         yield return new WaitForSeconds(productionTime / productionSpeed);
 
         ClearInputs();
@@ -58,5 +63,10 @@ public class Concatenator : Factory
         output.SetItem(spawnedItem);
 
         state = BuildingState.IDLE;
+    }
+
+    private IEnumerator AnvilSound() {
+        yield return new WaitForSeconds(audioOffset);
+        anvilSound.Play();
     }
 }
