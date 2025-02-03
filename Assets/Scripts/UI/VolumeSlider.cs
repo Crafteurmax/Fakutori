@@ -40,7 +40,7 @@ public class VolumeSlider : MonoBehaviour
         {
             Debug.LogError(audioMixerParameter + " is not a public parameter of the audioMixer " + audioMixer.ToString());
         }
-
+        
         nameTextMesh.text = sliderName;
 
         // Get saved parameters in PlayerPrefs

@@ -10,6 +10,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] Story story;
 
     [SerializeField] TextMeshProUGUI text;
+    [SerializeField] private SlowTyper slowTyper;
     [SerializeField] TextMeshProUGUI pnjName;
 
     [SerializeField] GameObject choicesBox;
@@ -60,6 +61,11 @@ public class DialogueManager : MonoBehaviour
     {
         if (context.phase != InputActionPhase.Canceled) return;
 
+        if (slowTyper.IsTyping()) {
+            slowTyper.finishText();
+            return;
+        }
+
         List<NextNode> nextNodes = currentNode.GetNextNodes();
         if (nextNodes.Count == 1)
         {
@@ -108,7 +114,8 @@ public class DialogueManager : MonoBehaviour
     private void SetUpNode()
     {
         currentNode = story.GetCurrentNode();
-        text.text = currentNode.getText();
+        // text.text = currentNode.getText();
+        slowTyper.Begin(currentNode.getText());
         Sprite sprite = currentNode.GetSprite();
         setFace();
 

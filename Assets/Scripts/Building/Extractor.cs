@@ -12,6 +12,9 @@ public class Extractor : Building
     [SerializeField] private float productionSpeed = 1.0f;
     [SerializeField] private List<Item.Symbol> extractedCharacters;
 
+    [SerializeField] private float writingSoundOffset;
+    [SerializeField] private AudioSource writingSound;
+
     private BuildingOutput output;
     
     private bool isProducing = false;
@@ -36,6 +39,7 @@ public class Extractor : Building
         isProducing = true;
         animator.SetTrigger("Produce");
         animator.SetFloat("Speed", animationTime * productionSpeed / productionTime);
+        StartCoroutine(PlayWritingSound());
         yield return new WaitForSeconds(productionTime / productionSpeed);
         isProducing = false;
 
@@ -46,6 +50,11 @@ public class Extractor : Building
         }
 
         output.SetItem(item);
+    }
+
+    private IEnumerator PlayWritingSound() {
+        yield return new WaitForSeconds(writingSoundOffset);
+        writingSound.Play();
     }
 
     private IEnumerator SetUpWhenWorldIsFinishBeingBuild()
