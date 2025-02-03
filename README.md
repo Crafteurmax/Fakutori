@@ -20,8 +20,6 @@ Icons of cutter and concatenator from [Shapez](https://store.steampowered.com/ap
 
 Kanjis images and gifs [kanji.gif](https://github.com/jcsirot/kanji.gif)
 
-Outline Unity Package [Quick Outline](https://assetstore.unity.com/packages/tools/particles-effects/quick-outline-115488?aid=1101l9Bhe&utm_campaign=unity_affiliate&utm_medium=affiliate&utm_source=partnerize-linkmaker)
-
 [Pin Icon](https://www.flaticon.com/fr/icone-gratuite/punaises_2672101?term=punaise&page=1&position=17&origin=search&related_id=2672101)
 
 [Volume Icons](https://www.flaticon.com/fr/icones)
@@ -45,3 +43,11 @@ Empty trashcan : [Mac Empty Trash (Apple Sound)](https://www.youtube.com/watch?v
 Writing : [WRITING ON PAPER](https://www.youtube.com/watch?v=huGyFog4YWU)
 
 Background music : ネオトロン Neötrön - [【フリーBGM】好きでいてくれるだけで満足です_60min ver](https://www.youtube.com/watch?v=wDqArJu1Rbs)
+
+### Unity Package
+
+Outline Unity Package [Quick Outline](https://assetstore.unity.com/packages/tools/particles-effects/quick-outline-115488?aid=1101l9Bhe&utm_campaign=unity_affiliate&utm_medium=affiliate&utm_source=partnerize-linkmaker)
+
+Noise Unity Package [Fast Noise Lite](https://github.com/Auburn/FastNoiseLite)
+
+Twine Parser [Kniting](https://github.com/Crafteurmax/Knitting)
